@@ -1,0 +1,25 @@
+.admHeader {
+    background: #181a19;
+    padding: 2rem 15rem;
+}
+
+.menuItens {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-decoration: none;
+    margin: 0 5rem;
+}
+
+.menuItensText {
+    color: #9d9d9d;
+    text-decoration: none;
+}
+
+::marker {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+}
+

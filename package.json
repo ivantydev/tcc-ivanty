@@ -1,0 +1,21 @@
+{
+  "name": "hotel-node",
+  "version": "1.0.0",
+  "description": "Exemplo aplicacao monolitica",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ivanty",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-validator": "^7.0.1",
+    "moment": "^2.30.1",
+    "mysql2": "^3.10.1",
+    "nodemon": "^3.1.0"
+  }
+}

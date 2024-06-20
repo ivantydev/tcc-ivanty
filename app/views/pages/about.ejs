@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivanty</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/headerPC.css">
+    <link rel="stylesheet" href="css/globalPC.css">
+    <link rel="stylesheet" href="css/aboutPC.css">
+</head>
+<body>
+    <section class="telasPequenas">
+      <%- include("../partial/header") %>
+
+
+      <main class="mainTelasPequenas">
+        <img src="./images/surrealistBanner.png" alt="Despertando a arte que há em você" class="banner">
+        <section class="landPageAbout">
+            <h2 class="aboutTitle">O QUE É A <h2 class="aboutTitleYellow"> IVANTY</h2></h2>
+            <img src="./images/ivantyAbout.png" alt="" class="ivantyImage">
+            <p class="aboutText">Somos uma vitrine digital de obras de arte com o objetivo de criar um espaço no mercado de trabalho para os pequenos artistas, e também incentivar a compra de arte, propondo um local onde os artistas possam expor e vender suas obras.</p>
+            <h2 class="aboutTitle">O QUE NÓS LEVOU A PRODUZIR ESSA VITRINE?</h2>
+            <h4 class="aboutSubtitle">Falta de Oportunidade</h4>
+            <p class="aboutText">Um problema que vários artistas enfrentam no início de sua carreira é a falta de mercado e rentabilidade da arte.</p>
+            <h4 class="aboutSubtitle">O mercado de arte cresce em 50%</h4>
+            <p class="aboutText">O mercado de arte contemporânea teve um desempenho histórico no primeiro semestre de 2022, com crescimento de 50%!</p>     
+            <img src="images/brazilianDiversity.jpg" alt="" class="aboutImagePC">
+          </section>
+          </main>
+    </section>
+
+    <section class="telasGrandes">
+      <%- include("../partial/headerPC") %>
+
+      <main class="mainTelasGrandes">
+        <img src="images/bannerTigre.png" style="opacity: 0.5;" alt="" class="bannerPC">
+        <section class="contentPC">
+          <section class="contentSectionPC">
+            <img src="images/bannerTigre.png" alt="" class="aboutImagePC">
+            <article class="aboutTextsPC">
+              <h2 class="aboutTitlePC">O QUE É A </h2><h2 class="ivantyTitle">IVANTY</h2><h2 class="aboutTitlePC">?</h2>
+              <p class="aboutTextPC">Somos uma vitrine digital de obras de arte com o objetivo de criar um espaço no mercado de trabalho para os pequenos artistas, e também incentivar a compra de arte, propondo um local onde os artistas possam expor e vender suas obras.</p>
+            </article>
+          </section>
+          <section class="contentSectionPC">
+            <article class="aboutTextsPC">
+              <h2 class="aboutTitlePC">O QUE NÓS LEVOU A PRODUZIR ESSA VITRINE?</h2>
+              <h3 class="aboutSubtitlePC">Falta de Oportunidade</h3>
+              <p class="aboutTextPC">Um problema que vários artistas enfrentam no início de sua carreira é a falta de mercado e rentabilidade da arte.</p>
+              <h3 class="aboutSubtitlePC">O mercado de arte cresce em 50%</h3>
+              <p class="aboutTextPC">O mercado de arte contemporânea teve um desempenho histórico no primeiro semestre de 2022, com crescimento de 50%!</p>
+              <p class="aboutTextPC">Somos uma vitrine digital de obras de arte com o objetivo de criar um espaço no mercado de trabalho para os pequenos artistas, e também incentivar a compra de arte, propondo um local onde os artistas possam expor e vender suas obras.</p>
+            </article>
+            <img src="images/brazilianDiversity.jpg" alt="" class="aboutImagePC">
+          </section>
+        </section>
+      </main>  
+    </section>
+  
+    <%- include("../partial/footer") %>
+
+    </body>
+</html>

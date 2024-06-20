@@ -1,0 +1,57 @@
+.aboutTitle {
+    color: #000;
+    font-family: Roboto;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    text-align: left;
+    display: inline-block;
+    margin-top: 1rem;
+    /* margin-left: 1rem; */
+}
+
+.aboutTitleYellow {
+    color: #7B87C2;
+    font-family: Playfair Display;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    text-align: left;
+    display: inline-block;
+    margin-top: 1rem;
+    margin-left: 0.3rem;
+}
+
+.landPageAbout {
+    /* background: rgb(18, 45, 66); */
+    padding: 1.5rem;
+}
+
+.ivantyImage {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+}
+
+.aboutText {
+    color: #000;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin: 1rem 0px;
+
+}
+
+.aboutSubtitle {
+    color: #000;
+    font-family: Roboto;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 1rem 0;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivanty</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/headerPC.css">
+    <link rel="stylesheet" href="css/globalPC.css">
+    <link rel="stylesheet" href="css/carrosell.css">
+    <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="css/perfilMobile.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+<body>
+    <section class="telasPequenas">
+      <%- include("../partial/header") %>
+
+      <main class="mainTelasPequenas">
+        <section class="perfilContentMobile">
+          <img src="images/sky.jpg" alt="" class="banner bannerProfile">
+          <section class="layoutPerfilMobile">
+            <img src="images/artist.jpg" alt="" class="perfilPhotoMobile">
+            <section class="perfilTextsMobile">
+              <h2 class="perfilNameMobile">Seu nome</h2>
+              <h3 class="perfilBiographName">Sua biografia</h3>
+            </section>
+            <p class="perfilAboutMobile">Seu resumo</p>
+          </section>
+
+          <div class="buttonContainer">
+            <button type="button" class="editProfileButton">Editar perfil</button>
+          </div>
+
+        </section>
+      </main>
+    </section>
+
+    <section class="telasGrandes">
+      <%- include("../partial/headerPC") %>
+
+      <main class="mainTelasGrandes">
+        <section class="perfil-usuario">
+          <section class="container-perfil">
+              <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
+                  <section class="shadow"></section>
+                  <section class="avatar-perfil">
+                      <img src="images/artist.jpg" alt="img">
+                      <a href="#" class="takePicture">
+                          <i class="fas fa-camera"></i> 
+                          <span> Ver foto</span>
+                      </a>
+                  </section>
+                  <section class="date-perfil">
+                      <h4 class="titulo-usuario">Nome do usuario</h4>
+                      <p class="bio-usuario">Algumas informações sobre o perfil</p>
+                      <ul class="lista-perfil">
+                          
+                      </ul>
+                  </section>
+                  <section class="opção-perfil">
+                      <button type=""><i class="fas fa-wrench"></i></button>
+                  </section>
+              </section>
+              <section class="menu-perfil">
+                  <ul>
+                      <li><a href="#" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
+                      <li><a href="#" title=""><i class="icon-perfil fas fa-info-circle"></i> Informações</a></li>
+                      <li><a href="#" title=""><i class="icon-perfil fas fa-grin"></i> Amigos artistas</a></li>
+                      <li><a href="#" title=""><i class="icon-perfil fas fa-camera"></i> Obras</a></li>
+                  </ul>
+              </section>
+              <section class="addObras">
+                <button class="putColor">Adicionar obras</button>
+              </section>
+          </section>
+        </section>
+      </main>  
+    </section>
+ 
+    <%- include("../partial/footer") %>
+
+    </body>
+</html>

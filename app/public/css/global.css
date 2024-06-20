@@ -1,0 +1,339 @@
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 
+.banner {
+    width: 100%;
+    height: auto;
+} */
+
+
+.banner {
+    /* animation-duration: 2s;
+    animation-name: slidein; */
+    width: 100%;
+    height: auto;
+  }
+  
+  @keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%;
+    }
+  
+    to {
+      margin-right: 0%;
+      width: 100%;
+    }
+  }
+
+
+
+
+.artistasEmDestaque {
+    /* background-color: rgb(18, 45, 66); */
+    padding: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.estiloArtisticosEmDestaque {
+    background-color: rgb(18, 45, 66);
+    padding: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.obrasEmDestaque {
+    padding: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.estiloArtisticosEmDestaqueText {
+    color: rgb(255, 255, 255);
+    font-family: Roboto;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 1rem;
+}
+
+.artistasEmDestaqueText {
+    color: rgb(255, 255, 255);
+    font-family: Roboto;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 1rem;
+}
+
+.obrasEmDestaqueText     {
+    color: rgb(255, 255, 255);
+    font-family: Roboto;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 1rem;
+}
+
+.carrosell {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 1rem;
+}
+
+.artistPhoto {
+    border-radius: 2rem; 
+    width: 90%;
+    object-fit: cover;
+    margin: 1rem auto;
+    border-radius: 5rem;
+    text-align: center;
+    display: block;
+}
+
+.artistName {
+    color: rgb(0, 0, 0);
+    margin: 0.5rem auto;
+    font-family: Roboto;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    display: block;
+}
+
+.artContainer {
+    margin: 1rem;
+    border-radius: 1rem;
+}
+
+.artImage {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+}
+
+.artName {
+    font-family: Roboto;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+.artAuthor {
+    font-family: Roboto;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.artPrice {
+    font-family: Roboto;
+    font-size: 1.5625rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    text-align: right;
+}
+
+.artButton {
+    border: none;
+    border-radius: 1.25rem;
+    background:rgb(43, 71, 208);
+    padding: 1rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    color: #fff;
+}
+
+.gridContainerArtContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 1rem auto;
+}
+
+.gridContainerLikeAndCard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+    align-items: center;
+}
+
+.gridContainerArtContainer02 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.artContainerIcons {
+    width: 2.5rem;
+    height: auto;
+}
+
+.telasGrandes {
+    display: none;
+}
+  
+  @media screen and (min-width: 760px) {
+    .telasGrandes {
+        display: block;
+    }
+
+    .telasPequenas {
+        display: none;
+    }
+  }
+
+.carrosellPC {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin: 1rem;
+}
+
+.artistasEmDestaqueTextPC {
+    font-family: Roboto;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 1rem;
+}
+
+.artistasEmDestaquePC {
+    width: 100%;
+    padding: 1rem 10rem;
+    margin-top: 1rem;
+}
+
+.categoriasEmDestaqueTextPC {
+    color: rgb(255, 255, 255);
+    font-family: Roboto;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 1rem;
+}
+
+.categoriasEmDestaqueText {
+    font-family: Roboto;
+    font-size: 1.7rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 1rem 0;
+}
+
+/* .categoriasEmDestaquePC {
+    background-color: rgb(18, 45, 66);
+    padding: 1rem 5rem;
+    width: 100%;
+    margin-top: 2rem;
+} */
+
+.categoriasEmDestaque {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.obrasEmDestaquePC {
+    width: 100%;
+    padding: 1rem 10rem;
+    margin-top: 2rem;
+}
+
+.obrasEmDestaqueTextPC {
+    color: rgb(255, 255, 255);
+    font-family: Roboto;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 1rem;
+}
+
+.obrasEmDestaqueGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.artImagePC {
+    width: 100%;
+    margin-top: 1rem;
+    object-fit: cover;
+}
+
+.mainPerfilMobile {
+    background: rgb(18, 45, 66);
+}
+
+.comprarArteOnlineH1 {
+    font-size: 2.5rem;
+    font-family: 'Roboto';
+}
+
+.comprarArteOnlineP {
+    font-size: 1.1rem;
+    font-family: 'Roboto';
+}
+
+.EstilosDeObraArtePC {
+    width: 100%;
+    padding: 1rem 10rem;
+    margin-top: 2rem;
+}
+
+.ObrasMaisVendidas {
+    width: 100%;
+    padding: 1rem 10rem;
+    margin-top: 2rem;
+}
+
+.ObrasMaisVendidasMobile {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.obrasMaisVendidasGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+} 
+
+.EstilosDeObraArte {
+    padding: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.ObrasMaisVendidas {
+    padding: 1rem 10rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.obrasMaisVendidasMobileGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

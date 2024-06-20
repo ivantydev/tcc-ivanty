@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.adminPainel {
+    margin: 3rem 15rem;
+    padding: 2rem;
+    background-color: #bbbbbb;
+    border-radius: 1rem;
+
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    text-align: left;
+}
+
+.editar, .detalhes, .excluir {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #ccc;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.editar {
+    background-color: #007bff;
+    color: white;
+}
+
+.detalhes {
+    background-color: #28a745;
+    color: white;
+}
+
+.excluir {
+    background-color: #dc3545;
+    color: white;
+}

@@ -1,0 +1,71 @@
+.bannerProfile {
+    margin: 0;
+}
+
+.headerProfile {
+    margin-bottom: 0;
+}
+
+.layoutPerfilMobile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    padding: 1rem 2rem;
+}
+
+.perfilPhotoMobile {
+    position: relative;
+    width: 7rem;
+    height: auto;
+    border-radius: 11rem;
+    bottom: 5rem;
+}
+
+.perfilNameMobile {
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+.perfilBiographName {
+    font-family: Roboto;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.perfilAboutMobile {
+    font-family: Roboto;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin: 0 1rem;
+}
+
+.editProfileButton {
+    background-color: #EA4C89; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto */
+    border: none;
+    padding: 1rem 7rem;
+    font-size: 16px;
+    border-radius: 25px; /* Torna o botão arredondado */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.editProfileButton:hover {
+    background-color: #0056b3; /* Cor do botão ao passar o mouse */
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    align-content: space-around;
+    justify-content: center;
+}

@@ -1,0 +1,62 @@
+.contentSectionPC {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 2rem;
+}
+
+.contentPC {
+    background: rgb(18, 45, 66);
+    padding: 3rem;
+}
+
+.aboutImagePC {
+    width: 100%;
+    margin: auto;
+}   
+
+.aboutTextsPC {
+    margin: 0rem 2rem;
+}
+
+.aboutTitlePC {
+    color: rgb(255, 255, 255);
+    font-family: Roboto;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    text-align: left;
+    display: inline-block;
+}
+
+.ivantyTitle {
+    color: rgb(240, 233, 104);
+    font-family: "Playfair Display";
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+.aboutTextPC {
+    color: rgb(255, 255, 255);
+    font-family: Roboto;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin: 1rem 0px;
+}
+
+.aboutSubtitlePC {
+    color: rgb(255, 255, 255);
+    font-family: Roboto;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 1rem 0px;
+}

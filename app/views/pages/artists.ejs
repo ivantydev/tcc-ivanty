@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivanty</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/headerPC.css">
+    <link rel="stylesheet" href="css/globalPC.css">
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/artists.css">
+</head>
+<body>
+    <section class="telasPequenas">
+      <%- include("../partial/header") %>
+      <main class="mainTelasPequenas">
+        <img src="./images/brazilianDiversity.jpg" alt="Despertando a arte que há em você" class="banner">
+        <section class="artistas">
+            <section class="artistCard">
+              <img src="images/artist.jpg" alt="" class="artistCardPhoto">
+              <section class="artistTexts">
+                <h3 class="artistCardName">Artista</h3>
+                <p class="artistCardBio">Artista Biografia</p>
+                <a href="/artist">
+                  <input type="button" value="Ver mais" class="seeMoreButton">
+                </a>
+              </section>
+            </section>
+        </section>
+      </main>
+    </section>
+
+    <section class="telasGrandes">
+    <%- include("../partial/headerPC") %>
+    <main class="mainTelasGrandes">
+        <img src="images/brazilianDiversity.jpg" alt="" class="bannerPC">
+
+        <section class="artistPainelPC">
+          <h1 class="comprarArteOnlineH1">CONHEÇA OS PRINCIPAIS ARTISTAS DA NOSSA PLATAFORMA</h1>
+          <p class="comprarArteOnlineP">Os artistas da nossa plataforma estão reunidos aqui</p>
+          <section class="artistGridPC">
+            <%- include("../partial/artistContainer") %>      
+            <%- include("../partial/artistContainer") %>      
+            <%- include("../partial/artistContainer") %>      
+            <%- include("../partial/artistContainer") %>      
+          </section>
+      </section>
+      </main>  
+    </section>
+    <%- include("../partial/footer") %>
+    </body>
+</html>

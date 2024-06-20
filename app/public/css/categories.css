@@ -1,0 +1,40 @@
+.CategoriaImagem {
+    position: relative; /* Adicionado para permitir z-index funcionar */
+    width: 100%;
+    height: 10rem;
+    background-size: cover; /* Cobrir toda a área */
+    background-position: center; /* Centralizar a imagem */
+    background-repeat: no-repeat; /* Não repetir a imagem */
+    background-color: rgba(255, 255, 255, 0.5); /* Cor de fundo com opacidade */
+    display: flex;
+    align-items: flex-end;
+    align-content: flex-end;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+    z-index: 0;
+}
+
+.CategoriaImagem::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+
+.CategoriaPinturas {
+    background-image: url(/images/categories/pinturas.jpg);
+}
+
+.CategoriaFotografias {
+    background-image: url(/images/categories/fotografias.jpg);
+}
+
+.CategoriaNome {
+    color: #fff;
+    text-align: center;
+    margin: 1rem;
+}

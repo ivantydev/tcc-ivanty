@@ -1,0 +1,24 @@
+.pedidos {
+    padding: 1rem;
+}
+
+.pedidosH2 {
+    font-size: 2rem;
+    margin: 1rem;
+    text-align: center;
+}
+
+.pedido {
+    border-radius: 1rem;
+    margin: 1rem;
+    border: 3px solid beige;
+    padding: 1rem;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.pedidoImage {
+    width: 100%;
+    height: auto;
+}

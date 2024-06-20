@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivanty</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/headerPC.css">
+    <link rel="stylesheet" href="css/globalPC.css">
+    <link rel="stylesheet" href="css/aboutPC.css">
+    <link rel="stylesheet" href="css/buyitem.css">
+</head>
+<body>
+    <section class="telasPequenas">
+      <%- include("../partial/header") %>
+      <main class="mainTelasPequenas">
+        <section class="buyitemContainer">
+            <img src="images/brazilianDiversity.jpg" alt="" class="buyitemimage">
+            <section class="buyitemgrid">
+                <p class="buyitemtitle">Diversidade do Brazil</p>
+                <p class="buyitemprice">R$ 899.99</p>
+            </section>
+            <p class="buyitemartist">Bing AI</p>
+            <div class="buyitembutton">Comprar</div>
+            <div class="buyitemaddtocard">Adicionar ao carrinho</div>
+            <section class="buyitemdescription">
+                <h3 class="buyitemdescriptiontitle">Descrição:</h3>
+                <p class="buyitemdescriptiontext">Noite Estrelada é uma das obras mais conhecidas de Vincent Van Gogh. A pintura retrata a vista da janela do quarto do artista em um asilo em Saint-Rémy-de-Provence, na França, com um céu dramático e estrelado.</p>
+                <h4 class="buyitemmoredetails">Mais caracteristicas: </h4>
+                <p class="buyitemdescriptiontext">A Noite Estrelada é uma das obras mais reconhecidas e amadas de Van Gogh. A pintura é conhecida por suas pinceladas ousadas e uso expressivo da cor.</p>
+            </section>
+        </section>
+
+
+      </main>
+    </section>
+
+    <section class="telasGrandes">
+      <%- include("../partial/headerPC") %>
+
+      <main class="mainTelasGrandes">
+        <section class="buyitemContainerPC">
+          <section class="buyitemgridPC">
+             <!-- <section></section> -->
+             <img src="images/brazilianDiversity.jpg" alt="" class="buyitemimagePC">
+             <section class="buyiteminformationsGridPC">
+                <div>
+                  <p class="buyitemtitlePC">Diversidade do Brazil</p>
+                  <p class="buyitemartistPC">Bing AI</p>
+                  <p class="buyitempricePC">R$ 899.99</p>
+                  <section class="buyitemdescriptionPC">
+                    <h3 class="buyitemdescriptiontitlePC">Descrição:</h3>
+                    <p class="buyitemdescriptiontextPC">Noite Estrelada é uma das obras mais conhecidas de Vincent Van Gogh. A pintura retrata a vista da janela do quarto do artista em um asilo em Saint-Rémy-de-Provence, na França, com um céu dramático e estrelado.</p>
+                    <h4 class="buyitemmoredetailsPC">Mais caracteristicas: </h4>
+                    <p class="buyitemdescriptiontextPC">A Noite Estrelada é uma das obras mais reconhecidas e amadas de Van Gogh. A pintura é conhecida por suas pinceladas ousadas e uso expressivo da cor.</p>
+                </section>
+                </div>
+              </section> 
+              <section class="buttonsArea">
+                <div class="buyitembuttonPC">Comprar</div>
+                <div class="buyitemaddtocardPC">Adicionar ao carrinho</div>
+              </section>
+          </section>
+        </section>
+      </main>  
+    </section>
+  
+    <%- include("../partial/footer") %>
+
+    </body>
+</html>

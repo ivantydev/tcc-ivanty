@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <title>Ivanty</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/headerPC.css">
+    <link rel="stylesheet" href="css/globalPC.css">
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/categories.css">
+</head>
+<body>
+    <section class="telasPequenas">
+        <%- include("../partial/header") %>
+        <main>
+            <img src="images/banner.png" alt="Despertando a arte que há em você" class="banner">
+            <section class="obrasEmDestaque">
+                <h1 class="comprarArteOnlineH1">COMPRE OBRAS DE ARTE</h1>
+                <p class="comprarArteOnlineP">Navegue pelas obras de arte disponíveis em nossa plataforma</p>
+                <section class="categoriasEmDestaque">
+                    <h2 class="categoriasEmDestaqueText">Categorias em Destaque:</h2>
+                     <%- include("../partial/comprarPorCategoriaCarouselMobile") %>
+                </section>
+            </section>
+            <section class="artistasEmDetaque">
+                <h2 class="artistasEmDestaqueTextPC">Artistas em Destaque:</h2>
+                <section class="carrosell">
+                    <%- include("../partial/artistCard") %>
+                    <%- include("../partial/artistCard") %>
+                    <%- include("../partial/artistCard") %>
+                </section>
+            </section>
+            <section class="EstilosDeObraArte">
+                <h1 class="comprarArteOnlineH1">COMPRE ARTE PELO ESTILO</h1>
+                <p class="comprarArteOnlineP">Qual seu movimento artistico favorito?</p>
+                <section class="categoriasEmDestaque">
+                    <h2 class="categoriasEmDestaqueText">Categorias em Destaque:</h2>
+                    <%- include("../partial/comprarPorEstiloCarouselMobile") %> 
+                </section>
+            </section>
+            <%- include("../partial/ObrasMaisVendidasMobile") %>
+        </main>
+    </section>
+
+    <section class="telasGrandes">
+        <%- include("../partial/headerPC") %>
+        <img src="images/banner.png" alt="" class="bannerPC">
+        <main>
+            <section class="obrasEmDestaquePC">
+                <h1 class="comprarArteOnlineH1">COMPRE OBRAS DE ARTE</h1>
+                <p class="comprarArteOnlineP">Navegue pelas obras de arte disponíveis em nossa plataforma</p>
+                <section class="categoriasEmDestaquePC">
+                    <h2 class="categoriasEmDestaqueTextPC">Categorias em Destaque:</h2>
+                    <%- include("../partial/comprarPorCategoriaCarousel") %>
+                </section>
+            </section>
+            <section class="artistasEmDestaquePC">
+                <h2 class="artistasEmDestaqueTextPC">Artistas em Destaque:</h2>
+                <section class="carrosellPC">
+                <%- include("../partial/artistCardPC") %>
+                <%- include("../partial/artistCardPC") %>
+                <%- include("../partial/artistCardPC") %>
+                <%- include("../partial/artistCardPC") %>
+                <%- include("../partial/artistCardPC") %>
+                <%- include("../partial/artistCardPC") %>
+                <%- include("../partial/artistCardPC") %>
+                <%- include("../partial/artistCardPC") %>
+                </section>
+            </section>
+            <section class="EstilosDeObraArtePC">
+                <h1 class="comprarArteOnlineH1">COMPRE ARTE PELO ESTILO</h1>
+                <p class="comprarArteOnlineP">Qual seu movimento artistico favorito?</p>
+                <section class="categoriasEmDestaquePC">
+                    <h2 class="categoriasEmDestaqueTextPC">Categorias em Destaque:</h2>
+                    <%- include("../partial/comprarPorEstiloCarousel") %> 
+                </section>
+            </section>
+            <%- include("../partial/ObrasMaisVendidas") %> 
+        </main>
+    </section>
+    
+
+    <%- include("../partial/footer") %>
+
+    <script src="js/comprarPorCategoriacarousel.js"></script>
+    <script src="js/comprarPorEstilocarousel.js"></script>
+    <script src="js/comprarPorEstilocarouselMobile.js"></script>
+    <script src="js/comprarPorCategoriacarouselMobile.js"></script>
+    <script src="js/ObrasMaisVendidas.js"></script>
+    <script src="js/ObrasMaisVendidasMobile.js"></script>☻
+</body>
+</html>

@@ -1,0 +1,71 @@
+.artistCard {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgb(108 121 183);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.artistCardPhoto {
+    width: 90%;
+    height: auto;
+    border-radius: 10rem;
+    margin: auto;
+}
+
+.artistCardName {
+    color: rgb(255, 255, 255);
+    font-family: Roboto;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.artistCardBio {
+    color: rgb(255, 255, 255);
+    font-family: Roboto;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.seeMoreButton {
+    border: none;
+    border-radius: 2rem;
+    padding: .75rem 2rem;
+    margin: 2rem;
+    color: black;
+    background: #fff;
+    cursor: pointer;
+}
+
+.artistGridPC {
+    display: grid;
+    grid-template-columns: 1fr  1fr 1fr;
+}
+
+.artistasPC {
+    margin: .5rem 0;
+    padding: 1rem 2rem;
+}
+
+.artistCardPC {
+    margin: 1rem;
+    padding: 1rem;
+    background: rgb(108, 121, 183);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 1rem;
+}
+
+.artistPainelPC {
+    width: 100%;
+    padding: 1rem 10rem;
+    margin-top: 2rem;
+}

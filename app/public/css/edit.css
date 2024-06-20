@@ -1,0 +1,44 @@
+.settings {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .settings h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .settings form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .settings label {
+    font-weight: bold;
+  }
+  
+  .settings input[type="text"],
+  .settings textarea {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .settings input[type="file"] {
+    margin-bottom: 10px;
+  }
+  
+  .settings button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .settings button:hover {
+    background-color: #0056b3;
+  }

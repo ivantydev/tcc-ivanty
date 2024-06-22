@@ -25,10 +25,10 @@
           <section class="layoutPerfilMobile">
             <img src="images/artist.jpg" alt="" class="perfilPhotoMobile">
             <section class="perfilTextsMobile">
-              <h2 class="perfilNameMobile">Seu nome</h2>
-              <h3 class="perfilBiographName">Sua biografia</h3>
+              <h2 class="perfilNameMobile"><%= cliente.nome %></h2>
+              <h3 class="perfilBiographName">Sua biografia</h3> <!-- Substitua por informações do cliente -->
             </section>
-            <p class="perfilAboutMobile">Seu resumo</p>
+            <p class="perfilAboutMobile">Seu resumo</p> <!-- Substitua por informações do cliente -->
           </section>
 
           <div class="buttonContainer">
@@ -55,10 +55,14 @@
                       </a>
                   </section>
                   <section class="date-perfil">
-                      <h4 class="titulo-usuario">Nome do usuario</h4>
-                      <p class="bio-usuario">Algumas informações sobre o perfil</p>
+                      <% if (!isLoggedIn) { %>
+                          <a href="/login" class="login">Login</a>
+                      <% } else { %>
+                          <h4 class="titulo-usuario"><%= cliente.nome %></h4>
+                          <p class="bio-usuario"><%= cliente.bio %></p>
+                      <% } %>
                       <ul class="lista-perfil">
-                          
+                          <!-- Adicione informações adicionais aqui, se necessário -->
                       </ul>
                   </section>
                   <section class="opção-perfil">
@@ -83,5 +87,5 @@
  
     <%- include("../partial/footer") %>
 
-    </body>
+</body>
 </html>

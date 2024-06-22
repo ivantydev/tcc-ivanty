@@ -1,31 +1,42 @@
 const express = require("express");
+const session = require('express-session');
 const app = express();
 require('dotenv').config();
 
-// Importar os arquivos de rotas
 const clienteRoutes = require('./app/routes/clientesRoutes');
 const indexRoutes = require('./app/routes/indexRoutes');
 
 const PORT = process.env.PORT || 3000;
 
-// Middleware para lidar com JSON
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Configuração de EJS como motor de visualização
 app.set("view engine", "ejs");
 app.set("views", "./app/views");
 
-// Servir arquivos estáticos da pasta "public"
 app.use(express.static("app/public"));
 
-// Rotas da API
-app.use('/api', clienteRoutes);
+// Configuração da sessão
+app.use(session({
+  secret: 'secret_key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Use secure: true em produção com HTTPS
+}));
 
-// Outras rotas
+// Middleware para definir variáveis globais
+app.use((req, res, next) => {
+  res.locals.isLoggedIn = req.session.isLoggedIn || false;
+  next();
+});
+
+app.use('/api', clienteRoutes);
 app.use("/", indexRoutes);
 
-// Iniciar o servidor
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}\nhttp://localhost:${PORT}`);
 });

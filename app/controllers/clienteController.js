@@ -93,27 +93,45 @@ const clienteController = {
   loginCliente: async (req, res) => {
     try {
       const { email_cliente, senha_cliente } = req.body;
-
+  
       // Check if the client email exists in the database
       const cliente = await ClienteModel.getClienteByEmail(email_cliente);
-
+  
       if (!cliente) {
         return res.status(404).json({ error: 'Cliente não encontrado' });
       }
-
+  
       // Compare the provided password with the hashed password stored in the database
       const senhaValida = await bcrypt.compare(senha_cliente, cliente.senha_cliente);
-
+  
       if (!senhaValida) {
         return res.status(401).json({ error: 'Credenciais inválidas' });
       }
-
-      // If credentials are correct, return success
+  
+      // Armazenar informações do usuário na sessão
+      req.session.isLoggedIn = true;
+      req.session.cliente = {
+        id: cliente.id,
+        nome: cliente.nome_cliente,
+        bio: cliente.bio_cliente // Substitua isso com o campo correto da bio do cliente
+        // Adicione outros campos que deseja armazenar na sessão
+      };
+  
+      // Se as credenciais estiverem corretas, retorne sucesso
       res.status(200).json({ message: 'Login realizado com sucesso' });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
   },
+
+  logoutCliente: (req, res) => {
+    req.session.destroy(err => {
+      if (err) {
+        return res.status(500).json({ message: 'Erro ao fazer logout' });
+      }
+      res.status(200).json({ message: 'Logout realizado com sucesso' });
+    });
+  }
 };
 
 module.exports = clienteController;

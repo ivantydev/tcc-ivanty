@@ -36,3 +36,8 @@
     margin: 1rem;
 }
 
+.card-icon {
+    font-size: 24px; /* Ajuste o tamanho conforme necessário */
+    display: inline-block;
+    vertical-align: middle; /* Certifique-se de que está alinhado corretamente */
+}

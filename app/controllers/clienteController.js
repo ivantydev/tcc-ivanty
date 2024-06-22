@@ -93,22 +93,22 @@ const clienteController = {
   loginCliente: async (req, res) => {
     try {
       const { email_cliente, senha_cliente } = req.body;
-  
+
       // Check if the client email exists in the database
       const cliente = await ClienteModel.getClienteByEmail(email_cliente);
-  
+
       if (!cliente) {
         return res.status(404).json({ error: 'Cliente não encontrado' });
       }
-  
+
       // Compare the provided password with the hashed password stored in the database
       const senhaValida = await bcrypt.compare(senha_cliente, cliente.senha_cliente);
-  
+
       if (!senhaValida) {
         return res.status(401).json({ error: 'Credenciais inválidas' });
       }
-  
-      // Armazenar informações do usuário na sessão
+
+      // Se as credenciais estiverem corretas, configura a sessão
       req.session.isLoggedIn = true;
       req.session.cliente = {
         id: cliente.id,
@@ -116,9 +116,11 @@ const clienteController = {
         perfil: cliente.perfil_cliente,
         // Adicione outros campos que deseja armazenar na sessão
       };
-  
-      // Se as credenciais estiverem corretas, retorne sucesso
-      res.status(200).json({ message: 'Login realizado com sucesso' });
+
+      // Redireciona para a home com mensagem de sucesso
+      req.session.successMessage = 'Login realizado com sucesso';
+      res.redirect('/');
+
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

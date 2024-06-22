@@ -1,6 +1,7 @@
 .headerTelasMenores {   
     padding: 1rem;
     background: #fff;
+    border-bottom: solid;
 }
   
 .gridContainer {

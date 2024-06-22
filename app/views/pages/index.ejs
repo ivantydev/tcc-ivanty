@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="css/categories.css">
 </head>
 <body>
+    <% if (successMessage) { %>
+        <div class="success-message">
+            <p><%= successMessage %></p>
+        </div>
+    <% } %>
     <section class="telasPequenas">
         <%- include("../partial/header") %>
         <main>

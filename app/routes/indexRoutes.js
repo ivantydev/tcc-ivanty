@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-router.get("/", function (req, res) {
-    res.render("pages/index");
-});
+router.get('/', (req, res) => {
+    const successMessage = req.session.successMessage;
+    // Limpa a mensagem de sucesso da sessão para que não seja exibida novamente
+    delete req.session.successMessage;
+  
+    res.render("pages/index", { successMessage });
+  });
 
-router.get("/home", function (req, res) {
-    res.render("pages/home");
-});
 
 router.get("/artists", function (req, res) {
     res.render("pages/artists");

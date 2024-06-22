@@ -20,7 +20,6 @@
         <li><a class="menu__item" href="/profile">Perfil</a></li>
         <li><a class="menu__item" href="./requests">Pedidos</a></li>
         <li><a class="menu__item" href="./about">Sobre</a></li>
-        <li><a class="menu__item" href="./register">Cadastrar-se</a></li>
         </ul>
       </section>
     </nav>
@@ -36,5 +35,10 @@
     <a href="./about">
       <p class="quickNavigationP">Sobre</p>
     </a>
+    <% if (!isLoggedIn) { %>
+      <a href="./register">
+        <p class="quickNavigationP">Cadastre-se</p>
+      </a>      
+    <% } %>
   </nav>
 </header>

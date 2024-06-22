@@ -1,11 +1,15 @@
 .pedidos {
+    background: #7B87C2;
     padding: 1rem;
+    margin: 1rem;
+    border-radius: 1rem;
 }
 
 .pedidosH2 {
     font-size: 2rem;
     margin: 1rem;
     text-align: center;
+    color: #fff;
 }
 
 .pedido {
@@ -21,4 +25,12 @@
 .pedidoImage {
     width: 100%;
     height: auto;
+}
+
+.pedidosText {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 2.5rem;
+    color: #fff;
+    font-weight: 500;
 }

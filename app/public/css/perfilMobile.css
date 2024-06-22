@@ -10,7 +10,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
 }
 
 .perfilPhotoMobile {
@@ -43,7 +43,6 @@
     font-style: normal;
     font-weight: 300;
     line-height: normal;
-    margin: 0 1rem;
 }
 
 .editProfileButton {
@@ -68,4 +67,10 @@
     align-items: center;
     align-content: space-around;
     justify-content: center;
+}
+
+.perfilGridResumoSair {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 0 2rem 1rem;
 }

@@ -113,7 +113,7 @@ const clienteController = {
       req.session.cliente = {
         id: cliente.id,
         nome: cliente.nome_cliente,
-        bio: cliente.bio_cliente // Substitua isso com o campo correto da bio do cliente
+        perfil: cliente.perfil_cliente,
         // Adicione outros campos que deseja armazenar na sessão
       };
   

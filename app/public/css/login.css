@@ -9,10 +9,8 @@
   body {
     width: 100%;
     min-height: 100vh;
-    display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black ;
   }
   
   .container {
@@ -21,7 +19,6 @@
     width: 35rem;
     max-width: 100%;
     overflow: hidden;
-    border-color: black;
   }
   
   .header {
@@ -47,7 +44,6 @@
   
   .form-control label {
     display: inline-block;
-    color: #000000;
   }
   
   .form-control input {

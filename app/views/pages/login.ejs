@@ -1,83 +1,52 @@
-<!-- <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/login.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap"
-      rel="stylesheet"
-    />
-    <title>Login</title>
-  </head>
-  <body>
-
-    <section class="container">
-     <img src="" alt="">
-      <section class="header">
-        <h2>Login</h2>
-      </section>
-      <form id="form" class="form">
-        <section class="form-control">
-          <label for="username">Nome de usuário</label>
-          <input
-            type="text"
-            id="username" 
-            placeholder="Digite seu nome de usuário..."
-          />
-          <i class="fas fa-exclamation-circle"></i>
-          <i class="fas fa-check-circle"></i>
-          <small>Mensagem de erro</small>
-        </section>
-
-        <section class="form-control">
-          <label for="password">Senha</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Digite sua senha..."
-          />
-          <i class="fas fa-exclamation-circle"></i>
-          <i class="fas fa-check-circle"></i>
-          <small>Mensagem de erro</small>
-        </section>
-
-        <button type="submit"><a href="index.html" class="Iniciar">Entrar</a></button>
-      </form>
-    </section>
-
-    <script>
-      src="https://kit.fontawesome.com/f9e19193d6.js"
-      crossorigin="anonymous"
-    </script>
-
-    <script src=".js/campo.js"></script>
-
-  </body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login de Cliente</title>
-    <!-- Incluir CSS necessário para o seu formulário, se houver -->
+    <link rel="stylesheet" href="css/login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
 </head>
 <body>
-    <h1>Login de Cliente</h1>
-    <form action="/api/clientes/login" method="POST">
-        <label for="email">E-mail:</label><br>
-        <input type="email" id="email" name="email_cliente" required><br><br>
-        
-        <label for="senha">Senha:</label><br>
-        <input type="password" id="senha" name="senha_cliente" required><br><br>
-        
-        <button type="submit">Entrar</button>
-    </form>
-    
-    <!-- Incluir scripts JavaScript, se necessário -->
+    <section class="container">
+        <section class="header">
+            <h2>Faça seu login</h2>
+        </section>
+        <form action="/api/clientes/login" method="POST" id="loginForm" class="form">
+            <section class="form-control">
+                <label for="email">E-mail</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email_cliente"
+                    placeholder="exemplo@dominio.com"
+                    required
+                />
+                <i class="fas fa-exclamation-circle"></i>
+                <i class="fas fa-check-circle"></i>
+                <small class="mensagem-erro">Mensagem de erro</small>
+            </section>
+
+            <section class="form-control">
+                <label for="senha">Senha</label>
+                <input
+                    type="password"
+                    id="senha"
+                    name="senha_cliente"
+                    placeholder="Digite sua senha..."
+                    required
+                />
+                <i class="fas fa-exclamation-circle"></i>
+                <i class="fas fa-check-circle"></i>
+                <small class="mensagem-erro">Mensagem de erro</small>
+            </section>
+
+            <button type="submit" class="Iniciar">Entrar</button>
+        </form>
+    </section>
+
+    <script src="https://kit.fontawesome.com/f9e19193d6.js" crossorigin="anonymous"></script>
 </body>
 </html>

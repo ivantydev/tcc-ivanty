@@ -8,6 +8,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+        .mensagem-erro {
+            color: red;
+            font-size: 0.8em;
+        }
+    </style>
 </head>
 <body>
     <section class="container">
@@ -22,11 +28,12 @@
                     id="nome"
                     name="nome_cliente"
                     placeholder="Ex: João da Silva"
+                    value="<%= typeof formData !== 'undefined' ? formData.nome_cliente : '' %>"
                     required
                 />
-                <i class="fas fa-exclamation-circle"></i>
-                <i class="fas fa-check-circle"></i>
-                <small class="mensagem-erro">Mensagem de erro</small>
+                <% if (typeof errors !== 'undefined' && errors.nome_cliente) { %>
+                    <span class="mensagem-erro"><%= errors.nome_cliente.msg %></span>
+                <% } %>
             </section>
 
             <section class="form-control">
@@ -36,11 +43,12 @@
                     id="email"
                     name="email_cliente"
                     placeholder="exemplo@dominio.com"
+                    value="<%= typeof formData !== 'undefined' ? formData.email_cliente : '' %>"
                     required
                 />
-                <i class="fas fa-exclamation-circle"></i>
-                <i class="fas fa-check-circle"></i>
-                <small class="mensagem-erro">Mensagem de erro</small>
+                <% if (typeof errors !== 'undefined' && errors.email_cliente) { %>
+                    <span class="mensagem-erro"><%= errors.email_cliente.msg %></span>
+                <% } %>
             </section>
 
             <section class="form-control">
@@ -50,11 +58,12 @@
                     id="cpf"
                     name="cpf_cliente"
                     placeholder="000.000.000-00"
+                    value="<%= typeof formData !== 'undefined' ? formData.cpf_cliente : '' %>"
                     required
                 />
-                <i class="fas fa-exclamation-circle"></i>
-                <i class="fas fa-check-circle"></i>
-                <small class="mensagem-erro">Mensagem de erro</small>
+                <% if (typeof errors !== 'undefined' && errors.cpf_cliente) { %>
+                    <span class="mensagem-erro"><%= errors.cpf_cliente.msg %></span>
+                <% } %>
             </section>
 
             <section class="form-control">
@@ -66,9 +75,9 @@
                     placeholder="Digite sua senha..."
                     required
                 />
-                <i class="fas fa-exclamation-circle"></i>
-                <i class="fas fa-check-circle"></i>
-                <small class="mensagem-erro">Mensagem de erro</small>
+                <% if (typeof errors !== 'undefined' && errors.senha_cliente) { %>
+                    <span class="mensagem-erro"><%= errors.senha_cliente.msg %></span>
+                <% } %>
             </section>
 
             <section class="form-control">
@@ -78,13 +87,16 @@
                     id="datanasc"
                     name="datanasc_cliente"
                     placeholder="dd/mm/aaaa"
+                    value="<%= typeof formData !== 'undefined' ? formData.datanasc_cliente : '' %>"
                     required
                 />
-                <i class="fas fa-exclamation-circle"></i>
-                <i class="fas fa-check-circle"></i>
-                <small class="mensagem-erro">Mensagem de erro</small>
+                <% errors.forEach(error => { %>
+                    <% if (error.path === 'datanasc_cliente') { %>
+                        <span class="mensagem-erro"><%= error.msg %></span>
+                    <% } %>
+                <% }); %>
             </section>
-
+     
             <section class="form-control">
                 <label for="perfil">Perfil</label>
                 <input
@@ -92,10 +104,11 @@
                     id="perfil"
                     name="perfil_cliente"
                     placeholder="Digite seu perfil..."
+                    value="<%= typeof formData !== 'undefined' ? formData.perfil_cliente : '' %>"
                 />
-                <i class="fas fa-exclamation-circle"></i>
-                <i class="fas fa-check-circle"></i>
-                <small class="mensagem-erro">Mensagem de erro</small>
+                <% if (typeof errors !== 'undefined' && errors.perfil_cliente) { %>
+                    <span class="mensagem-erro"><%= errors.perfil_cliente.msg %></span>
+                <% } %>
             </section>
 
             <section class="form-control">
@@ -105,11 +118,12 @@
                     id="telefone"
                     name="telefone_cliente"
                     placeholder="(11) 98765-4321"
+                    value="<%= typeof formData !== 'undefined' ? formData.telefone_cliente : '' %>"
                     required
                 />
-                <i class="fas fa-exclamation-circle"></i>
-                <i class="fas fa-check-circle"></i>
-                <small class="mensagem-erro">Mensagem de erro</small>
+                <% if (typeof errors !== 'undefined' && errors.telefone_cliente) { %>
+                    <span class="mensagem-erro"><%= errors.telefone_cliente.msg %></span>
+                <% } %>
             </section>
 
             <section class="form-control">
@@ -119,11 +133,12 @@
                     id="cep"
                     name="cep_endereco"
                     placeholder="00000-000"
+                    value="<%= typeof formData !== 'undefined' ? formData.cep_endereco : '' %>"
                     required
                 />
-                <i class="fas fa-exclamation-circle"></i>
-                <i class="fas fa-check-circle"></i>
-                <small class="mensagem-erro">Mensagem de erro</small>
+                <% if (typeof errors !== 'undefined' && errors.cep_endereco) { %>
+                    <span class="mensagem-erro"><%= errors.cep_endereco.msg %></span>
+                <% } %>
             </section>
 
             <section class="form-control">
@@ -133,11 +148,12 @@
                     id="numero"
                     name="numero_endereco"
                     placeholder="Digite o número..."
+                    value="<%= typeof formData !== 'undefined' ? formData.numero_endereco : '' %>"
                     required
                 />
-                <i class="fas fa-exclamation-circle"></i>
-                <i class="fas fa-check-circle"></i>
-                <small class="mensagem-erro">Mensagem de erro</small>
+                <% if (typeof errors !== 'undefined' && errors.numero_endereco) { %>
+                    <span class="mensagem-erro"><%= errors.numero_endereco.msg %></span>
+                <% } %>
             </section>
 
             <section class="form-control">
@@ -147,11 +163,11 @@
                     id="complemento"
                     name="complemento_endereco"
                     placeholder="Digite o complemento..."
-                    required
+                    value="<%= typeof formData !== 'undefined' ? formData.complemento_endereco : '' %>"
                 />
-                <i class="fas fa-exclamation-circle"></i>
-                <i class="fas fa-check-circle"></i>
-                <small class="mensagem-erro">Mensagem de erro</small>
+                <% if (typeof errors !== 'undefined' && errors.complemento_endereco) { %>
+                    <span class="mensagem-erro"><%= errors.complemento_endereco.msg %></span>
+                <% } %>
             </section>
 
             <section class="form-control">
@@ -161,11 +177,12 @@
                     id="tipo_endereco"
                     name="tipo_endereco"
                     placeholder="Ex: Residencial, Comercial..."
+                    value="<%= typeof formData !== 'undefined' ? formData.tipo_endereco : '' %>"
                     required
                 />
-                <i class="fas fa-exclamation-circle"></i>
-                <i class="fas fa-check-circle"></i>
-                <small class="mensagem-erro">Mensagem de erro</small>
+                <% if (typeof errors !== 'undefined' && errors.tipo_endereco) { %>
+                    <span class="mensagem-erro"><%= errors.tipo_endereco.msg %></span>
+                <% } %>
             </section>
 
             <button type="submit" class="Iniciar">Cadastrar</button>

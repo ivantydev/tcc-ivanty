@@ -1,6 +1,7 @@
 const ClienteModel = require('../models/clienteModel');
 const pool = require('../../config/pool_conexoes');
 const bcrypt = require('bcrypt');
+const { validationResult } = require('express-validator');
 
 const DEFAULT_CONTACT_ID = 1; // ID de contato padrão
 const DEFAULT_ADDRESS_ID = 1; // ID de endereço padrão
@@ -29,6 +30,11 @@ const clienteController = {
   },
 
   createCliente: async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render('cadastro', { errors: errors.array(), formData: req.body });
+    }
+
     try {
       const {
         nome_cliente,
@@ -44,11 +50,13 @@ const clienteController = {
         telefone_cliente
       } = req.body;
 
+      const hashedPassword = await bcrypt.hash(senha_cliente, 10);
+
       const newClienteId = await ClienteModel.createCliente({
         nome_cliente,
         email_cliente,
         cpf_cliente,
-        senha_cliente,
+        senha_cliente: hashedPassword,
         datanasc_cliente,
         perfil_cliente,
         cep_endereco,
@@ -60,7 +68,7 @@ const clienteController = {
 
       res.status(201).json({ id: newClienteId });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      res.status(500).render('cadastro', { errors: [{ msg: error.message }], formData: req.body });
     }
   },
 

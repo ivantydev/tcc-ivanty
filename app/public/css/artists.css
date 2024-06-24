@@ -68,3 +68,11 @@
 .artImagePC {
     width: 100%;
 }
+
+.artistsContainerTextos {
+    display: inline-flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: flex-start;
+}

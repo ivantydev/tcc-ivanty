@@ -1,8 +1,9 @@
 .pedidos {
-    background: #7B87C2;
     padding: 1rem;
     margin: 1rem;
     border-radius: 1rem;
+    border: solid;
+    border-color: rgb(12, 12, 12);
 }
 
 .pedidosH2 {
@@ -33,4 +34,15 @@
     margin: 2.5rem;
     color: #fff;
     font-weight: 500;
+}
+
+.gridContainerPedidos {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    column-gap: .5rem;
+    padding: 1rem 0;
+}
+
+.imagemPedido {
+    width: 100%;
 }

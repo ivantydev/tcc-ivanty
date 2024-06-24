@@ -25,11 +25,13 @@
           <section class="layoutPerfilMobile">
             <img src="images/artist.jpg" alt="" class="perfilPhotoMobile">
             <section class="perfilTextsMobile">
-              <h2 class="perfilNameMobile">Seu nome</h2>
-              <h3 class="perfilBiographName">Sua biografia</h3>
+              <h2 class="perfilNameMobile">Nome do Artista</h2>
+              <h3 class="perfilBiographName">@artista %></h3> 
             </section>
-            <p class="perfilAboutMobile">Seu resumo</p>
           </section>
+          <div class="artistaResumo">
+            <p class="perfilAboutMobile">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam quaerat.</p> <!-- Substitua por informações do cliente -->
+          </div>
         </section>
       </main>
     </section>
@@ -50,10 +52,14 @@
                       </a>
                   </section>
                   <section class="date-perfil">
-                      <h4 class="titulo-usuario">Nome do usuario</h4>
-                      <p class="bio-usuario">Algumas informações sobre o perfil</p>
+                      <% if (!isLoggedIn) { %>
+                          <a href="/login" class="login">Login</a>
+                      <% } else { %>
+                          <h4 class="titulo-usuario">Nome Artista</h4>
+                          <p class="bio-usuario">@artista</p>
+                      <% } %>
                       <ul class="lista-perfil">
-                          
+                          <!-- Adicione informações adicionais aqui, se necessário -->
                       </ul>
                   </section>
                   <section class="opção-perfil">
@@ -63,13 +69,9 @@
               <section class="menu-perfil">
                   <ul>
                       <li><a href="#" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
-                      <li><a href="#" title=""><i class="icon-perfil fas fa-info-circle"></i> Informações</a></li>
-                      <li><a href="#" title=""><i class="icon-perfil fas fa-grin"></i> Amigos artistas</a></li>
-                      <li><a href="#" title=""><i class="icon-perfil fas fa-camera"></i> Obras</a></li>
                   </ul>
               </section>
               <section class="addObras">
-                <button class="putColor">Adicionar obras</button>
               </section>
           </section>
         </section>
@@ -78,5 +80,5 @@
  
     <%- include("../partial/footer") %>
 
-    </body>
+</body>
 </html>

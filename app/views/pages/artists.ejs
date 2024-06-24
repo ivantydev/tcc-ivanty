@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/globalPC.css">
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/artists.css">
+    <link rel="stylesheet" href="css/artistsMobile.css">
 </head>
 <body>
     <section class="telasPequenas">
@@ -19,16 +20,7 @@
       <main class="mainTelasPequenas">
         <img src="./images/brazilianDiversity.jpg" alt="Despertando a arte que há em você" class="banner">
         <section class="artistas">
-            <section class="artistCard">
-              <img src="images/artist.jpg" alt="" class="artistCardPhoto">
-              <section class="artistTexts">
-                <h3 class="artistCardName">Artista</h3>
-                <p class="artistCardBio">Artista Biografia</p>
-                <a href="/artist">
-                  <input type="button" value="Ver mais" class="seeMoreButton">
-                </a>
-              </section>
-            </section>
+          <%- include("../partial/artistContainerMobile") %>
         </section>
       </main>
     </section>
@@ -36,16 +28,13 @@
     <section class="telasGrandes">
     <%- include("../partial/headerPC") %>
     <main class="mainTelasGrandes">
-        <img src="images/brazilianDiversity.jpg" alt="" class="bannerPC">
+        <img src="images/banner.png" alt="" class="bannerPC"> 
 
         <section class="artistPainelPC">
           <h1 class="comprarArteOnlineH1">CONHEÇA OS PRINCIPAIS ARTISTAS DA NOSSA PLATAFORMA</h1>
-          <p class="comprarArteOnlineP">Os artistas da nossa plataforma estão reunidos aqui</p>
-          <section class="artistGridPC">
-            <%- include("../partial/artistContainer") %>      
-            <%- include("../partial/artistContainer") %>      
-            <%- include("../partial/artistContainer") %>      
-            <%- include("../partial/artistContainer") %>      
+          <p class="comprarArteOnlineP">Os melhores artistas estão reunidos aqui:</p>
+          <section class="">
+            <%- include("../partial/artistContainer") %>
           </section>
       </section>
       </main>  

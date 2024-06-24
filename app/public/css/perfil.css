@@ -159,7 +159,7 @@ Copiar esto
 .perfil-usuario .menu-perfil a {
   display: block;
   text-decoration: none;
-  color: inherit;
+  color: #000;
   padding: 8px 20px;
   font-weight: bold;
   border-radius: 8px;
@@ -170,7 +170,6 @@ Copiar esto
   color: #fff;
 }
 .perfil-usuario .icon-perfil {
-  display: none;
   margin-right: .75rem;
 }
 @media (max-width: 780px) {

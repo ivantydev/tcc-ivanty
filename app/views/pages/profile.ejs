@@ -61,7 +61,7 @@
                           <a href="/login" class="login">Login</a>
                       <% } else { %>
                           <h4 class="titulo-usuario"><%= cliente.nome %></h4>
-                          <p class="bio-usuario"><%= cliente.bio %></p>
+                          <p class="bio-usuario">@<%= cliente.perfil %></p>
                       <% } %>
                       <ul class="lista-perfil">
                           <!-- Adicione informações adicionais aqui, se necessário -->
@@ -74,9 +74,8 @@
               <section class="menu-perfil">
                   <ul>
                       <li><a href="#" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
-                      <li><a href="#" title=""><i class="icon-perfil fas fa-info-circle"></i> Informações</a></li>
-                      <li><a href="#" title=""><i class="icon-perfil fas fa-grin"></i> Amigos artistas</a></li>
-                      <li><a href="#" title=""><i class="icon-perfil fas fa-camera"></i> Obras</a></li>
+                      <li><a href="#" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
+                      <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
                   </ul>
               </section>
               <section class="addObras">

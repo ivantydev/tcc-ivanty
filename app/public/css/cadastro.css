@@ -228,3 +228,7 @@ form .input-group button{
         padding: 0;
     }
 }
+
+.pink-color-button {
+  background: #ff69b4 !important; /* rosa */ 
+}

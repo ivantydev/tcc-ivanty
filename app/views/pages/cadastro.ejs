@@ -6,81 +6,102 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/cadastro.css">
-    <title>Formulario responsivo com html e css</title>
+    <title>Formulário Responsivo com HTML e CSS</title>
 </head>
 
 <body>
     <div class="box">
         <div class="img-box">
             <!-- Imagens do lado do form -->
-            <img src=""> 
+            <img src="">
         </div>
         <div class="form-box">
             <h2>Criar Conta</h2>
-            <p> Já é um membro? <a href="/login"> Login </a> </p>
             <form action="/api/clientes" method="POST" id="form">
-                <div class="input-group">
-                    <label for="nome"> Nome Completo</label>
-                    <input type="text" id="nome"  name="nome_cliente" placeholder="Digite o seu nome completo" required>
+                <!-- Dados Pessoais -->
+                <div id="dados-pessoais">
+                    <div class="input-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" name="nome_cliente" placeholder="Digite o seu nome completo" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email_cliente" placeholder="Digite o seu email" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone_cliente" placeholder="Digite o seu telefone" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" name="cpf_cliente" placeholder="Digite o seu CPF" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="datanasc">Data de Nascimento</label>
+                        <input type="date" id="datanasc" name="datanasc_cliente" placeholder="dd/mm/aaaa" required>
+                    </div>
+
+                    <div class="input-group w50">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" name="senha_cliente" placeholder="Digite sua senha" required>
+                    </div>
+
+                    <div class="input-group w50">
+                        <label for="csenha">Confirmar senha</label>
+                        <input type="password" id="csenha" name="confirmar_senha" placeholder="Confirme sua senha" required>
+                    </div>
+
+                    <div class="input-group">
+                        <button type="button" onclick="nextPage('dados-endereco')">Próximo</button>
+                    </div>
                 </div>
 
-                <div class="input-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email"  name="email_cliente" placeholder="Digite o seu email" required>
+                <!-- Dados de Endereço -->
+                <div id="dados-endereco" style="display: none;">
+                    <div class="input-group">
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep" name="cep_endereco" placeholder="00000-000" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="numero">Número</label>
+                        <input type="text" id="numero" name="numero_endereco" placeholder="Digite o número..." required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="complemento">Complemento</label>
+                        <input type="text" id="complemento" name="complemento_endereco" placeholder="Digite o complemento...">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="tipo_endereco">Tipo de Endereço</label>
+                        <input type="text" id="tipo_endereco" name="tipo_endereco" placeholder="Ex: Residencial, Comercial..." required>
+                    </div>
+
+                    <div class="input-group">
+                        <button type="button" onclick="prevPage('dados-pessoais')" class="pink-color-button">Anterior</button>
+                        <button type="submit">Cadastrar</button>
+                    </div>
                 </div>
-
-                <div class="input-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" id="telefone" name="telefone_cliente" placeholder="Digite o seu telefone" required>
-                </div>
-
-                <div class="input-group">
-                    <label for="cpf">CPF</label>
-                    <input type="text" id="email"  name="cpf_cliente" placeholder="Digite o seu CPF" required>
-                </div>
-
-                <div class="input-group">
-                    <label for="datanasc">Data de Nascimento</label>
-                    <input type="date" id="datanasc" name="datanasc_cliente" placeholder="dd/mm/aaaa" required>
-                </div>
-
-                <div class="input-group">
-                    <label for="cep">CEP</label>
-                    <input type="text" id="cep" name="cep_endereco" placeholder="00000-000" required>
-                </div>
-
-                <div class="input-group">
-                    <label for="numero">Número</label>
-                    <input type="text" id="numero" name="numero_endereco" placeholder="Digite o número..." required>
-                </div>
-
-                <div class="input-group">
-                    <label for="complemento">Complemento</label>
-                    <input type="text" id="complemento" name="complemento_endereco" placeholder="Digite o complemento...">
-                </div>
-
-                <div class="input-group">
-                    <label for="tipo_endereco">Tipo de Endereço</label>
-                    <input type="text" id="tipo_endereco" name="tipo_endereco" placeholder="Ex: Residencial, Comercial..." required>
-                </div>
-
-
-                <div class="input-group w50">
-                    <label for="senha">Senha</label>
-                    <input type="password" name="senha_cliente" id="senha" placeholder="Digite sua senha" required>
-                </div>
-
-                <div class="input-group w50">
-                    <label for="Confirmarsenha">Confirmar Senha</label>
-                    <input type="password" id="Confirmarsenha" placeholder="Confirme a senha" required>
-                </div>
-
-                <div class="input-group">
-                    <button>Cadastrar</button>
-                </div>
-
             </form>
         </div>
     </div>
+
+    <script>
+        function nextPage(sectionId) {
+            document.getElementById('dados-pessoais').style.display = 'none';
+            document.getElementById('dados-endereco').style.display = 'block';
+        }
+
+        function prevPage(sectionId) {
+            document.getElementById('dados-pessoais').style.display = 'block';
+            document.getElementById('dados-endereco').style.display = 'none';
+        }
+    </script>
 </body>
+
 </html>

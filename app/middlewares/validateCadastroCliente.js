@@ -14,21 +14,16 @@ const validateCadastroCliente = [
       }
       return true;
     }),
+    
   body('cpf_cliente')
     .notEmpty().withMessage('CPF é obrigatório')
-    .isLength({ min: 11, max: 11 }).withMessage('CPF deve ter 11 caracteres')
-    .custom(async (cpf) => {
-      const [rows] = await pool.query('SELECT id_cliente FROM Clientes WHERE cpf_cliente = ?', [cpf]);
-      if (rows.length > 0) {
-        throw new Error('CPF já está em uso');
-      }
-      return true;
-    }),
+    .isLength({ min: 11, max: 11 }).withMessage('CPF deve ter 11 caracteres'),
+
   body('senha_cliente')
     .isLength({ min: 6 }).withMessage('Senha deve ter no mínimo 6 caracteres'),
-  // body('datanasc_cliente')
-  //   .notEmpty().withMessage('Data de nascimento é obrigatória')
-  //   .isDate({ format: 'YYYY-MM-DD' }).withMessage('Data de nascimento inválida'),
+  body('datanasc_cliente')
+    .notEmpty().withMessage('Data de nascimento é obrigatória')
+    .isDate({ format: 'YYYY-MM-DD' }).withMessage('Data de nascimento inválida'),
   body('cep_endereco')
     .notEmpty().withMessage('CEP é obrigatório'),
   body('numero_endereco')

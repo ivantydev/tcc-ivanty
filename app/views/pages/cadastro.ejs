@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/cadastro.css">
-    <title>Formulário Responsivo com HTML e CSS</title>
+    <title>Cadastrar-se</title>
 </head>
 
 <body>
     <div class="box">
         <div class="img-box">
-            <!-- Imagens do lado do form -->
-            <img src="">
+            <img src="images/surrealistBanner.png">
         </div>
         <div class="form-box">
             <h2>Criar Conta</h2>
+            <p> Ja tem conta? <a href="/login"> Entrar </a> </p>
             <form action="/api/clientes" method="POST" id="form">
                 <!-- Dados Pessoais -->
                 <div id="dados-pessoais">
@@ -50,13 +50,8 @@
                         <input type="password" id="senha" name="senha_cliente" placeholder="Digite sua senha" required>
                     </div>
 
-                    <div class="input-group w50">
-                        <label for="csenha">Confirmar senha</label>
-                        <input type="password" id="csenha" name="confirmar_senha" placeholder="Confirme sua senha" required>
-                    </div>
-
                     <div class="input-group">
-                        <button type="button" onclick="nextPage('dados-endereco')">Próximo</button>
+                        <button type="button" onclick="nextPage()">Próximo</button>
                     </div>
                 </div>
 
@@ -83,7 +78,7 @@
                     </div>
 
                     <div class="input-group">
-                        <button type="button" onclick="prevPage('dados-pessoais')" class="pink-color-button">Anterior</button>
+                        <button type="button" class="pink-color-button" onclick="prevPage()">Anterior</button>
                         <button type="submit">Cadastrar</button>
                     </div>
                 </div>
@@ -92,12 +87,12 @@
     </div>
 
     <script>
-        function nextPage(sectionId) {
+        function nextPage() {
             document.getElementById('dados-pessoais').style.display = 'none';
             document.getElementById('dados-endereco').style.display = 'block';
         }
 
-        function prevPage(sectionId) {
+        function prevPage() {
             document.getElementById('dados-pessoais').style.display = 'block';
             document.getElementById('dados-endereco').style.display = 'none';
         }

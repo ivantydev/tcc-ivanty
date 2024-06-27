@@ -21,9 +21,9 @@ const validateCadastroCliente = [
 
   body('senha_cliente')
     .isLength({ min: 6 }).withMessage('Senha deve ter no mínimo 6 caracteres'),
-  body('datanasc_cliente')
-    .notEmpty().withMessage('Data de nascimento é obrigatória')
-    .isDate({ format: 'YYYY-MM-DD' }).withMessage('Data de nascimento inválida'),
+  // body('datanasc_cliente')
+  //   .notEmpty().withMessage('Data de nascimento é obrigatória')
+  //   .isDate({ format: 'YYYY-MM-DD' }).withMessage('Data de nascimento inválida'),
   body('cep_endereco')
     .notEmpty().withMessage('CEP é obrigatório'),
   body('numero_endereco')

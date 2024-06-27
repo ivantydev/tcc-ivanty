@@ -29,15 +29,14 @@ const clienteController = {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).redirect('/register', { errors: errors.array(), formData: req.body });
+        return res.status(400).json({ errors: errors.array(), formData: req.body });
       }
-  
+
       const {
         nome_cliente,
         email_cliente,
         cpf_cliente,
         senha_cliente,
-        datanasc_cliente,
         perfil_cliente = 'user',
         cep_endereco,
         numero_endereco,
@@ -45,19 +44,18 @@ const clienteController = {
         tipo_endereco,
         telefone_cliente
       } = req.body;
-  
+
       console.log('Dados recebidos para criação de cliente:', req.body); // Adiciona log dos dados recebidos
-  
+
       // Hash da senha usando bcrypt
       const hashedPassword = await bcrypt.hash(senha_cliente, 8);
-  
+
       // Criação do novo cliente no banco de dados
       const newClienteId = await ClienteModel.createCliente({
         nome_cliente,
         email_cliente,
         cpf_cliente,
         senha_cliente: hashedPassword,
-        datanasc_cliente,
         perfil_cliente,
         cep_endereco,
         numero_endereco,
@@ -65,11 +63,11 @@ const clienteController = {
         tipo_endereco,
         telefone_cliente
       });
-  
+
       res.status(201).redirect('/login'); // Redireciona para a página de login após o cadastro
     } catch (error) {
       console.error('Erro ao criar cliente:', error.message);
-      res.status(500).redirect('/register', { errors: [{ msg: error.message }], formData: req.body });
+      res.status(500).json({ errors: [{ msg: error.message }], formData: req.body });
     }
   },
 
@@ -103,7 +101,7 @@ const clienteController = {
     try {
       const { email_cliente, senha_cliente } = req.body;
 
-      // Check if the client email exists in the database
+      // Verifica se o e-mail do cliente existe no banco de dados
       const cliente = await ClienteModel.getClienteByEmail(email_cliente);
 
       if (!cliente) {
@@ -114,7 +112,6 @@ const clienteController = {
 
       if (!senhaValida) {
         return res.status(401).json({ error: 'Credenciais inválidas' });
-
       }
 
       // Se as credenciais estiverem corretas, configura a sessão

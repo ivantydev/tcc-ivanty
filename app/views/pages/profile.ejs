@@ -13,80 +13,96 @@
     <link rel="stylesheet" href="css/carrosell.css">
     <link rel="stylesheet" href="css/perfil.css">
     <link rel="stylesheet" href="css/perfilMobile.css">
+    <link rel="stylesheet" href="css/edit.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 <body>
     <section class="telasPequenas">
-      <%- include("../partial/header") %>
+        <%- include("../partial/header") %>
 
-      <main class="mainTelasPequenas">
-        <section class="perfilContentMobile">
-          <img src="images/sky.jpg" alt="" class="banner bannerProfile">
-          <section class="layoutPerfilMobile">
-            <img src="images/artist.jpg" alt="" class="perfilPhotoMobile">
-            <section class="perfilTextsMobile">
-              <h2 class="perfilNameMobile"><%= cliente.nome %></h2>
-              <h3 class="perfilBiographName">@<%= cliente.perfil %></h3> 
+        <main class="mainTelasPequenas">
+            <section class="perfilContentMobile">
+                <img src="images/sky.jpg" alt="" class="banner bannerProfile">
+                <section class="layoutPerfilMobile">
+                    <img src="images/artist.jpg" alt="" class="perfilPhotoMobile">
+                    <section class="perfilTextsMobile">
+                        <h2 class="perfilNameMobile"><%= cliente.nome %></h2>
+                        <h3 class="perfilBiographName">@<%= cliente.perfil %></h3> 
+                    </section>
+                </section>
+                <div class="perfilGridResumoSair">
+                    <p class="perfilAboutMobile">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam quaerat.</p>
+                    <a href="/logout"><i class='bx bx-exit'></i> Sair</a> 
+                </div>
+                <div class="buttonContainer">
+                    <button class="editProfileButton">Editar perfil</button>
+                </div>
             </section>
-          </section>
-          <div class="perfilGridResumoSair">
-            <p class="perfilAboutMobile">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam quaerat.</p> <!-- Substitua por informações do cliente -->
-            <a href="/logout" class=""><i class='bx bx-exit'></i></a> 
-          </div>
-          <div class="buttonContainer">
-            <button type="button" class="editProfileButton">Editar perfil</button>
-          </div>
-
-        </section>
-      </main>
+        </main>
     </section>
 
     <section class="telasGrandes">
-      <%- include("../partial/headerPC") %>
+        <%- include("../partial/headerPC") %>
 
-      <main class="mainTelasGrandes">
-        <section class="perfil-usuario">
-          <section class="container-perfil">
-              <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
-                  <section class="shadow"></section>
-                  <section class="avatar-perfil">
-                      <img src="images/artist.jpg" alt="img">
-                      <a href="#" class="takePicture">
-                          <i class="fas fa-camera"></i> 
-                          <span> Ver foto</span>
-                      </a>
-                  </section>
-                  <section class="date-perfil">
-                      <% if (!isLoggedIn) { %>
-                          <a href="/login" class="login">Login</a>
-                      <% } else { %>
-                          <h4 class="titulo-usuario"><%= cliente.nome %></h4>
-                          <p class="bio-usuario">@<%= cliente.perfil %></p>
-                      <% } %>
-                      <ul class="lista-perfil">
-                          <!-- Adicione informações adicionais aqui, se necessário -->
-                      </ul>
-                  </section>
-                  <section class="opção-perfil">
-                      <button type=""><i class="fas fa-wrench"></i></button>
-                  </section>
-              </section>
-              <section class="menu-perfil">
-                  <ul>
-                      <li><a href="#" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
-                      <li><a href="#" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
-                      <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
-                  </ul>
-              </section>
-              <section class="addObras">
-                <button class="putColor">Adicionar obras</button>
-              </section>
-          </section>
-        </section>
-      </main>  
-    </section>
- 
+        <main class="mainTelasGrandes">
+            <section class="perfil-usuario">
+                <section class="container-perfil">
+                    <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
+                        <section class="shadow"></section>
+                        <section class="avatar-perfil">
+                            <img src="images/artist.jpg" alt="img">
+                            <a href="#" class="takePicture">
+                                <i class="fas fa-camera"></i> 
+                                <span> Ver foto</span>
+                            </a>
+                        </section>
+                        <section class="date-perfil">
+                            <% if (!isLoggedIn) { %>
+                                <a href="/login" class="login">Login</a>
+                            <% } else { %>
+                                <h4 class="titulo-usuario"><%= cliente.nome %></h4>
+                                <p class="bio-usuario">@<%= cliente.perfil %></p>
+                            <% } %>
+                            <ul class="lista-perfil">
+                                <!-- Adicione informações adicionais aqui, se necessário -->
+                            </ul>
+                        </section>
+                        <section class="opção-perfil">
+                            <button type=""><i class="fas fa-wrench"></i></button>
+                        </section>
+                    </section>
+                    <section class="menu-perfil">
+                        <ul>
+                            <li><a href="#" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
+                            <li><a href="#" class="editProfileButton" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
+                            <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
+                        </ul>
+                    </section>
+                    <section class="addObras">
+                        <button class="putColor">Adicionar obras</button>
+                    </section>
+                </section>
+            </section>
+            <div id="editProfileFormContainer">
+                <form id="editProfileForm" action="/api/clientes/edit-profile/<%= cliente.id %>" method="POST">
+                    <label for="nome_cliente">Nome:</label>
+                    <input type="text" id="nome_cliente" name="nome_cliente" value="<%= cliente.nome %>">
+    
+                    <label for="perfil_cliente">Perfil:</label>
+                    <input type="text" id="perfil_cliente" name="perfil_cliente" value="<%= cliente.perfil %>">
+    
+                    <label for="datanasc_cliente">Data de Nascimento:</label>
+                    <input type="date" id="datanasc_cliente" name="datanasc_cliente" value="<%= cliente.datanasc %>">
+    
+                    <label for="telefone_cliente">Telefone:</label>
+                    <input type="tel" id="telefone_cliente" name="telefone_cliente" value="<%= cliente.telefone %>">
+    
+                    <button type="submit">Salvar</button>
+                </form>
+            </div>
+            
     <%- include("../partial/footer") %>
 
+  
 </body>
 </html>

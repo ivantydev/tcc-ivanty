@@ -1,6 +1,6 @@
-const pool = require(`./../../config/pool_conexoes`);   
+const pool = require('./../../config/pool_conexoes');   
 const bcrypt = require('bcrypt');
-const saltRounds = 10; // Number of salt rounds for bcrypt hashing
+const saltRounds = 10; // Número de rounds de salt para hashing com bcrypt
 
 const ClienteModel = {
   getAllClientes: async () => {
@@ -22,7 +22,7 @@ const ClienteModel = {
   },
 
   createCliente: async (cliente) => {
-    const { nome_cliente, email_cliente, cpf_cliente, senha_cliente, datanasc_cliente, perfil_cliente, cep_endereco, numero_endereco, complemento_endereco, tipo_endereco, telefone_cliente } = cliente;
+    const { nome_cliente, email_cliente, cpf_cliente, senha_cliente, datanasc_cliente, perfil_cliente, cep_endereco, numero_endereco, complemento_endereco, tipo_endereco, telefone_cliente, tipo_cliente } = cliente;
 
     try {
       // Validate mandatory fields
@@ -54,7 +54,8 @@ const ClienteModel = {
         datanasc_cliente,
         Enderecos_id_endereco,
         perfil_cliente,
-        telefone_cliente
+        telefone_cliente,
+        tipo_cliente
       });
 
       // Commit the transaction if everything goes well
@@ -68,23 +69,30 @@ const ClienteModel = {
     }
   },
 
-  updateCliente: async (id, cliente) => {
-    const { nome_cliente, email_cliente, cpf_cliente, senha_cliente, datanasc_cliente, perfil_cliente, telefone_cliente } = cliente;
-    try {
-      const [result] = await pool.query('UPDATE Clientes SET ? WHERE id_cliente = ?', [{
-        nome_cliente,
-        email_cliente,
-        cpf_cliente,
-        senha_cliente,
-        datanasc_cliente,
-        perfil_cliente,
-        telefone_cliente
-      }, id]);
-      return result.affectedRows;
-    } catch (error) {
-      throw error;
-    }
-  },
+   async updateCliente(id, updatedCliente) {
+        try {
+            const query = `
+                UPDATE clientes
+                SET nome_cliente = ?,
+                    perfil_cliente = ?,
+                    datanasc_cliente = ?,
+                    telefone_cliente = ?
+                WHERE id_cliente = ?
+            `;
+            const values = [
+                updatedCliente.nome_cliente,
+                updatedCliente.perfil_cliente,
+                updatedCliente.datanasc_cliente,
+                updatedCliente.telefone_cliente,
+                id
+            ];
+
+            const [result] = await db.query(query, values);
+            return result.affectedRows; // Retorna o número de linhas atualizadas
+        } catch (error) {
+            throw new Error(`Erro ao atualizar cliente no banco de dados: ${error.message}`);
+        }
+    },
 
   deleteCliente: async (id) => {
     try {
@@ -96,10 +104,13 @@ const ClienteModel = {
   },
 
   getClienteByEmail: async (email) => {
-    const [rows] = await pool.query('SELECT * FROM Clientes WHERE email_cliente = ?', [email]);
-    return rows[0];
-  }, 
-  
+    try {
+      const [rows] = await pool.query('SELECT * FROM Clientes WHERE email_cliente = ?', [email]);
+      return rows[0];
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 module.exports = ClienteModel;

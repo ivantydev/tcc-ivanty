@@ -1,6 +1,7 @@
 const ClienteModel = require('../models/clienteModel');
-const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const clienteController = {
   getAllClientes: async (req, res) => {
@@ -8,6 +9,7 @@ const clienteController = {
       const clientes = await ClienteModel.getAllClientes();
       res.status(200).json(clientes);
     } catch (error) {
+      console.error('Erro ao obter todos os clientes:', error.message);
       res.status(500).json({ error: error.message });
     }
   },
@@ -21,6 +23,7 @@ const clienteController = {
         res.status(404).json({ message: 'Cliente não encontrado' });
       }
     } catch (error) {
+      console.error('Erro ao obter cliente por ID:', error.message);
       res.status(500).json({ error: error.message });
     }
   },
@@ -38,33 +41,33 @@ const clienteController = {
         cpf_cliente,
         senha_cliente,
         perfil_cliente = 'user',
+        datanasc_cliente,
         cep_endereco,
         numero_endereco,
         complemento_endereco,
         tipo_endereco,
-        telefone_cliente
+        telefone_cliente,
+        tipo_cliente
       } = req.body;
 
-      console.log('Dados recebidos para criação de cliente:', req.body); // Adiciona log dos dados recebidos
+      console.log('Dados recebidos para criação de cliente:', req.body);
 
-      // Hash da senha usando bcrypt
-      const hashedPassword = await bcrypt.hash(senha_cliente, 8);
-
-      // Criação do novo cliente no banco de dados
       const newClienteId = await ClienteModel.createCliente({
         nome_cliente,
         email_cliente,
         cpf_cliente,
-        senha_cliente: hashedPassword,
+        senha_cliente,
+        datanasc_cliente,
         perfil_cliente,
         cep_endereco,
         numero_endereco,
         complemento_endereco,
         tipo_endereco,
-        telefone_cliente
+        telefone_cliente,
+        tipo_cliente
       });
 
-      res.status(201).redirect('/login'); // Redireciona para a página de login após o cadastro
+      res.status(201).redirect('/login');
     } catch (error) {
       console.error('Erro ao criar cliente:', error.message);
       res.status(500).json({ errors: [{ msg: error.message }], formData: req.body });
@@ -73,14 +76,31 @@ const clienteController = {
 
   updateCliente: async (req, res) => {
     try {
-      const updatedRows = await ClienteModel.updateCliente(req.params.id, req.body);
+      const clienteId = req.params.id;
+      const updatedData = req.body;
+
+      // Remova campos que não devem ser atualizados diretamente no perfil
+      delete updatedData.email_cliente;
+      delete updatedData.cpf_cliente;
+      delete updatedData.senha_cliente;
+      delete updatedData.tipo_cliente;
+
+      // Verificar se há senha para atualizar
+      if (updatedData.senha_cliente) {
+        updatedData.senha_cliente = await bcrypt.hash(updatedData.senha_cliente, saltRounds);
+      }
+
+      const updatedRows = await ClienteModel.updateCliente(clienteId, updatedData);
+      
       if (updatedRows > 0) {
-        res.status(200).json({ message: 'Cliente atualizado com sucesso' });
+        const updatedCliente = await ClienteModel.getClienteById(clienteId);
+        res.status(200).json(updatedCliente);
       } else {
         res.status(404).json({ message: 'Cliente não encontrado' });
       }
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      console.error('Erro ao atualizar cliente:', error.message);
+      res.status(500).json({ error: 'Erro ao atualizar cliente', message: error.message });
     }
   },
 
@@ -93,6 +113,7 @@ const clienteController = {
         res.status(404).json({ message: 'Cliente não encontrado' });
       }
     } catch (error) {
+      console.error('Erro ao excluir cliente:', error.message);
       res.status(500).json({ error: error.message });
     }
   },
@@ -100,8 +121,6 @@ const clienteController = {
   loginCliente: async (req, res) => {
     try {
       const { email_cliente, senha_cliente } = req.body;
-
-      // Verifica se o e-mail do cliente existe no banco de dados
       const cliente = await ClienteModel.getClienteByEmail(email_cliente);
 
       if (!cliente) {
@@ -109,25 +128,21 @@ const clienteController = {
       }
 
       const senhaValida = await bcrypt.compare(senha_cliente, cliente.senha_cliente);
-
       if (!senhaValida) {
         return res.status(401).json({ error: 'Credenciais inválidas' });
       }
 
-      // Se as credenciais estiverem corretas, configura a sessão
       req.session.isLoggedIn = true;
       req.session.cliente = {
-        id: cliente.id,
+        id: cliente.id_cliente,
         nome: cliente.nome_cliente,
         perfil: cliente.perfil_cliente,
-        // Adicione outros campos que deseja armazenar na sessão
       };
 
-      // Redireciona para a home com mensagem de sucesso
       req.session.successMessage = 'Login realizado com sucesso';
       res.redirect('/');
-
     } catch (error) {
+      console.error('Erro ao realizar login:', error.message);
       res.status(500).json({ error: error.message });
     }
   },
@@ -135,11 +150,48 @@ const clienteController = {
   logoutCliente: (req, res) => {
     req.session.destroy(err => {
       if (err) {
+        console.error('Erro ao realizar logout:', err.message);
         return res.status(500).json({ message: 'Erro ao fazer logout' });
       }
       res.status(200).json({ message: 'Logout realizado com sucesso' });
     });
-  }
-};
+  },
+
+  updateClienteProfile: async (req, res) => {
+    try {
+      const clienteId = req.params.id;
+      const updatedData = req.body;
+  
+      // Aqui você pode adicionar um console.log para verificar se está recebendo os dados corretamente
+      console.log('Dados recebidos para atualização de perfil:', updatedData);
+  
+      // Remova campos que não devem ser atualizados diretamente no perfil
+      delete updatedData.email_cliente;
+      delete updatedData.cpf_cliente;
+      delete updatedData.senha_cliente;
+      delete updatedData.tipo_cliente;
+  
+      // Verificar se há senha para atualizar
+      if (updatedData.senha_cliente) {
+        updatedData.senha_cliente = await bcrypt.hash(updatedData.senha_cliente, saltRounds);
+      }
+  
+      // Aqui você pode adicionar um console.log para verificar os dados após a remoção e processamento
+      console.log('Dados atualizados para perfil:', updatedData);
+  
+      const updatedRows = await ClienteModel.updateCliente(clienteId, updatedData);
+      
+      if (updatedRows > 0) {
+        const updatedCliente = await ClienteModel.getClienteById(clienteId);
+        res.status(200).json(updatedCliente);
+      } else {
+        res.status(404).json({ message: 'Cliente não encontrado' });
+      }
+    } catch (error) {
+      console.error('Erro ao atualizar perfil:', error.message);
+      res.status(500).json({ error: 'Erro ao atualizar perfil', message: error.message });
+    }
+  },
+}
 
 module.exports = clienteController;

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,4 +37,30 @@
 
 </body>
 </html>
+ -->
 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2>Login</h2>
+    <form action="/api/clientes/login" method="POST">
+      <div class="form-group">
+        <label for="email_cliente">Email:</label>
+        <input type="email" class="form-control" id="email_cliente" name="email_cliente" required>
+      </div>
+      <div class="form-group">
+        <label for="senha_cliente">Senha:</label>
+        <input type="password" class="form-control" id="senha_cliente" name="senha_cliente" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+  </div>
+</body>
+</html>

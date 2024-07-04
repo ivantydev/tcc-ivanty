@@ -1,6 +1,6 @@
-const pool = require('./../../config/pool_conexoes');   
 const bcrypt = require('bcrypt');
 const saltRounds = 10; // Número de rounds de salt para hashing com bcrypt
+const pool = require('./../../config/pool_conexoes'); // Importe o objeto de conexão
 
 const ClienteModel = {
   getAllClientes: async () => {
@@ -69,30 +69,30 @@ const ClienteModel = {
     }
   },
 
-   async updateCliente(id, updatedCliente) {
-        try {
-            const query = `
-                UPDATE clientes
-                SET nome_cliente = ?,
-                    perfil_cliente = ?,
-                    datanasc_cliente = ?,
-                    telefone_cliente = ?
-                WHERE id_cliente = ?
-            `;
-            const values = [
-                updatedCliente.nome_cliente,
-                updatedCliente.perfil_cliente,
-                updatedCliente.datanasc_cliente,
-                updatedCliente.telefone_cliente,
-                id
-            ];
+  updateCliente: async (id, updatedCliente) => {
+    try {
+      const query = `
+        UPDATE Clientes
+        SET nome_cliente = ?,
+            perfil_cliente = ?,
+            datanasc_cliente = ?,
+            telefone_cliente = ?
+        WHERE id_cliente = ?
+      `;
+      const values = [
+        updatedCliente.nome_cliente,
+        updatedCliente.perfil_cliente,
+        updatedCliente.datanasc_cliente,
+        updatedCliente.telefone_cliente,
+        id
+      ];
 
-            const [result] = await db.query(query, values);
-            return result.affectedRows; // Retorna o número de linhas atualizadas
-        } catch (error) {
-            throw new Error(`Erro ao atualizar cliente no banco de dados: ${error.message}`);
-        }
-    },
+      const [result] = await pool.query(query, values);
+      return result.affectedRows; // Retorna o número de linhas atualizadas
+    } catch (error) {
+      throw new Error(`Erro ao atualizar cliente no banco de dados: ${error.message}`);
+    }
+  },
 
   deleteCliente: async (id) => {
     try {

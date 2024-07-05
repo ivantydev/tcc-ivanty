@@ -50,7 +50,7 @@
                     <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
                         <section class="shadow"></section>
                         <section class="avatar-perfil">
-                            <img src="images/artist.jpg" alt="img">
+                            <img src="./../<%= cliente.foto %>" alt="img">
                             <a href="#" class="takePicture">
                                 <i class="fas fa-camera"></i> 
                                 <span> Ver foto</span>
@@ -74,7 +74,7 @@
                     <section class="menu-perfil">
                         <ul>
                             <li><a href="#" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
-                            <li><a href="#" class="editProfileButton" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
+                            <li><a href="#" class="editProfileButton" id="openEditModal" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
                             <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
                         </ul>
                     </section>
@@ -83,24 +83,56 @@
                     </section>
                 </section>
             </section>
-            <div id="editProfileFormContainer">
-                <form id="editProfileForm" action="/api/clientes/edit-profile/<%= cliente.id %>" method="POST">
-                    <label for="nome_cliente">Nome:</label>
-                    <input type="text" id="nome_cliente" name="nome_cliente" value="<%= cliente.nome %>">
+            <div id="editProfileModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="closeEditModal">&times;</span>
+                    <form id="editProfileForm" action="/api/clientes/edit-profile/<%= cliente.id %>" method="POST">
+                        <label for="nome_cliente">Nome:</label>
+                        <input type="text" id="nome_cliente" name="nome_cliente" value="<%= cliente.nome %>">
     
-                    <label for="perfil_cliente">Perfil:</label>
-                    <input type="text" id="perfil_cliente" name="perfil_cliente" value="<%= cliente.perfil %>">
+                        <label for="perfil_cliente">Perfil:</label>
+                        <input type="text" id="perfil_cliente" name="perfil_cliente" value="<%= cliente.perfil %>">
     
-                    <label for="datanasc_cliente">Data de Nascimento:</label>
-                    <input type="date" id="datanasc_cliente" name="datanasc_cliente" value="<%= cliente.datanasc %>">
+                        <label for="datanasc_cliente">Data de Nascimento:</label>
+                        <input type="date" id="datanasc_cliente" name="datanasc_cliente" value="<%= cliente.datanasc %>">
     
-                    <label for="telefone_cliente">Telefone:</label>
-                    <input type="tel" id="telefone_cliente" name="telefone_cliente" value="<%= cliente.telefone %>">
+                        <label for="telefone_cliente">Telefone:</label>
+                        <input type="tel" id="telefone_cliente" name="telefone_cliente" value="<%= cliente.telefone %>">
     
-                    <button type="submit">Salvar</button>
-                </form>
+                        <button type="submit">Salvar</button>
+                    </form>
+                </div>
             </div>
+            <form id="uploadFotoForm" action="/api/clientes/uploadfoto" method="POST" enctype="multipart/form-data">
+                <label for="foto_cliente">Foto de Perfil:</label>
+                <input type="file" id="foto_cliente" name="foto_cliente">
+                <button type="submit">Enviar Foto</button>
+            </form>
             
+            <script>
+                                // Encontrar elementos do DOM
+                var modal = document.getElementById("editProfileModal");
+                var btnOpenModal = document.getElementById("openEditModal");
+                var spanCloseModal = document.getElementById("closeEditModal");
+
+                // Ação para abrir o modal
+                btnOpenModal.onclick = function() {
+                    modal.style.display = "block";
+                }
+
+                // Ação para fechar o modal
+                spanCloseModal.onclick = function() {
+                    modal.style.display = "none";
+                }
+
+                // Fechar o modal clicando fora da área do modal
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+}
+
+            </script>
     <%- include("../partial/footer") %>
 
   

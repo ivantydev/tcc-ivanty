@@ -2,6 +2,17 @@ const ClienteModel = require('../models/clienteModel');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const multer = require('multer');
+const path = require('path');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads/'); // Diretório onde as imagens serão salvas
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
 
 const clienteController = {
   getAllClientes: async (req, res) => {
@@ -137,6 +148,9 @@ const clienteController = {
         id: cliente.id_cliente,
         nome: cliente.nome_cliente,
         perfil: cliente.perfil_cliente,
+        datanasc: cliente.datanasc_cliente,
+        telefone: cliente.telefone_cliente,
+        foto: cliente.foto_cliente,
       };
 
       req.session.successMessage = 'Login realizado com sucesso';
@@ -161,24 +175,18 @@ const clienteController = {
     try {
       const clienteId = req.params.id;
       const updatedData = req.body;
-  
-      // Aqui você pode adicionar um console.log para verificar se está recebendo os dados corretamente
-      console.log('Dados recebidos para atualização de perfil:', updatedData);
-  
+
       // Remova campos que não devem ser atualizados diretamente no perfil
       delete updatedData.email_cliente;
       delete updatedData.cpf_cliente;
       delete updatedData.senha_cliente;
       delete updatedData.tipo_cliente;
-  
+
       // Verificar se há senha para atualizar
       if (updatedData.senha_cliente) {
         updatedData.senha_cliente = await bcrypt.hash(updatedData.senha_cliente, saltRounds);
       }
-  
-      // Aqui você pode adicionar um console.log para verificar os dados após a remoção e processamento
-      console.log('Dados atualizados para perfil:', updatedData);
-  
+
       const updatedRows = await ClienteModel.updateCliente(clienteId, updatedData);
       
       if (updatedRows > 0) {
@@ -192,6 +200,36 @@ const clienteController = {
       res.status(500).json({ error: 'Erro ao atualizar perfil', message: error.message });
     }
   },
-}
+
+  uploadFoto: async (req, res) => {
+    try {
+        const clienteId = req.session.cliente.id; // Supondo que você tenha um cliente logado
+        const filePath = req.file.path;
+
+        // Atualize o campo 'foto_cliente' no banco de dados para o cliente com o ID clienteId
+        await ClienteModel.updateFotoCliente(clienteId, filePath);
+
+        res.status(200).json({ message: 'Foto do cliente atualizada com sucesso' });
+    } catch (error) {
+        console.error('Erro ao fazer upload da foto do cliente:', error.message);
+        res.status(500).json({ error: error.message });
+    }
+},
+
+  // Função opcional para deletar a foto do cliente
+  deleteFoto: async (req, res) => {
+    try {
+      const clienteId = req.session.cliente.id; // Supondo que você tenha um cliente logado
+
+      // Exclua a foto do cliente no banco de dados
+      await ClienteModel.deleteFotoCliente(clienteId);
+
+      res.status(200).json({ message: 'Foto do cliente excluída com sucesso' });
+    } catch (error) {
+      console.error('Erro ao excluir a foto do cliente:', error.message);
+      res.status(500).json({ error: error.message });
+    }
+  },
+};
 
 module.exports = clienteController;

@@ -111,6 +111,22 @@ const ClienteModel = {
       throw error;
     }
   },
+
+  updateFotoCliente: async (clienteId, filePath) => {
+    try {
+      const query = `
+        UPDATE Clientes
+        SET foto_cliente = ?
+        WHERE id_cliente = ?
+      `;
+      const values = [filePath, clienteId];
+
+      const [result] = await pool.query(query, values);
+      return result.affectedRows;
+    } catch (error) {
+      throw new Error(`Erro ao atualizar foto do cliente no banco de dados: ${error.message}`);
+    }
+  },
 };
 
 module.exports = ClienteModel;

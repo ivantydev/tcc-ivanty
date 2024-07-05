@@ -6,6 +6,8 @@ const validateCadastroCliente = require('../middlewares/validateCadastroCliente'
 const validateLoginCliente = require('../middlewares/validateLoginCliente');
 const { validationResult } = require('express-validator');
 const ClienteModel = require('../models/clienteModel'); // Verifique se o modelo está sendo importado corretamente
+const multer = require('multer');
+const path = require('path');
 
 // Middleware para lidar com erros de validação
 const handleValidationErrors = (req, res, next) => {
@@ -15,6 +17,18 @@ const handleValidationErrors = (req, res, next) => {
   }
   next();
 };
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, './uploads/'); // Diretório onde as imagens serão salvas
+  },
+  filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ storage: storage });
+
 
 // Middleware para verificar se o usuário está autenticado
 const authenticateUser = (req, res, next) => {
@@ -86,5 +100,6 @@ router.post('/clientes/edit-profile/:id', authenticateUser, async (req, res) => 
   }
 });
 
+router.post('/clientes/uploadfoto', isAuthenticated, upload.single('foto_cliente'), ClienteController.uploadFoto);
 
 module.exports = router;

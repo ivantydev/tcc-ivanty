@@ -181,6 +181,7 @@ const clienteController = {
       delete updatedData.cpf_cliente;
       delete updatedData.senha_cliente;
       delete updatedData.tipo_cliente;
+      delete updatedData.datanasc_cliente;
 
       // Verificar se há senha para atualizar
       if (updatedData.senha_cliente) {
@@ -206,8 +207,9 @@ const clienteController = {
         const clienteId = req.session.cliente.id; // Supondo que você tenha um cliente logado
         const filePath = req.file.path;
 
+        const fileName = req.file.filename;
         // Atualize o campo 'foto_cliente' no banco de dados para o cliente com o ID clienteId
-        await ClienteModel.updateFotoCliente(clienteId, filePath);
+        await ClienteModel.updateFotoCliente(clienteId, fileName);
 
         res.status(200).json({ message: 'Foto do cliente atualizada com sucesso' });
     } catch (error) {

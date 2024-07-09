@@ -75,14 +75,12 @@ const ClienteModel = {
         UPDATE Clientes
         SET nome_cliente = ?,
             perfil_cliente = ?,
-            datanasc_cliente = ?,
             telefone_cliente = ?
         WHERE id_cliente = ?
       `;
       const values = [
         updatedCliente.nome_cliente,
         updatedCliente.perfil_cliente,
-        updatedCliente.datanasc_cliente,
         updatedCliente.telefone_cliente,
         id
       ];

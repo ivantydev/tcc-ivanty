@@ -20,11 +20,12 @@
     <section class="telasPequenas">
         <%- include("../partial/header") %>
 
-        <main class="mainTelasPequenas">
+        <!-- <main class="mainTelasPequenas">
             <section class="perfilContentMobile">
                 <img src="images/sky.jpg" alt="" class="banner bannerProfile">
+                
                 <section class="layoutPerfilMobile">
-                    <img src="images/artist.jpg" alt="" class="perfilPhotoMobile">
+                    
                     <section class="perfilTextsMobile">
                         <h2 class="perfilNameMobile"><%= cliente.nome %></h2>
                         <h3 class="perfilBiographName">@<%= cliente.perfil %></h3> 
@@ -35,10 +36,49 @@
                     <a href="/logout"><i class='bx bx-exit'></i> Sair</a> 
                 </div>
                 <div class="buttonContainer">
-                    <button class="editProfileButton">Editar perfil</button>
+                    <button class="editProfileButton" id="openEditModalMobile">Editar perfil</button>
                 </div>
             </section>
         </main>
+        <img src="./uploads/<%= cliente.foto %>" alt="" class="perfilPhotoMobile"> -->
+
+        <section class="perfil-usuario">
+            <section class="container-perfil">
+                <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
+                    <section class="shadow"></section>
+                    <section class="avatar-perfil">
+                        <img src="./uploads/<%= cliente.foto %>" alt="">
+                        <a href="#" class="takePicture" id="openUploadModalMobile">
+                            <i class="fas fa-camera"></i> 
+                            <span> Trocar foto</span>
+                        </a>
+                    </section>
+                    <section class="date-perfil">
+                        <% if (!isLoggedIn) { %>
+                            <a href="/login" class="login">Login</a>
+                        <% } else { %>
+                            <h4 class="titulo-usuario"><%= cliente.nome %></h4>
+                            <p class="bio-usuario">@<%= cliente.perfil %></p>
+                        <% } %>
+                        <ul class="lista-perfil">
+                            <!-- Adicione informações adicionais aqui, se necessário -->
+                        </ul>
+                    </section>
+                    <section class="opção-perfil">
+                        <button type=""><i class="fas fa-wrench"></i></button>
+                    </section>
+                </section>
+                <section class="menu-perfil">
+                    <ul>
+                        <li><a href="#" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
+                        <li><a href="#" class="" id="openEditModalMobile" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
+                        <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
+                    </ul>
+                </section>
+                <section class="addObras">
+                    <button class="putColor">Adicionar obras</button>
+                </section>
+            </section>
     </section>
 
     <section class="telasGrandes">
@@ -50,10 +90,10 @@
                     <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
                         <section class="shadow"></section>
                         <section class="avatar-perfil">
-                            <img src="./../<%= cliente.foto %>" alt="img">
-                            <a href="#" class="takePicture">
+                            <img src="./uploads/<%= cliente.foto %>" alt="">
+                            <a href="#" class="takePicture" id="openUploadModal">
                                 <i class="fas fa-camera"></i> 
-                                <span> Ver foto</span>
+                                <span> Trocar foto</span>
                             </a>
                         </section>
                         <section class="date-perfil">
@@ -74,7 +114,7 @@
                     <section class="menu-perfil">
                         <ul>
                             <li><a href="#" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
-                            <li><a href="#" class="editProfileButton" id="openEditModal" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
+                            <li><a href="#" class="" id="openEditModal" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
                             <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
                         </ul>
                     </section>
@@ -83,58 +123,163 @@
                     </section>
                 </section>
             </section>
+
+            <!-- Modal para editar perfil -->
             <div id="editProfileModal" class="modal">
                 <div class="modal-content">
                     <span class="close" id="closeEditModal">&times;</span>
                     <form id="editProfileForm" action="/api/clientes/edit-profile/<%= cliente.id %>" method="POST">
-                        <label for="nome_cliente">Nome:</label>
-                        <input type="text" id="nome_cliente" name="nome_cliente" value="<%= cliente.nome %>">
-    
-                        <label for="perfil_cliente">Perfil:</label>
-                        <input type="text" id="perfil_cliente" name="perfil_cliente" value="<%= cliente.perfil %>">
-    
-                        <label for="datanasc_cliente">Data de Nascimento:</label>
-                        <input type="date" id="datanasc_cliente" name="datanasc_cliente" value="<%= cliente.datanasc %>">
-    
-                        <label for="telefone_cliente">Telefone:</label>
-                        <input type="tel" id="telefone_cliente" name="telefone_cliente" value="<%= cliente.telefone %>">
-    
-                        <button type="submit">Salvar</button>
+                        <div class="form-group">
+                            <label for="nome_cliente">Nome:</label>
+                            <input type="text" id="nome_cliente" name="nome_cliente" value="<%= cliente.nome %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="perfil_cliente">Perfil:</label>
+                            <input type="text" id="perfil_cliente" name="perfil_cliente" value="<%= cliente.perfil %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone_cliente">Telefone:</label>
+                            <input type="tel" id="telefone_cliente" name="telefone_cliente" value="<%= cliente.telefone %>">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Salvar</button>
+                        </div>
                     </form>
                 </div>
             </div>
-            <form id="uploadFotoForm" action="/api/clientes/uploadfoto" method="POST" enctype="multipart/form-data">
-                <label for="foto_cliente">Foto de Perfil:</label>
-                <input type="file" id="foto_cliente" name="foto_cliente">
-                <button type="submit">Enviar Foto</button>
+
+            <!-- Modal para upload de foto -->
+            <div id="uploadFotoModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="closeUploadModal">&times;</span>
+                    <form id="uploadFotoForm" action="/api/clientes/uploadfoto" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="foto_cliente">Foto de Perfil:</label>
+                            <input type="file" id="foto_cliente" name="foto_cliente">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Enviar Foto</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- Modais para a versão mobile -->
+    <div id="editProfileModalMobile" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeEditModalMobile">&times;</span>
+            <form id="editProfileFormMobile" action="/api/clientes/edit-profile/<%= cliente.id %>" method="POST">
+                <div class="form-group">
+                    <label for="nome_cliente_mobile">Nome:</label>
+                    <input type="text" id="nome_cliente_mobile" name="nome_cliente" value="<%= cliente.nome %>">
+                </div>
+                <div class="form-group">
+                    <label for="perfil_cliente_mobile">Perfil:</label>
+                    <input type="text" id="perfil_cliente_mobile" name="perfil_cliente" value="<%= cliente.perfil %>">
+                </div>
+                <div class="form-group">
+                    <label for="telefone_cliente_mobile">Telefone:</label>
+                    <input type="tel" id="telefone_cliente_mobile" name="telefone_cliente" value="<%= cliente.telefone %>">
+                </div>
+                <div class="form-group">
+                    <button type="submit">Salvar</button>
+                </div>
             </form>
-            
-            <script>
-                                // Encontrar elementos do DOM
-                var modal = document.getElementById("editProfileModal");
-                var btnOpenModal = document.getElementById("openEditModal");
-                var spanCloseModal = document.getElementById("closeEditModal");
+        </div>
+    </div>
 
-                // Ação para abrir o modal
-                btnOpenModal.onclick = function() {
-                    modal.style.display = "block";
-                }
+    <div id="uploadFotoModalMobile" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeUploadModalMobile">&times;</span>
+            <form id="uploadFotoFormMobile" action="/api/clientes/uploadfoto" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="foto_cliente_mobile">Foto de Perfil:</label>
+                    <input type="file" id="foto_cliente_mobile" name="foto_cliente">
+                </div>
+                <div class="form-group">
+                    <button type="submit">Enviar Foto</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-                // Ação para fechar o modal
-                spanCloseModal.onclick = function() {
-                    modal.style.display = "none";
-                }
+    <script>
+        // Encontrar elementos do DOM
+        var editProfileModal = document.getElementById("editProfileModal");
+        var btnOpenEditModal = document.getElementById("openEditModal");
+        var spanCloseEditModal = document.getElementById("closeEditModal");
 
-                // Fechar o modal clicando fora da área do modal
-                window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-}
+        var uploadFotoModal = document.getElementById("uploadFotoModal");
+        var btnOpenUploadModal = document.getElementById("openUploadModal");
+        var spanCloseUploadModal = document.getElementById("closeUploadModal");
 
-            </script>
+        var editProfileModalMobile = document.getElementById("editProfileModalMobile");
+        var btnOpenEditModalMobile = document.getElementById("openEditModalMobile");
+        var spanCloseEditModalMobile = document.getElementById("closeEditModalMobile");
+
+        var uploadFotoModalMobile = document.getElementById("uploadFotoModalMobile");
+        var btnOpenUploadModalMobile = document.getElementById("openUploadModalMobile");
+        var spanCloseUploadModalMobile = document.getElementById("closeUploadModalMobile");
+
+        // Ação para abrir o modal de editar perfil (desktop)
+        btnOpenEditModal.onclick = function() {
+            editProfileModal.style.display = "block";
+        }
+
+        // Ação para fechar o modal de editar perfil (desktop)
+        spanCloseEditModal.onclick = function() {
+            editProfileModal.style.display = "none";
+        }
+
+        // Ação para abrir o modal de upload de foto (desktop)
+        btnOpenUploadModal.onclick = function() {
+            uploadFotoModal.style.display = "block";
+        }
+
+        // Ação para fechar o modal de upload de foto (desktop)
+        spanCloseUploadModal.onclick = function() {
+            uploadFotoModal.style.display = "none";
+        }
+
+        // Ação para abrir o modal de editar perfil (mobile)
+        btnOpenEditModalMobile.onclick = function() {
+            editProfileModalMobile.style.display = "block";
+        }
+
+        // Ação para fechar o modal de editar perfil (mobile)
+        spanCloseEditModalMobile.onclick = function() {
+            editProfileModalMobile.style.display = "none";
+        }
+
+        // Ação para abrir o modal de upload de foto (mobile)
+        btnOpenUploadModalMobile.onclick = function() {
+            uploadFotoModalMobile.style.display = "block";
+        }
+
+        // Ação para fechar o modal de upload de foto (mobile)
+        spanCloseUploadModalMobile.onclick = function() {
+            uploadFotoModalMobile.style.display = "none";
+        }
+
+        // Fechar os modais clicando fora da área dos modais
+        window.onclick = function(event) {
+            if (event.target == editProfileModal) {
+                editProfileModal.style.display = "none";
+            }
+            if (event.target == uploadFotoModal) {
+                uploadFotoModal.style.display = "none";
+            }
+            if (event.target == editProfileModalMobile) {
+                editProfileModalMobile.style.display = "none";
+            }
+            if (event.target == uploadFotoModalMobile) {
+                uploadFotoModalMobile.style.display = "none";
+            }
+        }
+    </script>
+
     <%- include("../partial/footer") %>
-
-  
 </body>
 </html>

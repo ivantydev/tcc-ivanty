@@ -20,7 +20,7 @@ const handleValidationErrors = (req, res, next) => {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-      cb(null, './uploads/'); // Diretório onde as imagens serão salvas
+      cb(null, './app/public/uploads/'); // Diretório onde as imagens serão salvas
   },
   filename: function (req, file, cb) {
       cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
@@ -81,7 +81,6 @@ router.post('/clientes/edit-profile/:id', authenticateUser, async (req, res) => 
       const updatedCliente = {
           nome_cliente: req.body.nome_cliente,
           perfil_cliente: req.body.perfil_cliente,
-          datanasc_cliente: req.body.datanasc_cliente,
           telefone_cliente: req.body.telefone_cliente
       };
 

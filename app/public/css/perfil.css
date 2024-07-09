@@ -1,11 +1,9 @@
-
 html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
   line-height: 1.4;
 }
-
 
 * {
   margin: 0;
@@ -25,36 +23,26 @@ estilos de la utilidad
 Copiar esto
 =====================================*/
 .perfil-usuario {
-  
   color: #fff;
 }
-.perfil-usuario .shadow {
-  position: absolute;
-  display: block;
-  background: linear-gradient(transparent,rgba(0, 0, 0, .5));
-  width: 100%;
-  height: 50%;
-  bottom: 0;
-  left: 0;
-}
-.perfil-usuario .enter-perfil,
-.perfil-usuario .shadow {
-  border-radius: 0 0 20px 20px;
-}
+
 .perfil-usuario img {
   width: 100%;
 }
+
 .container-perfil {
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
 }
+
 .perfil-usuario .container-perfil {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 90%;
 }
+
 .perfil-usuario .enter-perfil {
   display: block;
   background-size: cover;
@@ -64,6 +52,7 @@ Copiar esto
   height: 20rem;
   margin-bottom: .5rem;
 }
+
 .perfil-usuario .avatar-perfil {
   display: block;
   width: 230px;
@@ -77,6 +66,7 @@ Copiar esto
   border: 8px solid #FFFFFF;
   box-shadow: 0 0 12px 2px rgba(0, 0, 0, .2);
 }
+
 .perfil-usuario .takePicture {
   position: absolute;
   width: 100%;
@@ -94,14 +84,17 @@ Copiar esto
   opacity: 0;
   transition: all ease-in 200ms;
 }
+
 .perfil-usuario .takePicture i {
   margin-bottom: .5rem;
   font-size: 2rem;
 }
+
 .perfil-usuario .avatar-perfil:hover .takePicture {
   transform: translateY(0);
   opacity: 1;
 }
+
 .perfil-usuario .date-perfil {
   position: absolute;
   display: block;
@@ -113,6 +106,7 @@ Copiar esto
   padding-bottom: 1rem;
   padding-right: 1rem;
 }
+
 .perfil-usuario .titulo-usuario {
   font-size: 2.3rem;
   white-space: nowrap;
@@ -120,13 +114,16 @@ Copiar esto
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .perfil-usuario .bio-usuario {
   font-size: 1em;
   margin-bottom: .75rem;
 }
+
 .perfil-usuario .lista-perfil {
   list-style: none;
 }
+
 .perfil-usuario .lista-perfil li {
   display: inline-block;
   font-size: 1em;
@@ -139,6 +136,7 @@ Copiar esto
   right: 2rem;
   top: 1rem;
 }
+
 .perfil-usuario .opção-perfil button {
   border: 0;
   padding: 8px 20px;
@@ -147,15 +145,18 @@ Copiar esto
   color: #fff;
   cursor: pointer;
 }
+
 .perfil-usuario .menu-perfil ul {
   display: flex;
   list-style: none;
   margin-left: calc(200px + 8rem);
   width: calc(100% - 200px - 8rem);
 }
+
 .perfil-usuario .menu-perfil ul li {
   margin-right: 1rem;
 }
+
 .perfil-usuario .menu-perfil a {
   display: block;
   text-decoration: none;
@@ -165,61 +166,74 @@ Copiar esto
   border-radius: 8px;
   transition: all ease-in 100ms;
 }
+
 .perfil-usuario .menu-perfil a:hover {
   background-color: #4CB0C6;
   color: #fff;
 }
+
 .perfil-usuario .icon-perfil {
   margin-right: .75rem;
 }
+
 @media (max-width: 780px) {
   .perfil-usuario .container-perfil {
-      width: 100%;
+    width: 100%;
   }
+
   .perfil-usuario .avatar-perfil {
-      left: calc(50% - 115px)
+    left: calc(50% - 115px);
   }
+
   .perfil-usuario .date-perfil {
-      bottom: 200px;
-      left: 0;
-      width: 100%;
-      padding: 15px;
-      text-align: center;
+    bottom: 200px;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
   }
+
   .perfil-usuario .bio-usuario {
-      font-size: 1em;
-      overflow:hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+    font-size: 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
+
   .perfil-usuario .titulo-usuario {
-      font-size: 2.1rem;
+    font-size: 2.1rem;
   }
+
   .perfil-usuario .enter-perfil {
-      height: 28rem;
+    height: 28rem;
   }
+
   .perfil-usuario .menu-perfil ul {
-      flex-direction: column;
+    flex-direction: column;
   }
+
   .perfil-usuario .lista-perfil {
-      display: block;
+    display: block;
   }
+
   .perfil-usuario .menu-perfil {
-      margin-top: 2rem;
+    margin-top: 2rem;
   }
+
   .perfil-usuario .menu-perfil ul {
-      display: flex;
-      list-style: none;
-      margin-left: auto;
-      margin-right: auto;
-      padding-top: 2.5rem;
-      width: 70%;
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 0 12px 2px rgba(0, 0, 0, .1);
+    display: flex;
+    list-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2.5rem;
+    width: 70%;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 12px 2px rgba(0, 0, 0, .1);
   }
+
   .perfil-usuario .icon-perfil {
-      display: inline-block;
+    display: inline-block;
   }
 }
 
@@ -227,7 +241,6 @@ Copiar esto
   text-align: center;
   margin: 100px auto 0;
 }
-
 
 /* CSS */
 .putColor {

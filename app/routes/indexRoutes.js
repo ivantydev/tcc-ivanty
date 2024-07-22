@@ -1,23 +1,26 @@
 const express = require('express');
+const obraController = require('../controllers/obraController');
 const router = express.Router();
 
 // Middleware para verificar se o usuário está autenticado
 const authenticateUser = (req, res, next) => {
     if (req.session.isLoggedIn && req.session.cliente) {
-        // Se estiver autenticado, continua para a próxima rota
         next();
     } else {
-        // Se não estiver autenticado, redireciona para a página de login
         res.redirect('/login');
     }
 };
 
-router.get('/', (req, res) => {
-    const successMessage = req.session.successMessage;
-    // Limpa a mensagem de sucesso da sessão para que não seja exibida novamente
-    delete req.session.successMessage;
-  
-    res.render("pages/index", { successMessage });
+router.get('/', async (req, res) => {
+    try {
+        const obras = await obraController.getAllObras();
+        const successMessage = req.session.successMessage;
+        delete req.session.successMessage;
+        res.render('pages/index', { obras, successMessage });
+    } catch (error) {
+        console.error('Erro ao obter todas as obras:', error.message);
+        res.status(500).send('Erro ao obter obras');
+    }
 });
 
 router.get("/artists", function (req, res) {
@@ -28,25 +31,25 @@ router.get("/about", function (req, res) {
     res.render("pages/about");
 });
 
-// Rota para perfil - requer autenticação
+// Rota para perfil - requer autenticação e redireciona com base no tipo de cliente
 router.get('/profile', authenticateUser, (req, res) => {
-    res.render('pages/profile', { isLoggedIn: true, cliente: req.session.cliente });
+    if (req.session.cliente.tipo_cliente === 'artista') {
+        res.render('pages/profile/artistProfile', { isLoggedIn: true, cliente: req.session.cliente });
+    } else {
+        res.render('pages/profile/profile', { isLoggedIn: true, cliente: req.session.cliente });
+    }
 });
 
-// Rota para fazer logout
 router.get('/logout', (req, res) => {
-    // Destroi a sessão (limpa todos os dados da sessão)
     req.session.destroy(err => {
         if (err) {
             console.error('Erro ao destruir sessão:', err);
         } else {
-            // Redireciona para a página inicial após o logout
             res.redirect('/');
         }
     });
 });
 
-// Rota para painel administrativo - requer autenticação
 router.get('/adm', authenticateUser, function (req, res) {
     res.render("pages/admin/index_adm.ejs");
 });

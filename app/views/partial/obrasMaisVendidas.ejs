@@ -1,41 +1,30 @@
 <section class="ObrasMaisVendidas">
-    <h1 class="comprarArteOnlineH1">OBRAS MAIS VENDIDAS</h1>
-    <p class="comprarArteOnlineP">Qual seu movimento artistico favorito?</p>
-  
-        <section class="artCarrosell">
-            <section class="slideshow-container">
-              <section class="obrasMaisVendidasmySlides mySlides fade">
-                <section class="obrasMaisVendidasGrid">
-                    <%- include("../partial/artCardPC") %>
-                    <%- include("../partial/artCardPC") %>
-                    <%- include("../partial/artCardPC") %>
-                    <%- include("../partial/artCardPC") %>
-                </section>
-            </section>
-            
-              <section class="obrasMaisVendidasmySlides mySlides fade">
-                <section class="obrasMaisVendidasGrid">
-                    <%- include("../partial/artCardPC") %>
-                    <%- include("../partial/artCardPC") %>
-                    <%- include("../partial/artCardPC") %>
-                    <%- include("../partial/artCardPC") %>
-                </section>             
-              <!-- </section>              
-              
-              <a class="prev" onclick="plusSlidesEstilos(-1)">❮</a>
-              <a class="next" onclick="plusSlidesEstilos(1)">❯</a>
-              
-              </section> -->
-              <br>
-<!--               
-              <section style="text-align:center">
-                <span class="obrasMaisVendidasdot dot" onclick="currentSlide(1)"></span> 
-                <span class="obrasMaisVendidasdot dot" onclick="currentSlide(2)"></span> 
-              </section>
-          </section> -->
-        
-    </section>
+  <h1 class="comprarArteOnlineH1">OBRAS MAIS VENDIDAS</h1>
+  <p class="comprarArteOnlineP">Qual seu movimento artistico favorito?</p>
+
+  <section class="artCarrosell">
+      <section class="slideshow-container">
+          <% obras.forEach(function(obra, index) { %>
+              <% if (index % 4 === 0) { %>
+                  <section class="obrasMaisVendidasmySlides mySlides fade">
+                      <section class="obrasMaisVendidasGrid">
+              <% } %>
+
+              <div class="artCardPC">
+                  <img src="/uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
+                  <h2><%= obra.titulo_obra %></h2>
+                  <p><%= obra.descricao_obra %></p>
+                  <p><%= obra.ano_criacao %></p>
+              </div>
+
+              <% if ((index + 1) % 4 === 0 || index === obras.length - 1) { %>
+                      </section>
+                  </section>
+              <% } %>
+          <% }) %>
+          
+          <a class="prev" onclick="plusSlidesEstilos(-1)">❮</a>
+          <a class="next" onclick="plusSlidesEstilos(1)">❯</a>
+      </section>
+  </section>
 </section>
-
-
-

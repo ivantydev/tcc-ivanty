@@ -1,0 +1,26 @@
+<div id="addObraModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeAddObraModalMobile">&times;</span>
+        <<form id="addObraFormMobile" action="/api/obras" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="titulo_obra_mobile">Título da Obra:</label>
+                <input type="text" id="titulo_obra_mobile" name="titulo_obra" required>
+            </div>
+            <div class="form-group">
+                <label for="descricao_obra_mobile">Descrição da Obra:</label>
+                <textarea id="descricao_obra_mobile" name="descricao_obra" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="ano_criacao_mobile">Ano de Criação:</label>
+                <input type="text" id="ano_criacao_mobile" name="ano_criacao" required>
+            </div>
+            <div class="form-group">
+                <label for="imagem_obra_mobile">Foto da Obra:</label>
+                <input type="file" id="imagem_obra_mobile" name="imagem_obra" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Adicionar Obra</button>
+            </div>
+        </form>       
+    </div>
+</div>

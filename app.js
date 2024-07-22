@@ -4,6 +4,7 @@ const app = express();
 require('dotenv').config();
 
 const clienteRoutes = require('./app/routes/clientesRoutes');
+const obrasRoutes = require('./app/routes/obrasRoutes');
 const indexRoutes = require('./app/routes/indexRoutes');
 
 const PORT = process.env.PORT || 3000;
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api', clienteRoutes);
+app.use('/api', obrasRoutes);
 app.use("/", indexRoutes);
 
 app.get('/', (req, res) => {

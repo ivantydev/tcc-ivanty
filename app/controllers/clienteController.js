@@ -151,6 +151,7 @@ const clienteController = {
         datanasc: cliente.datanasc_cliente,
         telefone: cliente.telefone_cliente,
         foto: cliente.foto_cliente,
+        tipo_cliente: cliente.tipo_cliente,
       };
 
       req.session.successMessage = 'Login realizado com sucesso';

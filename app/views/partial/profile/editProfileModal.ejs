@@ -1,0 +1,22 @@
+<div id="editProfileModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeEditModal">&times;</span>
+        <form id="editProfileForm" action="/api/clientes/edit-profile/<%= cliente.id %>" method="POST">
+            <div class="form-group">
+                <label for="nome_cliente">Nome:</label>
+                <input type="text" id="nome_cliente" name="nome_cliente" value="<%= cliente.nome %>">
+            </div>
+            <div class="form-group">
+                <label for="perfil_cliente">Perfil:</label>
+                <input type="text" id="perfil_cliente" name="perfil_cliente" value="<%= cliente.perfil %>">
+            </div>
+            <div class="form-group">
+                <label for="telefone_cliente">Telefone:</label>
+                <input type="tel" id="telefone_cliente" name="telefone_cliente" value="<%= cliente.telefone %>">
+            </div>
+            <div class="form-group">
+                <button type="submit">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

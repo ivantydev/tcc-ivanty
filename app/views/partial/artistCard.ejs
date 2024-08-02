@@ -1,6 +1,13 @@
-<a href="./artist">
-    <section class="artist">
-      <img src="./images/artist.jpg" alt="" class="artistPhoto">
-      <p class="artistName">Artista</p>
-    </section>
-  </a>      
+<section class="artistasEmDestaque">
+  <h2 class="artistasEmDestaqueTextPC">Artistas em Destaque:</h2>
+  <section class="carrosell">
+    <% artistas.forEach(artista => { %>
+      <a href="/artist/<%= artista.id_cliente %>">
+        <section class="artist">
+          <img src="/uploads/<%= artista.foto_cliente %>" alt="<%= artista.nome_cliente %>" class="artistPhoto">
+          <p class="artistName"><%= artista.nome_cliente %></p>
+        </section>
+      </a>
+    <% }); %>
+  </section>
+</section>

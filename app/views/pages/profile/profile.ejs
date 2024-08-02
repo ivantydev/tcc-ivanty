@@ -1,123 +1,124 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ivanty</title>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/menu.css">
-    <link rel="stylesheet" href="css/headerPC.css">
-    <link rel="stylesheet" href="css/globalPC.css">
-    <link rel="stylesheet" href="css/carrosell.css">
-    <link rel="stylesheet" href="css/perfil.css">
-    <link rel="stylesheet" href="css/perfilMobile.css">
-    <link rel="stylesheet" href="css/edit.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ivanty</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <link rel="stylesheet" href="css/headerPC.css">
+  <link rel="stylesheet" href="css/globalPC.css">
+  <link rel="stylesheet" href="css/carrosell.css">
+  <link rel="stylesheet" href="css/perfil.css">
+  <link rel="stylesheet" href="css/perfilMobile.css">
+  <link rel="stylesheet" href="css/edit.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 <body>
-    <section class="telasPequenas">
-        <%- include("../../partial/header") %>
+  <section class="telasPequenas">
+    <%- include("../../partial/header") %>
 
-        <section class="perfil-usuario">
-            <section class="container-perfil">
-                <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
-                    <section class="shadow"></section>
-                    <section class="avatar-perfil">
-                        <img src="./uploads/<%= cliente.foto %>" alt="">
-                        <a href="#" class="takePicture" id="openUploadModalMobile">
-                            <i class="fas fa-camera"></i> 
-                            <span> Trocar foto</span>
-                        </a>
-                    </section>
-                    <section class="date-perfil">
-                        <% if (!isLoggedIn) { %>
-                            <a href="/login" class="login">Login</a>
-                        <% } else { %>
-                            <h4 class="titulo-usuario"><%= cliente.nome %></h4>
-                            <p class="bio-usuario">@<%= cliente.perfil %></p>
-                        <% } %>
-                        <ul class="lista-perfil">
-                            <!-- Adicione informações adicionais aqui, se necessário -->
-                        </ul>
-                    </section>
-                    <section class="opção-perfil">
-                        <button type=""><i class="fas fa-wrench"></i></button>
-                    </section>
-                </section>
-                <section class="menu-perfil">
-                    <ul>
-                        <li><a href="#" class="" id="openEditModalMobile" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
-                        <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
-                    </ul>
-                </section>
-                <section class="addObras">
-                    <button class="putColor" id="openAddObraModalMobile">Adicionar obras</button>
-                </section>
-            </section>
+    <section class="perfil-usuario">
+      <section class="container-perfil">
+        <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
+          <section class="shadow"></section>
+          <section class="avatar-perfil">
+            <img src="./uploads/<%= cliente.foto %>" alt="">
+            <a href="#" class="takePicture" id="openUploadModalMobile">
+              <i class="fas fa-camera"></i> 
+              <span> Trocar foto</span>
+            </a>
+          </section>
+          <section class="date-perfil">
+            <% if (!isLoggedIn) { %>
+              <a href="/login" class="login">Login</a>
+            <% } else { %>
+              <h4 class="titulo-usuario"><%= cliente.nome %></h4>
+              <p class="bio-usuario">@<%= cliente.perfil %></p>
+            <% } %>
+            <ul class="lista-perfil">
+              <!-- Adicione informações adicionais aqui, se necessário -->
+            </ul>
+          </section>
+          <section class="opção-perfil">
+            <button type=""><i class="fas fa-wrench"></i></button>
+          </section>
         </section>
+        <section class="menu-perfil">
+          <ul>
+            <li><a href="#" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
+            <li><a href="#" class="" id="openEditModalMobile" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
+            <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
+          </ul>
+        </section>
+        <section class="addObras">
+          <button class="putColor" id="openAddObraModalMobile">Adicionar obras</button>
+        </section>
+      </section>
     </section>
+  </section>
 
-    <section class="telasGrandes">
-        <%- include("../../partial/headerPC") %>
+  <section class="telasGrandes">
+    <%- include("../../partial/headerPC") %>
 
-        <main class="mainTelasGrandes">
-            <section class="perfil-usuario">
-                <section class="container-perfil">
-                    <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
-                        <section class="shadow"></section>
-                        <section class="avatar-perfil">
-                            <img src="./uploads/<%= cliente.foto %>" alt="">
-                            <a href="#" class="takePicture" id="openUploadModal">
-                                <i class="fas fa-camera"></i> 
-                                <span> Trocar foto</span>
-                            </a>
-                        </section>
-                        <section class="date-perfil">
-                            <% if (!isLoggedIn) { %>
-                                <a href="/login" class="login">Login</a>
-                            <% } else { %>
-                                <h4 class="titulo-usuario"><%= cliente.nome %></h4>
-                                <p class="bio-usuario">@<%= cliente.perfil %></p>
-                            <% } %>
-                            <ul class="lista-perfil">
-                                <!-- Adicione informações adicionais aqui, se necessário -->
-                            </ul>
-                        </section>
-                        <section class="opção-perfil">
-                            <button type=""><i class="fas fa-wrench"></i></button>
-                        </section>
-                    </section>
-                    <section class="menu-perfil">
-                        <ul>
-                            <li><a href="#" class="" id="openEditModal" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
-                            <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
-                        </ul>
-                    </section>
-                    <section class="addObras">
-                    </section>
-                </section>
+    <main class="mainTelasGrandes">
+      <section class="perfil-usuario">
+        <section class="container-perfil">
+          <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
+            <section class="shadow"></section>
+            <section class="avatar-perfil">
+              <img src="./uploads/<%= cliente.foto %>" alt="">
+              <a href="#" class="takePicture" id="openUploadModal">
+                <i class="fas fa-camera"></i> 
+                <span> Trocar foto</span>
+              </a>
             </section>
-        </main>
+            <section class="date-perfil">
+              <% if (!isLoggedIn) { %>
+                <a href="/login" class="login">Login</a>
+              <% } else { %>
+                <h4 class="titulo-usuario"><%= cliente.nome %></h4>
+                <p class="bio-usuario">@<%= cliente.perfil %></p>
+              <% } %>
 
-        <!-- Modal para editar perfil -->
-        <%- include("../../partial/profile/editProfileModal") %>
+            </section>
+            <section class="opção-perfil">
+              <button type=""><i class="fas fa-wrench"></i></button>
+            </section>
+          </section>
+          <section class="menu-perfil">
+            <ul>
+              <li><a href="#" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
+              <li><a href="#" class="" id="openEditModal" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
+              <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
+            </ul>
+          </section>
+          <section class="addObras">
+            <button class="putColor" id="openAddObraModal">Adicionar obras</button>
+          </section>
+        </section>
+      </section>
+    </main>
 
-        <!-- Modal para upload de foto -->
-        <%- include("../../partial/profile/uploadFotoModal") %>
+    <!-- Modal para editar perfil -->
+    <%- include("../../partial/profile/editProfileModal") %>
 
-        <!-- Modal para adicionar obras -->
-        <%- include("../../partial/profile/addObraModal") %>
-    </section>
+    <!-- Modal para upload de foto -->
+    <%- include("../../partial/profile/uploadFotoModal") %>
 
-    <!-- Modais para a versão mobile -->
-    <%- include("../../partial/profile/editProfileModalMobile") %>
+    <!-- Modal para adicionar obras -->
+    <%- include("../../partial/profile/addObraModal") %>
+  </section>
 
-    <%- include("../../partial/profile/uploadFotoModalMobile") %>
+  <!-- Modais para a versão mobile -->
+  <%- include("../../partial/profile/editProfileModalMobile") %>
 
-    <script src="js/modais.js"></script>
+  <%- include("../../partial/profile/uploadFotoModalMobile") %>
 
-    <%- include("../../partial/footer") %>
+  <script src="js/modais.js"></script>
+
+  <%- include("../../partial/footer") %>
 </body>
 </html>

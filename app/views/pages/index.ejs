@@ -39,9 +39,9 @@
             <section class="artistasEmDetaque">
                 <h2 class="artistasEmDestaqueTextPC">Artistas em Destaque:</h2>
                 <section class="carrosell">
-                    <%- include("../partial/artistCard") %>
-                    <%- include("../partial/artistCard") %>
-                    <%- include("../partial/artistCard") %>
+                    <% artistas.forEach(artista => { %>
+                        <%- include("../partial/artistCard", { artista }) %>
+                    <% }) %>
                 </section>
             </section>
             <section class="EstilosDeObraArte">
@@ -71,14 +71,9 @@
             <section class="artistasEmDestaquePC">
                 <h2 class="artistasEmDestaqueTextPC">Artistas em Destaque:</h2>
                 <section class="carrosellPC">
-                <%- include("../partial/artistCardPC") %>
-                <%- include("../partial/artistCardPC") %>
-                <%- include("../partial/artistCardPC") %>
-                <%- include("../partial/artistCardPC") %>
-                <%- include("../partial/artistCardPC") %>
-                <%- include("../partial/artistCardPC") %>
-                <%- include("../partial/artistCardPC") %>
-                <%- include("../partial/artistCardPC") %>
+                    <% artistas.forEach(artista => { %>
+                        <%- include("../partial/artistCardPC", { artista }) %>
+                    <% }) %>
                 </section>
             </section>
             <section class="EstilosDeObraArtePC">
@@ -92,7 +87,6 @@
             <%- include('../partial/obrasMaisVendidas', { obras: obras }) %>
         </main>
     </section>
-    
 
     <%- include("../partial/footer") %>
 

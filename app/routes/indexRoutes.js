@@ -1,5 +1,6 @@
 const express = require('express');
 const obraController = require('../controllers/obraController');
+const clienteModel = require('../models/clienteModel'); // Adicione esta linha se ainda não tiver
 const router = express.Router();
 
 // Middleware para verificar se o usuário está autenticado
@@ -14,14 +15,15 @@ const authenticateUser = (req, res, next) => {
 router.get('/', async (req, res) => {
     try {
         const obras = await obraController.getAllObras();
+        const { clientes: artistas } = await clienteModel.getAllClientesByType('artista', 1, 10);
         const successMessage = req.session.successMessage;
         delete req.session.successMessage;
-        res.render('pages/index', { obras, successMessage });
+        res.render('pages/index', { obras, artistas, successMessage });
     } catch (error) {
-        console.error('Erro ao obter todas as obras:', error.message);
-        res.status(500).send('Erro ao obter obras');
-    }
-});
+        console.error('Erro ao obter dados:', error.message);
+        res.status(500).send('Erro ao obter dados');
+    } // Adicionei a chave aqui para fechar a função corretamente
+}); // Certifique-se de que este parêntese está fechado
 
 router.get("/artists", function (req, res) {
     res.render("pages/artists");

@@ -3,10 +3,12 @@ const saltRounds = 10; // Número de rounds de salt para hashing com bcrypt
 const pool = require('./../../config/pool_conexoes'); // Importe o objeto de conexão
 
 const ClienteModel = {
-  getAllClientes: async () => {
+  getAllClientes: async (page = 1, limit = 10) => {
     try {
-      const [rows] = await pool.query('SELECT * FROM Clientes');
-      return rows;
+      const offset = (page - 1) * limit;
+      const [rows] = await pool.query('SELECT SQL_CALC_FOUND_ROWS * FROM Clientes LIMIT ? OFFSET ?', [limit, offset]);
+      const [totalRows] = await pool.query('SELECT FOUND_ROWS() as total');
+      return { clientes: rows, total: totalRows[0].total };
     } catch (error) {
       throw error;
     }
@@ -22,11 +24,11 @@ const ClienteModel = {
   },
 
   createCliente: async (cliente) => {
-    const { nome_cliente, email_cliente, cpf_cliente, senha_cliente, datanasc_cliente, perfil_cliente, cep_endereco, numero_endereco, complemento_endereco, tipo_endereco, telefone_cliente, tipo_cliente } = cliente;
+    const { nome_cliente, email_cliente, cpf_cliente, senha_cliente, datanasc_cliente, perfil_cliente, cep_endereco, numero_endereco, complemento_endereco, tipo_endereco, telefone_cliente, tipo_cliente, cidade_endereco } = cliente;
 
     try {
       // Validate mandatory fields
-      if (!nome_cliente || !email_cliente || !cpf_cliente || !senha_cliente || !datanasc_cliente || !cep_endereco || !numero_endereco || !tipo_endereco) {
+      if (!nome_cliente || !email_cliente || !cpf_cliente || !senha_cliente || !datanasc_cliente || !cep_endereco || !numero_endereco || !tipo_endereco || !cidade_endereco) {
         throw new Error('Todos os campos são obrigatórios');
       }
 
@@ -41,7 +43,8 @@ const ClienteModel = {
         cep_endereco,
         numero_endereco,
         complemento_endereco,
-        tipo_endereco
+        tipo_endereco,
+        cidade: cidade_endereco
       });
       const Enderecos_id_endereco = resultEndereco.insertId;
 
@@ -125,6 +128,27 @@ const ClienteModel = {
       throw new Error(`Erro ao atualizar foto do cliente no banco de dados: ${error.message}`);
     }
   },
+
+  getArtistas: async () => {
+    try {
+      const [rows] = await pool.query('SELECT * FROM Clientes WHERE tipo_cliente = "artista"');
+      return rows;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getAllClientesByType: async (tipo_cliente, page = 1, limit = 10) => {
+    try {
+        const offset = (page - 1) * limit;
+        const [rows] = await pool.query('SELECT SQL_CALC_FOUND_ROWS * FROM Clientes WHERE tipo_cliente = ? LIMIT ? OFFSET ?', [tipo_cliente, limit, offset]);
+        const [totalRows] = await pool.query('SELECT FOUND_ROWS() as total');
+        return { clientes: rows, total: totalRows[0].total };
+    } catch (error) {
+        throw error;
+    }
+  },
+
 };
 
 module.exports = ClienteModel;

@@ -84,4 +84,8 @@ router.get('/requests', authenticateUser, function (req, res) {
     res.render("pages/requests.ejs");
 });
 
+router.get('/pedidos', authenticateUser, function (req, res) {
+    res.render("pages/pedidos.ejs");
+});
+
 module.exports = router;

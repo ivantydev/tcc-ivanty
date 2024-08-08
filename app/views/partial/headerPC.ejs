@@ -18,7 +18,9 @@
         <ul class="navmenu">
             <li><a href="artists">Artistas</a></li>
             <li><a href="about">Sobre</a></li>  
+            <% if (isLoggedIn) { %>
             <li><a href="requests">Pedidos</a></li>
+            <% } %>
             <% if (!isLoggedIn) { %>
                 <li><a href="/register">Cadastre-se</a></li>
             <% } %>

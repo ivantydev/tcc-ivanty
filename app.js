@@ -6,6 +6,8 @@ require('dotenv').config();
 const clienteRoutes = require('./app/routes/clientesRoutes');
 const obrasRoutes = require('./app/routes/obrasRoutes');
 const indexRoutes = require('./app/routes/indexRoutes');
+const pedidoRoutes = require('./app/routes/pedidoRoutes')
+const carrinhoRoutes = require('./app/routes/carrinhoRoutes')
 
 const PORT = process.env.PORT || 3000;
 
@@ -34,6 +36,8 @@ app.use((req, res, next) => {
 app.use('/api', clienteRoutes);
 app.use('/api', obrasRoutes);
 app.use("/", indexRoutes);
+app.use("/api", pedidoRoutes);
+app.use("/api", carrinhoRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');

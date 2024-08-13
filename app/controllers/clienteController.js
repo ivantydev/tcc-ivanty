@@ -183,19 +183,15 @@ const clienteController = {
   uploadFoto: async (req, res) => {
     try {
         const clienteId = req.session.cliente.id;
-        const filePath = req.file.path;
+        const fileName = req.file.filename;  // Salva apenas o nome do arquivo
 
-        // Verificar se o arquivo realmente existe
-        if (!fs.existsSync(filePath)) {
-            return res.status(400).json({ error: 'Arquivo não encontrado' });
-        }
+        // Atualiza o nome do arquivo no banco de dados
+        await ClienteModel.updateFotoCliente(clienteId, fileName);
 
-        // Ler o arquivo e convertê-lo para um formato binário
-        const fileContent = fs.readFileSync(filePath);
+        // Atualiza a sessão com o novo nome da foto
+        req.session.cliente.foto = fileName;
 
-        await ClienteModel.updateFotoCliente(clienteId, fileContent);
-
-        res.status(200).json({ message: 'Foto do cliente atualizada com sucesso' });
+        res.status(200).json({ message: 'Foto do cliente atualizada com sucesso', fileName });
     } catch (error) {
         console.error('Erro ao fazer upload da foto do cliente:', error.message);
         res.status(500).json({ error: error.message });

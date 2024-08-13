@@ -62,13 +62,13 @@ const ClienteModel = {
     return rows[0];
   },
 
-  updateFotoCliente: async (clienteId, fileContent) => {
+  updateFotoCliente: async (clienteId, fileName) => {
     const query = `
         UPDATE Clientes
         SET foto_cliente = ?
         WHERE id_cliente = ?
     `;
-    const values = [fileContent, clienteId];
+    const values = [fileName, clienteId];
     const [result] = await pool.query(query, values);
     return result.affectedRows;
   },

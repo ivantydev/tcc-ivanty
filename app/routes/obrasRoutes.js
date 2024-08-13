@@ -36,6 +36,14 @@ const authenticateArtist = (req, res, next) => {
   }
 };
 
+// Middleware para lidar com erros do multer
+const handleMulterErrors = (err, req, res, next) => {
+  if (err) {
+    return res.status(400).json({ error: 'Erro ao fazer upload da imagem: ' + err.message });
+  }
+  next();
+};
+
 // Rota para listar todas as obras
 router.get('/obras', isAuthenticated, ObraController.getAllObras);
 
@@ -43,7 +51,7 @@ router.get('/obras', isAuthenticated, ObraController.getAllObras);
 router.get('/obras/:id', isAuthenticated, ObraController.getObraById);
 
 // Rota para criar uma nova obra (apenas artistas)
-router.post('/obras', authenticateArtist, upload.single('imagem_obra'), handleValidationErrors, ObraController.createObra);
+router.post('/obras', authenticateArtist, upload.single('imagem_obra'), handleMulterErrors, handleValidationErrors, ObraController.createObra);
 
 // Rota para atualizar uma obra pelo ID (apenas artistas)
 router.put('/obras/:id', authenticateArtist, handleValidationErrors, ObraController.updateObra);

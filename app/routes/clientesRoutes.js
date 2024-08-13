@@ -29,8 +29,6 @@ const storage = multer.diskStorage({
   }
 });
 
-
-
 const upload = multer({ storage: storage });
 
 // Middleware para verificar se o usuário está autenticado

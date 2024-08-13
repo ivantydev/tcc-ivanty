@@ -1,10 +1,10 @@
 <div id="uploadFotoModal" class="modal">
     <div class="modal-content">
-        <span class="close" id="closeUploadModal">&times;</span>
+        <span class="close" id="closeUploadModal" aria-label="Close">&times;</span>
         <form id="uploadFotoForm" action="/api/clientes/uploadfoto" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="foto_cliente">Foto de Perfil:</label>
-                <input type="file" id="foto_cliente" name="foto_cliente">
+                <input type="file" id="foto_cliente" name="foto_cliente" required>
             </div>
             <div class="form-group">
                 <button type="submit">Enviar Foto</button>

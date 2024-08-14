@@ -1,6 +1,6 @@
 const express = require('express');
 const obraController = require('../controllers/obraController');
-const clienteModel = require('../models/clienteModel'); // Adicione esta linha se ainda não tiver
+const clienteModel = require('../models/clienteModel');
 const router = express.Router();
 
 // Middleware para verificar se o usuário está autenticado
@@ -12,80 +12,94 @@ const authenticateUser = (req, res, next) => {
     }
 };
 
+// Rota principal que renderiza a página inicial com obras e artistas
 router.get('/', async (req, res) => {
     try {
-        const obras = await obraController.getAllObras();
         const { clientes: artistas } = await clienteModel.getAllClientesByType('artista', 1, 10);
-        const successMessage = req.session.successMessage;
-        delete req.session.successMessage;
-        res.render('pages/index', { obras, artistas, successMessage });
+        const successMessage = req.session.successMessage || null; // Usa valor padrão
+        delete req.session.successMessage; // Limpa a mensagem de sucesso após o uso
+        res.render('pages/index', {  artistas, successMessage });
     } catch (error) {
         console.error('Erro ao obter dados:', error.message);
         res.status(500).send('Erro ao obter dados');
-    } // Adicionei a chave aqui para fechar a função corretamente
-}); // Certifique-se de que este parêntese está fechado
-
-router.get("/artists", function (req, res) {
-    res.render("pages/artists");
+    }
 });
 
-router.get("/about", function (req, res) {
-    res.render("pages/about");
+// Rota para a página de artistas
+router.get('/artists', (req, res) => {
+    res.render('pages/artists');
+});
+
+
+
+// Rota para a página sobre
+router.get('/about', (req, res) => {
+    res.render('pages/about');
 });
 
 // Rota para perfil - requer autenticação e redireciona com base no tipo de cliente
 router.get('/profile', authenticateUser, (req, res) => {
-    if (req.session.cliente.tipo_cliente === 'artista') {
-        res.render('pages/profile/artistProfile', { isLoggedIn: true, cliente: req.session.cliente });
+    const cliente = req.session.cliente;
+    if (cliente.tipo_cliente === 'artista') {
+        res.render('pages/profile/artistProfile', { isLoggedIn: true, cliente });
     } else {
-        res.render('pages/profile/profile', { isLoggedIn: true, cliente: req.session.cliente });
+        res.render('pages/profile/profile', { isLoggedIn: true, cliente });
     }
 });
 
+// Rota para logout
 router.get('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
             console.error('Erro ao destruir sessão:', err);
-        } else {
-            res.redirect('/');
         }
+        res.redirect('/');
     });
 });
 
-router.get('/adm', authenticateUser, function (req, res) {
-    res.render("pages/admin/index_adm.ejs");
+// Rota para admin - requer autenticação
+router.get('/adm', authenticateUser, (req, res) => {
+    res.render('pages/admin/index_adm.ejs');
 });
 
-router.get('/register', function (req, res) {
-    res.render("pages/cadastro.ejs");
+// Rota para registro
+router.get('/register', (req, res) => {
+    res.render('pages/cadastro.ejs');
 });
 
-router.get('/login', function (req, res) {
-    res.render("pages/login.ejs");
+// Rota para login
+router.get('/login', (req, res) => {
+    res.render('pages/login.ejs');
 });
 
-router.get('/buyitem', authenticateUser, function (req, res) {
-    res.render("pages/buyitem.ejs");
+// Rota para compra de item - requer autenticação
+router.get('/buyitem', authenticateUser, (req, res) => {
+    res.render('pages/buyitem.ejs');
 });
 
-router.get('/card', function (req, res) {
-    res.render("pages/card.ejs");
+// Rota para página de cartão
+router.get('/card', (req, res) => {
+    res.render('pages/card.ejs');
 });
 
-router.get('/artist_painel', authenticateUser, function (req, res) {
-    res.render("pages/artistPainel.ejs");
+// Rota para painel do artista - requer autenticação
+router.get('/artist_painel', authenticateUser, (req, res) => {
+    res.render('pages/artistPainel.ejs');
 });
 
-router.get('/artist', function (req, res) {
-    res.render("pages/artist.ejs");
+// Rota para página de artista
+router.get('/artist', (req, res) => {
+    res.render('pages/artist.ejs');
 });
 
-router.get('/requests', authenticateUser, function (req, res) {
-    res.render("pages/requests.ejs");
+// Rota para pedidos - requer autenticação
+router.get('/requests', authenticateUser, (req, res) => {
+    res.render('pages/requests.ejs');
 });
 
-router.get('/pedidos', authenticateUser, function (req, res) {
-    res.render("pages/pedidos.ejs");
+// Rota para pedidos - requer autenticação
+router.get('/pedidos', authenticateUser, (req, res) => {
+    res.render('pages/pedidos.ejs');
 });
 
 module.exports = router;

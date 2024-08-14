@@ -1,7 +1,7 @@
 <div id="addObraModal" class="modal">
     <div class="modal-content">
         <span class="close" id="closeAddObraModalMobile">&times;</span>
-        <form action="/api/obras" method="POST" enctype="multipart/form-data">
+        <form action="/api/obras" method="POST">
             <div>
                 <label for="titulo_obra">Título da Obra:</label>
                 <input type="text" id="titulo_obra" name="titulo_obra" required>
@@ -14,12 +14,7 @@
                 <label for="ano_criacao">Ano de Criação:</label>
                 <input type="number" id="ano_criacao" name="ano_criacao" required>
             </div>
-            <div>
-                <label for="imagem_obra">Imagem da Obra:</label>
-                <input type="file" id="imagem_obra" name="imagem_obra" accept="image/*" required>
-            </div>
             <button type="submit">Adicionar Obra</button>
         </form>
-        
     </div>
 </div>

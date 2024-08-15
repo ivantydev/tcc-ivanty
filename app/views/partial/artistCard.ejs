@@ -4,8 +4,7 @@
     <% artistas.forEach(artista => { %>
       <a href="/artist/<%= artista.id_cliente %>">
         <section class="artist">
-          <img src="/images/artist.jpg" alt="<%= artista.nome_cliente %>" class="artistPhoto">
-          <!-- <img src="/uploads/<%= artista.foto_cliente %>" alt="<%= artista.nome_cliente %>" class="artistPhoto"> -->
+          <img src="/uploads/<%= artista.foto_cliente %>" alt="<%= artista.nome_cliente %>" class="artistPhoto">
           <p class="artistName"><%= artista.nome_cliente %></p>
         </section>
       </a>

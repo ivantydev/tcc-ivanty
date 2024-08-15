@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ivanty</title>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/menu.css">
-    <link rel="stylesheet" href="css/headerPC.css">
-    <link rel="stylesheet" href="css/globalPC.css">
-    <link rel="stylesheet" href="css/carrosell.css">
-    <link rel="stylesheet" href="css/perfil.css">
-    <link rel="stylesheet" href="css/perfilMobile.css">
+    <title>Perfil de <%= artista.nome_cliente %></title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/headerPC.css">
+    <link rel="stylesheet" href="/css/globalPC.css">
+    <link rel="stylesheet" href="/css/carrosell.css">
+    <link rel="stylesheet" href="/css/perfil.css">
+    <link rel="stylesheet" href="/css/perfilMobile.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 <body>
@@ -21,16 +21,16 @@
 
       <main class="mainTelasPequenas">
         <section class="perfilContentMobile">
-          <img src="images/sky.jpg" alt="" class="banner bannerProfile">
+          <img src="/images/sky.jpg" alt="" class="banner bannerProfile">
           <section class="layoutPerfilMobile">
-            <img src="images/artist.jpg" alt="" class="perfilPhotoMobile">
+            <img src="/images/<%= artista.foto_cliente || 'default-profile.png' %>" alt="Foto do Artista" class="perfilPhotoMobile">
             <section class="perfilTextsMobile">
-              <h2 class="perfilNameMobile">Nome do Artista</h2>
-              <h3 class="perfilBiographName">@artista %></h3> 
+              <h2 class="perfilNameMobile"><%= artista.nome_cliente %></h2>
+              <h3 class="perfilBiographName">@<%= artista.perfil_cliente %></h3>
             </section>
           </section>
           <div class="artistaResumo">
-            <p class="perfilAboutMobile">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam quaerat.</p> <!-- Substitua por informações do cliente -->
+            <p class="perfilAboutMobile">Aqui você pode adicionar uma descrição do artista.</p>
           </div>
         </section>
       </main>
@@ -42,23 +42,18 @@
       <main class="mainTelasGrandes">
         <section class="perfil-usuario">
           <section class="container-perfil">
-              <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
+              <section class="enter-perfil" style="background-image: url('/images/sky.jpg');">
                   <section class="shadow"></section>
                   <section class="avatar-perfil">
-                      <img src="images/artist.jpg" alt="img">
+                      <img src="./uploads/<%= artista.foto_cliente %>" alt="Foto do Artista">
                       <a href="#" class="takePicture">
                           <i class="fas fa-camera"></i> 
                           <span> Ver foto</span>
                       </a>
                   </section>
                   <section class="date-perfil">
-                      <% if (!isLoggedIn) { %>
-                        <h4 class="titulo-usuario">Nome Artista</h4>
-                        <p class="bio-usuario">@artista</p>
-                      <% } else { %>
-                          <h4 class="titulo-usuario">Nome Artista</h4>
-                          <p class="bio-usuario">@artista</p>
-                      <% } %>
+                      <h4 class="titulo-usuario"><%= artista.nome_cliente %></h4>
+                      <p class="bio-usuario">@<%= artista.perfil_cliente %></p>
                       <ul class="lista-perfil">
                           <!-- Adicione informações adicionais aqui, se necessário -->
                       </ul>
@@ -70,7 +65,7 @@
               <section class="menu-perfil">
                   <ul>
                       <li><a href="#" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
-                  </ul>
+                  </ul>aga
               </section>
               <section class="addObras">
               </section>

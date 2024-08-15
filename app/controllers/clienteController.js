@@ -240,21 +240,23 @@ const clienteController = {
     }
   },
 
-  getArtistaByUsername: async (req, res) => {
+  getArtistaByUsername: async (req, res, next) => {
     try {
         const username = req.params.username;
         const artista = await ClienteModel.getArtistaByUsername(username);
-        
+
         if (artista) {
-            res.json(artista);
+            req.artista = artista;  // Armazena os dados no objeto de requisição
+            next();  // Passa o controle para o próximo middleware (o router que vai renderizar a view)
         } else {
-            res.status(404).json({ message: 'Artista não encontrado' });
+            res.status(404).render('404', { message: 'Artista não encontrado' });
         }
     } catch (error) {
         console.error('Erro ao obter artista:', error.message);
-        res.status(500).json({ error: error.message });
+        res.status(500).render('error', { error: error.message });
     }
   },
+
 };
 
 module.exports = clienteController;

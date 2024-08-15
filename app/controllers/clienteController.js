@@ -43,25 +43,26 @@ const clienteController = {
 
   createCliente: async (req, res) => {
     try {
-      const { nome_cliente, email_cliente, cpf_cliente, senha_cliente, datanasc_cliente, perfil_cliente, telefone_cliente, tipo_cliente } = req.body;
+        const { nome_cliente, email_cliente, cpf_cliente, senha_cliente, datanasc_cliente, perfil_cliente = 'default', telefone_cliente, tipo_cliente } = req.body;
 
-      const newClienteId = await ClienteModel.createCliente({
-        nome_cliente,
-        email_cliente,
-        cpf_cliente,
-        senha_cliente,
-        datanasc_cliente,
-        perfil_cliente,
-        telefone_cliente,
-        tipo_cliente
-      });
+        const newClienteId = await ClienteModel.createCliente({
+            nome_cliente,
+            email_cliente,
+            cpf_cliente,
+            senha_cliente,
+            datanasc_cliente,
+            perfil_cliente, // Garante que não seja nulo
+            telefone_cliente,
+            tipo_cliente
+        });
 
-      res.status(201).redirect(`/clientes/${newClienteId}/endereco`); // Redireciona para a página de cadastro de endereço
+        res.status(201).redirect(`/login`); // Redireciona para a página de login
     } catch (error) {
-      console.error('Erro ao criar cliente:', error.message);
-      res.status(500).json({ errors: [{ msg: error.message }] });
+        console.error('Erro ao criar cliente:', error.message);
+        res.status(500).json({ errors: [{ msg: error.message }] });
     }
   },
+
 
   updateCliente: async (req, res) => {
     try {
@@ -218,6 +219,40 @@ const clienteController = {
     } catch (error) {
       console.error('Erro ao obter artistas:', error.message);
       res.status(500).json({ error: error.message });
+    }
+  },
+
+  getArtistas: async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 24;
+        const { artistas, total } = await ClienteModel.getArtistas(page, limit);
+        
+        res.json({
+            total,
+            page,
+            totalPages: Math.ceil(total / limit),
+            artistas
+        });
+    } catch (error) {
+        console.error('Erro ao obter artistas:', error.message);
+        res.status(500).json({ error: error.message });
+    }
+  },
+
+  getArtistaByUsername: async (req, res) => {
+    try {
+        const username = req.params.username;
+        const artista = await ClienteModel.getArtistaByUsername(username);
+        
+        if (artista) {
+            res.json(artista);
+        } else {
+            res.status(404).json({ message: 'Artista não encontrado' });
+        }
+    } catch (error) {
+        console.error('Erro ao obter artista:', error.message);
+        res.status(500).json({ error: error.message });
     }
   },
 };

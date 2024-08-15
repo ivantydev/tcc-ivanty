@@ -84,6 +84,13 @@ const ClienteModel = {
     const [totalRows] = await pool.query('SELECT FOUND_ROWS() as total');
     return { clientes: rows, total: totalRows[0].total };
   },
+
+  getArtistaByUsername: async (username) => {
+    const [rows] = await pool.query('SELECT * FROM Clientes WHERE tipo_cliente = "artista" AND perfil_cliente = ?', [username]);
+    return rows[0];
+  },
+
+  
 };
 
 module.exports = ClienteModel;

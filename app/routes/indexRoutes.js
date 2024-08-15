@@ -2,6 +2,7 @@ const express = require('express');
 const obraController = require('../controllers/obraController');
 const clienteModel = require('../models/clienteModel');
 const router = express.Router();
+const ClienteController = require('./../controllers/clienteController')
 
 // Middleware para verificar se o usuário está autenticado
 const authenticateUser = (req, res, next) => {
@@ -101,5 +102,7 @@ router.get('/requests', authenticateUser, (req, res) => {
 router.get('/pedidos', authenticateUser, (req, res) => {
     res.render('pages/pedidos.ejs');
 });
+
+router.get('/artistas/:username', ClienteController.getArtistaByUsername);
 
 module.exports = router;

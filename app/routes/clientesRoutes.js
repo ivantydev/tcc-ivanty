@@ -103,4 +103,6 @@ router.post('/clientes/edit-profile/:id', authenticateUser, async (req, res) => 
 // Rota para upload de foto de perfil
 router.post('/clientes/uploadfoto', isAuthenticated, upload.single('foto_cliente'), ClienteController.uploadFoto);
 
+router.get('/artistas', ClienteController.getArtistas);
+
 module.exports = router;

@@ -103,7 +103,7 @@ router.get('/pedidos', authenticateUser, (req, res) => {
     res.render('pages/pedidos.ejs');
 });
 
-router.get('/artistas/:username', 
+router.get('/:username', 
     ClienteController.getArtistaByUsername, 
     (req, res) => {
         const artista = req.artista;

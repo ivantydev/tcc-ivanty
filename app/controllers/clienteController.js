@@ -257,6 +257,18 @@ const clienteController = {
     }
   },
 
+  getArtistsPage: async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const { artistas, totalPages } = await getArtistasPaginados(page);
+
+        res.render('pages/artists', { artistas, currentPage: page, totalPages });
+    } catch (error) {
+        console.error('Erro ao obter artistas:', error.message);
+        res.status(500).send('Erro ao carregar a página de artistas');
+    }
+  },
+
 };
 
 module.exports = clienteController;

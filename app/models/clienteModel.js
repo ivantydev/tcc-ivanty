@@ -90,6 +90,11 @@ const ClienteModel = {
     return rows[0];
   },
 
+  getObrasByClienteId: async (id_cliente) => {
+    const [rows] = await db.query('SELECT * FROM Obras WHERE id_cliente = ?', [id_cliente]);
+    return rows;
+  },
+
   
 };
 

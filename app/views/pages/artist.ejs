@@ -33,6 +33,24 @@
             <p class="perfilAboutMobile">Aqui você pode adicionar uma descrição do artista.</p>
           </div>
         </section>
+
+        <!-- Seção das Obras -->
+        <section class="obrasSection">
+          <h2>Obras do Artista</h2>
+          <div class="obrasGallery">
+            <% if (obras.length > 0) { %>
+              <% obras.forEach(function(obra) { %>
+                <div class="obraItem">
+                  <img src="/uploads/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
+                  <h3><%= obra.titulo_obra %></h3>
+                  <p><%= obra.descricao_obra %></p>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <p>O artista ainda não possui obras cadastradas.</p>
+            <% } %>
+          </div>
+        </section>
       </main>
     </section>
 
@@ -45,7 +63,7 @@
               <section class="enter-perfil" style="background-image: url('/images/sky.jpg');">
                   <section class="shadow"></section>
                   <section class="avatar-perfil">
-                      <img src="./uploads/<%= artista.foto_cliente %>" alt="Foto do Artista">
+                      <img src="/uploads/<%= artista.foto_cliente || 'default-profile.png' %>" alt="Foto do Artista">
                       <a href="#" class="takePicture">
                           <i class="fas fa-camera"></i> 
                           <span> Ver foto</span>
@@ -65,9 +83,23 @@
               <section class="menu-perfil">
                   <ul>
                       <li><a href="#" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
-                  </ul>aga
+                  </ul>
               </section>
               <section class="addObras">
+                  <h2>Obras do Artista</h2>
+                  <div class="obrasGallery">
+                    <% if (obras.length > 0) { %>
+                      <% obras.forEach(function(obra) { %>
+                        <div class="obraItem">
+                          <img src="/uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
+                          <h3><%= obra.titulo_obra %></h3>
+                          <p><%= obra.descricao_obra %></p>
+                        </div>
+                      <% }) %>
+                    <% } else { %>
+                      <p>O artista ainda não possui obras cadastradas.</p>
+                    <% } %>
+                  </div>
               </section>
           </section>
         </section>

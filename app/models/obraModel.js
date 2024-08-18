@@ -39,6 +39,11 @@ const ObraModel = {
   deleteObra: async (id) => {
     const [result] = await db.query('DELETE FROM Obras WHERE id_obra = ?', [id]);
     return result.affectedRows;
+  },
+
+  getObrasByClienteId: async (id_cliente) => {
+    const [rows] = await db.query('SELECT * FROM Obras WHERE id_cliente = ?', [id_cliente]);
+    return rows;
   }
 };
 

@@ -3,6 +3,7 @@ const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const fs = require('fs');
+const ObraModel = require('../models/obraModel')
 
 const clienteController = {
   getAllClientes: async (req, res) => {
@@ -242,18 +243,23 @@ const clienteController = {
 
   getArtistaByUsername: async (req, res, next) => {
     try {
-        const username = req.params.username;
-        const artista = await ClienteModel.getArtistaByUsername(username);
+      const username = req.params.username;
+      const artista = await ClienteModel.getArtistaByUsername(username);
 
-        if (artista) {
-            req.artista = artista;  // Armazena os dados no objeto de requisição
-            next();  // Passa o controle para o próximo middleware (o router que vai renderizar a view)
-        } else {
-            res.status(404).render('404', { message: 'Artista não encontrado' });
-        }
+      if (artista) {
+        // Busque as obras do artista
+        const obras = await ObraModel.getObrasByClienteId(artista.id_cliente);
+
+        // Armazene os dados no objeto de requisição
+        req.artista = artista;
+        req.obras = obras;
+        next();  // Passa o controle para o próximo middleware (o router que vai renderizar a view)
+      } else {
+        res.status(404).render('404', { message: 'Artista não encontrado' });
+      }
     } catch (error) {
-        console.error('Erro ao obter artista:', error.message);
-        res.status(500).render('error', { error: error.message });
+      console.error('Erro ao obter artista:', error.message);
+      res.status(500).render('error', { message: error.message });
     }
   },
 

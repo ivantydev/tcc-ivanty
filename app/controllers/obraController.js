@@ -17,23 +17,23 @@ const upload = multer({ storage: storage });
 const obraController = {
   saveObraInSession: (req, res) => {
     const { titulo_obra, descricao_obra, ano_criacao } = req.body;
-
+  
     console.log('Dados Recebidos no Backend:', { titulo_obra, descricao_obra, ano_criacao });
-
+  
     if (!titulo_obra || !descricao_obra || !ano_criacao) {
       return res.status(400).json({ message: 'Dados incompletos. Verifique e tente novamente.' });
     }
-
+  
     req.session.obraData = {
       titulo_obra,
       descricao_obra,
       ano_criacao,
       id_cliente: req.session.cliente.id
     };
-
+  
     console.log('Dados da Obra na Sessão:', req.session.obraData);
-
-    return res.redirect('/api/upload-imagem');
+  
+    return res.redirect('/api/obras/upload-imagem'); // Atualize o caminho aqui
   },
   
   uploadImagem: [
@@ -42,7 +42,7 @@ const obraController = {
       try {
         const obraData = req.session.obraData;
 
-        console.log('Dados da Obra na Sessão Antes do Upload:', obraData); // Adicione este log
+        console.log('Dados da Obra na Sessão Antes do Upload:', obraData);
 
         if (!obraData) {
           return res.status(400).json({ message: 'Nenhuma obra encontrada na sessão. Por favor, inicie o processo novamente.' });
@@ -60,6 +60,8 @@ const obraController = {
 
         const caminho_imagem = path.join('uploads/obras', imagem_obra);
         obraData.imagem_obra = caminho_imagem;
+
+        console.log('Dados da Obra com Imagem:', obraData);
 
         const newObraId = await ObraModel.createObra(obraData);
 

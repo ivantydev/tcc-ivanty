@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salvar Obra</title>
+</head>
+<body>
+    <h1>Salvar Dados da Obra</h1>
+    <form action="/api/obras/salvar" method="POST">
+        <div>
+            <label for="titulo_obra">Título da Obra:</label>
+            <input type="text" id="titulo_obra" name="titulo_obra" required>
+        </div>
+        <div>
+            <label for="descricao_obra">Descrição:</label>
+            <textarea id="descricao_obra" name="descricao_obra" required></textarea>
+        </div>
+        <div>
+            <label for="ano_criacao">Ano de Criação:</label>
+            <input type="number" id="ano_criacao" name="ano_criacao" required>
+        </div>
+        <button type="submit">Salvar Dados da Obra</button>
+    </form>
+</body>
+</html>

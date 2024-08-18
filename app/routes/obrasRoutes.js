@@ -2,38 +2,22 @@ const express = require('express');
 const router = express.Router();
 const ObraController = require('../controllers/obraController');
 const isAuthenticated = require('../middlewares/isAuthenticated');
-const { validationResult } = require('express-validator');
-const multer = require('multer');
-const path = require('path');
 
-// Configuração do Multer
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './app/public/uploads/obras/');
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
+// Rota para salvar os dados da obra na sessão
+router.post('/obras/salvar', isAuthenticated, ObraController.saveObraInSession);
+
+// Nova rota para renderizar a página de upload de imagem
+router.get('/obras/upload-imagem', isAuthenticated, (req, res) => {
+  res.render('uploadImagem'); // Renderize o arquivo EJS que contém o formulário de upload de imagem
 });
 
-const upload = multer({ storage: storage });
+// Rota para fazer o upload da imagem e criar a obra
+router.post('/obras/imagem', isAuthenticated, ObraController.uploadImagem);
 
-// Rota para obter uma obra pelo ID
+// Outras rotas
 router.get('/obras/:id', isAuthenticated, ObraController.getObraById);
-
-// Rota para criar uma nova obra (sem imagem inicialmente)
-router.post('/obras', isAuthenticated, ObraController.createObra);
-
-// Rota para fazer upload da imagem da obra (após criação)
-router.post('/obras/:id/imagem', isAuthenticated, upload.single('imagem_obra'), ObraController.uploadImagem);
-
-// Rota para atualizar uma obra pelo ID (apenas artistas)
 router.put('/obras/:id', isAuthenticated, ObraController.updateObra);
-
-// Rota para deletar uma obra pelo ID (apenas artistas)
 router.delete('/obras/:id', isAuthenticated, ObraController.deleteObra);
-
-// Rota para listar todas as obras
 router.get('/obras', isAuthenticated, ObraController.getAllObras);
 
 module.exports = router;

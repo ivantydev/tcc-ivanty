@@ -22,11 +22,12 @@ app.use(express.static("app/public"));
 
 // Configuração da sessão
 app.use(session({
-  secret: 'secret_key',
+  secret: 'your_secret_key',
   resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false } // Use secure: true em produção com HTTPS
+  saveUninitialized: false,
+  cookie: { secure: false, httpOnly: true } // Em produção, use secure: true se estiver usando HTTPS
 }));
+
 
 // Middleware para definir variáveis globais
 app.use((req, res, next) => {
@@ -42,6 +43,11 @@ app.use("/api", carrinhoRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');
+});
+
+app.use((req, res, next) => {
+  console.log('Sessão Atual:', req.session);
+  next();
 });
 
 app.listen(PORT, () => {

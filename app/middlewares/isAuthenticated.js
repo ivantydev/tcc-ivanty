@@ -1,5 +1,5 @@
 const isAuthenticated = (req, res, next) => {
-  console.log('Sessão:', req.session);
+  console.log('Sessão Atual:', req.session); // Verifique a sessão para ver se `isLoggedIn` está presente
   if (req.session.isLoggedIn) {
     return next();
   }

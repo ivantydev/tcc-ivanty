@@ -1,20 +1,58 @@
 <div id="addObraModal" class="modal">
     <div class="modal-content">
-        <span class="close" id="closeAddObraModalMobile">&times;</span>
-        <form action="/api/obras" method="POST">
-            <div>
-                <label for="titulo_obra">Título da Obra:</label>
-                <input type="text" id="titulo_obra" name="titulo_obra" required>
-            </div>
-            <div>
-                <label for="descricao_obra">Descrição:</label>
-                <textarea id="descricao_obra" name="descricao_obra" required></textarea>
-            </div>
-            <div>
-                <label for="ano_criacao">Ano de Criação:</label>
-                <input type="number" id="ano_criacao" name="ano_criacao" required>
-            </div>
-            <button type="submit">Adicionar Obra</button>
-        </form>
+      <span class="close" id="closeAddObraModalMobile">&times;</span>
+  
+      <!-- Primeiro Formulário: Salvar os dados da obra na sessão -->
+      <form id="saveObraForm" action="/api/obras/salvar" method="POST">
+        <div>
+            <label for="titulo_obra">Título da Obra:</label>
+            <input type="text" id="titulo_obra" name="titulo_obra" required>
+        </div>
+        <div>
+            <label for="descricao_obra">Descrição:</label>
+            <textarea id="descricao_obra" name="descricao_obra" required></textarea>
+        </div>
+        <div>
+            <label for="ano_criacao">Ano de Criação:</label>
+            <input type="number" id="ano_criacao" name="ano_criacao" required>
+        </div>
+        <button type="submit">Salvar Dados da Obra</button>
+    </form>
+    
+  
+      <!-- Formulário para Upload de Imagem: Aparece após a primeira submissão -->
+      <form id="uploadImagemForm" action="/api/obras/imagem" method="POST" enctype="multipart/form-data" style="display: none;">
+        <div>
+          <label for="imagem_obra">Upload da Imagem:</label>
+          <input type="file" id="imagem_obra" name="imagem_obra" accept="image/*" required>
+        </div>
+        <button type="submit">Upload da Imagem</button>
+      </form>
     </div>
-</div>
+  </div>
+  
+  <script>
+document.getElementById('saveObraForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const formData = new FormData(this);
+
+  console.log('Dados do Formulário:', Object.fromEntries(formData.entries())); // Adicione este log
+
+  fetch('/api/obras/salvar', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.message) {
+      document.getElementById('uploadImagemForm').style.display = 'block';
+    } else {
+      console.error(data);
+    }
+  })
+  .catch(error => console.error('Erro:', error));
+});
+
+  </script>
+  

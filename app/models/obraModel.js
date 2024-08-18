@@ -12,12 +12,27 @@ const ObraModel = {
   },
 
   createObra: async (obraData) => {
-    const [result] = await db.query('INSERT INTO obras SET ?', obraData);
+    const { titulo_obra, descricao_obra, ano_criacao, imagem_obra, id_cliente } = obraData;
+    const query = `
+      INSERT INTO obras (titulo_obra, descricao_obra, ano_criacao, imagem_obra, id_cliente)
+      VALUES (?, ?, ?, ?, ?)
+    `;
+    const values = [titulo_obra, descricao_obra, ano_criacao, imagem_obra, id_cliente];
+  
+    const [result] = await db.execute(query, values);
     return result.insertId;
   },
 
   updateObra: async (id, obraData) => {
-    const [result] = await db.query('UPDATE obras SET ? WHERE id_obra = ?', [obraData, id]);
+    const { titulo_obra, descricao_obra, ano_criacao, imagem_obra } = obraData;
+    const query = `
+      UPDATE obras
+      SET titulo_obra = ?, descricao_obra = ?, ano_criacao = ?, imagem_obra = ?
+      WHERE id_obra = ?
+    `;
+    const values = [titulo_obra, descricao_obra, ano_criacao, imagem_obra, id];
+  
+    const [result] = await db.execute(query, values);
     return result.affectedRows;
   },
 

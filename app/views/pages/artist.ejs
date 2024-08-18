@@ -23,15 +23,15 @@
         <section class="perfilContentMobile">
           <img src="/images/sky.jpg" alt="" class="banner bannerProfile">
           <section class="layoutPerfilMobile">
-            <img src="/images/<%= artista.foto_cliente || 'default-profile.png' %>" alt="Foto do Artista" class="perfilPhotoMobile">
+            <img src="/uploads/<%= artista.foto_cliente || 'default-profile.png' %>" alt="Foto do Artista" class="perfilPhotoMobile">
             <section class="perfilTextsMobile">
               <h2 class="perfilNameMobile"><%= artista.nome_cliente %></h2>
               <h3 class="perfilBiographName">@<%= artista.perfil_cliente %></h3>
             </section>
           </section>
-          <div class="artistaResumo">
+          <!-- <div class="artistaResumo">
             <p class="perfilAboutMobile">Aqui você pode adicionar uma descrição do artista.</p>
-          </div>
+          </div> -->
         </section>
 
         <!-- Seção das Obras -->
@@ -41,7 +41,7 @@
             <% if (obras.length > 0) { %>
               <% obras.forEach(function(obra) { %>
                 <div class="obraItem">
-                  <img src="/uploads/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
+                  <img src="/uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
                   <h3><%= obra.titulo_obra %></h3>
                   <p><%= obra.descricao_obra %></p>
                 </div>

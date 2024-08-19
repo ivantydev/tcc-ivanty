@@ -38,11 +38,9 @@
             </section>
             <section class="artistasEmDetaque">
                 <h2 class="artistasEmDestaqueTextPC">Artistas em Destaque:</h2>
-                <section class="carrosell">
                     <% artistas.forEach(artista => { %>
                         <%- include("../partial/artistCard", { artista }) %>
                     <% }) %>
-                </section>
             </section>
             <section class="EstilosDeObraArte">
                 <h1 class="comprarArteOnlineH1">COMPRE ARTE PELO ESTILO</h1>

@@ -1,18 +1,19 @@
-<section class="artistCardPC">
-  <div class="artistsFirstLineGridPC">
-    <img src="images/artist.jpg" alt="" class="artistCardPhotoPC">
-    <div class="artistsContainerTextos">
-      <h3 class="artistCardName">Osvaldo Brandão Alcantara</h3>  
-      <p class="artistCardBio">Pintor, escultor, entre outros.</p>
+<% artistas.forEach(artista => { %>
+  <section class="artistCardPC">
+    <div class="artistsFirstLineGridPC">
+      <img src="/uploads/<%= artista.foto_cliente %>" alt="<%= artista.nome_cliente %>" class="artistCardPhotoPC">
+      <div class="artistsContainerTextos">
+        <h3 class="artistCardName"><%= artista.nome_cliente %></h3>  
+        <p class="artistCardBio"><%= artista.descricao_cliente %></p> <!-- Supondo que exista uma biografia ou descrição do artista -->
+      </div>
     </div>
-  </div>
-  <div class="artistsSecondLineGridPC">
-    <img class="artImage" src="images/arts/campoDeTrigo.jpg" alt="">
-    <img class="artImage" src="images/arts/campoDeTrigo.jpg" alt="">
-    <img class="artImage" src="images/arts/campoDeTrigo.jpg" alt="">
-    <img class="artImage" src="images/arts/campoDeTrigo.jpg" alt="">
-    <a href="/artist" class="seeMoreA" >
-      Ver mais obras...
-    </a>
-  </div>
+    <div class="artistsSecondLineGridPC">
+      <% artista.obras.forEach(obra => { %>
+        <img class="artImage" src="/uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
+      <% }); %>
+      <a href="/artist/<%= artista.id_cliente %>" class="seeMoreA">
+        Ver mais obras...
+      </a>
+    </div>
   </section>
+<% }); %>

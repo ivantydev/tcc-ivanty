@@ -33,14 +33,21 @@
                 <p class="comprarArteOnlineP">Navegue pelas obras de arte disponíveis em nossa plataforma</p>
                 <section class="categoriasEmDestaque">
                     <h2 class="categoriasEmDestaqueText">Categorias em Destaque:</h2>
-                     <%- include("../partial/comprarPorCategoriaCarouselMobile") %>
+                    <%- include("../partial/comprarPorCategoriaCarouselMobile") %>
                 </section>
             </section>
-            <section class="artistasEmDetaque">
+            <section class="artistasEmDestaque">
                 <h2 class="artistasEmDestaqueTextPC">Artistas em Destaque:</h2>
+                <section class="carrosell">
                     <% artistas.forEach(artista => { %>
-                        <%- include("../partial/artistCard", { artista }) %>
-                    <% }) %>
+                        <a href="/<%= artista.perfil_cliente %>">
+                            <section class="artist">
+                                <img src="/uploads/<%= artista.foto_cliente %>" alt="<%= artista.nome_cliente %>" class="artistPhoto">
+                                <p class="artistName"><%= artista.nome_cliente %></p>
+                            </section>
+                        </a>
+                    <% }); %>
+                </section>
             </section>
             <section class="EstilosDeObraArte">
                 <h1 class="comprarArteOnlineH1">COMPRE ARTE PELO ESTILO</h1>
@@ -69,8 +76,13 @@
                 <h2 class="artistasEmDestaqueTextPC">Artistas em Destaque:</h2>
                 <section class="carrosellPC">
                     <% artistas.forEach(artista => { %>
-                        <%- include("../partial/artistCardPC", { artista }) %>
-                    <% }) %>
+                        <a href="/<%= artista.perfil_cliente %>">
+                            <section class="artistPC">
+                                <img src="/uploads/<%= artista.foto_cliente %>" alt="<%= artista.nome_cliente %>" class="artistPhotoPC">
+                                <p class="artistNamePC"><%= artista.nome_cliente %></p>
+                            </section>
+                        </a>
+                    <% }); %>
                 </section>
             </section>
             <section class="EstilosDeObraArtePC">
@@ -81,7 +93,6 @@
                     <%- include("../partial/comprarPorEstiloCarousel") %> 
                 </section>
             </section>
-            <%-  %>
         </main>
     </section>
 

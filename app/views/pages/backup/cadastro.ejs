@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste</title>
+    <title>Cadastro</title>
     <link href="./css/CriarConta.css" rel="stylesheet">
     <!-- Fonte Usada -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
                     
                 <div class="input-group">
                     <label for="user-type">Escolha o tipo:</label>
-                    <select id="user-type"  name="tipo_cliente" name="user-type" required>
+                    <select id="tipo_cliente" name="tipo_cliente" required>
                         <option value="">Selecione uma opção</option>
                         <option value="artista">Artista</option>
                         <option value="cliente">Cliente</option>
@@ -34,16 +34,10 @@
 
                 <div class="input-group">
                     <label for="nome">Nome</label>
-                    <input type="text" id="nome" name="nome_cliente" placeholder="Digite o seu nome completo" required>
+                    <input type="text" id="nome_cliente" name="nome_cliente" placeholder="Digite o seu nome completo" required>
                     <span class="erro" id="erroNome"></span>
                 </div>
     
-                <div class="input-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email_cliente"  placeholder="Digite o seu email" required>
-                    <span class="erro" id="erroEmail"></span>
-                </div>
-
                 <div class="input-group">
                     <label for="perfil_cliente">Nome de usuario</label>
                     <input type="text" id="perfil_cliente" name="perfil_cliente" placeholder="Digite o seu nome de usuário" required>
@@ -51,15 +45,21 @@
                 </div>
     
                 <div class="input-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" id="telefone" name="telefone_cliente" placeholder="Digite o seu telefone" required>
-                    <span class="erro" id="erroTelefone"></span>
+                    <label for="email_cliente">E-mail</label>
+                    <input type="email" id="email_cliente" name="email_cliente" placeholder="Digite o seu email" required>
+                    <span class="erro" id="erroEmail"></span>
                 </div>
     
                 <div class="input-group">
-                    <label for="none">CPF</label>
+                    <label for="strCPF">CPF</label>
                     <input type="text" name="cpf_cliente" id="strCPF" size="30" maxlength="11" placeholder="Digite seu CPF" required>
                     <span class="erro" id="erroCpf"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha_cliente" name="senha_cliente" placeholder="Digite sua senha" required>
+                    <span class="erro" id="erroSenha"></span>
                 </div>
 
                 <div class="input-group">
@@ -69,29 +69,16 @@
                 </div>
                 
                 <div class="input-group">
-                    <label for="senha">Senha</label>
-                    <input type="password" id="senha" name="senha_cliente" placeholder="Digite sua senha" required>
-                    <span class="erro" id="erroSenha"></span>
+                    <label for="telefone">Telefone</label>
+                    <input type="text" id="telefone_cliente" name="telefone_cliente" placeholder="(XX) XXXXX-XXXX" required>
+                    <span class="erro" id="erroTelefone"></span>
                 </div>
 
-                <div class="input-group">
-                    <label for="Confirmarsenha">Confirmar Senha</label>
-                    <input type="password" id="Confirmarsenha" placeholder="Confirme a senha" required>
-                    <span class="erro" id="erroConfirmarsenha"></span>
-                </div>
-                
-                <div class="input-group">
-                    <button type="submit" onclick="verificaCPF(document.getElementById('strCPF').value)">Cadastrar</button>
-                </div>
+                <div class="input-group"><button type="submit">Cadastrar</button></div>
             </form>
                     
         </div>
     </div>
     <script src="./js/validate.js"></script>
-    <script src="./js/cpfValidacao.js"></script>
 </body>
 </html>
-
-
-  
-

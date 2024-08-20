@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/globalPC.css">
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/categories.css">
+    <!-- <link href="./css/Obras.css" rel="stylesheet"> -->
 </head>
 <body>
     <% if (successMessage) { %>
@@ -68,8 +69,7 @@
                 <h1 class="comprarArteOnlineH1">COMPRE OBRAS DE ARTE</h1>
                 <p class="comprarArteOnlineP">Navegue pelas obras de arte disponíveis em nossa plataforma</p>
                 <section class="categoriasEmDestaquePC">
-                    <h2 class="categoriasEmDestaqueTextPC">Categorias em Destaque:</h2>
-                    <%- include("../partial/comprarPorCategoriaCarousel") %>
+                     <%- include("../partial/comprarPorCategoriaCarousel") %>
                 </section>
             </section>
             <section class="artistasEmDestaquePC">
@@ -89,10 +89,14 @@
                 <h1 class="comprarArteOnlineH1">COMPRE ARTE PELO ESTILO</h1>
                 <p class="comprarArteOnlineP">Qual seu movimento artistico favorito?</p>
                 <section class="categoriasEmDestaquePC">
-                    <h2 class="categoriasEmDestaqueTextPC">Categorias em Destaque:</h2>
                     <%- include("../partial/comprarPorEstiloCarousel") %> 
                 </section>
             </section>
+            <section class="publicidade">
+                <img src="images/garotaPintandoIvanty.png" alt="" class="publicidadeImagem">
+                <h2 class="publicadeTexto">Aqui a sua arte tem VALOR</h2>
+            </section>
+            
         </main>
     </section>
 
@@ -104,5 +108,7 @@
     <script src="js/comprarPorCategoriacarouselMobile.js"></script>
     <script src="js/ObrasMaisVendidas.js"></script>
     <script src="js/ObrasMaisVendidasMobile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./js/Obra.js"></script>
 </body>
 </html>

@@ -1,0 +1,70 @@
+*{
+    padding: 0;
+    margin: auto;
+}
+div.Carrossel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: max-content;
+    max-width: 100%;
+}
+div.Carrossel-List{
+    margin: 0, 20px, 0px, 200px;
+}
+div.Carrossel-List nav.Carrossel-Item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+div.Carrossel-List nav.Carrossel-Item a.LinkUser{
+    color: #fff;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    transition: 0.5s all; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center; 
+}
+div.Carrossel-List nav.Carrossel-Item a.LinkUser:hover{
+    color: #ffe25e;
+    font-size: 110%;
+}
+div.Carrossel-List nav.Carrossel-Item img.ImagemUser{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: solid 2px #fff;
+    padding: 2px;
+    transition: 0.5s all;
+}
+div.Carrossel-List nav.Carrossel-Item a.LinkUser h1{
+    width: max-content;
+}
+div.Carrossel-List nav.Carrossel-Item img.ImagemUser:hover{
+    width: 175px;
+    height: 175px;
+}
+div.Carrossel-List nav.Carrossel-Item figure{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+div.slider-wrapper {
+    overflow: hidden;
+    padding: 2%;
+}
+
+.NomeUser {
+    color: rgb(0, 0, 0);
+    margin: 0.5rem auto;
+    font-family: Roboto;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    display: block;
+}

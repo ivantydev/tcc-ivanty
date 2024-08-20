@@ -1,6 +1,3 @@
-
-
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
 
@@ -12,21 +9,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-
-
-
-
-/* body {
-   
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    min-height: 100vh;
-} */
 
 /* Estilos básicos para inputs */
 .input-group input,
@@ -60,14 +42,9 @@
     display: none;
 }
 
-
-
-
 .grid {
     display: grid;
     grid-template-columns: 2fr 2.5fr; /* Aumenta a proporção da imagem à esquerda */
-    padding: 2rem;
-    /* gap: 2rem; Espaço entre imagem e formulário */
     width: 100%;
     max-width: 100%; /* Define um limite máximo de largura para a grid */
     height: 100vh;
@@ -91,9 +68,6 @@
     height: 100%; /* Garante que a div ocupe toda a altura disponível */
 } 
 
-
-
-
 .b {
     background-color: #1a23a0;
     width: 100%;
@@ -112,12 +86,6 @@
     color: yellow;
 }
 
-
-
-
-
-
-
 .box {
     display: flex;
     width: 100%;
@@ -129,12 +97,8 @@
     margin: 0;
 }
 
-
-
-
-
 .form-box {
-    background-color: azure;
+    background-color: #1a23a0;
     backdrop-filter: blur(40px);
     padding: 30px 40px;
     width: 100%;
@@ -143,15 +107,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
-    
 }
-
-
 
 .form-box h2 {
     font-size: 30px;
- 
 }
 
 .form-box p {
@@ -180,7 +139,6 @@ form .input-group label {
 }
 
 form .input-group input {
-    width: 50vh;
     height: 47px;
     background-color: white;
     border-radius: 20px;
@@ -230,5 +188,306 @@ form .input-group button {
     .w50 {
         width: 100%;
         padding: 0;
+    }
+}
+
+/* Estilos Globais */
+body {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos para telas grandes (desktop) */
+.telasGrandes {
+    display: block;
+    padding: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.Promocional {
+    width: 100%;
+    height: auto;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Estilos para telas pequenas (mobile) */
+.telasPequenas {
+    display: none;
+}
+
+.input-groupMobile {
+    margin-bottom: 15px;
+}
+
+.input-groupMobile label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-groupMobile input[type="text"],
+.input-groupMobile input[type="email"],
+.input-groupMobile input[type="tel"],
+.input-groupMobile input[type="date"],
+.input-groupMobile input[type="password"],
+.input-groupMobile select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.erroMobile {
+    color: red;
+    font-size: 12px;
+}
+
+/* Media Queries para alternar entre mobile e desktop */
+@media (max-width: 768px) {
+    .telasPequenas {
+        display: block;
+    }
+
+    .telasGrandes {
+        display: none;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) {
+    .telasPequenas {
+        display: none;
+    }
+
+    .telasGrandes {
+        display: block;
+    }
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    width: 100%;
+    max-width: 100%;
+}
+
+.a {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-image: url('../Imagens/Media-removebg-preview.png');
+    filter: saturate(150%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+.b {
+    background-color: #1a23a0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    color: white;
+}
+
+.b h1 {
+    text-align: center;
+    font-size: 80px;
+    color: yellow;
+}
+
+/* Formulário */
+.form-box {
+    background-color: #1a23a0;
+    backdrop-filter: blur(40px);
+    padding: 30px 40px;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-box h2 {
+    font-size: 30px;
+}
+
+.form-box p {
+    font-weight: bold;
+    color: #3D3D3D;
+}
+
+.form-box p a {
+    color: #3700ff;
+    text-decoration: none;
+}
+
+.form-box form {
+    margin: 20px 0;
+}
+
+form .input-group {
+    margin-bottom: 15px;
+}
+
+form .input-group label {
+    color: white;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+form .input-group input {
+    background-color: white;
+    border-radius: 20px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.089);
+    padding: 15px;
+    font-size: 15px;
+    transition: all 0.4s ease;
+}
+
+form .input-group input:focus {
+    border: 2px solid #0048ffd2;
+}
+
+form .input-group button {
+    background: #0051ff;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    margin-top: 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Estilos para telas grandes */
+.telasGrandes {
+    display: block;
+    padding: 20px;
+}
+
+.grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.Promocional {
+    width: 100%;
+    height: auto;
+}
+
+/* Estilos para telas pequenas */
+.telasPequenas {
+    display: none;
+}
+
+.input-groupMobile {
+    margin-bottom: 15px;
+}
+
+.input-groupMobile label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-groupMobile input, .input-groupMobile select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.erroMobile {
+    color: red;
+    font-size: 12px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .telasPequenas {
+        display: block;
+    }
+
+    .telasGrandes {
+        display: none;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .grid {
+        grid-template-columns: 1fr; /* Coluna única no mobile */
+        gap: 10px; /* Ajusta o espaço entre os itens */
+    }
+}
+
+@media (min-width: 769px) {
+    .telasPequenas {
+        display: none;
+    }
+
+    .telasGrandes {
+        display: block;
     }
 }

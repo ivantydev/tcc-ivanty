@@ -26,11 +26,11 @@
 
 
 .CategoriaPinturas {
-    background-image: url(/images/categories/pinturas.jpg);
+    background-image: url(/images/Pintura-Icon-PC.png);
 }
 
 .CategoriaFotografias {
-    background-image: url(/images/categories/fotografias.jpg);
+    background-image: url(/images/Escutura-Icon-PC.png);
 }
 
 .CategoriaNome {
@@ -38,3 +38,4 @@
     text-align: center;
     margin: 1rem;
 }
+

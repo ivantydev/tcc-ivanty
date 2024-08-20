@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload da Imagem</title>
+    <link rel="stylesheet" href="../../css/CriarConta.css">
     <link rel="stylesheet" href="../../css/addImage.css">
 </head>
 <body>
-    <div class="AddImagem">
-        <h1>Upload da Imagem da Obra</h1>
+    <div class="form-box addImageBox">
+        <h1 class="addImageText">Upload da Imagem da Obra</h1>
         <form action="/api/obras/imagem" method="POST" enctype="multipart/form-data">
-            <div>
+            <div class="input-group ">
                 <label for="imagem_obra">Upload da Imagem:</label>
                 <input type="file" id="imagem_obra" name="imagem_obra" accept="image/*" required>
             </div>
-            <button type="submit">Upload da Imagem</button>
+            <div class="input-group">
+                <button type="submit">Upload da Imagem</button>
+            </div>
         </form>
     </div>
 </body>

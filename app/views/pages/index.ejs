@@ -17,6 +17,12 @@
     <link rel="stylesheet" href="css/globalPC.css">
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/categories.css">
+    <link rel="stylesheet" href="css/carrossel.css">
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/> 
+    <!--Fonte usada-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <!-- <link href="./css/Obras.css" rel="stylesheet"> -->
 </head>
 <body>
@@ -37,24 +43,26 @@
                     <%- include("../partial/comprarPorCategoriaCarouselMobile") %>
                 </section>
             </section>
+        </section>
             <section class="artistasEmDestaque">
                 <h2 class="artistasEmDestaqueTextPC">Artistas em Destaque:</h2>
-                <section class="carrosell">
-                    <% artistas.forEach(artista => { %>
-                        <a href="/<%= artista.perfil_cliente %>">
-                            <section class="artist">
-                                <img src="/uploads/<%= artista.foto_cliente %>" alt="<%= artista.nome_cliente %>" class="artistPhoto">
-                                <p class="artistName"><%= artista.nome_cliente %></p>
-                            </section>
-                        </a>
-                    <% }); %>
-                </section>
+                <%- include("../partial/carrossel_artistas") %> 
             </section>
+
+            <section class="publicidadeMobile">
+                <img src="images/garotaPintandoIvanty.png" alt="" class="publicidadeImagemMobile">
+                <div>
+                    <h2 class="publicadeTextoIvantyMobile">IVANTY, </h2>
+                    <h2 class="publicadeTextoMobile">Aqui a sua arte tem </h2>
+                    <h2 class="publicadeTextoYellowMobile">VALOR</h2>
+                </div>
+            </section>
+
             <section class="EstilosDeObraArte">
                 <h1 class="comprarArteOnlineH1">COMPRE ARTE PELO ESTILO</h1>
                 <p class="comprarArteOnlineP">Qual seu movimento artistico favorito?</p>
                 <section class="categoriasEmDestaque">
-                    <h2 class="categoriasEmDestaqueText">Categorias em Destaque:</h2>
+                    <h2 class="categoriasEmDestaqueText">Estilos em Destaque:</h2>
                     <%- include("../partial/comprarPorEstiloCarouselMobile") %> 
                 </section>
             </section>
@@ -74,17 +82,18 @@
             </section>
             <section class="artistasEmDestaquePC">
                 <h2 class="artistasEmDestaqueTextPC">Artistas em Destaque:</h2>
-                <section class="carrosellPC">
-                    <% artistas.forEach(artista => { %>
-                        <a href="/<%= artista.perfil_cliente %>">
-                            <section class="artist">
-                                <img src="/uploads/<%= artista.foto_cliente %>" alt="<%= artista.nome_cliente %>" class="artistPhoto">
-                                <p class="artistName"><%= artista.nome_cliente %></p>
-                            </section>
-                        </a>
-                    <% }); %>
-                </section>
+                <%- include("../partial/carrossel_artistas") %> 
             </section>
+
+            <section class="publicidade">
+                <img src="images/garotaPintandoIvanty.png" alt="" class="publicidadeImagem">
+                <div>
+                    <h2 class="publicadeTextoIvanty">IVANTY, </h2>
+                    <h2 class="publicadeTexto">Aqui a sua arte tem </h2>
+                    <h2 class="publicadeTextoYellow">VALOR</h2>
+                </div>
+            </section>
+
             <section class="EstilosDeObraArtePC">
                 <h1 class="comprarArteOnlineH1">COMPRE ARTE PELO ESTILO</h1>
                 <p class="comprarArteOnlineP">Qual seu movimento artistico favorito?</p>
@@ -92,10 +101,8 @@
                     <%- include("../partial/comprarPorEstiloCarousel") %> 
                 </section>
             </section>
-            <section class="publicidade">
-                <img src="images/garotaPintandoIvanty.png" alt="" class="publicidadeImagem">
-                <h2 class="publicadeTexto">Aqui a sua arte tem VALOR</h2>
-            </section>
+           
+            
             
         </main>
     </section>
@@ -109,6 +116,6 @@
     <script src="js/ObrasMaisVendidas.js"></script>
     <script src="js/ObrasMaisVendidasMobile.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="./js/Obra.js"></script>
+    <script src="./js/carrossel.js"></script> 
 </body>
 </html>

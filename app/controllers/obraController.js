@@ -68,7 +68,7 @@ const obraController = {
   
         req.session.obraData = null;
   
-        return res.json({ message: 'Obra criada com sucesso', id: newObraId });
+        return res.redirect('/profile'); // Atualize o caminho aqui
       } catch (error) {
         console.error('Erro ao salvar obra com imagem:', error.message);
         return res.status(500).json({ error: error.message });

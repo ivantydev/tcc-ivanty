@@ -2,19 +2,22 @@ div.SalvarObra{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 60px 1fr;
-    background-color: #dadada;
+    background-color: #1a23a0;
     width: max-content;
     height: min-content;
     padding: 1%;
     padding-bottom: 2%;
     grid-gap: 20px;
-    border-radius: 30px;
+    border: 2px solid #000;
+    margin: 2rem auto;
 }
+
 div.SalvarObra h1:nth-child(1){
     text-align: center;
     height: 30px;
     margin: auto;
 }
+
 div.SalvarObra form{
     grid-column-gap: 5%;
     grid-row-gap: 20px;
@@ -22,6 +25,7 @@ div.SalvarObra form{
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 70px 50px 70px 45px;
 }
+
 .SalvarObra div:nth-child(1){
     grid-column: 1/4;
     grid-row: 1;
@@ -29,6 +33,7 @@ div.SalvarObra form{
     align-items: center;
     justify-content: space-between;
 }
+
 .SalvarObra div:nth-child(2){
     grid-column: 1/4;
     grid-row: 2;
@@ -36,6 +41,7 @@ div.SalvarObra form{
     align-items: center;
     justify-content: space-between;
 }
+
 .SalvarObra div:nth-child(3){
     grid-column: 1/4;
     grid-row: 3;
@@ -43,6 +49,7 @@ div.SalvarObra form{
     align-items: center;
     justify-content: space-between;
 }
+
 .SalvarObra button:nth-child(4){
     color: #fff;
     border-radius: 20px;
@@ -53,14 +60,17 @@ div.SalvarObra form{
     margin-top: 7px;
     transition: 0.5s ease;
 }
+
 .SalvarObra button:nth-child(4):hover{
     background-color: #000;
 }
+
 .SalvarObra div:nth-child(1) label{
     font-size: 100%;
     margin-left: 1%;
     font-family: "Playwrite DE Grund", cursive; 
 }
+
 .SalvarObra div:nth-child(1) input{
     margin-right: 2%;
     width: 65%;
@@ -68,11 +78,13 @@ div.SalvarObra form{
     border-radius: 20px;
     border: none;
 }
+
 .SalvarObra div:nth-child(2) label{
     font-size: 120%;
     margin-left: 1%;
     font-family: "Playwrite DE Grund", cursive; 
 }
+
 .SalvarObra div:nth-child(2) textarea{
     margin-right: 2%;
     min-height: 100px ;
@@ -83,16 +95,25 @@ div.SalvarObra form{
     border-radius: 20px;
     border: none;
 }
+
 .SalvarObra div:nth-child(3) label{
     font-size: 100%;
     margin-left: 1%;
-    font-family: "Playwrite DE Grund", cursive; 
-    
+    font-family: "Playwrite DE Grund", cursive;   
 }
+
 .SalvarObra div:nth-child(3) input{
     margin-right: 2%;
     width: 65%;
     height: 40%;
     border-radius: 20px;
     border: none;
+}
+
+.salvarObraTitle {
+    color: #fff;
+}
+
+.salvarObraBox {
+    margin: 2rem auto;
 }

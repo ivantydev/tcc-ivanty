@@ -1,14 +1,15 @@
 div.AddImagem{
-    background-color: #5090cc;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 70px 1fr;
-    height: 300px;
-    width: max-content;
-    padding: 1.5%;
-    grid-gap: 15px;
+    background-color: #1a23a0;
+    backdrop-filter: blur(40px);
+    padding: 30px 40px;
+    width: 100%;
+    max-width: 450px;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
 div.AddImagem h1{
     color: #fff;
 }
@@ -56,4 +57,12 @@ div.AddImagem form button{
 }
 div.AddImagem form button:hover{
     background-color: #000;
+}
+
+.addImageText {
+    color: #fff;
+}
+
+.addImageBox {
+    margin: 2rem auto;
 }

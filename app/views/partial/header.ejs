@@ -6,12 +6,6 @@
       </div>
     </a>
     <section class="ignoreSpace"></section>
-      <!-- <a href="./card">
-        <i class='bx bx-cart card-icon'></i>
-      </a>
-      <a href="#" class="">
-        <i class='bx bx-search'></i>
-      </a> -->
     <nav class="menu-hamburger">
       <section class="hamburger-menu">
         <input id="menu__toggle" type="checkbox" />
@@ -20,9 +14,16 @@
         </label>
         <ul class="menu__box">
         <li><a class="menu__item" href="/">Home</a></li>
-        <li><a class="menu__item" href="/profile">Perfil</a></li>
-        <li><a class="menu__item" href="./pedidos">Pedidos</a></li>
-        <li><a class="menu__item" href="./about">Sobre</a></li>
+        <% if (isLoggedIn) { %>
+          <li><a class="menu__item" href="/profile">Perfil</a></li>        
+        <% } %>
+        <li><a class="menu__item" href="./about">Sobre</a></li> 
+        <% if (isLoggedIn) { %>
+          <li><a class="menu__item" href="./pedidos">Pedidos</a></li>
+          <% } %>
+        <% if (isLoggedIn) { %>
+          <li><a class="menu__item" href="./about">Cadastrar-se</a></li> 
+        <% } %>
         </ul>
       </section>
     </nav>
@@ -32,15 +33,24 @@
 
   </section>
   <nav class="quickNavigation">
-    <a href="/artists">
-      <p class="quickNavigationP">Artistas</p>
-    </a>
-    <a href="./about">
-      <p class="quickNavigationP">Sobre</p>
-    </a>
+    <% if (isLoggedIn) { %>
+      <a href="/artists">
+        <p class="quickNavigationP">Artistas</p>
+      </a>   
+    <% } %>
+    <% if (isLoggedIn) { %>
+      <a href="./about">
+        <p class="quickNavigationP">Sobre</p>
+      </a>     
+    <% } %>
     <% if (!isLoggedIn) { %>
       <a href="./register">
         <p class="quickNavigationP">Cadastre-se</p>
+      </a>      
+    <% } %>
+    <% if (!isLoggedIn) { %>
+      <a href="./login">
+        <p class="quickNavigationP">Entrar</p>
       </a>      
     <% } %>
   </nav>

@@ -1,0 +1,40 @@
+<div class="Carrossel swiper">
+    <div class="slider-wrapper">
+        <div class="Carrossel-List swiper-wrapper">
+            <% artistas.forEach(artista => { 
+                let nomeFormatado = artista.nome_cliente.length > 15 
+                                    ? artista.nome_cliente.substring(0, 15) + '...' 
+                                    : artista.nome_cliente;
+            %>
+            <nav class="Carrossel-Item swiper-slide">
+                <figure>
+                    <a href="/<%= artista.perfil_cliente %>" class="LinkUser">
+                        <img src="/uploads/<%= artista.foto_cliente %>" alt="<%= artista.nome_cliente %>" class="ImagemUser">
+                        <h1 class="NomeUser"><%= nomeFormatado %></h1>
+                    </a>
+                </figure>
+            </nav>
+            <nav class="Carrossel-Item swiper-slide">
+                <figure>
+                    <a href="/<%= artista.perfil_cliente %>" class="LinkUser">
+                        <img src="/uploads/<%= artista.foto_cliente %>" alt="<%= artista.nome_cliente %>" class="ImagemUser">
+                        <h1 class="NomeUser"><%= nomeFormatado %></h1>
+                    </a>
+                </figure>
+            </nav>
+            <nav class="Carrossel-Item swiper-slide">
+                <figure>
+                    <a href="/<%= artista.perfil_cliente %>" class="LinkUser">
+                        <img src="/uploads/<%= artista.foto_cliente %>" alt="<%= artista.nome_cliente %>" class="ImagemUser">
+                        <h1 class="NomeUser"><%= nomeFormatado %></h1>
+                    </a>
+                </figure>
+            </nav>
+            <% }); %>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src=".js/carrossel.js"></script>

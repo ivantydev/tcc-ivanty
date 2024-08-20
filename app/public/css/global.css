@@ -348,8 +348,18 @@ a {
     gap: 2rem;
 }
 
+.publicidadeMobile {
+    margin-top: 2rem;
+    background-color: #122D42;
+    padding: 2rem;
+}
+
 .publicidadeImagem {
     width: 100%;
+}
+
+.publicidadeImagemMobile {
+    width: 90%;
 }
 
 .publicadeTexto {
@@ -357,4 +367,52 @@ a {
     font-size: 5.5rem;
     margin: auto;
     font-family: 'Playfair-display';
+}
+
+.publicadeTextoYellow {
+    color: #F0E968;
+    font-size: 5.5rem;
+    margin: auto;
+    font-family: 'Playfair-display';
+}
+
+.publicadeTextoIvanty {
+    color: #8f97c1;
+    font-size: 7rem;
+    margin: auto;
+    font-family: 'Playfair-display';
+    font-style: italic;
+}
+
+.publicadeTextoMobile {
+    color: #fff;
+    font-size: 4.5rem;
+    margin: auto;
+    font-family: 'Playfair-display';
+}
+
+.publicadeTextoYellowMobile {
+    color: #F0E968;
+    font-size: 4.5rem;
+    margin: auto;
+    font-family: 'Playfair-display';
+}
+
+.publicadeTextoIvantyMobile {
+    color: #8f97c1;
+    font-size: 6rem;
+    margin: auto;
+    font-family: 'Playfair-display';
+    font-style: italic;
+}
+
+.obrasGalleryMobile {
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.obraItem img {
+    width: 100%;
 }

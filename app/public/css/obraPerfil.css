@@ -1,0 +1,13 @@
+.obrasGallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2rem;
+}
+
+.obraItemTitle {
+    color: #000;
+}
+
+.obraItemDescription {
+    color: #000;
+}

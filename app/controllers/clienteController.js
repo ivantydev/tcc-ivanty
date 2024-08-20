@@ -28,11 +28,15 @@ const clienteController = {
   getClienteById: async (id) => {
     try {
       const [rows] = await pool.query('SELECT * FROM Clientes WHERE id_cliente = ?', [id]);
-      
+
       if (rows.length > 0) {
         const cliente = rows[0];
         const [endereco] = await pool.query('SELECT * FROM Enderecos WHERE id_endereco = ?', [cliente.Enderecos_id_endereco]);
         cliente.endereco = endereco[0];
+
+        // Usa a função getFotoOuDefault para garantir a foto padrão
+        cliente.foto_cliente = clienteController.getFotoOuDefault(cliente.foto_cliente);
+
         return cliente;
       }
 
@@ -52,7 +56,7 @@ const clienteController = {
             cpf_cliente,
             senha_cliente,
             datanasc_cliente,
-            perfil_cliente, // Garante que não seja nulo
+            perfil_cliente,
             telefone_cliente,
             tipo_cliente
         });
@@ -250,6 +254,9 @@ const clienteController = {
         // Busque as obras do artista
         const obras = await ObraModel.getObrasByClienteId(artista.id_cliente);
 
+        // Garante a foto padrão
+        artista.foto_cliente = clienteController.getFotoOuDefault(artista.foto_cliente);
+
         // Armazene os dados no objeto de requisição
         req.artista = artista;
         req.obras = obras;
@@ -262,7 +269,7 @@ const clienteController = {
       res.status(500).render('error', { message: error.message });
     }
   },
-
+  
   getArtistsPage: async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
@@ -273,6 +280,11 @@ const clienteController = {
         console.error('Erro ao obter artistas:', error.message);
         res.status(500).send('Erro ao carregar a página de artistas');
     }
+  },
+
+  getFotoOuDefault: (fotoCliente) => {
+    // Verifica se o cliente tem uma foto; se não, retorna 'default.jpg'
+    return fotoCliente ? fotoCliente : 'default.jpg';
   },
 
 };

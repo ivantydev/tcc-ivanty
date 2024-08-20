@@ -1,0 +1,234 @@
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+
+/* body {
+   
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+} */
+
+/* Estilos básicos para inputs */
+.input-group input,
+.input-group select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+/* Cor verde para inputs válidos */
+.input-group input.valid,
+.input-group select.valid {
+    border-color: rgb(0, 255, 0);
+    background-color: #e6ffe6;
+}
+
+/* Cor vermelha para inputs inválidos */
+.input-group input.invalid,
+.input-group select.invalid {
+    border-color: red;
+    background-color: #ffe6e6;
+}
+
+.erro {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+}
+
+
+
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 2.5fr; /* Aumenta a proporção da imagem à esquerda */
+    padding: 2rem;
+    /* gap: 2rem; Espaço entre imagem e formulário */
+    width: 100%;
+    max-width: 100%; /* Define um limite máximo de largura para a grid */
+    height: 100vh;
+}
+
+ 
+.a {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-image: url('../Imagens/Media-removebg-preview.png');
+    filter: saturate(150%); /* Aumenta a saturação em 50% */
+    background-size: cover; /* Faz com que a imagem cubra toda a área da div */
+    background-position: center; /* Centraliza a imagem na div */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    width: 100%; /* Garante que a div ocupe toda a largura disponível */
+    height: 100%; /* Garante que a div ocupe toda a altura disponível */
+} 
+
+
+
+
+.b {
+    background-color: #1a23a0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    color: white;
+}
+
+.b h1{
+    text-align: center;
+    font-size: 80px;
+    color: yellow;
+}
+
+
+
+
+
+
+
+.box {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    background-color: transparent;
+    border-radius: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+
+.form-box {
+    background-color: azure;
+    backdrop-filter: blur(40px);
+    padding: 30px 40px;
+    width: 100%;
+    max-width: 450px; /* Define uma largura máxima para o formulário */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    
+}
+
+
+
+.form-box h2 {
+    font-size: 30px;
+ 
+}
+
+.form-box p {
+    font-weight: bold;
+    color: #3D3D3D;
+}
+
+.form-box p a {
+    color: #3700ff;
+    text-decoration: none;
+}
+
+.form-box form {
+    margin: 20px 0;
+}
+
+form .input-group {
+    margin-bottom: 15px;
+}
+
+form .input-group label {
+    color: white;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+form .input-group input {
+    width: 50vh;
+    height: 47px;
+    background-color: white;
+    border-radius: 20px;
+    outline: none;
+    border: 1px solid  rgba(0, 0, 0, 0.089);
+    padding: 15px;
+    font-size: 15px;
+   
+    transition: all 0.4s ease;
+}
+
+form .input-group input:focus {
+   
+    border: 2px solid #0048ffd2;
+}
+
+form .input-group button {
+    width: 100%;
+    height: 47px;
+    background: #0051ff;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    margin-top: 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+@media (max-width: 930px) {
+    .img-box {
+        display: none;
+    }
+
+    .box {
+        width: 700px;
+    }
+
+    .form-box {
+        width: 100%;
+        border-radius: 20px;
+        margin-left: 0; /* Remove a margem quando a imagem não estiver visível */
+    }
+}
+
+@media (max-width: 500px) {
+    .w50 {
+        width: 100%;
+        padding: 0;
+    }
+}

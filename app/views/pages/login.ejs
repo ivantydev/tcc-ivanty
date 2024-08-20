@@ -1,66 +1,46 @@
-<!-- <!DOCTYPE html>
-<html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Formulario responsivo com html e css_files/style.css">
-    <title>Entrar</title>
-    <link rel="stylesheet" href="css/cadastro.css">
+    <title>Login</title>
+    <link href="./CSS/CriarConta.css" rel="stylesheet">
+    <!-- Fonte Usada -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <div class="box">
-        <div class="img-box">
-            <img src="images/surrealistBanner.png">
+    <div class="grid">
+        <div class="a">
+          <img class="Promocional" src="./images/mocaPintandoIvanty.png" alt="Mulher artista pintando o log da ivanty">
         </div>
-        <div class="form-box">
-            <h2>Bem vindo de volta!</h2>
-            <p> Não tem conta ainda? <a href="/register"> Cadastrar </a> </p>
-            <form action="/api/clientes/login" method="POST" id="loginForm">
-                <div class="input-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" placeholder="Digite o seu email" name="email_cliente" required="">
-                </div>
+        <div class="b">
+            <form action="/api/clientes/login" method="POST">
+                <h1>IVANTY</h1>
 
-                <div class="input-group w50">
-                    <label for="senha">Senha</label>
-                    <input type="password" id="senha" placeholder="Digite sua senha" name="senha_cliente" required="">
+                <div class="input-group">
+                    <label for="email_cliente">E-mail</label>
+                    <input type="email" id="email_cliente" name="email_cliente" placeholder="Digite o seu email" required>
                 </div>
 
                 <div class="input-group">
-                    <button>Entrar</button>
+                    <label for="senha_cliente">Senha</label>
+                    <input type="password" id="senha_cliente" name="senha_cliente" placeholder="Digite sua senha" required>
                 </div>
 
+                <div class="input-group">
+                    <button type="submit">Entrar</button>
+                </div>
+
+                <div class="input-group">
+                    <button type="button" onclick="window.location.href='/register'">Não tenho conta</button>
+                </div>
             </form>
         </div>
     </div>
-
-</body>
-</html>
- -->
-
- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-  <div class="container mt-5">
-    <h2>Login</h2>
-    <form action="/api/clientes/login" method="POST">
-      <div class="form-group">
-        <label for="email_cliente">Email:</label>
-        <input type="email" class="form-control" id="email_cliente" name="email_cliente" required>
-      </div>
-      <div class="form-group">
-        <label for="senha_cliente">Senha:</label>
-        <input type="password" class="form-control" id="senha_cliente" name="senha_cliente" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Entrar</button>
-    </form>
-  </div>
 </body>
 </html>

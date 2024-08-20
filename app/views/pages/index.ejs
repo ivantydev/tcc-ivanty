@@ -77,9 +77,9 @@
                 <section class="carrosellPC">
                     <% artistas.forEach(artista => { %>
                         <a href="/<%= artista.perfil_cliente %>">
-                            <section class="artistPC">
-                                <img src="/uploads/<%= artista.foto_cliente %>" alt="<%= artista.nome_cliente %>" class="artistPhotoPC">
-                                <p class="artistNamePC"><%= artista.nome_cliente %></p>
+                            <section class="artist">
+                                <img src="/uploads/<%= artista.foto_cliente %>" alt="<%= artista.nome_cliente %>" class="artistPhoto">
+                                <p class="artistName"><%= artista.nome_cliente %></p>
                             </section>
                         </a>
                     <% }); %>

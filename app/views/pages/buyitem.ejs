@@ -3,73 +3,522 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ivanty</title>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/menu.css">
-    <link rel="stylesheet" href="css/about.css">
-    <link rel="stylesheet" href="css/headerPC.css">
-    <link rel="stylesheet" href="css/globalPC.css">
-    <link rel="stylesheet" href="css/aboutPC.css">
-    <link rel="stylesheet" href="css/buyitem.css">
+    <title> Obra </title>
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+    <link href="./css/Obras.css" rel="stylesheet">
 </head>
 <body>
-    <section class="telasPequenas">
-      <%- include("../partial/header") %>
-      <main class="mainTelasPequenas">
-        <section class="buyitemContainer">
-            <img src="images/brazilianDiversity.jpg" alt="" class="buyitemimage">
-            <section class="buyitemgrid">
-                <p class="buyitemtitle">Diversidade do Brazil</p>
-                <p class="buyitemprice">R$ 899.99</p>
-            </section>
-            <p class="buyitemartist">Bing AI</p>
-            <div class="buyitembutton">Comprar</div>
-            <div class="buyitemaddtocard">Adicionar ao carrinho</div>
-            <section class="buyitemdescription">
-                <h3 class="buyitemdescriptiontitle">Descrição:</h3>
-                <p class="buyitemdescriptiontext">Noite Estrelada é uma das obras mais conhecidas de Vincent Van Gogh. A pintura retrata a vista da janela do quarto do artista em um asilo em Saint-Rémy-de-Provence, na França, com um céu dramático e estrelado.</p>
-                <h4 class="buyitemmoredetails">Mais caracteristicas: </h4>
-                <p class="buyitemdescriptiontext">A Noite Estrelada é uma das obras mais reconhecidas e amadas de Van Gogh. A pintura é conhecida por suas pinceladas ousadas e uso expressivo da cor.</p>
-            </section>
-        </section>
-
-
-      </main>
-    </section>
-
-    <section class="telasGrandes">
-      <%- include("../partial/headerPC") %>
-
-      <main class="mainTelasGrandes">
-        <section class="buyitemContainerPC">
-          <section class="buyitemgridPC">
-             <!-- <section></section> -->
-             <img src="images/brazilianDiversity.jpg" alt="" class="buyitemimagePC">
-             <section class="buyiteminformationsGridPC">
-                <div>
-                  <p class="buyitemtitlePC">Diversidade do Brazil</p>
-                  <p class="buyitemartistPC">Bing AI</p>
-                  <p class="buyitempricePC">R$ 899.99</p>
-                  <section class="buyitemdescriptionPC">
-                    <h3 class="buyitemdescriptiontitlePC">Descrição:</h3>
-                    <p class="buyitemdescriptiontextPC">Noite Estrelada é uma das obras mais conhecidas de Vincent Van Gogh. A pintura retrata a vista da janela do quarto do artista em um asilo em Saint-Rémy-de-Provence, na França, com um céu dramático e estrelado.</p>
-                    <h4 class="buyitemmoredetailsPC">Mais caracteristicas: </h4>
-                    <p class="buyitemdescriptiontextPC">A Noite Estrelada é uma das obras mais reconhecidas e amadas de Van Gogh. A pintura é conhecida por suas pinceladas ousadas e uso expressivo da cor.</p>
-                </section>
+    <article class="Mobile">
+        <section>
+            <main>
+                <div class="ObraPrincipal">
+                    <div class="ImagemOP">
+                    <figure>
+                        <img class="ObraPrincipal" src="./images/ObraPrincipal.webp" alt="Obra o gato do artista romero britto">
+                    </figure>
+                    <h2 class="ObraPrincipal"> "O Gato" </h2>
+                    <h1 class="ObraPrincipal"> Romero Brito </h1>
+                    </div>
+                    <div class="TextoOP">
+                        <p> O gato é uma das obras mais famosas do artista plástico brasileiro. Com o seu colorido típico, O gato traz também muito do estilo geométrico explorado pelo artista.</p>
+                    </div>
+                    <h1 class="ValorOP"> R$ XXX,XX </h1>
+                    <div class="BotoesCompra">
+                        <button class="ComprarObra" value="Comprar Obra" name="Comprar Obra" id="Comprar Obra"> Comprar </button>
+                        <button class="AddCarrinho" value="Adicionar ao carrinho" name="Add ao carrinho" id="Add ao carrinho"> Adicionar ao carrinho </button>
+                    </div>
                 </div>
-              </section> 
-              <section class="buttonsArea">
-                <div class="buyitembuttonPC">Comprar</div>
-                <div class="buyitemaddtocardPC">Adicionar ao carrinho</div>
-              </section>
-          </section>
+                <h2 class="ObrasRelacionadas"> Obras Relacionadas</h2>
+                <div class="ObrasRelacionadas swiper">
+                    <div class="slider-wrapper">
+                    <div class="ObrasRelacionadas-Carrossel swiper-wrapper">
+                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                            <figure class="ObrasRelacionadas1">
+                                <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                    <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                                </a> 
+                            </figure>
+                              <p> R$ xxx,xx</p>
+                              <div class="CarrinhoELike">
+                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                              </div>
+                        </nav>
+                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                            <figure class="ObrasRelacionadas2">
+                                <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                    <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                                </a> 
+                            </figure>
+                              <p>R$ xxx,xx</p>
+                              <div class="CarrinhoELike">
+                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                              </div>
+                        </nav>
+                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                            <figure class="ObrasRelacionadas1">
+                                <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                    <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                                </a> 
+                            </figure>
+                              <p> R$ xxx,xx</p>
+                              <div class="CarrinhoELike">
+                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                              </div>
+                        </nav>
+                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                            <figure class="ObrasRelacionadas2">
+                                <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                    <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                                </a> 
+                            </figure>
+                              <p>R$ xxx,xx</p>
+                              <div class="CarrinhoELike">
+                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                              </div>
+                        </nav>
+                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                            <figure class="ObrasRelacionadas1">
+                                <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                    <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                                </a> 
+                            </figure>
+                              <p> R$ xxx,xx</p>
+                              <div class="CarrinhoELike">
+                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                              </div>
+                        </nav>
+                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                            <figure class="ObrasRelacionadas2">
+                                <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                    <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                                </a> 
+                            </figure>
+                            <p>R$ xxx,xx</p>
+                            <div class="CarrinhoELike">
+                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div> 
+                    </div>
+                </div> 
+                <div class="Especificacoes">
+                   <h2 class="Especificacoe"> Especificações obra </h2>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td> Dimenções </td>
+                            <td> Largura xx X alura xx </td>
+                        </tr>
+                        <tr>
+                            <td> Autor </td>
+                            <td> Romero Brito </td>
+                        </tr>
+                        <tr>
+                            <td> Fornecedor </td>
+                            <td> XXXXX </td>
+                        </tr>
+                        <tr>
+                            <td> Tecnica usada </td>
+                            <td> Tint xx Superficíe </td>
+                        </tr>
+                        <tr>
+                            <td> Ano Confecção </td>
+                            <td>  20xx </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+            <div class="ObrasRelacionadas swiper">
+                <div class="slider-wrapper">
+                <div class="ObrasRelacionadas-Carrossel swiper-wrapper">
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas1">
+                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                            </a> 
+                        </figure>
+                          <p> R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas2">
+                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                            </a> 
+                        </figure>
+                          <p>R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas1">
+                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                            </a> 
+                        </figure>
+                          <p> R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas2">
+                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                            </a> 
+                        </figure>
+                          <p>R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas1">
+                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                            </a> 
+                        </figure>
+                          <p> R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas2">
+                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                            </a> 
+                        </figure>
+                        <p>R$ xxx,xx</p>
+                        <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                        </div>
+                    </nav>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div> 
+                </div>
+            </div> 
         </section>
-      </main>  
-    </section>
-  
-    <%- include("../partial/footer") %>
-
-    </body>
+    </article>
+    <article class="Desktop">
+        <section>
+            <main>
+               <div class="teste">
+                <div class="ObraPrincipal">
+                    <div class="ImagemOP">
+                    <figure>
+                        <img class="ObraPrincipal" src="./images/ObraPrincipal.webp" alt="Obra o gato do artista romero britto">
+                    </figure>
+                    <h2 class="ObraPrincipal"> O Gato </h2>
+                    <h1 class="ObraPrincipal"> Romero Brito </h1>
+                    </div>
+                    <div class="TextoOP">
+                        <p> O gato é uma das obras mais famosas do artista plástico brasileiro. Com o seu colorido típico, O gato traz também muito do estilo geométrico explorado pelo artista.</p>
+                    </div>
+                    
+                    <div class="BotoesCompra">
+                        <h1 class="ValorOP"> R$ XXX,XX </h1>
+                        <button class="ComprarObra" value="Comprar Obra" name="Comprar Obra" id="Comprar Obra"> Comprar </button>
+                        <button class="AddCarrinho" value="Adicionar ao carrinho" name="Add ao carrinho" id="Add ao carrinho"> Adicionar ao carrinho </button>
+                    </div>
+                </div>
+            </div>
+                <h2 class="ObrasRelacionadas"> Obras Relacionadas</h2>
+                <div class="ObrasRelacionadas swiper">
+                    <div class="slider-wrapper">
+                    <div class="ObrasRelacionadas-Carrossel swiper-wrapper">
+                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                            <figure class="ObrasRelacionadas1">
+                                <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                    <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                                </a> 
+                            </figure>
+                              <p> R$ xxx,xx</p>
+                              <div class="CarrinhoELike">
+                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                              </div>
+                        </nav>
+                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                            <figure class="ObrasRelacionadas2">
+                                <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                    <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                                </a> 
+                            </figure>
+                              <p>R$ xxx,xx</p>
+                              <div class="CarrinhoELike">
+                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                              </div>
+                        </nav>
+                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                            <figure class="ObrasRelacionadas1">
+                                <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                    <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                                </a> 
+                            </figure>
+                              <p> R$ xxx,xx</p>
+                              <div class="CarrinhoELike">
+                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                              </div>
+                        </nav>
+                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                            <figure class="ObrasRelacionadas2">
+                                <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                    <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                                </a> 
+                            </figure>
+                              <p>R$ xxx,xx</p>
+                              <div class="CarrinhoELike">
+                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                              </div>
+                        </nav>
+                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                            <figure class="ObrasRelacionadas1">
+                                <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                    <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                                </a> 
+                            </figure>
+                              <p> R$ xxx,xx</p>
+                              <div class="CarrinhoELike">
+                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                              </div>
+                        </nav>
+                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                            <figure class="ObrasRelacionadas2">
+                                <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                    <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                                </a> 
+                            </figure>
+                            <p>R$ xxx,xx</p>
+                            <div class="CarrinhoELike">
+                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div> 
+                    </div>
+                </div> 
+                <div class="Especificacoes">
+                   <h2 class="Especificacoe"> Especificações obra </h2>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td> Dimenções </td>
+                            <td> Largura xx X alura xx </td>
+                        </tr>
+                        <tr>
+                            <td> Autor </td>
+                            <td> Romero Brito </td>
+                        </tr>
+                        <tr>
+                            <td> Fornecedor </td>
+                            <td> XXXXX </td>
+                        </tr>
+                        <tr>
+                            <td> Tecnica usada </td>
+                            <td> Tint xx Superficíe </td>
+                        </tr>
+                        <tr>
+                            <td> Ano Confecção </td>
+                            <td>  20xx </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+            <div class="ObrasRelacionadas swiper">
+                <div class="slider-wrapper">
+                <div class="ObrasRelacionadas-Carrossel swiper-wrapper">
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas1">
+                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                            </a> 
+                        </figure>
+                          <p> R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas2">
+                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                            </a> 
+                        </figure>
+                          <p>R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas1">
+                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                            </a> 
+                        </figure>
+                          <p> R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas2">
+                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                            </a> 
+                        </figure>
+                          <p>R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas1">
+                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                            </a> 
+                        </figure>
+                          <p> R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas2">
+                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                            </a> 
+                        </figure>
+                        <p>R$ xxx,xx</p>
+                        <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                        </div>
+                    </nav>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div> 
+                </div>
+            </div> 
+            <div class="ObrasRelacionadas swiper">
+                <div class="slider-wrapper">
+                <div class="ObrasRelacionadas-Carrossel swiper-wrapper">
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas1">
+                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                            </a> 
+                        </figure>
+                          <p> R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas2">
+                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                            </a> 
+                        </figure>
+                          <p>R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas1">
+                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                            </a> 
+                        </figure>
+                          <p> R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas2">
+                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                            </a> 
+                        </figure>
+                          <p>R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas1">
+                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
+                            </a> 
+                        </figure>
+                          <p> R$ xxx,xx</p>
+                          <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                          </div>
+                    </nav>
+                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
+                        <figure class="ObrasRelacionadas2">
+                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
+                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
+                            </a> 
+                        </figure>
+                        <p>R$ xxx,xx</p>
+                        <div class="CarrinhoELike">
+                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
+                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
+                        </div>
+                    </nav>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div> 
+                </div>
+            </div> 
+        </section>
+    </article> 
+    <script src="./js/swiper.js"></script>
+    <script src=".js/Obra.js"></script>
+</body>
 </html>

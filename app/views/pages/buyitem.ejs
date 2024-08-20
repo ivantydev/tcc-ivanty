@@ -6,8 +6,22 @@
     <title> Obra </title>
     <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
     <link href="./css/Obras.css" rel="stylesheet">
+    <link href="./css/footer.css" rel="stylesheet">
+    <link href="./css/global.css" rel="stylesheet">
+    <link href="./css/globalPC.css" rel="stylesheet">
+    <link href="./css/header.css" rel="stylesheet">
+    <link href="./css/headerPC.css" rel="stylesheet">
+    <link href="./css/menu.css" rel="stylesheet">
 </head>
 <body>
+    <section class="telasPequenas">
+        <%- include("../partial/header") %>
+    </section>
+    
+    <section class="telasGrandes">
+        <%- include("../partial/headerPC") %>
+    </section>
+
     <article class="Mobile">
         <section>
             <main>
@@ -223,7 +237,7 @@
     </article>
     <article class="Desktop">
         <section>
-            <main>
+            <main style="margin-top: 5rem;">
                <div class="teste">
                 <div class="ObraPrincipal">
                     <div class="ImagemOP">
@@ -518,7 +532,8 @@
             </div> 
         </section>
     </article> 
-    <script src="./js/swiper.js"></script>
-    <script src=".js/Obra.js"></script>
+    <%- include("../partial/footer") %>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./js/Obra.js"></script>
 </body>
 </html>

@@ -80,9 +80,15 @@ div.CarrinhoELike img.Like{
     margin-top: 7px;
     margin-left: 10px;
 }
+
 @media screen and (max-width: 900px ){
 .Desktop{
     display: none;
+}
+
+main {
+    display: block;
+    margin-top: 5rem;
 }
 
 body{

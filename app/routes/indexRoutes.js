@@ -39,7 +39,7 @@ router.get('/artists', async (req, res) => {
         }));
 
         // Renderiza a página com os dados dos artistas e suas obras
-        res.render('pages/artists', { artistas: artistasComObras });
+        res.render('pages/artists', { artistas, obras });
     } catch (error) {
         console.error('Erro ao buscar artistas e obras:', error.message);
         res.status(500).send('Erro ao carregar a página de artistas.');
@@ -88,7 +88,7 @@ router.get('/login', (req, res) => {
 });
 
 // Rota para compra de item - requer autenticação
-router.get('/buyitem', authenticateUser, (req, res) => {
+router.get('/buyitem', (req, res) => {
     res.render('pages/buyitem.ejs');
 });
 

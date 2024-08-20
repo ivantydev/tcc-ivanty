@@ -6,7 +6,6 @@
 }
 
 .contentPC {
-    background: rgb(18, 45, 66);
     padding: 3rem;
 }
 
@@ -20,7 +19,7 @@
 }
 
 .aboutTitlePC {
-    color: rgb(255, 255, 255);
+    color: #000;
     font-family: Roboto;
     font-size: 1.5rem;
     font-style: normal;
@@ -31,7 +30,7 @@
 }
 
 .ivantyTitle {
-    color: rgb(240, 233, 104);
+    color: #7B87C2;
     font-family: "Playfair Display";
     font-size: 1.6rem;
     font-style: normal;
@@ -42,7 +41,7 @@
 }
 
 .aboutTextPC {
-    color: rgb(255, 255, 255);
+    color: #000;
     font-family: Roboto;
     font-size: 1.2rem;
     font-style: normal;
@@ -52,7 +51,7 @@
 }
 
 .aboutSubtitlePC {
-    color: rgb(255, 255, 255);
+    color: #000;
     font-family: Roboto;
     font-size: 1.125rem;
     font-style: normal;

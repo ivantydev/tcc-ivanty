@@ -30,21 +30,22 @@ router.get('/', async (req, res) => {
 router.get('/artists', async (req, res) => {
     try {
         // Busca todos os artistas
-        const artistas = await ClienteModel.getArtistas();
+        const artistas = await clienteModel.getArtistas();
 
         // Para cada artista, busca as obras relacionadas
         const artistasComObras = await Promise.all(artistas.map(async (artista) => {
-            const obras = await ClienteModel.getObrasByClienteId(artista.id_cliente);
+            const obras = await clienteModel.getObrasByClienteId(artista.id_cliente);
             return { ...artista, obras }; // Adiciona as obras ao objeto do artista
         }));
 
         // Renderiza a página com os dados dos artistas e suas obras
-        res.render('pages/artists', { artistas, obras });
+        res.render('pages/artists', { artistas: artistasComObras });
     } catch (error) {
         console.error('Erro ao buscar artistas e obras:', error.message);
         res.status(500).send('Erro ao carregar a página de artistas.');
     }
 });
+
 
 
 // Rota para a página sobre

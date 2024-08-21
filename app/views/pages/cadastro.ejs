@@ -12,156 +12,158 @@
 </head>
 <body>
     <!-- Seção para telas pequenas (mobile) -->
-    <section class="telasPequenas">
-        <div class="grid">
-            <div class="b">
-                <form id="cadastroForm" action="/api/clientes" method="POST">
-                    <h1>IVANTY</h1>
-                        
-                    <div class="input-group">
-                        <label for="user-type">Escolha o tipo:</label>
-                        <select id="user-type" name="tipo_cliente" required>
-                            <option value="">Selecione uma opção</option>
-                            <option value="artista">Artista</option>
-                            <option value="cliente">Cliente</option>
-                        </select>
-                        <span class="erro" id="erroTipo"></span>
-                    </div>
-    
-                    <div class="input-group">
-                        <label for="nome">Nome</label>
-                        <input type="text" id="nome" name="nome_cliente" placeholder="Digite o seu nome completo" required>
-                        <span class="erro" id="erroNome"></span>
-                    </div>
-        
-                    <div class="input-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" name="email_cliente" placeholder="Digite o seu email" required>
-                        <span class="erro" id="erroEmail"></span>
-                    </div>
-    
-                    <div class="input-group">
-                        <label for="perfil_cliente">Nome de usuário</label>
-                        <input type="text" id="perfil_cliente" name="perfil_cliente" placeholder="Digite o seu nome de usuário" required>
-                        <span class="erro" id="erroNomeUsuario"></span>
-                    </div>
-        
-                    <div class="input-group">
-                        <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone" name="telefone_cliente" placeholder="Digite o seu telefone" required>
-                        <span class="erro" id="erroTelefone"></span>
-                    </div>
-        
-                    <div class="input-group">
-                        <label for="none">CPF</label>
-                        <input type="text" name="cpf_cliente" id="strCPF" size="30" maxlength="11" placeholder="Digite seu CPF" required>
-                        <span class="erro" id="erroCpf"></span>
-                    </div>
-    
-                    <div class="input-group">
-                        <label for="dataNascimento">Data de nascimento</label>
-                        <input type="date" id="datanasc_cliente" name="datanasc_cliente" required>
-                        <span class="erro" id="erroDataNascimento"></span>
-                    </div>
+    <!-- Para telas pequenas (mobile) -->
+<section class="telasPequenas">
+    <div class="grid">
+        <div class="b">
+            <form id="cadastroFormMobile" action="/api/clientes" method="POST">
+                <h1>IVANTY</h1>
                     
-                    <div class="input-group">
-                        <label for="senha">Senha</label>
-                        <input type="password" id="senha" name="senha_cliente" placeholder="Digite sua senha" required>
-                        <span class="erro" id="erroSenha"></span>
-                    </div>
+                <div class="input-group">
+                    <label for="user-type-mobile">Escolha o tipo:</label>
+                    <select id="user-type-mobile" name="tipo_cliente" required>
+                        <option value="">Selecione uma opção</option>
+                        <option value="artista">Artista</option>
+                        <option value="cliente">Cliente</option>
+                    </select>
+                    <span class="erro" id="erroUser-type-mobile"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="nome-mobile">Nome</label>
+                    <input type="text" id="nome-mobile" name="nome_cliente" placeholder="Digite o seu nome completo" required>
+                    <span class="erro" id="erroNome-mobile"></span>
+                </div>
     
-                    <div class="input-group">
-                        <label for="Confirmarsenha">Confirmar Senha</label>
-                        <input type="password" id="Confirmarsenha" placeholder="Confirme a senha" required>
-                        <span class="erro" id="erroConfirmarsenha"></span>
-                    </div>
-                    
-                    <div class="input-group">
-                        <button type="submit" onclick="verificaCPF(document.getElementById('strCPF').value)">Cadastrar</button>
-                    </div>
-                </form>
-                        
-            </div>
-        </div> 
-    </section>
+                <div class="input-group">
+                    <label for="email-mobile">E-mail</label>
+                    <input type="email" id="email-mobile" name="email_cliente" placeholder="Digite o seu email" required>
+                    <span class="erro" id="erroEmail-mobile"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="perfil_cliente-mobile">Nome de usuário</label>
+                    <input type="text" id="perfil_cliente-mobile" name="perfil_cliente" placeholder="Digite o seu nome de usuário" required>
+                    <span class="erro" id="erroPerfil_cliente-mobile"></span>
+                </div>
     
-    <!-- Seção para telas grandes (desktop) -->
-    <section class="telasGrandes">
-        <div class="grid">
-            <div class="a">
-                <img class="Promocional" src="./images/mocaPintandoIvanty.png" alt="Mulher artista pintando o logo da Ivanty">
-            </div>
-            <div class="b">
-                <form id="cadastroForm" action="/api/clientes" method="POST">
-                    <h1>IVANTY</h1>
+                <div class="input-group">
+                    <label for="telefone-mobile">Telefone</label>
+                    <input type="tel" id="telefone-mobile" name="telefone_cliente" placeholder="Digite o seu telefone" required>
+                    <span class="erro" id="erroTelefone-mobile"></span>
+                </div>
+    
+                <div class="input-group">
+                    <label for="strCPF-mobile">CPF</label>
+                    <input type="text" name="cpf_cliente" id="strCPF-mobile" size="30" maxlength="11" placeholder="Digite seu CPF" required>
+                    <span class="erro" id="erroStrCPF-mobile"></span>
+                </div>
 
-                    <div class="input-group">
-                        <label for="user-type">Escolha o tipo:</label>
-                        <select id="user-type" name="tipo_cliente" required>
-                            <option value="">Selecione uma opção</option>
-                            <option value="artista">Artista</option>
-                            <option value="cliente">Cliente</option>
-                        </select>
-                        <span class="erro" id="erroTipo"></span>
-                    </div>
+                <div class="input-group">
+                    <label for="datanasc_cliente-mobile">Data de nascimento</label>
+                    <input type="date" id="datanasc_cliente-mobile" name="datanasc_cliente" required>
+                    <span class="erro" id="erroDatanasc_cliente-mobile"></span>
+                </div>
+                
+                <div class="input-group">
+                    <label for="senha-mobile">Senha</label>
+                    <input type="password" id="senha-mobile" name="senha_cliente" placeholder="Digite sua senha" required>
+                    <span class="erro" id="erroSenha-mobile"></span>
+                </div>
 
-                    <div class="input-group">
-                        <label for="nome">Nome</label>
-                        <input type="text" id="nome" name="nome_cliente" placeholder="Digite o seu nome completo" required>
-                        <span class="erro" id="erroNome"></span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" name="email_cliente" placeholder="Digite o seu email" required>
-                        <span class="erro" id="erroEmail"></span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="perfil_cliente">Nome de usuário</label>
-                        <input type="text" id="perfil_cliente" name="perfil_cliente" placeholder="Digite o seu nome de usuário" required>
-                        <span class="erro" id="erroNomeUsuario"></span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone" name="telefone_cliente" placeholder="Digite o seu telefone" required>
-                        <span class="erro" id="erroTelefone"></span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="cpf">CPF</label>
-                        <input type="text" name="cpf_cliente" id="strCPF" size="30" maxlength="11" placeholder="Digite seu CPF" required>
-                        <span class="erro" id="erroCpf"></span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="dataNascimento">Data de nascimento</label>
-                        <input type="date" id="datanasc_cliente" name="datanasc_cliente" required>
-                        <span class="erro" id="erroDataNascimento"></span>
-                    </div>
+                <div class="input-group">
+                    <label for="Confirmarsenha-mobile">Confirmar Senha</label>
+                    <input type="password" id="Confirmarsenha-mobile" placeholder="Confirme a senha" required>
+                    <span class="erro" id="erroConfirmarsenha-mobile"></span>
+                </div>
+                
+                <div class="input-group">
+                    <button type="submit" onclick="verificaCPF(document.getElementById('strCPF-mobile').value)">Cadastrar</button>
+                </div>
+            </form>
                     
-                    <div class="input-group">
-                        <label for="senha">Senha</label>
-                        <input type="password" id="senha" name="senha_cliente" placeholder="Digite sua senha" required>
-                        <span class="erro" id="erroSenha"></span>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="Confirmarsenha">Confirmar Senha</label>
-                        <input type="password" id="Confirmarsenha" placeholder="Confirme a senha" required>
-                        <span class="erro" id="erroConfirmarsenha"></span>
-                    </div>
-                    
-                    <div class="input-group">
-                        <button type="submit" onclick="verificaCPF(document.getElementById('strCPF').value)">Cadastrar</button>
-                    </div>
-                </form>
-            </div>
         </div>
-    </section> 
+    </div> 
+</section>
 
-    <script src="./js/validate.js"></script>
+<!-- Para telas grandes (desktop) -->
+<section class="telasGrandes">
+    <div class="grid">
+        <div class="a">
+            <img class="Promocional" src="./images/mocaPintandoIvanty.png" alt="Mulher artista pintando o logo da Ivanty">
+        </div>
+        <div class="b">
+            <form id="cadastroFormDesktop" action="/api/clientes" method="POST">
+                <h1>IVANTY</h1>
+
+                <div class="input-group">
+                    <label for="user-type-desktop">Escolha o tipo:</label>
+                    <select id="user-type-desktop" name="tipo_cliente" required>
+                        <option value="">Selecione uma opção</option>
+                        <option value="artista">Artista</option>
+                        <option value="cliente">Cliente</option>
+                    </select>
+                    <span class="erro" id="erroUser-type-desktop"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="nome-desktop">Nome</label>
+                    <input type="text" id="nome-desktop" name="nome_cliente" placeholder="Digite o seu nome completo" required>
+                    <span class="erro" id="erroNome-desktop"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="email-desktop">E-mail</label>
+                    <input type="email" id="email-desktop" name="email_cliente" placeholder="Digite o seu email" required>
+                    <span class="erro" id="erroEmail-desktop"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="perfil_cliente-desktop">Nome de usuário</label>
+                    <input type="text" id="perfil_cliente-desktop" name="perfil_cliente" placeholder="Digite o seu nome de usuário" required>
+                    <span class="erro" id="erroPerfil_cliente-desktop"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="telefone-desktop">Telefone</label>
+                    <input type="tel" id="telefone-desktop" name="telefone_cliente" placeholder="Digite o seu telefone" required>
+                    <span class="erro" id="erroTelefone-desktop"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="strCPF-desktop">CPF</label>
+                    <input type="text" name="cpf_cliente" id="strCPF-desktop" size="30" maxlength="11" placeholder="Digite seu CPF" required>
+                    <span class="erro" id="erroStrCPF-desktop"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="datanasc_cliente-desktop">Data de nascimento</label>
+                    <input type="date" id="datanasc_cliente-desktop" name="datanasc_cliente" required>
+                    <span class="erro" id="erroDatanasc_cliente-desktop"></span>
+                </div>
+                
+                <div class="input-group">
+                    <label for="senha-desktop">Senha</label>
+                    <input type="password" id="senha-desktop" name="senha_cliente" placeholder="Digite sua senha" required>
+                    <span class="erro" id="erroSenha-desktop"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="Confirmarsenha-desktop">Confirmar Senha</label>
+                    <input type="password" id="Confirmarsenha-desktop" placeholder="Confirme a senha" required>
+                    <span class="erro" id="erroConfirmarsenha-desktop"></span>
+                </div>
+                
+                <div class="input-group">
+                    <button type="submit" onclick="verificaCPF(document.getElementById('strCPF-desktop').value)">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section> 
+
+
     <script src="./js/cpfValidacao.js"></script>
+    <script src="./js/validate.js"></script>
 </body>
 </html>

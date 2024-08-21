@@ -25,6 +25,7 @@ div.ObrasRelacionadas-Carrossel nav.ObrasRelacionadas-Carrossel-Item{
     align-items: center;
     justify-content: space-around;
     text-align: center;
+    margin-top: 3rem;
 }
 div.ObrasRelacionadas-Carrossel nav.ObrasRelacionadas-Carrossel-Item a{
     text-decoration: none;

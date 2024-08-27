@@ -1,0 +1,58 @@
+<!-- Modal para adicionar endereço -->
+<div id="addEnderecoModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeAddEnderecoModal">&times;</span>
+
+    <!-- Formulário para adicionar endereço -->
+    <form id="addEnderecoForm" action="api/enderecos" method="POST">
+      <div class="form-group">
+        <label for="rua">Rua:</label>
+        <input type="text" class="form-control" id="rua" name="rua" required>
+      </div>
+      <div class="form-group">
+        <label for="numero">Número:</label>
+        <input type="number" class="form-control" id="numero" name="numero" required>
+      </div>
+      <div class="form-group">
+
+        <label for="bairro">Bairro:</label>
+        <input type="text" class="form-control" id="bairro" name="bairro" required>
+      </div>
+      <div class="form-group">
+        <label for="cidade">Cidade:</label>
+        <input type="text" class="form-control" id="cidade" name="cidade" required>
+      </div>
+      <div class="form-group">
+        <label for="estado">Estado:</label>
+        <input type="text" class="form-control" id="estado" name="estado" required>
+      </div>
+      <div class="form-group">
+        <label for="cep">CEP:</label>
+        <input type="text" class="form-control" id="cep" name="cep" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Adicionar Endereço</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Lógica para abrir e fechar o modal
+  document.getElementById('abrirModalEndereco').addEventListener('click', function() {
+    document.getElementById('addEnderecoModal').style.display = 'block';
+  });
+
+  document.getElementById('closeAddEnderecoModal').addEventListener('click', function() {
+    document.getElementById('addEnderecoModal').style.display = 'none';
+  });
+
+  // Lógica para submeter o formulário (opcional, você pode adaptar conforme necessário)
+  document.getElementById('addEnderecoForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    // Aqui você pode adicionar a lógica para enviar os dados do formulário via AJAX, por exemplo
+    // ...
+
+    // Após o envio, você pode fechar o modal ou exibir uma mensagem de sucesso
+    document.getElementById('addEnderecoModal').style.display = 'none';
+  });
+</script>

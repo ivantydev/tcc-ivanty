@@ -8,6 +8,7 @@ const obrasRoutes = require('./app/routes/obrasRoutes');
 const indexRoutes = require('./app/routes/indexRoutes');
 const pedidoRoutes = require('./app/routes/pedidoRoutes')
 const carrinhoRoutes = require('./app/routes/carrinhoRoutes')
+const enderecoRoutes = require('./app/routes/enderecosRoutes')
 
 const PORT = process.env.PORT || 3000;
 
@@ -40,6 +41,7 @@ app.use('/api', obrasRoutes);
 app.use("/", indexRoutes);
 app.use("/api", pedidoRoutes);
 app.use("/api", carrinhoRoutes);
+app.use("/api", enderecoRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');

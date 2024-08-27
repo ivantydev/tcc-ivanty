@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `bxohkcfjzaajxnfbayyw`.`Clientes` (
   `perfil_cliente` VARCHAR(35) NULL DEFAULT NULL,
   `email_cliente` VARCHAR(70) NOT NULL,
   `telefone_cliente` VARCHAR(11) NOT NULL,
-  `tipo_cliente` ENUM('cliente', 'artista') NOT NULL DEFAULT 'cliente',
+  `tipo_cliente` ENUM('cliente', 'artista', 'adm') NOT NULL DEFAULT 'cliente',
   `foto_cliente` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id_cliente`),
   UNIQUE INDEX `id_cliente_UNIQUE` (`id_cliente` ASC) VISIBLE,

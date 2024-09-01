@@ -38,7 +38,13 @@ const EnderecoModel = {
   deleteEndereco: async (id) => {
     const result = await pool.query('DELETE FROM Enderecos WHERE id_endereco = ?', [id]);
     return result.affectedRows;
-  }
+  },
+
+  getEnderecoByClienteId: async (id_cliente) => {
+    const query = 'SELECT * FROM Enderecos WHERE id_cliente = ?';
+    const [rows] = await pool.query(query, [id_cliente]);
+    return rows[0]; // Retorna o primeiro resultado ou undefined se não existir
+  },
 };
 
 module.exports = EnderecoModel;

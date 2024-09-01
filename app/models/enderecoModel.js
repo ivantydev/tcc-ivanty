@@ -12,23 +12,25 @@ const EnderecoModel = {
   },
 
   createEndereco: async (endereco) => {
-    const { cep_endereco, numero_endereco, complemento_endereco, tipo_endereco } = endereco;
+    const { cep_endereco, numero_endereco, complemento_endereco, tipo_endereco, id_cliente } = endereco;
     const result = await pool.query('INSERT INTO Enderecos SET ?', {
       cep_endereco,
       numero_endereco,
       complemento_endereco,
-      tipo_endereco
+      tipo_endereco,
+      id_cliente
     });
     return result.insertId;
   },
 
   updateEndereco: async (id, endereco) => {
-    const { cep_endereco, numero_endereco, complemento_endereco, tipo_endereco } = endereco;
+    const { cep_endereco, numero_endereco, complemento_endereco, tipo_endereco, id_cliente } = endereco;
     const result = await pool.query('UPDATE Enderecos SET ? WHERE id_endereco = ?', [{
       cep_endereco,
       numero_endereco,
       complemento_endereco,
-      tipo_endereco
+      tipo_endereco,
+      id_cliente
     }, id]);
     return result.affectedRows;
   },

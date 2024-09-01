@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const enderecoController = require('../controllers/enderecoController');
 
+// Rotas para Endereços
 router.post('/enderecos', enderecoController.createEndereco);
 router.get('/enderecos', enderecoController.getAllEnderecos);
 router.get('/enderecos/:id', enderecoController.getEnderecoById);

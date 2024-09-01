@@ -25,16 +25,19 @@ const enderecoController = {
 
   createEndereco: async (req, res) => {
     try {
-      const { cep_endereco, numero_endereco, complemento_endereco, tipo_endereco } = req.body;
-      if (!cep_endereco || !numero_endereco || !complemento_endereco || !tipo_endereco) {
+      const { cep_endereco, numero_endereco, complemento_endereco, tipo_endereco, id_cliente } = req.body;
+      
+      if (!cep_endereco || !numero_endereco || !tipo_endereco || !id_cliente) {
         return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
       }
 
+      // Supondo que id_cliente é parte do endereço a ser criado
       const newEnderecoId = await EnderecoModel.createEndereco({
         cep_endereco,
         numero_endereco,
         complemento_endereco,
-        tipo_endereco
+        tipo_endereco,
+        id_cliente
       });
 
       res.status(201).json({ id: newEnderecoId });

@@ -39,10 +39,10 @@ AUTO_INCREMENT = 30
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-
 -- -----------------------------------------------------
 -- Table `bxohkcfjzaajxnfbayyw`.`enderecos`
 -- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `bxohkcfjzaajxnfbayyw`.`Enderecos` (
   `id_endereco` INT NOT NULL AUTO_INCREMENT,
   `cep_endereco` VARCHAR(45) NOT NULL,

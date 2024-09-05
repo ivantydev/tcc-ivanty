@@ -16,58 +16,59 @@ const upload = multer({ storage: storage });
 
 const obraController = {
   saveObraInSession: (req, res) => {
-    const { titulo_obra, descricao_obra, ano_criacao } = req.body;
-  
-    console.log('Dados Recebidos no Backend:', { titulo_obra, descricao_obra, ano_criacao });
-  
-    if (!titulo_obra || !descricao_obra || !ano_criacao) {
+    const { titulo_obra, descricao_obra, ano_criacao, categorias } = req.body;
+
+    console.log('Dados Recebidos no Backend:', { titulo_obra, descricao_obra, ano_criacao, categorias });
+
+    if (!titulo_obra || !descricao_obra || !ano_criacao || !categorias) {
       return res.status(400).json({ message: 'Dados incompletos. Verifique e tente novamente.' });
     }
-  
+
     req.session.obraData = {
       titulo_obra,
       descricao_obra,
       ano_criacao,
+      categorias,
       id_cliente: req.session.cliente.id
     };
-  
+
     console.log('Dados da Obra na Sessão:', req.session.obraData);
-  
+
     return res.redirect('/api/obras/upload-imagem'); // Atualize o caminho aqui
   },
-  
+
   uploadImagem: [
     upload.single('imagem_obra'),
     async (req, res) => {
       try {
         const obraData = req.session.obraData;
-  
+
         console.log('Dados da Obra na Sessão Antes do Upload:', obraData);
-  
+
         if (!obraData) {
           return res.status(400).json({ message: 'Nenhuma obra encontrada na sessão. Por favor, inicie o processo novamente.' });
         }
-  
-        const { titulo_obra, descricao_obra, ano_criacao, id_cliente } = obraData;
-        if (!titulo_obra || !descricao_obra || !ano_criacao || !id_cliente) {
+
+        const { titulo_obra, descricao_obra, ano_criacao, id_cliente, categorias } = obraData;
+        if (!titulo_obra || !descricao_obra || !ano_criacao || !id_cliente || !categorias) {
           return res.status(400).json({ message: 'Dados incompletos da obra. Verifique os dados enviados e tente novamente.' });
         }
-  
+
         const imagem_obra = req.file ? req.file.filename : null;
         if (!imagem_obra) {
           return res.status(400).json({ message: 'Imagem não fornecida. Faça o upload de uma imagem e tente novamente.' });
         }
-  
+
         // Atualiza a obraData com o nome do arquivo
         obraData.imagem_obra = imagem_obra;
-  
+
         console.log('Dados da Obra com Imagem:', obraData);
-  
+
         // Salva a obra no banco de dados
         const newObraId = await ObraModel.createObra(obraData);
-  
+
         req.session.obraData = null;
-  
+
         return res.redirect('/profile'); // Atualize o caminho aqui
       } catch (error) {
         console.error('Erro ao salvar obra com imagem:', error.message);
@@ -103,9 +104,21 @@ const obraController = {
   updateObra: async (req, res) => {
     try {
       const obraId = req.params.id;
-      const updatedData = req.body;
+      const { titulo_obra, descricao_obra, ano_criacao, categorias, imagem_obra } = req.body;
 
-      const updatedRows = await ObraModel.updateObra(obraId, updatedData);
+      // Validação básica para garantir que a categoria está nos valores permitidos
+      const categoriasPermitidas = ['Pintura', 'Escultura', 'Fotografia', 'Desenho', 'Outros', 'Instalação', 'Grafite'];
+      if (!categoriasPermitidas.includes(categorias)) {
+        return res.status(400).json({ message: 'Categoria inválida. Selecione uma das categorias permitidas.' });
+      }
+
+      const updatedRows = await ObraModel.updateObra(obraId, {
+        titulo_obra,
+        descricao_obra,
+        ano_criacao,
+        categorias,
+        imagem_obra,
+      });
 
       if (updatedRows > 0) {
         const updatedObra = await ObraModel.getObraById(obraId);

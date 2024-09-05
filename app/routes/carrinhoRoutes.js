@@ -2,8 +2,13 @@ const express = require('express');
 const router = express.Router();
 const carrinhoController = require('../controllers/carrinhoController');
 
-router.post('/carrinho', carrinhoController.addItemToCarrinho);
-router.get('/carrinho/:id_cliente', carrinhoController.getCarrinhoByClienteId);
-router.delete('/carrinho/:id_carrinho', carrinhoController.deleteItemFromCarrinho);
+// Rota para adicionar uma obra ao carrinho
+router.post('/carrinho/adicionar/:id', carrinhoController.adicionarAoCarrinho);
+
+// Rota para visualizar o carrinho
+router.get('/carrinho', carrinhoController.visualizarCarrinho);
+
+// Rota para remover uma obra do carrinho
+router.post('/carrinho/remover/:id', carrinhoController.removerDoCarrinho);
 
 module.exports = router;

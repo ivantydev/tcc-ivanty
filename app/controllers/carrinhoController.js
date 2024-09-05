@@ -1,44 +1,58 @@
-const CarrinhoModel = require('../models/carrinhoModel');
+const obraModel = require('../models/obraModel');
 
 const carrinhoController = {
-  addItemToCarrinho: async (req, res) => {
-    try {
-      const { id_cliente, id_obra, quantidade } = req.body;
-      const carrinhoId = await CarrinhoModel.addItemToCarrinho(id_cliente, id_obra, quantidade);
+  // Adiciona uma obra ao carrinho
+  adicionarAoCarrinho: async (req, res) => {
+    const obraId = req.params.id;
 
-      res.status(201).json({ message: 'Item adicionado ao carrinho', carrinhoId });
-    } catch (error) {
-      console.error('Erro ao adicionar item ao carrinho:', error.message);
-      res.status(500).json({ error: error.message });
+    // Verifica se o carrinho já existe na sessão
+    if (!req.session.carrinho) {
+      req.session.carrinho = [];
     }
-  },
 
-  getCarrinhoByClienteId: async (req, res) => {
+    // Busca a obra pelo ID no banco de dados
     try {
-      const { id_cliente } = req.params;
-      const carrinho = await CarrinhoModel.getCarrinhoByClienteId(id_cliente);
-      res.status(200).json(carrinho);
-    } catch (error) {
-      console.error('Erro ao obter carrinho do cliente:', error.message);
-      res.status(500).json({ error: error.message });
-    }
-  },
+      const obra = await obraModel.getObraById(obraId);
 
-  deleteItemFromCarrinho: async (req, res) => {
-    try {
-      const { id_carrinho } = req.params;
-      const deletedRows = await CarrinhoModel.deleteItemFromCarrinho(id_carrinho);
-
-      if (deletedRows > 0) {
-        res.status(200).json({ message: 'Item removido do carrinho' });
-      } else {
-        res.status(404).json({ message: 'Item não encontrado' });
+      if (!obra) {
+        return res.status(404).json({ message: 'Obra não encontrada' });
       }
+
+      // Checa se a obra já está no carrinho
+      const itemExistente = req.session.carrinho.find(item => item.id === obra.id_obra);
+
+      if (itemExistente) {
+        itemExistente.quantidade += 1; // Aumenta a quantidade se já estiver no carrinho
+      } else {
+        // Adiciona a obra ao carrinho
+        req.session.carrinho.push({
+          id: obra.id_obra,
+          titulo: obra.titulo_obra,
+          preco: obra.preco_obra || 0, // Ajuste se tiver preço
+          quantidade: 1,
+        });
+      }
+
+      res.redirect('/carrinho'); // Redireciona para a visualização do carrinho
     } catch (error) {
-      console.error('Erro ao remover item do carrinho:', error.message);
-      res.status(500).json({ error: error.message });
+      console.error('Erro ao adicionar obra ao carrinho:', error.message);
+      res.status(500).json({ error: 'Erro ao adicionar ao carrinho' });
     }
-  }
+  },
+
+  // Exibe o carrinho de compras
+  visualizarCarrinho: (req, res) => {
+    const carrinho = req.session.carrinho || [];
+    res.render('pages/carrinho', { carrinho });
+  },
+
+  // Remove uma obra do carrinho
+  removerDoCarrinho: (req, res) => {
+    const obraId = parseInt(req.params.id, 10);
+
+    req.session.carrinho = req.session.carrinho.filter(item => item.id !== obraId);
+    res.redirect('/carrinho');
+  },
 };
 
 module.exports = carrinhoController;

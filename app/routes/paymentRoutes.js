@@ -1,5 +1,6 @@
+// paymentRoutes.js
 const express = require('express');
-const createPreferenceMiddleware = require('./../middlewares/mercadoPagoIntegration')
+const createPreferenceMiddleware = require('../middlewares/mercadoPagoIntegration');
 
 const router = express.Router();
 

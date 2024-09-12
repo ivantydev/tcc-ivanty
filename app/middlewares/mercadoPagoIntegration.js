@@ -1,30 +1,33 @@
 const mercadopago = require('mercadopago');
 const dotenv = require('dotenv');
 
-dotenv.config(); // Carrega as variáveis de ambiente do .env
+// Carrega as variáveis de ambiente do .env
+dotenv.config();
 
-const client = new mercadopago.MercadoPagoConfig({ accessToken: 'MERCADO_PAGO_ACCESS_TOKEN' });
-
-// Cria uma instância da preferência
-const Preference = new mercadopago.Preference(client);
+// Configura o Mercado Pago com o token de acesso do arquivo .env
+mercadopago.configurations = {
+  access_token: process.env.MERCADO_PAGO_ACCESS_TOKEN,
+};
 
 // Middleware para criar e retornar uma preferência do Mercado Pago
 const createPreferenceMiddleware = async (req, res, next) => {
   try {
-    const preference = new Preference();
-
-    const preferenceResponse = await preference.create({
+    // Criação da preferência com os dados necessários
+    const preferenceData = {
       items: [
         {
           title: 'Meu produto',
           quantity: 1,
           unit_price: 25,
-        }
+        },
       ],
-    });
+    };
+
+    // Cria a preferência usando o método correto do SDK do Mercado Pago
+    const preferenceResponse = await mercadopago.preferences.create(preferenceData);
 
     // Adiciona a resposta da preferência à requisição
-    req.mercadoPagoPreference = preferenceResponse;
+    req.mercadoPagoPreference = preferenceResponse.body;
     next();
   } catch (error) {
     console.error('Erro ao criar preferência:', error);
@@ -32,6 +35,5 @@ const createPreferenceMiddleware = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  createPreferenceMiddleware
-};
+// Exportação correta do middleware como uma função
+module.exports = createPreferenceMiddleware;

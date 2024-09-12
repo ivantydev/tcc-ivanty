@@ -16,6 +16,8 @@ const pedidosRoutes = require('./routes/pedidosRoutes');
 // Importar rotas de carrinho
 const carrinhoRoutes = require('./routes/carrinhoRoutes');
 
+const paymentRoutes = require('./routes/paymentRoutes')
+
 // Usar as rotas gerais
 router.use('/', indexRoutes);
 
@@ -30,5 +32,8 @@ router.use('/api', pedidosRoutes);
 
 // Usar as rotas de carrinho com prefixo '/api'
 router.use('/api', carrinhoRoutes);
+
+// Usar as rotas de carrinho com prefixo '/api'
+router.use('/api/payment', paymentRoutes);
 
 module.exports = router;

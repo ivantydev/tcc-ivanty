@@ -128,6 +128,14 @@ router.get('/pedidos', authenticateUser, (req, res) => {
     res.render('pages/pedidos.ejs');
 });
 
+router.get('/paintings', 
+    (req, res) => {
+        
+        res.render('pages/obras')
+    }
+)
+
+
 router.get('/:username',
     ClienteController.getArtistaByUsername,
     (req, res) => {
@@ -136,6 +144,7 @@ router.get('/:username',
         res.render('pages/artist', { artista, obras });
     }
 );
+
 
 router.get('')
 

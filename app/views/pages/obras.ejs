@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,7 +7,7 @@
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/normalize.css">
-    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet'>
     <title>Ivanty</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/header.css">
@@ -19,19 +18,41 @@
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/categories.css">
     <link rel="stylesheet" href="css/carrossel.css">
-    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/> 
-    <!--Fonte usada-->
+    <link rel="stylesheet" href="css/paintings.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/> 
+    <!-- Fonte usada -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <!-- <link href="./css/Obras.css" rel="stylesheet"> -->
 </head>
 
+<body>
 <section class="telasPequenas">
     <%- include("../partial/header") %>
     <main>
         <img src="images/banner.png" alt="Despertando a arte que há em você" class="banner">
+        <h1 class="paintingsTitle">Lista de Obras</h1>
 
+        <% if (typeof error !== 'undefined') { %>
+          <p><%= error %></p>
+        <% } %>
+
+        <% if (obras && obras.length > 0) { %>
+          <div>
+            <% obras.forEach((obra) => { %>
+              <div class="obraContainer">
+                <img src="images/sky.jpg" alt="<%= obra.titulo_obra %>" class="obraContainerImage">
+                <h1 class="obraContainerTitulo"><%= obra.titulo_obra %></h1>
+                <h2 class="obraContainerArtist"><%= obra.id_cliente %></h2>
+                <h2 class="obraContainerPrice">R$<%= obra.preco %></h2>
+              </div>
+            <% }); %>
+            </div>
+        <% } else { %>
+          <p>Nenhuma obra disponível no momento.</p>
+        <% } %>
+      
+        
     </main>
 </section>
 
@@ -39,9 +60,28 @@
     <%- include("../partial/headerPC") %>
     <img src="images/banner.png" alt="" class="bannerPC">
     <main>
-        
-    </main>
+      <h1 class="paintingsTitle">Lista de Obras</h1>
+
+      <% if (typeof error !== 'undefined') { %>
+        <p><%= error %></p>
+      <% } %>
+
+      <% if (obras && obras.length > 0) { %>
+        <div class="obrasGrid">
+          <% obras.forEach((obra) => { %>
+            <div>
+              <strong>Título:</strong> <%= obra.titulo_obra %><br>
+              <strong>Descrição:</strong> <%= obra.descricao_obra %><br>
+              <strong>Preço:</strong> <%= obra.preco %><br>
+              <img src="<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>" style="width: 200px;">
+            </div>
+          <% }); %>
+          </div>
+      <% } else { %>
+        <p>Nenhuma obra disponível no momento.</p>
+      <% } %>    </main>
 </section>
 
 <%- include("../partial/footer") %>
-
+</body>
+</html>

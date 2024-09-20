@@ -144,7 +144,19 @@ const obraController = {
       console.error('Erro ao excluir obra:', error.message);
       return res.status(500).json({ error: error.message });
     }
+  },
+
+  listarObras: async (req, res) => {
+    try {
+      const obras = await ObraModel.getAllObras();
+      return res.status(200).render('pages/obras', { obras });
+    } catch (error) {
+      console.error('Erro ao obter todas as obras:', error.message);
+      return res.status(500).render('pages/obras', { error: 'Erro ao obter obras' });
+    }
   }
 };
+
+
 
 module.exports = obraController;

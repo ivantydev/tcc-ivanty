@@ -3,6 +3,7 @@ const obraController = require('../controllers/obraController');
 const clienteModel = require('../models/clienteModel');
 const router = express.Router();
 const ClienteController = require('./../controllers/clienteController');
+const ObraModel = require('../models/obraModel');
 
 // Middleware para verificar se o usuário está autenticado
 const authenticateUser = (req, res, next) => {
@@ -138,6 +139,25 @@ router.get('/:username',
         const artista = req.artista;
         const obras = req.obras;  // Obtenha as obras do objeto de requisição
         res.render('pages/artist', { artista, obras });
+    }
+);
+
+// Rota para exibir uma obra pelo ID
+router.get('/obra/:id', 
+    async (req, res) => {
+        try {
+            const obraId = req.params.id;
+            const obra = await ObraModel.getObraById(obraId); // Chame a função do model para obter a obra
+
+            if (!obra) {
+                return res.status(404).json({ message: 'Obra não encontrada' });
+            }
+
+            res.render('pages/obra', { obra }); // Renderize a página com os dados da obra
+        } catch (error) {
+            console.error('Erro ao obter obra:', error.message);
+            res.status(500).json({ error: 'Erro ao obter obra' });
+        }
     }
 );
 

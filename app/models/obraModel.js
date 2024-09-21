@@ -12,26 +12,26 @@ const ObraModel = {
   },
 
   createObra: async (obraData) => {
-    const { titulo_obra, descricao_obra, ano_criacao, imagem_obra, id_cliente, categorias } = obraData;
+    const { titulo_obra, descricao_obra, ano_criacao, imagem_obra, id_cliente, categorias, preco, quantidade_em_estoque } = obraData; 
     const query = `
-      INSERT INTO Obras (titulo_obra, descricao_obra, ano_criacao, imagem_obra, id_cliente, categorias)
-      VALUES (?, ?, ?, ?, ?, ?)
+      INSERT INTO Obras (titulo_obra, descricao_obra, ano_criacao, imagem_obra, id_cliente, categorias, preco, quantidade_em_estoque)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
-    const values = [titulo_obra, descricao_obra, ano_criacao, imagem_obra, id_cliente, categorias];
-  
+    const values = [titulo_obra, descricao_obra, ano_criacao, imagem_obra, id_cliente, categorias, preco, quantidade_em_estoque]; 
+
     const [result] = await db.execute(query, values);
     return result.insertId;
   },
 
   updateObra: async (id, obraData) => {
-    const { titulo_obra, descricao_obra, ano_criacao, imagem_obra, categorias } = obraData;
+    const { titulo_obra, descricao_obra, ano_criacao, imagem_obra, categorias, preco, quantidade_em_estoque } = obraData; 
     const query = `
       UPDATE Obras
-      SET titulo_obra = ?, descricao_obra = ?, ano_criacao = ?, imagem_obra = ?, categorias = ?
+      SET titulo_obra = ?, descricao_obra = ?, ano_criacao = ?, imagem_obra = ?, categorias = ?, preco = ?, quantidade_em_estoque = ?
       WHERE id_obra = ?
     `;
-    const values = [titulo_obra, descricao_obra, ano_criacao, imagem_obra, categorias, id];
-  
+    const values = [titulo_obra, descricao_obra, ano_criacao, imagem_obra, categorias, preco, quantidade_em_estoque, id]; 
+
     const [result] = await db.execute(query, values);
     return result.affectedRows;
   },

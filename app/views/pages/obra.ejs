@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/obra.css"> <!-- Adicione um CSS específico se necessário -->
+    <title><%= obra.titulo_obra %></title>
+</head>
+<body>
+    <header>
+        <h1><%= obra.titulo_obra %></h1>
+    </header>
+
+    <main>
+        <section class="obra-details">
+            <img src="/uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>" />
+            <h2>Descrição</h2>
+            <p><%= obra.descricao_obra %></p>
+            <h3>Ano de Criação</h3>
+            <p><%= obra.ano_criacao %></p>
+            <h3>Categorias</h3>
+            <p><%= obra.categorias %></p>
+            <h3>Preço</h3>
+            <p>R$ <%= obra.preco%></p> 
+            <h3>Quantidade em Estoque</h3>
+            <p><%= obra.quantidade_em_estoque %></p>
+        </section>
+        <a href="/artistas/<%= obra.id_cliente %>">Ver Artista</a> <!-- Link para ver o artista relacionado -->
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Ivanty. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

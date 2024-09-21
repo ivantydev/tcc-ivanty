@@ -16,11 +16,11 @@ const upload = multer({ storage: storage });
 
 const obraController = {
   saveObraInSession: (req, res) => {
-    const { titulo_obra, descricao_obra, ano_criacao, categorias } = req.body;
+    const { titulo_obra, descricao_obra, ano_criacao, categorias, preco, quantidade_em_estoque } = req.body;
 
-    console.log('Dados Recebidos no Backend:', { titulo_obra, descricao_obra, ano_criacao, categorias });
+    console.log('Dados Recebidos no Backend:', { titulo_obra, descricao_obra, ano_criacao, categorias, preco, quantidade_em_estoque });
 
-    if (!titulo_obra || !descricao_obra || !ano_criacao || !categorias) {
+    if (!titulo_obra || !descricao_obra || !ano_criacao || !categorias || !preco) {
       return res.status(400).json({ message: 'Dados incompletos. Verifique e tente novamente.' });
     }
 
@@ -29,6 +29,8 @@ const obraController = {
       descricao_obra,
       ano_criacao,
       categorias,
+      preco,
+      quantidade_em_estoque,
       id_cliente: req.session.cliente.id
     };
 
@@ -49,8 +51,8 @@ const obraController = {
           return res.status(400).json({ message: 'Nenhuma obra encontrada na sessão. Por favor, inicie o processo novamente.' });
         }
 
-        const { titulo_obra, descricao_obra, ano_criacao, id_cliente, categorias } = obraData;
-        if (!titulo_obra || !descricao_obra || !ano_criacao || !id_cliente || !categorias) {
+        const { titulo_obra, descricao_obra, ano_criacao, id_cliente, categorias, preco, quantidade_em_estoque } = obraData;
+        if (!titulo_obra || !descricao_obra || !ano_criacao || !id_cliente || !categorias || !preco || !quantidade_em_estoque) {
           return res.status(400).json({ message: 'Dados incompletos da obra. Verifique os dados enviados e tente novamente.' });
         }
 
@@ -104,7 +106,7 @@ const obraController = {
   updateObra: async (req, res) => {
     try {
       const obraId = req.params.id;
-      const { titulo_obra, descricao_obra, ano_criacao, categorias, imagem_obra } = req.body;
+      const { titulo_obra, descricao_obra, ano_criacao, categorias, imagem_obra, preco, quantidade_em_estoque } = req.body;
 
       // Validação básica para garantir que a categoria está nos valores permitidos
       const categoriasPermitidas = ['Pintura', 'Escultura', 'Fotografia', 'Desenho', 'Outros', 'Instalação', 'Grafite'];
@@ -118,6 +120,8 @@ const obraController = {
         ano_criacao,
         categorias,
         imagem_obra,
+        preco,
+        quantidade_em_estoque,
       });
 
       if (updatedRows > 0) {
@@ -156,7 +160,5 @@ const obraController = {
     }
   }
 };
-
-
 
 module.exports = obraController;

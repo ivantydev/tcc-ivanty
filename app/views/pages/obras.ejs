@@ -17,9 +17,10 @@
     <link rel="stylesheet" href="css/globalPC.css">
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/categories.css">
-    <link rel="stylesheet" href="css/carrossel.css">
     <link rel="stylesheet" href="css/paintings.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/> 
+    <link rel="stylesheet" href="css/buyitem.css">
+
     <!-- Fonte usada -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +32,6 @@
     <%- include("../partial/header") %>
     <main>
         <img src="images/banner.png" alt="Despertando a arte que há em você" class="banner">
-        <h1 class="paintingsTitle">Lista de Obras</h1>
 
         <% if (typeof error !== 'undefined') { %>
           <p><%= error %></p>
@@ -40,12 +40,20 @@
         <% if (obras && obras.length > 0) { %>
           <div>
             <% obras.forEach((obra) => { %>
-              <div class="obraContainer">
-                <img src="images/sky.jpg" alt="<%= obra.titulo_obra %>" class="obraContainerImage">
-                <h1 class="obraContainerTitulo"><%= obra.titulo_obra %></h1>
-                <h2 class="obraContainerArtist"><%= obra.id_cliente %></h2>
-                <h2 class="obraContainerPrice">R$<%= obra.preco %></h2>
-              </div>
+              <section class="buyitemContainer">
+                <img src="uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>" class="buyitemimage">
+                <section class="buyitemgrid">
+                    <p class="buyitemtitle"><%= obra.titulo_obra %></p>
+                    <p class="buyitemprice">R$<%= obra.preco %></p>
+                </section>
+                <p class="buyitemartist"><%= obra.id_cliente %></p>
+                <div class="buyitembutton">Comprar</div>
+                <div class="buyitemaddtocard">Adicionar ao carrinho</div>
+                <section class="buyitemdescription">
+                    <h3 class="buyitemdescriptiontitle">Descrição:</h3>
+                    <p class="buyitemdescriptiontext"><%= obra.descricao_obra %></p>
+                </section>
+            </section>
             <% }); %>
             </div>
         <% } else { %>
@@ -73,7 +81,8 @@
               <strong>Título:</strong> <%= obra.titulo_obra %><br>
               <strong>Descrição:</strong> <%= obra.descricao_obra %><br>
               <strong>Preço:</strong> <%= obra.preco %><br>
-              <img src="<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>" style="width: 200px;">
+              <img src="uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>" class="obraContainerImage">
+              
             </div>
           <% }); %>
           </div>

@@ -22,12 +22,18 @@
             <h3>Categorias</h3>
             <p><%= obra.categorias %></p>
             <h3>Preço</h3>
-            <p>R$ <%= obra.preco%></p> 
+            <p>R$ <%= obra %></p>
             <h3>Quantidade em Estoque</h3>
             <p><%= obra.quantidade_em_estoque %></p>
+    
+            <!-- Botão para adicionar ao carrinho -->
+            <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST">
+                <button type="submit">Adicionar ao Carrinho</button>
+            </form>
         </section>
-        <a href="/artistas/<%= obra.id_cliente %>">Ver Artista</a> <!-- Link para ver o artista relacionado -->
+        <a href="/artistas/<%= obra.id_cliente %>">Ver Artista</a>
     </main>
+    
 
     <footer>
         <p>&copy; 2024 Ivanty. Todos os direitos reservados.</p>

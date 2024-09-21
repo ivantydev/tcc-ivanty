@@ -47,7 +47,9 @@
                     <p class="buyitemprice">R$<%= obra.preco %></p>
                 </section>
                 <p class="buyitemartist"><%= obra.id_cliente %></p>
-                <div class="buyitembutton">Comprar</div>
+                <a href="/obra/<%= obra.id_obra %>">
+                  <div class="buyitembutton">Comprar</div>
+                </a>
                 <div class="buyitemaddtocard">Adicionar ao carrinho</div>
                 <section class="buyitemdescription">
                     <h3 class="buyitemdescriptiontitle">Descrição:</h3>

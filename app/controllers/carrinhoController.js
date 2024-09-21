@@ -1,16 +1,13 @@
 const obraModel = require('../models/obraModel');
 
 const carrinhoController = {
-  // Adiciona uma obra ao carrinho
   adicionarAoCarrinho: async (req, res) => {
     const obraId = req.params.id;
 
-    // Verifica se o carrinho já existe na sessão
     if (!req.session.carrinho) {
       req.session.carrinho = [];
     }
 
-    // Busca a obra pelo ID no banco de dados
     try {
       const obra = await obraModel.getObraById(obraId);
 
@@ -28,7 +25,7 @@ const carrinhoController = {
         req.session.carrinho.push({
           id: obra.id_obra,
           titulo: obra.titulo_obra,
-          preco: obra.preco_obra || 0, // Ajuste se tiver preço
+          preco: obra.preco || 0, // Ajuste se tiver preço
           quantidade: 1,
         });
       }
@@ -40,16 +37,13 @@ const carrinhoController = {
     }
   },
 
-  // Exibe o carrinho de compras
   visualizarCarrinho: (req, res) => {
     const carrinho = req.session.carrinho || [];
     res.render('pages/carrinho', { carrinho });
   },
 
-  // Remove uma obra do carrinho
   removerDoCarrinho: (req, res) => {
     const obraId = parseInt(req.params.id, 10);
-
     req.session.carrinho = req.session.carrinho.filter(item => item.id !== obraId);
     res.redirect('/carrinho');
   },

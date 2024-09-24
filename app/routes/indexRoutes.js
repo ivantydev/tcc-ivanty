@@ -136,7 +136,7 @@ router.get('/carrinho', carrinhoController.visualizarCarrinho);
 // Rota para remover do carrinho
 router.post('/carrinho/remover/:id', carrinhoController.removerDoCarrinho);
 
-router.get('/pedidos', pedidoController.listarPedidos)
+router.get('/pedidos', authenticateUser, pedidoController.listarPedidos)
 
 router.get('/:username',
     ClienteController.getArtistaByUsername,

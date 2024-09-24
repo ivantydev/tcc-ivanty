@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido <%= pedido.id_pedido %></title>
+</head>
+<body>
+    <h1>Detalhes do Pedido #<%= pedido.id_pedido %></h1>
+    <p>Data do Pedido: <%= pedido.data_pedido %></p>
+    <p>Status do Pedido: <%= pedido.status_pedido %></p>
+    <p>Status de Pagamento: <%= pedido.status_pagamento %></p>
+
+    <h2>Itens do Pedido</h2>
+    <ul>
+        <% obras.forEach((obra) => { %>
+            <li>
+                <strong><%= obra.titulo_obra %></strong> - Quantidade: <%= obra.quantidade %> - Preço: R$<%= obra.preco %>
+            </li>
+        <% }); %>
+    </ul>
+
+    <a href="/">Voltar para a página inicial</a>
+</body>
+</html>

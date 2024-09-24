@@ -5,6 +5,7 @@ const router = express.Router();
 const ClienteController = require('./../controllers/clienteController');
 const ObraModel = require('../models/obraModel');
 const carrinhoController = require('../controllers/carrinhoController');
+const pedidoController = require('../controllers/pedidoController');
 
 // Middleware para verificar se o usuário está autenticado
 const authenticateUser = (req, res, next) => {
@@ -125,11 +126,6 @@ router.get('/requests', authenticateUser, (req, res) => {
     res.render('pages/requests.ejs');
 });
 
-// Rota para pedidos - requer autenticação
-router.get('/pedidos', authenticateUser, (req, res) => {
-    res.render('pages/pedidos.ejs');
-});
-
 router.get('/paintings', obraController.listarObras);
 
 router.post('/carrinho/adicionar/:id', carrinhoController.adicionarAoCarrinho);
@@ -140,7 +136,7 @@ router.get('/carrinho', carrinhoController.visualizarCarrinho);
 // Rota para remover do carrinho
 router.post('/carrinho/remover/:id', carrinhoController.removerDoCarrinho);
 
-
+router.get('/pedidos', pedidoController.listarPedidos)
 
 router.get('/:username',
     ClienteController.getArtistaByUsername,

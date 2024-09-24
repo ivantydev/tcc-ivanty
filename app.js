@@ -43,6 +43,7 @@ app.use("/", indexRoutes);
 app.use("/api", pedidoRoutes);
 app.use("/api", carrinhoRoutes);
 app.use("/api", enderecoRoutes);
+app.use('/pedidos', pedidoRoutes);
 app.use('/api/payment', paymentRoutes);
 
 app.get('/', (req, res) => {

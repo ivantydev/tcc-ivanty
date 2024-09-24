@@ -1,33 +1,78 @@
-const pool = require('./../../config/pool_conexoes');
+const db = require('../../config/pool_conexoes');
 
-const PedidoModel = {
-  createPedido: async (pedido) => {
-    const { id_cliente, total_pedido, obras } = pedido;
-
-    const connection = await pool.getConnection();
-    await connection.beginTransaction();
+const pedidoModel = {
+  // Cria um novo pedido
+  criarPedido: async (idCliente, statusPagamento, idPagamento, carrinho) => {
+    const statusPedido = 'pendente'; // Padrão como 'pendente'
+    const dataPedido = new Date();
 
     try {
-      const [resultPedido] = await connection.query('INSERT INTO Pedidos (id_cliente, total_pedido) VALUES (?, ?)', [id_cliente, total_pedido]);
+      // Insere o pedido na tabela 'Pedidos'
+      const [result] = await db.query(`
+        INSERT INTO Pedidos (data_pedido, id_cliente, status_pedido, status_pagamento, id_pagamento)
+        VALUES (?, ?, ?, ?, ?)
+      `, [dataPedido, idCliente, statusPedido, statusPagamento, idPagamento]);
 
-      for (let obra of obras) {
-        await connection.query('INSERT INTO PedidoObras (id_pedido, id_obra, quantidade) VALUES (?, ?, ?)', [resultPedido.insertId, obra.id_obra, obra.quantidade]);
+      const pedidoId = result.insertId;
+
+      // Insere as obras associadas ao pedido na tabela 'Pedidos_Obras'
+      for (const item of carrinho) {
+        await db.query(`
+          INSERT INTO Pedidos_Obras (id_pedido, id_obra, quantidade)
+          VALUES (?, ?, ?)
+        `, [pedidoId, item.id, item.quantidade]);
       }
 
-      await connection.commit();
-      return resultPedido.insertId;
+      return pedidoId;
     } catch (error) {
-      await connection.rollback();
-      throw error;
-    } finally {
-      connection.release();
+      throw new Error('Erro ao criar pedido: ' + error.message);
     }
   },
 
-  getPedidosByClienteId: async (id_cliente) => {
-    const [rows] = await pool.query('SELECT * FROM Pedidos WHERE id_cliente = ?', [id_cliente]);
-    return rows;
-  }
+  // Obter pedido por ID
+  getPedidoById: async (idPedido) => {
+    try {
+      const [pedido] = await db.query(`
+        SELECT * FROM Pedidos WHERE id_pedido = ?
+      `, [idPedido]);
+
+      const [obras] = await db.query(`
+        SELECT po.*, o.titulo_obra, o.preco
+        FROM Pedidos_Obras po
+        JOIN Obras o ON po.id_obra = o.id_obra
+        WHERE po.id_pedido = ?
+      `, [idPedido]);
+
+      return { pedido: pedido[0], obras };
+    } catch (error) {
+      throw new Error('Erro ao buscar pedido: ' + error.message);
+    }
+  },
+
+  // Atualizar status do pedido
+  atualizarStatusPedido: async (idPedido, statusPedido) => {
+    try {
+      await db.query(`
+        UPDATE Pedidos SET status_pedido = ? WHERE id_pedido = ?
+      `, [statusPedido, idPedido]);
+    } catch (error) {
+      throw new Error('Erro ao atualizar status do pedido: ' + error.message);
+    }
+  },
+
+  getPedidosByClienteId: async (idCliente) => {
+    try {
+      const [pedidos] = await db.query(`
+        SELECT * FROM Pedidos WHERE id_cliente = ?
+      `, [idCliente]);
+      
+      return pedidos; 
+    } catch (error) {
+      throw new Error('Erro ao buscar pedidos: ' + error.message);
+    }
+  },
 };
 
-module.exports = PedidoModel;
+
+
+module.exports = pedidoModel;

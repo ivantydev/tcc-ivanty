@@ -37,5 +37,17 @@
             <% } %>
         </tbody>
     </table>
+
+    <% if (carrinho.length > 0) { %>
+        <form action="/pedidos/criar" method="POST">
+            <!-- Informações de pagamento podem ser passadas aqui (como status ou ID de pagamento) -->
+            <input type="hidden" name="statusPagamento" value="pendente">
+            <input type="hidden" name="idPagamento" value="12345"> <!-- Exemplo de ID de pagamento -->
+            
+            <button type="submit">Finalizar Compra</button>
+        </form>
+    <% } %>
+
+    <a href="/">Continuar comprando</a>
 </body>
 </html>

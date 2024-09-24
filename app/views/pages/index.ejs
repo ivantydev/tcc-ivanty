@@ -2,13 +2,14 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Estilos e fontes -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
     </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/normalize.css">
     <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
-    <title>Ivanty</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -17,21 +18,43 @@
     <link rel="stylesheet" href="css/globalPC.css">
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/categories.css">
-    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/> 
-    <!--Fonte usada-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <!-- <link href="./css/Obras.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="css/header.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/simple-notify@0.6.1/dist/simple-notify.min.css">
+
+    <!-- Título da página -->
+    <title>Ivanty</title>
 </head>
 <body>
-    <% if (successMessage) { %>
-        <div class="success-message">
-            <alert><%= successMessage %></alert>
-        </div>
-    <% } %>
+    
+     <!-- Scripts JS da biblioteca, antes de qualquer código que use Notify -->
+     <script src="https://unpkg.com/simple-notify@1.0.4/dist/simple-notify.min.js"></script>
+
+     <% if (successMessage) { %>
+         <script>
+             // Log para verificar se a mensagem está sendo passada
+             console.log('Success message:', '<%= successMessage %>');
+ 
+             // Criar a notificação
+             new Notify({
+                 status: 'success',
+                 title: 'Sucesso',
+                 text: '<%= successMessage %>',
+                 effect: 'fade',
+                 speed: 300,
+                 autoclose: true,
+                 autotimeout: 3000,
+                 position: 'right bottom',
+                 gap: 30,
+             });
+         </script>
+
+         
+     <% } %>
+ 
+
     <section class="telasPequenas">
         <%- include("../partial/header") %>
         <main>
@@ -110,13 +133,14 @@
 
     <%- include("../partial/footer") %>
 
-    <script src="js/comprarPorCategoriacarousel.js"></script>
-    <script src="js/comprarPorEstilocarousel.js"></script>
-    <script src="js/comprarPorEstilocarouselMobile.js"></script>
-    <script src="js/comprarPorCategoriacarouselMobile.js"></script>
-    <script src="js/ObrasMaisVendidas.js"></script>
-    <script src="js/ObrasMaisVendidasMobile.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="./js/carrossel.js"></script> 
+  <!-- Scripts JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="js/comprarPorCategoriacarousel.js"></script>
+  <script src="js/comprarPorEstilocarousel.js"></script>
+  <script src="js/comprarPorEstilocarouselMobile.js"></script>
+  <script src="js/comprarPorCategoriacarouselMobile.js"></script>
+  <script src="js/ObrasMaisVendidas.js"></script>
+  <script src="js/ObrasMaisVendidasMobile.js"></script>
+  <script src="./js/carrossel.js"></script> 
 </body>
 </html>

@@ -35,3 +35,115 @@
     font-weight: 300;
     margin:  0.5rem 0;
 }
+ /* Container principal dos itens de compra */
+ .buyitemContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+}
+
+/* Imagem das obras */
+.buyitemimage {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Título e preço das obras */
+.buyitemgrid {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.buyitemtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.buyitemprice {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2em;
+    color: #ff5722;
+    margin-top: 5px;
+}
+
+/* Nome do artista */
+.buyitemartist {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Botão de comprar */
+.buyitembutton {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.buyitembutton:hover {
+    background-color: #45a049;
+}
+
+/* Botão de adicionar ao carrinho */
+.buyitemaddtocard {
+    background-color: #ff9800;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.buyitemaddtocard:hover {
+    background-color: #e68900;
+}
+
+/* Descrição da obra */
+.buyitemdescription {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.buyitemdescriptiontitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3em;
+    color: #333;
+}
+
+.buyitemdescriptiontext {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: #555;
+}
+
+/* Grid para as telas maiores */
+.obrasGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.obraContainerImage {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}

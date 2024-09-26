@@ -35,7 +35,16 @@ const pedidoController = {
         return res.status(404).json({ message: 'Pedido não encontrado' });
       }
 
-      res.render('pages/pedido', { pedido: pedido.pedido, obras: pedido.obras });
+      // Calcular o preço total do pedido
+      const precoTotal = pedido.obras.reduce((total, obra) => {
+        return total + (obra.preco * obra.quantidade);
+      }, 0);
+
+      res.render('pages/pedido', { 
+        pedido: pedido.pedido, 
+        obras: pedido.obras, 
+        precoTotal // Passar o preço total para a view
+      });
     } catch (error) {
       console.error('Erro ao buscar pedido:', error.message);
       res.status(500).json({ error: 'Erro ao buscar pedido' });
@@ -69,7 +78,5 @@ const pedidoController = {
     }
   },
 };
-
-
 
 module.exports = pedidoController;

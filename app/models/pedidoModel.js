@@ -17,10 +17,11 @@ const pedidoModel = {
 
       // Insere as obras associadas ao pedido na tabela 'Pedidos_Obras'
       for (const item of carrinho) {
+        const preco = item.preco || 0; // Garantir que o preço não seja nulo ou indefinido
         await db.query(`
-          INSERT INTO Pedidos_Obras (id_pedido, id_obra, quantidade)
-          VALUES (?, ?, ?)
-        `, [pedidoId, item.id, item.quantidade]);
+          INSERT INTO Pedidos_Obras (id_pedido, id_obra, quantidade, preco)
+          VALUES (?, ?, ?, ?)
+        `, [pedidoId, item.id, item.quantidade, preco]);
       }
 
       return pedidoId;
@@ -60,19 +61,18 @@ const pedidoModel = {
     }
   },
 
+  // Buscar todos os pedidos de um cliente
   getPedidosByClienteId: async (idCliente) => {
     try {
       const [pedidos] = await db.query(`
         SELECT * FROM Pedidos WHERE id_cliente = ?
       `, [idCliente]);
-      
+
       return pedidos; 
     } catch (error) {
       throw new Error('Erro ao buscar pedidos: ' + error.message);
     }
   },
 };
-
-
 
 module.exports = pedidoModel;

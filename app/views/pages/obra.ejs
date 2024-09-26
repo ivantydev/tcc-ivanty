@@ -1,42 +1,81 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/obra.css"> <!-- Adicione um CSS específico se necessário -->
-    <title><%= obra.titulo_obra %></title>
+    <title>Ivanty</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="../css/about.css">
+    <link rel="stylesheet" href="../css/headerPC.css">
+    <link rel="stylesheet" href="../css/globalPC.css">
+    <link rel="stylesheet" href="../css/aboutPC.css">
+    <link rel="stylesheet" href="../css/buyitem.css">
 </head>
 <body>
-    <header>
-        <h1><%= obra.titulo_obra %></h1>
-    </header>
+    <section class="telasPequenas">
+      <%- include("../partial/obras/header") %>
+      <main class="mainTelasPequenas">
+        <section class="buyitemContainer">
+            <img src="../uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.imagem_obra  %>" class="buyitemimage">
 
-    <main>
-        <section class="obra-details">
-            <img src="/uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>" />
-            <h2>Descrição</h2>
-            <p><%= obra.descricao_obra %></p>
-            <h3>Ano de Criação</h3>
-            <p><%= obra.ano_criacao %></p>
-            <h3>Categorias</h3>
-            <p><%= obra.categorias %></p>
-            <h3>Preço</h3>
-            <p>R$ <%= obra %></p>
-            <h3>Quantidade em Estoque</h3>
-            <p><%= obra.quantidade_em_estoque %></p>
-    
-            <!-- Botão para adicionar ao carrinho -->
-            <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST">
-                <button type="submit">Adicionar ao Carrinho</button>
+            <section class="buyitemgrid">
+                <p class="buyitemtitle"><%= obra.titulo_obra %></p>
+                <p class="buyitemprice">R$ <%= obra.preco %></p>
+            </section>
+            <p class="buyitemartist"><%= obra.id_cliente %></p>
+            <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST"></form>
+                <button type="submit" class="buyitembutton">Comprar</button>
             </form>
+            <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST">
+                <button type="submit" class="buyitemaddtocard">Adicionar ao carrinho</button>
+            </form>
+            <section class="buyitemdescription">
+                <h3 class="buyitemdescriptiontitle">Descrição:</h3>
+                <p class="buyitemdescriptiontext"><%= obra.descricao_obra %></p>
+                <h3 class="buyitemdescriptiontitle">Ano de criação:</h3>
+                <p class="buyitemdescriptiontext"><%= obra.ano_criacao %></p>
+            </section>
         </section>
-        <a href="/artistas/<%= obra.id_cliente %>">Ver Artista</a>
-    </main>
-    
+      </main>
+    </section>
 
-    <footer>
-        <p>&copy; 2024 Ivanty. Todos os direitos reservados.</p>
-    </footer>
+    <section class="telasGrandes">
+      <%- include("../partial/obras/headerPC") %>
+
+      <main class="mainTelasGrandes">
+        <section class="buyitemContainerPC">
+          <section class="buyitemgridPC">
+             <img src="../uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.imagem_obra %>" class="buyitemimagePC">
+             <section class="buyiteminformationsGridPC">
+                <div>
+                  <p class="buyitemtitlePC"><%= obra.titulo_obra %></p>
+                  <p class="buyitemartistPC"><%= obra.id_cliente %></p>
+                  <p class="buyitempricePC">R$ <%= obra.preco %></p>
+                  <section class="buyitemdescriptionPC">
+                    <h3 class="buyitemdescriptiontitlePC">Descrição:</h3>
+                    <p class="buyitemdescriptiontextPC"><%= obra.descricao_obra %></p>
+                    <h3 class="buyitemdescriptiontitlePC">Ano de criação:</h3>
+                    <p class="buyitemdescriptiontextPC"><%= obra.ano_criacao %></p>
+                </section>
+                </div>
+              </section> 
+              <section class="buttonsArea">
+                <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST">
+                    <button type="submit" class="buyitembuttonPC">Comprar</button>
+                </form>
+                <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST">
+                    <button type="submit" class="buyitemaddtocardPC">Adicionar ao carrinho</button>
+                </form>
+              </section>
+          </section>
+        </section>
+      </main>  
+    </section>
+  
+    <%- include("../partial/obras/footer") %>
+
 </body>
 </html>

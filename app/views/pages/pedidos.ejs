@@ -56,6 +56,7 @@
                             <td><%= pedido.id_pedido %></td>
                             <td><%= pedido.status_pedido %></td>
                             <td><%= new Date(pedido.data_pedido).toLocaleDateString('pt-BR') %></td>
+                            <p>Preço Total do Pedido: R$<%= pedido.preco_total %></p>
                             <td><a href="/pedidos/<%= pedido.id_pedido %>" class="detalhes-link">Ver Detalhes</a></td>
                         </tr>
                     <% }) %>

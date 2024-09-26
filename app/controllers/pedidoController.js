@@ -1,10 +1,10 @@
 const pedidoModel = require('../models/pedidoModel');
 
 const pedidoController = {
-  // Cria um pedido a partir do carrinho
+  // Criar um pedido a partir do carrinho
   criarPedido: async (req, res) => {
     const carrinho = req.session.carrinho || [];
-    const idCliente = req.session.cliente.id; // Assumindo que o cliente já está logado
+    const idCliente = req.session.cliente.id; // Assumindo que o cliente está logado
     const { statusPagamento, idPagamento } = req.body; // Informações de pagamento enviadas pelo cliente
 
     if (carrinho.length === 0) {
@@ -14,7 +14,7 @@ const pedidoController = {
     try {
       const pedidoId = await pedidoModel.criarPedido(idCliente, statusPagamento, idPagamento, carrinho);
       
-      // Limpa o carrinho após a criação do pedido
+      // Limpar o carrinho após a criação do pedido
       req.session.carrinho = [];
 
       res.status(201).json({ message: 'Pedido criado com sucesso', pedidoId });
@@ -65,13 +65,13 @@ const pedidoController = {
     }
   },
 
+  // Listar pedidos por cliente logado
   listarPedidos: async (req, res) => {
-    const idCliente = req.session.cliente.id; // ID do cliente logado
-  
+    const idCliente = req.session.cliente.id;
+
     try {
       const pedidos = await pedidoModel.getPedidosByClienteId(idCliente);
-  
-      res.render('pages/pedidos', { pedidos }); // Renderize a página de pedidos com a lista
+      res.render('pages/pedidos', { pedidos });
     } catch (error) {
       console.error('Erro ao listar pedidos:', error.message);
       res.status(500).json({ error: 'Erro ao listar pedidos' });

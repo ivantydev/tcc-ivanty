@@ -29,29 +29,13 @@
 </head>
 <body>
     
-     <!-- Scripts JS da biblioteca, antes de qualquer código que use Notify -->
-     <script src="https://unpkg.com/simple-notify@1.0.4/dist/simple-notify.min.js"></script>
 
      <% if (successMessage) { %>
-         <script>
-             // Log para verificar se a mensagem está sendo passada
-             console.log('Success message:', '<%= successMessage %>');
- 
-             // Criar a notificação
-             new Notify({
-                 status: 'success',
-                 title: 'Sucesso',
-                 text: '<%= successMessage %>',
-                 effect: 'fade',
-                 speed: 300,
-                 autoclose: true,
-                 autotimeout: 3000,
-                 position: 'right bottom',
-                 gap: 30,
-             });
-         </script>
+        <%- include('../partial/notification') %>
 
-         
+        <script>
+            showNotification("<%= successMessage%>");
+        </script>
      <% } %>
  
 

@@ -1,0 +1,62 @@
+<!-- partials/notification.ejs -->
+<div id="notification-container"></div>
+
+<style>
+  /* Estilo básico para a notificação */
+  #notification-container {
+      position: fixed;
+      right: 30px;
+      bottom: 30px;
+      z-index: 9999;
+  }
+
+  .notification {
+      background-color: #4CAF50; /* Cor de sucesso */
+      color: white;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  /* Mostra a notificação */
+  .notification.show {
+      opacity: 1;
+      transform: translateY(0);
+  }
+</style>
+
+<script>
+  function showNotification(message, type = 'success') {
+      // Cria o elemento da notificação
+      const notification = document.createElement('div');
+      notification.classList.add('notification', 'show');
+
+      // Define a cor com base no tipo
+      if (type === 'success') {
+          notification.style.backgroundColor = '#4CAF50'; // Verde para sucesso
+      } else if (type === 'error') {
+          notification.style.backgroundColor = '#f44336'; // Vermelho para erro
+      } else if (type === 'warning') {
+          notification.style.backgroundColor = '#ff9800'; // Laranja para alerta
+      }
+
+      // Define o conteúdo da notificação
+      notification.innerText = message;
+
+      // Adiciona a notificação ao container
+      const container = document.getElementById('notification-container');
+      container.appendChild(notification);
+
+      // Remove a notificação após 3 segundos
+      setTimeout(() => {
+          notification.classList.remove('show');
+          setTimeout(() => {
+              container.removeChild(notification);
+          }, 300);
+      }, 3000);
+  }
+</script>

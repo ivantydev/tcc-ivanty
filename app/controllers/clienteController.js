@@ -188,19 +188,34 @@ const clienteController = {
 
   uploadFoto: async (req, res) => {
     try {
-        const clienteId = req.session.cliente.id;
-        const fileName = req.file.filename;  // Salva apenas o nome do arquivo
-
-        // Atualiza o nome do arquivo no banco de dados
-        await ClienteModel.updateFotoCliente(clienteId, fileName);
-
-        // Atualiza a sessão com o novo nome da foto
-        req.session.cliente.foto = fileName;
-
-        res.status(200).json({ message: 'Foto do cliente atualizada com sucesso', fileName });
+      const clienteId = req.session.cliente.id;
+      const fileName = req.file.filename;  // Salva apenas o nome do arquivo
+  
+      // Atualiza o nome do arquivo no banco de dados
+      await ClienteModel.updateFotoCliente(clienteId, fileName);
+  
+      // Atualiza a sessão com o novo nome da foto
+      req.session.cliente.foto = fileName;
+  
+      // Armazena a mensagem de sucesso na sessão
+      req.session.notification = {
+        message: 'Foto do cliente atualizada com sucesso',
+        type: 'success'
+      };
+  
+      // Redireciona para a página de perfil
+      res.redirect('/profile');
     } catch (error) {
-        console.error('Erro ao fazer upload da foto do cliente:', error.message);
-        res.status(500).json({ error: error.message });
+      console.error('Erro ao fazer upload da foto do cliente:', error.message);
+  
+      // Armazena a mensagem de erro na sessão
+      req.session.notification = {
+        message: 'Erro ao atualizar a foto do cliente: ' + error.message,
+        type: 'error'
+      };
+  
+      // Redireciona para a página de perfil
+      res.redirect('/profile');
     }
   },
 

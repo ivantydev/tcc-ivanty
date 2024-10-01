@@ -17,7 +17,12 @@ const pedidoController = {
       // Limpar o carrinho após a criação do pedido
       req.session.carrinho = [];
 
-      res.status(201).json({ message: 'Pedido criado com sucesso', pedidoId });
+      req.session.notification = {
+        message: 'Pedido criado com sucesso!',
+        type: 'success'
+      };
+
+      return res.redirect('/pedidos'); // Atualize o caminho aqui
     } catch (error) {
       console.error('Erro ao criar pedido:', error.message);
       res.status(500).json({ error: 'Erro ao criar pedido' });
@@ -45,6 +50,7 @@ const pedidoController = {
         obras: pedido.obras, 
         precoTotal // Passar o preço total para a view
       });
+      
     } catch (error) {
       console.error('Erro ao buscar pedido:', error.message);
       res.status(500).json({ error: 'Erro ao buscar pedido' });
@@ -68,10 +74,11 @@ const pedidoController = {
   // Listar pedidos por cliente logado
   listarPedidos: async (req, res) => {
     const idCliente = req.session.cliente.id;
+    const notification = req.session.notification || null; // Ou outra lógica para definir notification
 
     try {
       const pedidos = await pedidoModel.getPedidosByClienteId(idCliente);
-      res.render('pages/pedidos', { pedidos });
+      res.render('pages/pedidos', { pedidos, notification });
     } catch (error) {
       console.error('Erro ao listar pedidos:', error.message);
       res.status(500).json({ error: 'Erro ao listar pedidos' });

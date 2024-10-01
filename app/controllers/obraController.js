@@ -71,6 +71,11 @@ const obraController = {
 
         req.session.obraData = null;
 
+        req.session.notification = {
+          message: 'Obra adicionada com sucesso!',
+          type: 'success'
+        };
+        
         return res.redirect('/profile'); // Atualize o caminho aqui
       } catch (error) {
         console.error('Erro ao salvar obra com imagem:', error.message);

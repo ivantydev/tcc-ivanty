@@ -7,7 +7,6 @@ const ObraModel = require('../models/obraModel');
 const carrinhoController = require('../controllers/carrinhoController');
 const pedidoController = require('../controllers/pedidoController');
 
-// Middleware para verificar se o usuário está autenticado
 const authenticateUser = (req, res, next) => {
     if (req.session.isLoggedIn && req.session.cliente) {
         next();
@@ -16,7 +15,6 @@ const authenticateUser = (req, res, next) => {
     }
 };
 
-// Middleware para verificar se o usuário é um administrador
 const authorizeAdmin = (req, res, next) => {
     if (req.session.isLoggedIn && req.session.cliente && req.session.cliente.tipo_cliente === 'adm') {
         next();
@@ -25,7 +23,6 @@ const authorizeAdmin = (req, res, next) => {
     }
 };
 
-// Rota principal que renderiza a página inicial com obras e artistas
 router.get('/', async (req, res) => {
     try {
         const { clientes: artistas } = await clienteModel.getAllClientesByType('artista', 1, 10);
@@ -38,7 +35,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Rota para a página de artistas
 router.get('/artists', async (req, res) => {
     try {
         // Busca todos os artistas
@@ -63,16 +59,21 @@ router.get('/about', (req, res) => {
     res.render('pages/about');
 });
 
-// Rota para perfil - requer autenticação e redireciona com base no tipo de cliente
 router.get('/profile', authenticateUser, (req, res) => {
     const cliente = req.session.cliente;
+    const notification = req.session.notification || null; // Ou outra lógica para definir notification
+    delete req.session.notification; // Limpa a mensagem de sucesso após o uso
+
     if (cliente.tipo_cliente === 'artista') {
-        res.render('pages/profile/artistProfile', { isLoggedIn: true, cliente });
+        res.render('pages/profile/artistProfile', { isLoggedIn: true, cliente, notification });
+        req.session.save(); // Garantir que a sessão seja salva
+    
     } else if (cliente.tipo_cliente === 'adm') { 
-        res.redirect('/adm');
-    }
-    else {
-        res.render('pages/profile/profile', { isLoggedIn: true, cliente });
+        req.session.save(); // Garantir que a sessão seja salva
+        return res.redirect('/adm');
+    } else {
+        res.render('pages/profile/profile', { isLoggedIn: true, cliente, notification });
+        req.session.save(); // Garantir que a sessão seja salva
     }
 });
 

@@ -47,7 +47,7 @@ const pedidoModel = {
     try {
       // Buscar detalhes do pedido
       const [pedido] = await conn.query(
-        `SELECT * FROM pedidos WHERE id_pedido = ?`,
+        `SELECT * FROM Pedidos WHERE id_pedido = ?`,
         [pedidoId]
       );
 

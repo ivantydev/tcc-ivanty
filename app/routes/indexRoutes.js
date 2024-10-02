@@ -62,17 +62,18 @@ router.get('/about', (req, res) => {
 router.get('/profile', authenticateUser, (req, res) => {
     const cliente = req.session.cliente;
     const notification = req.session.notification || null; // Ou outra lógica para definir notification
-    delete req.session.notification; // Limpa a mensagem de sucesso após o uso
+    const endereco = req.session.endereco || null; 
+    delete req.session.notification;
 
     if (cliente.tipo_cliente === 'artista') {
-        res.render('pages/profile/artistProfile', { isLoggedIn: true, cliente, notification });
+        res.render('pages/profile/artistProfile', { isLoggedIn: true, cliente, notification, endereco });
         req.session.save(); // Garantir que a sessão seja salva
     
     } else if (cliente.tipo_cliente === 'adm') { 
         req.session.save(); // Garantir que a sessão seja salva
         return res.redirect('/adm');
     } else {
-        res.render('pages/profile/profile', { isLoggedIn: true, cliente, notification });
+        res.render('pages/profile/profile', { isLoggedIn: true, cliente, notification, endereco });
         req.session.save(); // Garantir que a sessão seja salva
     }
 });

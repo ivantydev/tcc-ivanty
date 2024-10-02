@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const fs = require('fs');
 const ObraModel = require('../models/obraModel')
+const EnderecoModel = require('../models/enderecoModel')
 
 const clienteController = {
   getAllClientes: async (req, res) => {
@@ -113,41 +114,56 @@ const clienteController = {
 
   loginCliente: async (req, res) => {
     try {
-      const { email_cliente, senha_cliente } = req.body;
-      const cliente = await ClienteModel.getClienteByEmail(email_cliente);
-  
-      if (!cliente) {
-        return res.status(404).json({ error: 'Cliente não encontrado' });
-      }
-  
-      const senhaValida = await bcrypt.compare(senha_cliente, cliente.senha_cliente);
-      if (!senhaValida) {
-        return res.status(401).json({ error: 'Credenciais inválidas' });
-      }
-  
-      req.session.isLoggedIn = true;
-      req.session.cliente = {
-        id: cliente.id_cliente,
-        nome: cliente.nome_cliente,
-        perfil: cliente.perfil_cliente,
-        datanasc: cliente.datanasc_cliente,
-        telefone: cliente.telefone_cliente,
-        foto: cliente.foto_cliente,
-        tipo_cliente: cliente.tipo_cliente,
-        id_endereco: cliente.Enderecos_id_endereco,
-      };
-  
-      console.log('Cliente logado:', JSON.stringify(req.session.cliente, null, 2));
-  
-      req.session.successMessage = 'Login realizado com sucesso';
-      res.redirect('/');
+        const { email_cliente, senha_cliente } = req.body;
+        const cliente = await ClienteModel.getClienteByEmail(email_cliente);
+
+        if (!cliente) {
+            return res.status(404).json({ error: 'Cliente não encontrado' });
+        }
+
+        const senhaValida = await bcrypt.compare(senha_cliente, cliente.senha_cliente);
+        if (!senhaValida) {
+            return res.status(401).json({ error: 'Credenciais inválidas' });
+        }
+
+        // Recupera o endereço do cliente
+        const endereco = await EnderecoModel.getEnderecoByClienteId(cliente.id_cliente);
+        
+        req.session.isLoggedIn = true;
+        req.session.cliente = {
+            id: cliente.id_cliente,
+            nome: cliente.nome_cliente,
+            perfil: cliente.perfil_cliente,
+            datanasc: cliente.datanasc_cliente,
+            telefone: cliente.telefone_cliente,
+            foto: cliente.foto_cliente,
+            tipo_cliente: cliente.tipo_cliente,
+            id_endereco: cliente.Enderecos_id_endereco,
+        };
+
+        if (endereco) {
+            req.session.endereco = {
+                id: endereco.id_endereco,
+                cep: endereco.cep_endereco,
+                complemento: endereco.complemento_endereco,
+                numero: endereco.numero_endereco,
+                tipo: endereco.tipo_endereco,
+                id_cliente: endereco.id_cliente
+            };
+        }
+
+        console.log('Cliente logado:', JSON.stringify(req.session.cliente, null, 2));
+        console.log('Endereço do cliente:', JSON.stringify(req.session.endereco, null, 2));
+
+        req.session.successMessage = 'Login realizado com sucesso';
+        res.redirect('/');
     } catch (error) {
-      console.error('Erro ao realizar login:', error.message);
-      res.status(500).json({ error: error.message });
+        console.error('Erro ao realizar login:', error.message);
+        res.status(500).json({ error: error.message });
     }
   },
 
-  logoutCliente: (req, res) => {
+logoutCliente: (req, res) => {
     req.session.destroy(err => {
       if (err) {
         console.error('Erro ao realizar logout:', err.message);

@@ -112,6 +112,12 @@
             <a href="/api/salvar">
               <button class="putColor">Adicionar obras</button>
             </a>
+            <p><strong>ID:</strong> <%= endereco.id %></p>
+            <p><strong>CEP:</strong> <%= endereco.cep %></p>
+            <p><strong>Complemento:</strong> <%= endereco.complemento %></p>
+            <p><strong>Número:</strong> <%= endereco.numero %></p>
+            <p><strong>Tipo:</strong> <%= endereco.tipo %></p>
+            <p><strong>ID do Cliente:</strong> <%= endereco.id_cliente %></p>
           </section>
           <%- include("../../partial/profile/addEndereco") %>
         </section>

@@ -106,8 +106,16 @@
           </section>
          
           <section class="addObras">
-            <button class="putColor" id="openAddObraModal">Adicionar obras</button>
+            <% if(endereco) {%>
+              <p><strong>ID:</strong> <%= endereco.id %></p>
+              <p><strong>CEP:</strong> <%= endereco.cep %></p>
+              <p><strong>Complemento:</strong> <%= endereco.complemento %></p>
+              <p><strong>Número:</strong> <%= endereco.numero %></p>
+              <p><strong>Tipo:</strong> <%= endereco.tipo %></p>
+              <p><strong>ID do Cliente:</strong> <%= endereco.id_cliente %></p>
+              <% }%>
           </section>
+
         </section>
       </section>
     </main>

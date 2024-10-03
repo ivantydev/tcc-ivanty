@@ -2,7 +2,7 @@ const db = require('../../config/pool_conexoes'); // Supondo que já existe uma 
 
 const pedidoModel = {
   // Criar pedido com base no carrinho e detalhes de pagamento
-  criarPedido: async (idCliente, statusPagamento, idPagamento, carrinho) => {
+  criarPedido: async (idCliente, carrinho) => { // Removi `idPagamento` e `statusPagamento`
     const conn = await db.getConnection();
     try {
       await conn.beginTransaction(); // Iniciar transação para consistência
@@ -12,16 +12,16 @@ const pedidoModel = {
         return total + (obra.preco * obra.quantidade);
       }, 0);
 
-      // Inserir o pedido na tabela `pedidos`
+      // Inserir o pedido na tabela `Pedidos`
       const [result] = await conn.query(
-        `INSERT INTO Pedidos (id_cliente, status_pagamento, id_pagamento, preco_total, status_pedido)
-         VALUES (?, ?, ?, ?, 'pendente')`, // Status inicial do pedido é 'pendente'
-        [idCliente, statusPagamento, idPagamento, precoTotal]
+        `INSERT INTO Pedidos (id_cliente, status_pagamento, preco_total, status_pedido)
+         VALUES (?, 'pendente', ?, 'pendente')`, // Status inicial do pagamento e do pedido é 'pendente'
+        [idCliente, precoTotal]
       );
 
       const pedidoId = result.insertId;
 
-      // Inserir cada obra na tabela `pedidos_obras`
+      // Inserir cada obra na tabela `Pedidos_obras`
       for (let item of carrinho) {
         await conn.query(
           `INSERT INTO Pedidos_obras (id_pedido, id_obra, quantidade, preco_unitario)

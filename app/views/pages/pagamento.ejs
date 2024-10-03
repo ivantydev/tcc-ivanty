@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento do Pedido</title>
+
+  <!-- SDK MercadoPago.js V2 -->
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+</head>
+<body>
+  <h1>Pagamento do Pedido: <%= idPedido %></h1>
+
+  <div>
+    <h2>Detalhes do Pedido</h2>
+    <!-- Exibir detalhes do pedido, obras, preços, etc. -->
+  </div>
+
+  <!-- Botão de pagamento Mercado Pago -->
+  <div id="button-checkout"></div>
+
+  <script>
+    // Configurar o SDK do Mercado Pago
+    const mp = new MercadoPago('YOUR_PUBLIC_KEY', {
+      locale: 'pt-BR' // O idioma da página de checkout
+    });
+
+    // Inicializar o botão de pagamento
+    mp.checkout({
+      preference: {
+        id: '<%= preferenceId %>' // Preference ID gerado pelo backend
+      },
+      render: {
+        container: '#button-checkout', // Classe ou ID do botão que será renderizado
+        label: 'Pagar com Mercado Pago', // Texto do botão
+      }
+    });
+  </script>
+</body>
+</html>

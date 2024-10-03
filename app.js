@@ -3,7 +3,7 @@ const session = require('express-session');
 const app = express();
 require('dotenv').config();
 
-const paymentRoutes = require('./app/routes/paymentRoutes.js');
+const pagamentoRoutes = require('./app/routes/pagamentoRoutes.js');
 const clienteRoutes = require('./app/routes/clientesRoutes');
 const obrasRoutes = require('./app/routes/obrasRoutes');
 const indexRoutes = require('./app/routes/indexRoutes');
@@ -44,7 +44,7 @@ app.use("/api", pedidoRoutes);
 app.use("/api", carrinhoRoutes);
 app.use("/api", enderecoRoutes);
 app.use('/pedidos', pedidoRoutes);
-app.use('/api/payment', paymentRoutes);
+app.use('/pagamento', pagamentoRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');

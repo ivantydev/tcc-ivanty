@@ -94,14 +94,14 @@ const pedidoController = {
       await connection.beginTransaction();
 
       // Verificar se o pedido existe
-      const [pedido] = await connection.query('SELECT * FROM Pedidos WHERE id = ?', [idPedido]);
+      const [pedido] = await connection.query('SELECT * FROM Pedidos WHERE id_pedido = ?', [idPedido]);
       if (!pedido.length) {
         return res.status(404).json({ message: 'Pedido não encontrado.' });
       }
 
       // Atualizar o status de pagamento na tabela Pedidos
       await connection.query(
-        'UPDATE Pedidos SET status_pagamento = ?, valor_total = ? WHERE id = ?',
+        'UPDATE Pedidos SET status_pagamento = ?, valor_total = ? WHERE id_pedido = ?',
         ['APROVADO', valor, idPedido]
       );
 

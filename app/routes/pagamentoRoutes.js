@@ -10,7 +10,7 @@ const mp = new MercadoPagoConfig({
 });
 
 // Rota para criar um pedido e uma preferência de pagamento
-router.post('/criar-pedido', async (req, res) => {
+router.get('/criar-pedido', async (req, res) => {
   const { idCliente, statusPagamento, idPagamento, carrinho } = req.body;
 
   try {

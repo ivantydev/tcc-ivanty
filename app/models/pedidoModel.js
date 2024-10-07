@@ -44,11 +44,11 @@ const pedidoModel = {
   // Obter pedido pelo ID
   getPedidoById: async (pedidoId) => {
     const [pedido] = await db.query(
-      'SELECT * FROM Pedidos WHERE id = ?',
+      'SELECT * FROM Pedidos WHERE id_pedido = ?',
       [pedidoId]
     );
     const [obras] = await db.query(
-      'SELECT * FROM Pedidos_obras WHERE pedidoId = ?',
+      'SELECT * FROM Pedidos_obras WHERE id_pedido = ?',
       [pedidoId]
     );
     return { pedido: pedido[0], obras };
@@ -57,7 +57,7 @@ const pedidoModel = {
   // Atualizar o status de um pedido
   atualizarStatusPedido: async (pedidoId, statusPedido) => {
     await db.query(
-      'UPDATE Pedidos SET status_pedido = ? WHERE id = ?',
+      'UPDATE Pedidos SET status_pedido = ? WHERE id_pedido = ?',
       [statusPedido, pedidoId]
     );
   },

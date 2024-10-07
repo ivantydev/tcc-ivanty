@@ -23,7 +23,7 @@ const carrinhoController = {
       } else {
         // Adiciona a obra ao carrinho
         req.session.carrinho.push({
-          id: obra.id_obra,
+          id_obra: obra.id_obra,
           titulo: obra.titulo_obra,
           preco: obra.preco || 0, // Ajuste se tiver preço
           quantidade: 1,

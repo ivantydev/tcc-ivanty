@@ -74,7 +74,7 @@ const pedidoController = {
   // Listar pedidos por cliente logado
   listarPedidos: async (req, res) => {
     const idCliente = req.session.cliente.id;
-    const notification = req.session.notification || null; // Ou outra lógica para definir notification
+    const notification = req.session.notification || null;
 
     try {
       const pedidos = await pedidoModel.getPedidosByClienteId(idCliente);
@@ -82,6 +82,37 @@ const pedidoController = {
     } catch (error) {
       console.error('Erro ao listar pedidos:', error.message);
       res.status(500).json({ error: 'Erro ao listar pedidos' });
+    }
+  },
+  
+
+  processarPagamento: async (req, res) => {
+    const { idPedido, metodoPagamento, valor } = req.body;
+
+    const connection = await db.getConnection();
+    try {
+      await connection.beginTransaction();
+
+      // Verificar se o pedido existe
+      const [pedido] = await connection.query('SELECT * FROM Pedidos WHERE id = ?', [idPedido]);
+      if (!pedido.length) {
+        return res.status(404).json({ message: 'Pedido não encontrado.' });
+      }
+
+      // Atualizar o status de pagamento na tabela Pedidos
+      await connection.query(
+        'UPDATE Pedidos SET status_pagamento = ?, valor_total = ? WHERE id = ?',
+        ['APROVADO', valor, idPedido]
+      );
+
+      await connection.commit();
+      res.status(200).json({ message: 'Pagamento processado com sucesso!' });
+    } catch (error) {
+      await connection.rollback();
+      console.error('Erro ao processar pagamento:', error.message);
+      res.status(500).json({ message: 'Erro ao processar pagamento.' });
+    } finally {
+      connection.release();
     }
   },
 };

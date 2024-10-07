@@ -1,96 +1,74 @@
-const db = require('../../config/pool_conexoes'); // Supondo que já existe uma configuração de banco de dados
+const db = require('../../config/pool_conexoes');
 
 const pedidoModel = {
-  // Criar pedido com base no carrinho e detalhes de pagamento
-  criarPedido: async (idCliente, carrinho) => { // Removi `idPagamento` e `statusPagamento`
-    const conn = await db.getConnection();
+  criarPedido: async (idCliente, statusPagamento, idPagamento, carrinho) => {
+    const connection = await db.getConnection();
     try {
-      await conn.beginTransaction(); // Iniciar transação para consistência
+      await connection.beginTransaction();
 
-      // Calcular o preço total do pedido
-      const precoTotal = carrinho.reduce((total, obra) => {
-        return total + (obra.preco * obra.quantidade);
-      }, 0);
+      // Calcular o preço total do carrinho
+      const precoTotal = carrinho.reduce((total, item) => total + (parseFloat(item.preco) * item.quantidade), 0);
 
-      // Inserir o pedido na tabela `Pedidos`
-      const [result] = await conn.query(
-        `INSERT INTO Pedidos (id_cliente, status_pagamento, preco_total, status_pedido)
-         VALUES (?, 'pendente', ?, 'pendente')`, // Status inicial do pagamento e do pedido é 'pendente'
-        [idCliente, precoTotal]
+      // Inserir o pedido na tabela Pedidos com o preço total
+      const [result] = await connection.query(
+        'INSERT INTO Pedidos (id_cliente, status_pagamento, id_pagamento, preco_total) VALUES (?, ?, ?, ?)',
+        [idCliente, statusPagamento, idPagamento, precoTotal]
       );
 
       const pedidoId = result.insertId;
 
-      // Inserir cada obra na tabela `Pedidos_obras`
-      for (let item of carrinho) {
-        await conn.query(
-          `INSERT INTO Pedidos_obras (id_pedido, id_obra, quantidade, preco_unitario)
-           VALUES (?, ?, ?, ?)`,
-          [pedidoId, item.id, item.quantidade, item.preco]
+      // Inserir as obras relacionadas ao pedido na tabela Pedidos_obras
+      for (const item of carrinho) {
+        // Validação dos dados do item
+        if (!item.id_obra || !item.quantidade || isNaN(item.quantidade) || !item.preco || isNaN(parseFloat(item.preco))) {
+          throw new Error(`Invalid item in cart: ${JSON.stringify(item)}`);
+        }
+
+        await connection.query(
+          'INSERT INTO Pedidos_obras (id_pedido, id_obra, quantidade, preco_unitario) VALUES (?, ?, ?, ?)',
+          [pedidoId, item.id_obra, item.quantidade, parseFloat(item.preco)]
         );
       }
 
-      await conn.commit(); // Confirmar a transação
-
+      await connection.commit();
       return pedidoId;
     } catch (error) {
-      await conn.rollback(); // Reverter a transação em caso de erro
+      await connection.rollback();
+      console.error('Error creating order:', error.message);
       throw error;
     } finally {
-      conn.release();
+      connection.release();
     }
   },
 
   // Obter pedido pelo ID
   getPedidoById: async (pedidoId) => {
-    const conn = await db.getConnection();
-    try {
-      // Buscar detalhes do pedido
-      const [pedido] = await conn.query(
-        `SELECT * FROM Pedidos WHERE id_pedido = ?`,
-        [pedidoId]
-      );
-
-      // Buscar obras associadas ao pedido
-      const [obras] = await conn.query(
-        `SELECT o.id_obra, o.titulo_obra, po.quantidade, po.preco_unitario AS preco
-         FROM Obras o
-         INNER JOIN Pedidos_obras po ON o.id_obra = po.id_obra
-         WHERE po.id_pedido = ?`,
-        [pedidoId]
-      );
-
-      return { pedido: pedido[0], obras };
-    } finally {
-      conn.release();
-    }
+    const [pedido] = await db.query(
+      'SELECT * FROM Pedidos WHERE id = ?',
+      [pedidoId]
+    );
+    const [obras] = await db.query(
+      'SELECT * FROM Pedidos_obras WHERE pedidoId = ?',
+      [pedidoId]
+    );
+    return { pedido: pedido[0], obras };
   },
 
-  // Atualizar status do pedido
+  // Atualizar o status de um pedido
   atualizarStatusPedido: async (pedidoId, statusPedido) => {
-    const conn = await db.getConnection();
-    try {
-      await conn.query(
-        `UPDATE Pedidos SET status_pedido = ? WHERE id_pedido = ?`,
-        [statusPedido, pedidoId]
-      );
-    } finally {
-      conn.release();
-    }
+    await db.query(
+      'UPDATE Pedidos SET status_pedido = ? WHERE id = ?',
+      [statusPedido, pedidoId]
+    );
   },
 
   // Listar pedidos por cliente
   getPedidosByClienteId: async (idCliente) => {
-    const conn = await db.getConnection();
-    try {
-      const [pedidos] = await conn.query(
-        `SELECT * FROM Pedidos WHERE id_cliente = ?`,
-        [idCliente]
-      );
-      return pedidos;
-    } finally {
-      conn.release();
-    }
+    const [pedidos] = await db.query(
+      'SELECT * FROM Pedidos WHERE id_cliente = ?',
+      [idCliente]
+    );
+    return pedidos;
   },
 };
 

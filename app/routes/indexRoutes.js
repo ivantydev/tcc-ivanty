@@ -130,13 +130,13 @@ router.get('/requests', authenticateUser, (req, res) => {
 
 router.get('/paintings', obraController.listarObras);
 
-router.post('/carrinho/adicionar/:id', carrinhoController.adicionarAoCarrinho);
+router.post('/carrinho/adicionar/:id', carrinhoController.adicionarAoCarrinho, authenticateUser);
 
 // Rota para visualizar o carrinho
-router.get('/carrinho', carrinhoController.visualizarCarrinho);
+router.get('/carrinho', authenticateUser, carrinhoController.visualizarCarrinho );
 
 // Rota para remover do carrinho
-router.post('/carrinho/remover/:id', carrinhoController.removerDoCarrinho);
+router.post('/carrinho/remover/:id', carrinhoController.removerDoCarrinho, authenticateUser);
 
 router.get('/pedidos', authenticateUser, pedidoController.listarPedidos)
 

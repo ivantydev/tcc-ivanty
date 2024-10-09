@@ -39,10 +39,10 @@ app.use((req, res, next) => {
 
 app.use('/api', clienteRoutes);
 app.use('/api', obrasRoutes);
+app.use('/api', enderecoRoutes);
 app.use("/", indexRoutes);
 app.use("/api", pedidoRoutes);
 app.use("/api", carrinhoRoutes);
-app.use("/api", enderecoRoutes);
 app.use('/pedidos', pedidoRoutes);
 app.use('/pagamento', pagamentoRoutes);
 

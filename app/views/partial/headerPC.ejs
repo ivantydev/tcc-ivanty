@@ -21,6 +21,9 @@
             <% if (isLoggedIn) { %>
             <li><a href="/pedidos">Pedidos</a></li>
             <% } %>
+            <% if (isLoggedIn) { %>
+            <li><a href="/pedidos">Entregas a fazer</a></li>
+            <% } %>
             <% if (!isLoggedIn) { %>
                 <li><a href="/register">Cadastre-se</a></li>
             <% } %>
@@ -35,7 +38,7 @@
                 <% } %>
             <% if (isLoggedIn) { %>
                 <a href="/carrinho" class=""><i class='bx bx-cart'></i></a>
-                <% } %>
+            <% } %>
         </div>
     </header>
     

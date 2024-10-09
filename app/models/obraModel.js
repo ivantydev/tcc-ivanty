@@ -44,7 +44,39 @@ const ObraModel = {
   getObrasByClienteId: async (id_cliente) => {
     const [rows] = await db.query('SELECT * FROM Obras WHERE id_cliente = ?', [id_cliente]);
     return rows;
-  }
+  },
+
+  getObrasVendidasPorArtista: async (id_cliente) => {
+    const query = `
+      SELECT 
+        O.id_obra,              -- Certifique-se de selecionar o id_obra
+        O.titulo_obra,
+        O.descricao_obra,
+        O.ano_criacao,
+        O.categorias,
+        O.preco,
+        PO.quantidade,
+        PO.preco_unitario,
+        P.id_pedido,
+        P.status_pagamento,
+        C.id_cliente AS cliente_id,  -- id_cliente do cliente que comprou
+        C.nome_cliente,
+        C.email_cliente
+      FROM 
+        Obras O
+      INNER JOIN 
+        Pedidos_obras PO ON O.id_obra = PO.id_obra
+      INNER JOIN 
+        Pedidos P ON PO.id_pedido = P.id_pedido
+      INNER JOIN 
+        Clientes C ON P.id_cliente = C.id_cliente
+      WHERE 
+        O.id_cliente = ?;
+    `;
+    
+    const [rows] = await db.query(query, [id_cliente]);
+    return rows;
+  },
 };
 
 module.exports = ObraModel;

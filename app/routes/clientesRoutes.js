@@ -93,4 +93,6 @@ router.post('/clientes/uploadfoto', isAuthenticated, upload.single('foto_cliente
 
 router.get('/artistas', ClienteController.getArtistas);
 
+router.get('/artista/:id_cliente/obras-vendidas', ClienteController.getObrasVendidas);
+
 module.exports = router;

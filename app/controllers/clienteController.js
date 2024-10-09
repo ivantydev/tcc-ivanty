@@ -318,6 +318,29 @@ logoutCliente: (req, res) => {
     return fotoCliente ? fotoCliente : 'default.jpg';
   },
 
+  getObrasVendidas: async (req, res) => {
+    const { id_cliente } = req.params;  // ID do artista
+
+    try {
+      // Obtém as obras vendidas junto com as informações do cliente que comprou
+      const obrasVendidas = await ObraModel.getObrasVendidasPorArtista(id_cliente);
+
+      // Verifica se existem obras vendidas e mapeia os IDs de cliente e obra
+      const obrasComClientes = obrasVendidas.map(obra => ({
+        id_obra: obra.id_obra,
+        id_cliente: obra.cliente_id,
+      }));
+
+      // Exibe o array de objetos com IDs no log (opcional)
+      console.log('Obras vendidas e seus respectivos clientes:', obrasComClientes);
+
+      // Retorna as obras vendidas junto com os IDs dos clientes que compraram
+      res.json(obrasComClientes);
+    } catch (error) {
+      console.error('Erro ao obter as obras vendidas:', error.message);
+      res.status(500).send('Erro ao obter as obras vendidas');
+    }
+  },
 };
 
 module.exports = clienteController;

@@ -54,11 +54,6 @@ router.get('/artists', async (req, res) => {
     }
 });
 
-// Rota para a página sobre
-router.get('/about', (req, res) => {
-    res.render('pages/about');
-});
-
 router.get('/profile', authenticateUser, (req, res) => {
     const cliente = req.session.cliente;
     const notification = req.session.notification || null; // Ou outra lógica para definir notification
@@ -94,6 +89,10 @@ router.get('/adm', authenticateUser, authorizeAdmin, (req, res) => {
 });
 
 // Rota para registro
+router.get('/about', (req, res) => {
+    res.render('pages/about.ejs');
+});
+
 router.get('/register', (req, res) => {
     res.render('pages/cadastro.ejs');
 });
@@ -140,6 +139,8 @@ router.post('/carrinho/remover/:id', carrinhoController.removerDoCarrinho, authe
 
 router.get('/pedidos', authenticateUser, pedidoController.listarPedidos)
 
+router.get('/entregas', ClienteController.getObrasVendidasBySession);
+
 router.get('/:username',
     ClienteController.getArtistaByUsername,
     (req, res) => {
@@ -167,5 +168,7 @@ router.get('/obra/:id',
         }
     }
 );
+
+
 
 module.exports = router;

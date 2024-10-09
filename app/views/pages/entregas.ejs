@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obras Vendidas</title>
+</head>
+<body>
+    <h1>Obras Vendidas</h1>
+    
+    <% if (obrasComClientes.length > 0) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID da Obra</th>
+                    <th>ID do Cliente</th>
+                    <th>Endereço do Cliente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% obrasComClientes.forEach(obra => { %>
+                    <tr>
+                        <td><%= obra.id_obra %></td>
+                        <td><%= obra.id_cliente %></td>
+                        <td><%= obra.endereco.cep %>, <%= obra.endereco.complemento %>, <%= obra.endereco.numero %> <%= obra.endereco.tipo %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p>Nenhuma obra vendida encontrada.</p>
+    <% } %>
+
+    <!-- Paginação -->
+    <div class="pagination">
+        <a href="#">&#171; Anterior</a>
+        <a href="#">Próxima &#187;</a>
+    </div>
+</body>
+</html>

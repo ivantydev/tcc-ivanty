@@ -95,4 +95,6 @@ router.get('/artistas', ClienteController.getArtistas);
 
 router.get('/artista/:id_cliente/obras-vendidas', ClienteController.getObrasVendidas);
 
+router.post('/obras-vendidas/:id_cliente/', ClienteController.getObrasVendidas);
+
 module.exports = router;

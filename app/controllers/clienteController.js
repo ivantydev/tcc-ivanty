@@ -346,6 +346,32 @@ logoutCliente: (req, res) => {
       res.status(500).send('Erro ao obter as obras vendidas');
     }
   },
+
+  getObrasVendidasBySession: async (req, res) => {
+    const cliente = req.session.cliente;
+    if (!cliente) {
+        return res.status(401).json({ message: 'Você precisa estar logado para ver as obras vendidas' });
+    }
+
+    const id_cliente = cliente.id;
+
+    try {
+        const obrasVendidas = await ObraModel.getObrasVendidasPorArtista(id_cliente);
+        const endereco = await EnderecoModel.getEnderecoById(id_cliente);
+        
+        const obrasComClientes = obrasVendidas.map(obra => ({
+            id_obra: obra.id_obra,
+            id_cliente: obra.cliente_id,
+            endereco: endereco
+        }));
+
+        // Renderiza a página EJS e envia os dados
+        res.render('pages/entregas', { obrasComClientes });
+    } catch (error) {
+        console.error('Erro ao obter as obras vendidas:', error.message);
+        res.status(500).send('Erro ao obter as obras vendidas');
+    }
+  },
 };
 
 module.exports = clienteController;

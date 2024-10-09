@@ -4,7 +4,8 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const fs = require('fs');
 const ObraModel = require('../models/obraModel')
-const EnderecoModel = require('../models/enderecoModel')
+const EnderecoModel = require('../models/enderecoModel');
+const enderecoController = require('./enderecoController');
 
 const clienteController = {
   getAllClientes: async (req, res) => {
@@ -13,7 +14,7 @@ const clienteController = {
       const limit = parseInt(req.query.limit) || 24;
       const { clientes, total } = await ClienteModel.getAllClientes(page, limit);
       
-      res.render('index', {
+      res.json( {
         clientes,
         total,
         page,
@@ -324,12 +325,16 @@ logoutCliente: (req, res) => {
     try {
       // Obtém as obras vendidas junto com as informações do cliente que comprou
       const obrasVendidas = await ObraModel.getObrasVendidasPorArtista(id_cliente);
-
+      const endereco = await EnderecoModel.getEnderecoById(id_cliente)
+      
       // Verifica se existem obras vendidas e mapeia os IDs de cliente e obra
       const obrasComClientes = obrasVendidas.map(obra => ({
         id_obra: obra.id_obra,
         id_cliente: obra.cliente_id,
+        endereco: endereco
       }));
+
+      
 
       // Exibe o array de objetos com IDs no log (opcional)
       console.log('Obras vendidas e seus respectivos clientes:', obrasComClientes);

@@ -6,6 +6,8 @@ const fs = require('fs');
 const ObraModel = require('../models/obraModel')
 const EnderecoModel = require('../models/enderecoModel');
 const enderecoController = require('./enderecoController');
+const obraController = require('./obraController');
+const { default: axios } = require('axios');
 
 const clienteController = {
   getAllClientes: async (req, res) => {
@@ -358,12 +360,35 @@ logoutCliente: (req, res) => {
     try {
         const obrasVendidas = await ObraModel.getObrasVendidasPorArtista(id_cliente);
         const endereco = await EnderecoModel.getEnderecoById(id_cliente);
-        
-        const obrasComClientes = obrasVendidas.map(obra => ({
-            id_obra: obra.id_obra,
-            id_cliente: obra.cliente_id,
-            endereco: endereco
+
+        // Função para obter o endereço detalhado via API ViaCEP
+        const obterDetalhesEndereco = async (cep) => {
+            try {
+                const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+                return response.data;
+            } catch (error) {
+                console.error(`Erro ao buscar detalhes do CEP: ${cep}`, error.message);
+                return null;  // Retorna nulo se houver um erro
+            }
+        };
+
+        // Obter detalhes das obras e também buscar informações do endereço via CEP
+        const obrasComClientes = await Promise.all(obrasVendidas.map(async (obra) => {
+            const detalhesObra = await ObraModel.getObraById(obra.id_obra);
+            const detalhesEndereco = await obterDetalhesEndereco(endereco.cep_endereco);  // Busca informações detalhadas pelo CEP
+
+            return {
+                id_obra: obra.id_obra,
+                detalhes_obra: detalhesObra,  // Adiciona detalhes da obra
+                id_cliente: obra.cliente_id,
+                endereco: {
+                    ...endereco,  // Mantém os dados do banco
+                    ...detalhesEndereco  // Sobrescreve com os dados da API ViaCEP
+                }
+            };
         }));
+
+        console.log('Obras vendidas e seus respectivos clientes:', obrasComClientes);
 
         // Renderiza a página EJS e envia os dados
         res.render('pages/entregas', { obrasComClientes });

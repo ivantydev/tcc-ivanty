@@ -1,0 +1,24 @@
+.entregasAFazerPC {
+    padding: 5rem;
+} 
+
+.obra-info {
+    margin: 1rem;
+    padding: 2rem;
+    background: #e9e6e6;
+    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.entrega_obra_imagem {
+    width: 100%;
+}
+
+.entrega_obra_descricao {
+    margin-top: 0.2rem;
+}
+
+.entrega_obra_endereco {
+    margin-top: 0.2rem;
+}

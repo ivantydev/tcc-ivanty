@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/headerPC.css">
     <link rel="stylesheet" href="css/globalPC.css">
+    <link rel="stylesheet" href="css/carrinhoContainer.css">
 </head>
 <body>
     <section class="telasPequenas">
@@ -59,49 +60,52 @@
     </section>
     <section class="telasGrandes">
         <%- include("../partial/headerPC") %>
-        <h1>Carrinho de Compras</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Quantidade</th>
-                    <th>Preço</th>
-                    <th>Remover</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% if (carrinho.length > 0) { %>
-                    <% carrinho.forEach(item => { %>
-                        <tr>
-                            <td><%= item.titulo %></td>
-                            <td><%= item.quantidade %></td>
-                            <td>R$ <%= (item.preco * item.quantidade).toFixed(2) %></td>
-                            <td>
-                                <form action="/carrinho/remover/<%= item.id %>" method="POST">
-                                    <button type="submit">Remover</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <% }) %>
-                <% } else { %>
+        <section class="carrinhoContainerPC">
+            <h1>Carrinho de Compras</h1>
+            <table>
+                <thead>
                     <tr>
-                        <td colspan="4">O carrinho está vazio.</td>
+                        <th>Título</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                        <th>Remover</th>
                     </tr>
-                <% } %>
-            </tbody>
-        </table>
-    
-        <% if (carrinho.length > 0) { %>
-            <form action="/pedidos/criar" method="POST">
-                <!-- Informações de pagamento podem ser passadas aqui (como status ou ID de pagamento) -->
-                <input type="hidden" name="statusPagamento" value="pendente">
-                <input type="hidden" name="idPagamento" value="12345"> <!-- Exemplo de ID de pagamento -->
-                
-                <button type="submit">Finalizar Compra</button>
-            </form>
-        <% } %>
-    
-        <a href="/">Continuar comprando</a>
+                </thead>
+                <tbody>
+                    <% if (carrinho.length > 0) { %>
+                        <% carrinho.forEach(item => { %>
+                            <tr>
+                                <td><%= item.titulo %></td>
+                                <td><%= item.quantidade %></td>
+                                <td>R$ <%= (item.preco * item.quantidade).toFixed(2) %></td>
+                                <td>
+                                    <form action="/carrinho/remover/<%= item.id %>" method="POST">
+                                        <button type="submit">Remover</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="4">O carrinho está vazio.</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        
+            <% if (carrinho.length > 0) { %>
+                <form action="/pedidos/criar" method="POST">
+                    <!-- Informações de pagamento podem ser passadas aqui (como status ou ID de pagamento) -->
+                    <input type="hidden" name="statusPagamento" value="pendente">
+                    <input type="hidden" name="idPagamento" value="12345"> <!-- Exemplo de ID de pagamento -->
+                    
+                    <button type="submit">Finalizar Compra</button>
+                </form>
+            <% } %>
+        
+            <a href="/">Continuar comprando</a>
+        </section>
+
     </section>
 
 </body>

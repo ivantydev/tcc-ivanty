@@ -372,6 +372,9 @@ logoutCliente: (req, res) => {
             }
         };
 
+        // Obter informações do cliente que vai receber a obra
+        const clienteQueRecebe = await ClienteModel.getClienteById(id_cliente);  // Busca o nome do cliente
+
         // Obter detalhes das obras e também buscar informações do endereço via CEP
         const obrasComClientes = await Promise.all(obrasVendidas.map(async (obra) => {
             const detalhesObra = await ObraModel.getObraById(obra.id_obra);
@@ -381,6 +384,7 @@ logoutCliente: (req, res) => {
                 id_obra: obra.id_obra,
                 detalhes_obra: detalhesObra,  // Adiciona detalhes da obra
                 id_cliente: obra.cliente_id,
+                nome_cliente: clienteQueRecebe.nome_cliente,  // Adiciona o nome de quem vai receber
                 endereco: {
                     ...endereco,  // Mantém os dados do banco
                     ...detalhesEndereco  // Sobrescreve com os dados da API ViaCEP

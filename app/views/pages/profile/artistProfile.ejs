@@ -57,7 +57,7 @@
         </section>
         <section class="menu-perfil">
           <ul>
-            <li><a href="/<%= cliente.perfil %>" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
+            <li><a href="/artista_obras" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
             <li><a href="#" class="" id="openEditModalMobile" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
             <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
           </ul>
@@ -101,24 +101,13 @@
           </section>
           <section class="menu-perfil">
             <ul>
-              <li><a href="/<%= cliente.perfil %>" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
-              <li><a href="#" class="" id="abrirModalEndereco" title=""><i class="icon-perfil fas fa-bullhorn"></i> Endereços</a></li>☻
+              <li><a href="/artista_obras" title=""><i class="icon-perfil fas fa-bullhorn"></i> Obras</a></li>
+              <li><a href="#" class="" id="abrirModalEndereco" title=""><i class="icon-perfil fas fa-bullhorn"></i> Endereços</a></li>
               <li><a href="#" class="" id="openEditModal" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
               <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
             </ul>
           </section>        
           <section class="addObras">
-            <a href="/api/salvar">
-              <button class="putColor">Adicionar obras</button>
-            </a>
-            <% if(endereco) {%>
-            <p><strong>ID:</strong> <%= endereco.id %></p>
-            <p><strong>CEP:</strong> <%= endereco.cep %></p>
-            <p><strong>Complemento:</strong> <%= endereco.complemento %></p>
-            <p><strong>Número:</strong> <%= endereco.numero %></p>
-            <p><strong>Tipo:</strong> <%= endereco.tipo %></p>
-            <p><strong>ID do Cliente:</strong> <%= endereco.id_cliente %></p>
-            <% }%>
           </section>
           <%- include("../../partial/profile/addEndereco") %>
         </section>

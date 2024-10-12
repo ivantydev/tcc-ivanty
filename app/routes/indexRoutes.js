@@ -37,17 +37,47 @@ router.get('/', async (req, res) => {
 
 router.get('/artists', async (req, res) => {
     try {
-        // Busca todos os artistas
-        const artistas = await clienteModel.getArtistas();
+        // Busca todos os artistas e suas obras
+        const artistasComObras = await clienteModel.getArtistasComObras();
 
-        // Para cada artista, busca as obras relacionadas
-        const artistasComObras = await Promise.all(artistas.map(async (artista) => {
-            const obras = await clienteModel.getObrasByClienteId(artista.id_cliente);
-            return { ...artista, obras }; // Adiciona as obras ao objeto do artista
-        }));
+        // Estruturar os dados para facilitar o uso na view
+        const artistas = {};
+        artistasComObras.forEach((row) => {
+            const { 
+                id_cliente, 
+                nome_cliente, 
+                perfil_cliente, 
+                foto_cliente, // Adiciona a foto do cliente
+                id_obra, 
+                titulo_obra, 
+                descricao_obra, 
+                imagem_obra 
+            } = row;
+
+            // Verifica se o artista já foi adicionado
+            if (!artistas[id_cliente]) {
+                artistas[id_cliente] = {
+                    id_cliente,
+                    nome_cliente,
+                    perfil_cliente,
+                    foto_cliente, // Armazena a foto do artista
+                    obras: []
+                };
+            }
+
+            // Adiciona a obra apenas se existir
+            if (id_obra) { 
+                artistas[id_cliente].obras.push({
+                    id_obra,
+                    titulo_obra,
+                    descricao_obra,
+                    imagem_obra
+                });
+            }
+        });
 
         // Renderiza a página com os dados dos artistas e suas obras
-        res.render('pages/artists', { artistas: artistasComObras });
+        res.render('pages/artists', { artistas: Object.values(artistas) });
     } catch (error) {
         console.error('Erro ao buscar artistas e obras:', error.message);
         res.status(500).send('Erro ao carregar a página de artistas.');

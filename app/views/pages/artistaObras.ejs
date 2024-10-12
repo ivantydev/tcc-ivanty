@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ivanty</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <link rel="stylesheet" href="css/headerPC.css">
+  <link rel="stylesheet" href="css/globalPC.css">
+  <link rel="stylesheet" href="css/carrosell.css">
+  <link rel="stylesheet" href="css/carousel.css">
+  <link rel="stylesheet" href="css/perfil.css">
+  <link rel="stylesheet" href="css/perfilMobile.css">
+  <link rel="stylesheet" href="css/edit.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+<body>
+  <section class="telasPequenas">
+    <%- include("../partial/header") %>
+
+    <section class="perfil-usuario">
+      <section class="container-perfil">
+        <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
+          <section class="shadow"></section>
+          <section class="avatar-perfil">
+            <img src="./uploads/<%= cliente.foto %>" alt="">
+            <a href="#" class="takePicture" id="openUploadModalMobile">
+              <i class="fas fa-camera"></i> 
+              <span> Trocar foto</span>
+            </a>
+          </section>
+          <section class="date-perfil">
+            <% if (!isLoggedIn) { %>
+              <a href="/login" class="login">Login</a>
+            <% } else { %>
+              <h4 class="titulo-usuario"><%= cliente.nome %></h4>
+              <p class="bio-usuario">@<%= cliente.perfil %></p>
+            <% } %>
+            <ul class="lista-perfil">
+              <!-- Adicione informações adicionais aqui, se necessário -->
+            </ul>
+          </section>
+          <section class="opção-perfil">
+          </section>
+        </section>
+        <section class="menu-perfil">
+          <ul>
+            <li><a href="/profile" title=""><i class="icon-perfil fas fa-person"></i> Voltar ao perfil</a></li>
+            <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
+          </ul>
+        </section>
+        <section class="addObras">
+          <a href="/api/salvar">
+            <button class="putColor" id="openAddObraModalMobile">Adicionar obras</button>
+          </a>
+        </section>
+      </section>
+    </section>
+  </section>
+
+  <section class="telasGrandes">
+    <%- include("../partial/headerPC") %>
+
+    <main class="mainTelasGrandes">
+      <section class="perfil-usuario">
+        <section class="container-perfil">
+          <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
+            <section class="shadow"></section>
+            <section class="avatar-perfil">
+              <img src="./uploads/<%= cliente.foto %>" alt="">
+              <a href="#" class="takePicture" id="openUploadModal">
+                <i class="fas fa-camera"></i> 
+                <span> Trocar foto</span>
+              </a>
+            </section>
+            <section class="date-perfil">
+              <% if (!isLoggedIn) { %>
+                <a href="/login" class="login">Login</a>
+              <% } else { %>
+                <h4 class="titulo-usuario"><%= cliente.nome %></h4>
+                <p class="bio-usuario">@<%= cliente.perfil %></p>
+              <% } %>
+
+            </section>
+            <section class="opção-perfil">
+              <button type=""><i class="fas fa-wrench"></i></button>
+            </section>
+          </section>
+          <section class="menu-perfil">
+            <ul>
+              <li><a href="/profile" title=""><i class="icon-perfil fas fa-person"></i> Voltar para perfil</a></li>
+              <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
+            </ul>
+          </section>        
+          <section class="addObras" style="padding: 20px; background-color: #f9f9f9; border-radius: 5px;">
+            <h1 style="color: #000; text-align: center; margin-bottom: 20px;">Minhas Obras</h1>
+        
+            <div class="obras-container" style="overflow-x: auto;">
+                <% if (obras && obras.length > 0) { %>
+                    <table style="width: 100%; border-collapse: collapse; margin: 0 auto; font-family: Arial, sans-serif;">
+                        <thead>
+                            <tr style="background-color: #4CAF50; color: white;">
+                                <th style="padding: 10px; border: 1px solid #ddd;">Título</th>
+                                <th style="padding: 10px; border: 1px solid #ddd;">Descrição</th>
+                                <th style="padding: 10px; border: 1px solid #ddd;">Ano</th>
+                                <th style="padding: 10px; border: 1px solid #ddd;">Categoria</th>
+                                <th style="padding: 10px; border: 1px solid #ddd;">Preço</th>
+                                <th style="padding: 10px; border: 1px solid #ddd;">Quantidade em Estoque</th>
+                                <th style="padding: 10px; border: 1px solid #ddd;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% obras.forEach(obra => { %>
+                                <tr style="border: 1px solid #ddd;">
+                                    <td style="padding: 10px; border: 1px solid #ddd;"><%= obra.titulo_obra %></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;"><%= obra.descricao_obra %></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;"><%= obra.ano_criacao %></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;"><%= obra.categorias %></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">R$ <%= obra.preco %></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;"><%= obra.quantidade_em_estoque %></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">
+                                        <!-- Botão para editar a obra -->
+                                        <a href="/artista/obras/editar/<%= obra.id_obra %>" style="text-decoration: none; color: #fff; background-color: #007bff; padding: 5px 10px; border-radius: 3px; margin-right: 5px;">Editar</a>
+                                        
+                                        <!-- Formulário para deletar a obra -->
+                                        <form action="/artista/obras/<%= obra.id_obra %>/delete" method="POST" style="display:inline;">
+                                            <button type="submit" style="color: #fff; background-color: #dc3545; border: none; padding: 5px 10px; border-radius: 3px;">Excluir</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                <% } else { %>
+                    <p style="text-align: center; font-size: 18px; color: #888;">Você ainda não adicionou nenhuma obra.</p>
+                <% } %>
+            </div>
+        
+            <a href="/api/salvar" class="btn" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px;">Adicionar Nova Obra</a>
+        </section>
+          <%- include("../partial/profile/addEndereco") %>
+        </section>
+      </section>
+    </main>
+
+    <!-- Modal para editar perfil -->
+    <%- include("../partial/profile/editProfileModal") %>
+
+    <!-- Modal para upload de foto -->
+    <%- include("../partial/profile/uploadFotoModal") %>
+
+    <!-- Modal para adicionar obras -->
+    <%- include("../partial/profile/addObraModal") %>
+  </section>
+
+  <!-- Modais para a versão mobile -->
+  <%- include("../partial/profile/editProfileModalMobile") %>
+
+  <%- include("../partial/profile/uploadFotoModalMobile") %>
+
+  <%- include("../partial/profile/addObraModalMobile") %>
+
+  <script src="js/modais.js"></script>
+
+  <%- include("../partial/footer") %>
+
+
+</body>
+</html>

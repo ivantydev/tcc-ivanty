@@ -11,7 +11,7 @@
       <% artista.obras.forEach(obra => { %>
         <img class="artImage" src="/uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
       <% }); %>
-      <a href="/artist/<%= artista.id_cliente %>" class="seeMoreA">
+      <a href="/<%= artista.perfil_cliente %>" class="seeMoreA">
         Ver mais obras...
       </a>
     </div>

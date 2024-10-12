@@ -1,0 +1,38 @@
+<!-- views/pages/novaObra.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adicionar Nova Obra</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>Adicionar Nova Obra</h1>
+
+  <form action="/artista/obras/salvar" method="POST" enctype="multipart/form-data">
+    <label for="titulo_obra">Título:</label>
+    <input type="text" id="titulo_obra" name="titulo_obra" required>
+
+    <label for="descricao_obra">Descrição:</label>
+    <textarea id="descricao_obra" name="descricao_obra" required></textarea>
+
+    <label for="ano_criacao">Ano de Criação:</label>
+    <input type="number" id="ano_criacao" name="ano_criacao" required>
+
+    <label for="categorias">Categoria:</label>
+    <input type="text" id="categorias" name="categorias" required>
+
+    <label for="preco">Preço:</label>
+    <input type="number" id="preco" name="preco" step="0.01" required>
+
+    <label for="quantidade_em_estoque">Quantidade em Estoque:</label>
+    <input type="number" id="quantidade_em_estoque" name="quantidade_em_estoque" required>
+
+    <label for="imagem_obra">Imagem da Obra:</label>
+    <input type="file" id="imagem_obra" name="imagem_obra" accept="image/*">
+
+    <button type="submit">Salvar</button>
+  </form>
+</body>
+</html>

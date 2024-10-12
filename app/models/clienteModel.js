@@ -91,7 +91,7 @@ const ClienteModel = {
   },
 
   getObrasByClienteId: async (id_cliente) => {
-    const [rows] = await db.query('SELECT * FROM Obras WHERE id_cliente = ?', [id_cliente]);
+    const [rows] = await pool.query('SELECT * FROM Obras WHERE id_cliente = ?', [id_cliente]);
     return rows;
   },
 
@@ -99,6 +99,30 @@ const ClienteModel = {
     const [rows] = await pool.query('SELECT * FROM Obras WHERE id_cliente = ?', [id_cliente]);
     return rows;
   },
+
+  async getArtistasComObras() {
+    const query = `
+        SELECT 
+            c.id_cliente, 
+            c.nome_cliente, 
+            c.perfil_cliente,
+            c.foto_cliente,
+            o.id_obra, 
+            o.titulo_obra, 
+            o.descricao_obra,
+            o.imagem_obra
+        FROM 
+            Clientes AS c
+        INNER JOIN 
+            Obras AS o ON c.id_cliente = o.id_cliente
+        WHERE 
+            o.status_obra = 1
+    `;
+    const [rows] = await pool.execute(query); 
+    return rows;
+}
+
+
   
 };
 

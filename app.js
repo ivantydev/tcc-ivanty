@@ -10,6 +10,7 @@ const indexRoutes = require('./app/routes/indexRoutes');
 const pedidoRoutes = require('./app/routes/pedidoRoutes')
 const carrinhoRoutes = require('./app/routes/carrinhoRoutes')
 const enderecoRoutes = require('./app/routes/enderecosRoutes')
+const artistaRoutes = require('./app/routes/artistaRoutes')
 
 const PORT = process.env.PORT || 3000;
 
@@ -40,6 +41,7 @@ app.use((req, res, next) => {
 app.use('/api', clienteRoutes);
 app.use('/api', obrasRoutes);
 app.use('/api', enderecoRoutes);
+app.use("/", artistaRoutes);
 app.use("/", indexRoutes);
 app.use("/api", pedidoRoutes);
 app.use("/api", carrinhoRoutes);

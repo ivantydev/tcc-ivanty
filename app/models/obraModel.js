@@ -2,10 +2,15 @@ const db = require('../../config/pool_conexoes');
 
 const ObraModel = {
   getAllObras: async () => {
-    const [rows] = await db.query('SELECT * FROM Obras');
+    const [rows] = await db.query('SELECT * FROM Obras WHERE status_obra = 1');
+    return rows;
+  },  
+
+  getObrasByClienteId: async (id_cliente) => {
+    const [rows] = await db.query('SELECT * FROM Obras WHERE id_cliente = ? AND status_obra = 1', [id_cliente]);
     return rows;
   },
-
+  
   getObraById: async (id) => {
     const [rows] = await db.query('SELECT * FROM Obras WHERE id_obra = ?', [id]);
     return rows[0];
@@ -37,12 +42,13 @@ const ObraModel = {
   },
 
   deleteObra: async (id) => {
-    const [result] = await db.query('DELETE FROM Obras WHERE id_obra = ?', [id]);
+    // Definindo a obra como inativa ao invés de deletar
+    const [result] = await db.query('UPDATE Obras SET status_obra = 0 WHERE id_obra = ?', [id]);
     return result.affectedRows;
   },
 
   getObrasByClienteId: async (id_cliente) => {
-    const [rows] = await db.query('SELECT * FROM Obras WHERE id_cliente = ?', [id_cliente]);
+    const [rows] = await db.query('SELECT * FROM Obras WHERE id_cliente = ? AND status_obra = 1', [id_cliente]);
     return rows;
   },
 

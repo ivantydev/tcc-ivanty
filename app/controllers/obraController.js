@@ -163,7 +163,22 @@ const obraController = {
       console.error('Erro ao obter todas as obras:', error.message);
       return res.status(500).render('pages/obras', { error: 'Erro ao obter obras' });
     }
-  }
+  },
+
+  getObrasByArtista: async (req, res) => {
+    try {
+      const artistaId = req.session.cliente.id; // Supondo que o id do artista está salvo na sessão
+      const obras = await ObraModel.getObrasByClienteId(artistaId);
+      
+      // Envie a variável cliente para a tela
+      const cliente = req.session.cliente;
+  
+      res.render('pages/artistaObras', { obras, artistaId, cliente });
+    } catch (error) {
+      console.error('Erro ao obter obras do artista:', error.message);
+      return res.status(500).render('pages/artistaObras', { error: 'Erro ao obter obras' });
+    }
+  },
 };
 
 module.exports = obraController;

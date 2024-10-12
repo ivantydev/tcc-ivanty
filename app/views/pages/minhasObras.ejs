@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Obras</title>
+    <link rel="stylesheet" href="/path/to/your/styles.css"> <!-- Adicione seu arquivo de estilo -->
+</head>
+<body>
+    <div class="container">
+        <h1>Minhas Obras</h1>
+        
+        <!-- Exibe mensagem de sucesso ou erro -->
+        <% if (notification) { %>
+            <div class="alert alert-<%= notification.type %>">
+                <%= notification.message %>
+            </div>
+        <% } %>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Ano de Criação</th>
+                    <th>Preço</th>
+                    <th>Quantidade em Estoque</th>
+                    <th>Imagem</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% obras.forEach((obra) => { %>
+                <tr>
+                    <td><%= obra.titulo_obra %></td>
+                    <td><%= obra.descricao_obra %></td>
+                    <td><%= obra.ano_criacao %></td>
+                    <td>R$ <%= obra.preco %></td>
+                    <td><%= obra.quantidade_em_estoque %></td>
+                    <td><img src="/uploads/obras/<%= obra.imagem_obra %>" alt="Imagem da obra" width="100"></td>
+                    <td>
+                        <!-- Botão para abrir modal de edição -->
+                        <button class="btn btn-primary" onclick="abrirModalEditar('<%= obra.id_obra %>')">Editar</button>
+                        
+                        <!-- Botão para exclusão -->
+                        <form action="/api/obras/<%= obra.id_obra %>/delete" method="POST" style="display: inline;">
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+
+        <!-- Modal de Edição -->
+        <div id="modalEditar" style="display:none;">
+            <form id="formEditarObra" method="POST" enctype="multipart/form-data">
+                <input type="hidden" id="idObra" name="id_obra">
+                <div>
+                    <label for="titulo_obra">Título:</label>
+                    <input type="text" id="titulo_obra" name="titulo_obra">
+                </div>
+                <div>
+                    <label for="descricao_obra">Descrição:</label>
+                    <textarea id="descricao_obra" name="descricao_obra"></textarea>
+                </div>
+                <div>
+                    <label for="ano_criacao">Ano de Criação:</label>
+                    <input type="text" id="ano_criacao" name="ano_criacao">
+                </div>
+                <div>
+                    <label for="preco">Preço:</label>
+                    <input type="number" id="preco" name="preco" step="0.01">
+                </div>
+                <div>
+                    <label for="quantidade_em_estoque">Quantidade em Estoque:</label>
+                    <input type="number" id="quantidade_em_estoque" name="quantidade_em_estoque">
+                </div>
+                <div>
+                    <label for="imagem_obra">Imagem:</label>
+                    <input type="file" id="imagem_obra" name="imagem_obra">
+                </div>
+                <button type="submit">Salvar Alterações</button>
+            </form>
+        </div>
+
+        <script>
+            function abrirModalEditar(idObra) {
+                // Preenche os campos do modal com as informações da obra a ser editada
+                const obras = <%= JSON.stringify(obras) %>;
+                const obra = obras.find(o => o.id_obra == idObra);
+                document.getElementById('idObra').value = obra.id_obra;
+                document.getElementById('titulo_obra').value = obra.titulo_obra;
+                document.getElementById('descricao_obra').value = obra.descricao_obra;
+                document.getElementById('ano_criacao').value = obra.ano_criacao;
+                document.getElementById('preco').value = obra.preco;
+                document.getElementById('quantidade_em_estoque').value = obra.quantidade_em_estoque;
+        
+                // Exibe o modal
+                document.getElementById('modalEditar').style.display = 'block';
+            }
+        </script>
+    </div>
+</body>
+</html>

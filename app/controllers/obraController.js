@@ -179,6 +179,24 @@ const obraController = {
       return res.status(500).render('pages/artistaObras', { error: 'Erro ao obter obras' });
     }
   },
+
+  getObraComArtista:  async (req, res) => {
+    const obraId = req.params.id; // Obtém o ID da obra da URL
+
+      try {
+          const obra = await ObraModel.getObraWithArtista(obraId); // Chama a função do modelo
+
+          // Verifica se a obra foi encontrada
+          if (!obra) {
+              return res.status(404).send('Obra não encontrada');
+          }
+
+          res.render('pages/obra', { obra }); // Renderiza a view com os dados da obra
+      } catch (error) {
+          console.error('Erro ao obter obra:', error);
+          res.status(500).send('Erro ao obter obra'); // Tratamento de erro
+      }
+  }
 };
 
 module.exports = obraController;

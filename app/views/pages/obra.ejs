@@ -25,13 +25,16 @@
                 <p class="buyitemtitle"><%= obra.titulo_obra %></p>
                 <p class="buyitemprice">R$ <%= obra.preco %></p>
             </section>
-            <p class="buyitemartist"><%= obra.id_cliente %></p>
-            <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST"></form>
-                <button type="submit" class="buyitembutton">Comprar</button>
-            </form>
-            <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST">
-                <button type="submit" class="buyitemaddtocard">Adicionar ao carrinho</button>
-            </form>
+            <p class="buyitemartist"><%= obra.nome_artista %></p>
+
+            <section class="buttonsArea">
+              <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST"></form>
+                  <button type="submit" class="buyitembutton">Comprar</button>
+              </form>
+              <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST">
+                  <button type="submit" class="buyitemaddtocard">Adicionar ao carrinho</button>
+              </form>
+            </section>
             <section class="buyitemdescription">
                 <h3 class="buyitemdescriptiontitle">Descrição:</h3>
                 <p class="buyitemdescriptiontext"><%= obra.descricao_obra %></p>
@@ -51,25 +54,27 @@
              <img src="../uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.imagem_obra %>" class="buyitemimagePC">
              <section class="buyiteminformationsGridPC">
                 <div>
+                  <p class="buyitemartistPC"><%= obra.nome_artista %></p>
                   <p class="buyitemtitlePC"><%= obra.titulo_obra %></p>
-                  <p class="buyitemartistPC"><%= obra.id_cliente %></p>
-                  <p class="buyitempricePC">R$ <%= obra.preco %></p>
                   <section class="buyitemdescriptionPC">
                     <h3 class="buyitemdescriptiontitlePC">Descrição:</h3>
                     <p class="buyitemdescriptiontextPC"><%= obra.descricao_obra %></p>
                     <h3 class="buyitemdescriptiontitlePC">Ano de criação:</h3>
                     <p class="buyitemdescriptiontextPC"><%= obra.ano_criacao %></p>
-                </section>
+                  </section>
+                  <p class="buyitempricePC">R$ <%= obra.preco %></p>
+
+                  <section class="buttonsArea">
+                    <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST">
+                        <button type="submit" class="buyitembuttonPC">Comprar</button>
+                    </form>
+                    <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST">
+                        <button type="submit" class="buyitemaddtocardPC">Adicionar ao carrinho</button>
+                    </form>
+                  </section>
                 </div>
               </section> 
-              <section class="buttonsArea">
-                <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST">
-                    <button type="submit" class="buyitembuttonPC">Comprar</button>
-                </form>
-                <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST">
-                    <button type="submit" class="buyitemaddtocardPC">Adicionar ao carrinho</button>
-                </form>
-              </section>
+              
           </section>
         </section>
       </main>  

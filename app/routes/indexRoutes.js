@@ -172,23 +172,7 @@ router.get('/pedidos', authenticateUser, pedidoController.listarPedidos)
 router.get('/entregas', ClienteController.getObrasVendidasBySession);
 
 // Rota para exibir uma obra pelo ID
-router.get('/obra/:id', 
-    async (req, res) => {
-        try {
-            const obraId = req.params.id;
-            const obra = await ObraModel.getObraById(obraId); // Chame a função do model para obter a obra
-
-            if (!obra) {
-                return res.status(404).json({ message: 'Obra não encontrada' });
-            }
-
-            res.render('pages/obra', { obra }); // Renderize a página com os dados da obra
-        } catch (error) {
-            console.error('Erro ao obter obra:', error.message);
-            res.status(500).json({ error: 'Erro ao obter obra' });
-        }
-    }
-);
+router.get('/obra/:id', obraController.getObraComArtista);
 
 router.get('/obras/:categoria', async (req, res) => {
     try {

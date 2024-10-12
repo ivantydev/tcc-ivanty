@@ -88,6 +88,33 @@ const ObraModel = {
     const [rows] = await db.query('SELECT * FROM Obras WHERE categorias = ? AND status_obra = 1', [categoria]);
     return rows;
   },
+
+  getObraWithArtista: async (obraId) => {
+    const query = `
+        SELECT 
+            o.id_obra, 
+            o.titulo_obra, 
+            o.descricao_obra, 
+            o.ano_criacao, 
+            o.preco, 
+            o.imagem_obra, 
+            c.nome_cliente AS nome_artista
+        FROM 
+            Obras o 
+        JOIN 
+            Clientes c ON o.id_cliente = c.id_cliente
+        WHERE 
+            o.id_obra = ? AND 
+            o.status_obra = 1`; // Filtra pelo ID da obra e pelo status
+
+    try {
+        const [rows] = await db.query(query, [obraId]);
+        return rows[0]; // Retorna a primeira obra encontrada
+    } catch (error) {
+        console.error('Erro ao buscar obra com artista:', error);
+        throw error; // Lança o erro para ser tratado pelo controlador
+    }
+  }
 };
 
 module.exports = ObraModel;

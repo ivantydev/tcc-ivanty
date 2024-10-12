@@ -83,6 +83,11 @@ const ObraModel = {
     const [rows] = await db.query(query, [id_cliente]);
     return rows;
   },
+
+  getObrasByCategoria: async (categoria) => {
+    const [rows] = await db.query('SELECT * FROM Obras WHERE categorias = ? AND status_obra = 1', [categoria]);
+    return rows;
+  },
 };
 
 module.exports = ObraModel;

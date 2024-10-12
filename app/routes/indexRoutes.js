@@ -199,6 +199,19 @@ router.get('/obra/:id',
     }
 );
 
+router.get('/obras/:categoria', async (req, res) => {
+    try {
+        const { categoria } = req.params;
+        const obras = await ObraModel.getObrasByCategoria(categoria);
+        
+        // Retorna as obras em formato JSON
+        res.json(obras);
+    } catch (error) {
+        console.error('Erro ao buscar obras por categoria:', error.message);
+        res.status(500).json({ error: 'Erro ao carregar as obras por categoria.' });
+    }
+  });
+  
 
 
 module.exports = router;

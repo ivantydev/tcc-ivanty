@@ -33,20 +33,18 @@ router.get('/upload-imagem', isAuthenticated, (req, res) => {
 
 router.post('/imagem', isAuthenticated, ObraController.uploadImagem);
 
-router.get('/artista/obras', isAuthenticated, ObraController.getObrasByArtista);
-router.get('/artista/obras/nova', isAuthenticated, (req, res) => {
-  res.render('pages/novaObra'); // Renderiza o formulário para adicionar nova obra
+router.get('/obras/categoria/:categoria', async (req, res) => {
+  try {
+      const { categoria } = req.params;
+      const obras = await ObraModel.getObrasByCategoria(categoria);
+      
+      // Retorna as obras em formato JSON
+      res.json(obras);
+  } catch (error) {
+      console.error('Erro ao buscar obras por categoria:', error.message);
+      res.status(500).json({ error: 'Erro ao carregar as obras por categoria.' });
+  }
 });
-
-router.post('/artista/obras/salvar', isAuthenticated, ObraController.saveObraInSession);
-router.post('/artista/obras/upload-imagem', isAuthenticated, ObraController.uploadImagem);
-router.get('/artista/obras/editar/:id', isAuthenticated, async (req, res) => {
-  const obra = await ObraModel.getObraById(req.params.id);
-  res.render('pages/editarObra', { obra });
-});
-
-router.post('/artista/obras/editar/:id', isAuthenticated, ObraController.updateObra);
-router.post('/artista/obras/:id/delete', isAuthenticated, ObraController.deleteObra);
 
 
 module.exports = router;

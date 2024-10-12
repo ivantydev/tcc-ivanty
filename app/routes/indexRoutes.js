@@ -171,15 +171,6 @@ router.get('/pedidos', authenticateUser, pedidoController.listarPedidos)
 
 router.get('/entregas', ClienteController.getObrasVendidasBySession);
 
-router.get('/:username',
-    ClienteController.getArtistaByUsername,
-    (req, res) => {
-        const artista = req.artista;
-        const obras = req.obras;  // Obtenha as obras do objeto de requisição
-        res.render('pages/artist', { artista, obras });
-    }
-);
-
 // Rota para exibir uma obra pelo ID
 router.get('/obra/:id', 
     async (req, res) => {
@@ -203,15 +194,38 @@ router.get('/obras/:categoria', async (req, res) => {
     try {
         const { categoria } = req.params;
         const obras = await ObraModel.getObrasByCategoria(categoria);
-        
+          
         // Retorna as obras em formato JSON
         res.json(obras);
     } catch (error) {
         console.error('Erro ao buscar obras por categoria:', error.message);
         res.status(500).json({ error: 'Erro ao carregar as obras por categoria.' });
     }
-  });
+});
   
+router.get('/obras', async (req, res) => {
+    try {
+        const obras = await ObraModel.getAllObras();
+        
+        // Retorna todas as obras em formato JSON
+        res.json(obras);
+    } catch (error) {
+        console.error('Erro ao buscar todas as obras:', error.message);
+        res.status(500).json({ error: 'Erro ao carregar todas as obras.' });
+    }
+});
+
+
+router.get('/:username',
+    ClienteController.getArtistaByUsername,
+    (req, res) => {
+        const artista = req.artista;
+        const obras = req.obras;  // Obtenha as obras do objeto de requisição
+        res.render('pages/artist', { artista, obras });
+    }
+);
+
+
 
 
 module.exports = router;

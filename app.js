@@ -11,6 +11,7 @@ const pedidoRoutes = require('./app/routes/pedidoRoutes')
 const carrinhoRoutes = require('./app/routes/carrinhoRoutes')
 const enderecoRoutes = require('./app/routes/enderecosRoutes')
 const artistaRoutes = require('./app/routes/artistaRoutes')
+const passwordRoutes = require('./app/routes/passwordRoutes')
 
 const PORT = process.env.PORT || 3000;
 
@@ -47,6 +48,7 @@ app.use("/api", pedidoRoutes);
 app.use("/api", carrinhoRoutes);
 app.use('/pedidos', pedidoRoutes);
 app.use('/pagamento', pagamentoRoutes);
+app.use('/password', passwordRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');

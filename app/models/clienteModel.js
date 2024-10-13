@@ -120,10 +120,21 @@ const ClienteModel = {
     `;
     const [rows] = await pool.execute(query); 
     return rows;
-}
+  },
 
+  // Função para atualizar a senha do cliente (usado na recuperação de senha)
+  updatePassword: async (email, newPassword) => {
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+    const query = 'UPDATE Clientes SET senha_cliente = ? WHERE email_cliente = ?';
 
-  
+    try {
+      const [result] = await pool.query(query, [hashedPassword, email]);
+      return result.affectedRows;
+    } catch (error) {
+      console.error('Erro ao atualizar a senha do cliente:', error);
+      throw error;
+    }
+  }
 };
 
 module.exports = ClienteModel;

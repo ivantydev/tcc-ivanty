@@ -1,112 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Carrinho de Compras</title>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/menu.css">
-    <link rel="stylesheet" href="css/headerPC.css">
-    <link rel="stylesheet" href="css/globalPC.css">
-    <link rel="stylesheet" href="css/carrinhoContainer.css">
+  <meta charset="UTF-8">
+  <title>Carrinho de Compras</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <section class="telasPequenas">
-        <%- include("../partial/header") %>
-        <h1>Carrinho de Compras</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Quantidade</th>
-                    <th>Preço</th>
-                    <th>Remover</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% if (carrinho.length > 0) { %>
-                    <% carrinho.forEach(item => { %>
-                        <tr>
-                            <td><%= item.titulo %></td>
-                            <td><%= item.quantidade %></td>
-                            <td>R$ <%= (item.preco * item.quantidade).toFixed(2) %></td>
-                            <td>
-                                <form action="/carrinho/remover/<%= item.id %>" method="POST">
-                                    <button type="submit">Remover</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <% }) %>
-                <% } else { %>
-                    <tr>
-                        <td colspan="4">O carrinho está vazio.</td>
-                    </tr>
-                <% } %>
-            </tbody>
-        </table>
-    
-        <% if (carrinho.length > 0) { %>
-            <form action="/pedidos/criar" method="POST">
-                <!-- Informações de pagamento podem ser passadas aqui (como status ou ID de pagamento) -->
-                <input type="hidden" name="statusPagamento" value="pendente">
-                <input type="hidden" name="idPagamento" value="12345"> <!-- Exemplo de ID de pagamento -->
-                
-                <button type="submit">Finalizar Compra</button>
-            </form>
-        <% } %>
-    
-        <a href="/">Continuar comprando</a>
-    </section>
-    <section class="telasGrandes">
-        <%- include("../partial/headerPC") %>
-        <section class="carrinhoContainerPC">
-            <h1>Carrinho de Compras</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Quantidade</th>
-                        <th>Preço</th>
-                        <th>Remover</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% if (carrinho.length > 0) { %>
-                        <% carrinho.forEach(item => { %>
-                            <tr>
-                                <td><%= item.titulo %></td>
-                                <td><%= item.quantidade %></td>
-                                <td>R$ <%= (item.preco * item.quantidade).toFixed(2) %></td>
-                                <td>
-                                    <form action="/carrinho/remover/<%= item.id %>" method="POST">
-                                        <button type="submit">Remover</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <% }) %>
-                    <% } else { %>
-                        <tr>
-                            <td colspan="4">O carrinho está vazio.</td>
-                        </tr>
-                    <% } %>
-                </tbody>
-            </table>
-        
-            <% if (carrinho.length > 0) { %>
-                <form action="/pedidos/criar" method="POST">
-                    <!-- Informações de pagamento podem ser passadas aqui (como status ou ID de pagamento) -->
-                    <input type="hidden" name="statusPagamento" value="pendente">
-                    <input type="hidden" name="idPagamento" value="12345"> <!-- Exemplo de ID de pagamento -->
-                    
-                    <button type="submit">Finalizar Compra</button>
-                </form>
-            <% } %>
-        
-            <a href="/">Continuar comprando</a>
-        </section>
+  <h1>Carrinho de Compras</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Preço Unitário</th>
+        <th>Subtotal</th>
+        <th>Remover</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (carrinho.length > 0) { %>
+        <% carrinho.forEach(item => { %>
+            <tr>
+                <td><%= item.titulo %></td>
+                <td><%= item.quantidade %></td>
+                <td>R$ <%= parseFloat(item.preco).toFixed(2) %></td>
+                <td>R$ <%= (parseFloat(item.preco) * item.quantidade).toFixed(2) %></td>
+                <td>
+                    <form action="/api/carrinho/remover/<%= item.id_obra %>" method="POST">
+                        <button type="submit">Remover</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="5">Seu carrinho está vazio</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
 
-    </section>
+  <% if (carrinho.length > 0) { %>
+    <button id="checkout-btn">Finalizar Compra</button>
+  <% } %>
 
+  <a href="/">Continuar comprando</a>
+
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+  <script>
+    const mp = new MercadoPago('APP_USR-241135b5-df1a-48b8-bfe3985304c1e399', { locale: 'pt-BR' });
+
+    document.getElementById('checkout-btn')?.addEventListener('click', function() {
+      fetch('/api/criar-pedido', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          metodoPagamento: 'cartao'
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.init_point) {
+          window.location.href = data.init_point; // Redireciona para o link de pagamento
+        } else {
+          console.error('init_point não encontrado na resposta:', data);
+        }
+      })
+      .catch(error => console.error('Erro ao criar pedido:', error));
+    });
+  </script>
 </body>
 </html>

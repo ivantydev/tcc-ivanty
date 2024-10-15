@@ -2,15 +2,18 @@ const express = require('express');
 const router = express.Router();
 const pedidoController = require('../controllers/pedidoController');
 
-// Criação de um pedido (POST para criar um novo pedido)
-router.post('/criar', pedidoController.criarPedido);
+// Rota para criar pedido
+router.post('/criar-pedido', pedidoController.criarPedido);
 
-// Visualização de um pedido específico (GET para exibir um pedido pelo ID)
-router.get('/:id', pedidoController.exibirPedido);
+// Rota para exibir pedido por ID
+router.get('/pedido/:id', pedidoController.exibirPedido);
 
-// Atualização do status de um pedido específico (PUT para atualizar o status do pedido)
-router.put('/:id/status', pedidoController.atualizarStatus);
+// Rota para listar pedidos do cliente
+router.get('/pedidos', pedidoController.listarPedidos);
 
-router.post('/pagamento', pedidoController.processarPagamento);
+// Rota para feedback de pagamento
+router.get('/pagamento/sucesso', pedidoController.feedbackPagamento);
+router.get('/pagamento/falha', pedidoController.feedbackPagamento);
+router.get('/pagamento/pendente', pedidoController.feedbackPagamento);
 
 module.exports = router;

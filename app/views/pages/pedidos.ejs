@@ -1,109 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Pedidos</title>
-    <link rel="stylesheet" href="/css/pedidos.css">
-    <link rel="stylesheet" href="/css/headerPC.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/globalPC.css">     
-    <link rel="stylesheet" href="/css/menu.css">
-    <link rel="stylesheet" href="/css/footer.css">
+  <meta charset="UTF-8">
+  <title>Seus Pedidos</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+  <h1>Seus Pedidos</h1>
 
-    <% if (notification) { %>
-        <%- include('../partial/notification') %>
-    
-        <script>
-            showNotification("<%= notification.message %>");
-        </script>
-     <% } %>    
+  <table>
+    <thead>
+      <tr>
+        <th>ID do Pedido</th>
+        <th>Status</th>
+        <th>Data</th>
+        <th>Valor Total</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (pedidos.length > 0) { %>
+        <% pedidos.forEach(pedido => { %>
+          <tr>
+            <td><%= pedido.id_pedido %></td>
+            <td><%= pedido.status_pedido %></td>
+            <td><%= new Date(pedido.data_pedido).toLocaleDateString() %></td>
+            <td>R$ <%= pedido.preco_total %></td>
+            <td>
+              <a href="/pedido/<%= pedido.id_pedido %>">Ver Detalhes</a>
+            </td>
+          </tr>
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="5">Nenhum pedido encontrado</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
 
-    <section class="telasPequenas">
-        <%- include("../partial/header") %>
-        <h1>Meus Pedidos</h1>
-        
-        <% if (pedidos.length === 0) { %>
-            <p>Você ainda não fez nenhum pedido.</p>
-        <% } else { %>
-            <ul class="lista-pedidos">
-                <% pedidos.forEach(pedido => { %>
-                    <li class="pedido-item">
-                        <p>Status do Pedido: <%= pedido.status_pedido %></p>
-                        <p>Data do Pedido: <%= new Date(pedido.data_pedido).toLocaleDateString('pt-BR') %></p>
-                        <p>Preço Total do Pedido: R$<%= pedido.preco_total %></p>
-                        <% if (pedido.status_pedido === 'Pendente') { %>
-                            <button onclick="pagarAgora(<%= pedido.id_pedido %>)">Pagar Agora</button>
-                        <% } %>
-                        <a href="/pedidos/<%= pedido.id_pedido %>" class="detalhes-link">Ver Detalhes</a>
-                    </li>
-                <% }) %>
-            </ul>
-        <% } %>
-    </section>
-
-    <section class="telasGrandes">
-        <%- include("../partial/headerPC") %>
-        <h1 style="padding: 5rem;">Meus Pedidos</h1>
-        
-        <% if (pedidos.length === 0) { %>
-            <p>Você ainda não fez nenhum pedido.</p>
-        <% } else { %>
-            <table class="tabela-pedidos">
-                <thead>
-                    <tr>
-                        <th>ID do Pedido</th>
-                        <th>Status do Pedido</th>
-                        <th>Data do Pedido</th>
-                        <th>Preço Total</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% pedidos.forEach(pedido => { %>
-                        <tr>
-                            <td><%= pedido.id_pedido %></td>
-                            <td><%= pedido.status_pedido %></td>
-                            <td><%= new Date(pedido.data_pedido).toLocaleDateString('pt-BR') %></td>
-                            <td>R$<%= pedido.preco_total %></td>
-                            <td>
-                                <% if (pedido.status_pedido === 'Pendente') { %>
-                                    <button onclick="pagarAgora(<%= pedido.id_pedido %>)">Pagar Agora</button>
-                                <% } %>
-                                <a href="/pedidos/<%= pedido.id_pedido %>" class="detalhes-link">Ver Detalhes</a>
-                            </td>
-                        </tr>
-                    <% }) %>
-                </tbody>
-            </table>
-        <% } %>
-    </section>
-
-    <%- include("../partial/footer") %>
-
-    <script>
-        function pagarAgora(pedidoId) {
-            // Chamar a API para criar a preferência de pagamento
-            fetch('/pagamento/criar-pedido', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ idPedido: pedidoId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Redirecionar para o link de pagamento
-                window.location.href = data.init_point;
-            })
-            .catch(error => {
-                console.error('Erro ao criar preferência de pagamento:', error);
-                alert('Erro ao processar o pagamento. Tente novamente.');
-            });
-        }
-    </script>
+  <a href="/">Voltar</a>
 </body>
 </html>

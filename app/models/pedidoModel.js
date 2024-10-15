@@ -41,7 +41,6 @@ const pedidoModel = {
     }
   },
 
-  // Obter pedido pelo ID
   getPedidoById: async (pedidoId) => {
     const [pedido] = await db.query(
       'SELECT * FROM Pedidos WHERE id_pedido = ?',
@@ -54,7 +53,6 @@ const pedidoModel = {
     return { pedido: pedido[0], obras };
   },
 
-  // Atualizar o status de um pedido
   atualizarStatusPedido: async (pedidoId, statusPedido) => {
     await db.query(
       'UPDATE Pedidos SET status_pedido = ? WHERE id_pedido = ?',
@@ -62,7 +60,6 @@ const pedidoModel = {
     );
   },
 
-  // Listar pedidos por cliente
   getPedidosByClienteId: async (idCliente) => {
     const [pedidos] = await db.query(
       'SELECT * FROM Pedidos WHERE id_cliente = ?',

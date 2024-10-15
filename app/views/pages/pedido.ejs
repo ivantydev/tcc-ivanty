@@ -1,25 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedido <%= pedido.id_pedido %></title>
+  <meta charset="UTF-8">
+  <title>Detalhes do Pedido</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Detalhes do Pedido #<%= pedido.id_pedido %></h1>
-    <p>Data do Pedido: <%= pedido.data_pedido %></p>
-    <p>Status do Pedido: <%= pedido.status_pedido %></p>
-    <p>Status de Pagamento: <%= pedido.status_pagamento %></p>
+  <h1>Detalhes do Pedido: <%= pedido.id_pedido %></h1>
 
-    <h2>Itens do Pedido</h2>
-    <ul>
-        <% obras.forEach((obra) => { %>
-            <li>
-                <strong><%= obra.titulo_obra %></strong> - Quantidade: <%= obra.quantidade %> - Preço: R$<%= obra.preco %>
-            </li>
-        <% }); %>
-    </ul>
+  <p>Status: <%= pedido.status_pedido %></p>
+  <p>Data: <%= new Date(pedido.data_pedido).toLocaleDateString() %></p>
+  <p>Valor Total: R$ <%= precoTotal.toFixed(2) %></p>
 
-    <a href="/">Voltar para a página inicial</a>
+  <h2>Itens</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Preço Unitário</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% obras.forEach(obra => { %>
+        <tr>
+          <td><%= obra.titulo %></td>
+          <td><%= obra.quantidade %></td>
+          <td>R$ <%= obra.preco %></td>
+          <td>R$ <%= (obra.preco * obra.quantidade) %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <a href="/pedidos">Voltar aos Pedidos</a>
 </body>
 </html>

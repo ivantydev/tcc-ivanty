@@ -41,6 +41,14 @@ const pedidoModel = {
     }
   },
 
+  atualizarInitPoint: async (pedidoId, initPoint) => {
+    await db.query(
+      'UPDATE Pedidos SET init_point = ? WHERE id_pedido = ?',
+      [initPoint, pedidoId]
+    );
+  },
+
+
   getPedidoById: async (pedidoId) => {
     const [pedido] = await db.query(
       'SELECT * FROM Pedidos WHERE id_pedido = ?',
@@ -53,10 +61,10 @@ const pedidoModel = {
     return { pedido: pedido[0], obras };
   },
 
-  atualizarStatusPedido: async (pedidoId, statusPedido) => {
+  atualizarStatusPagamento: async (pedidoId, status_pagamento) => {
     await db.query(
-      'UPDATE Pedidos SET status_pedido = ? WHERE id_pedido = ?',
-      [statusPedido, pedidoId]
+      'UPDATE Pedidos SET status_pagamento = ? WHERE id_pedido = ?',
+      [status_pagamento, pedidoId]
     );
   },
 

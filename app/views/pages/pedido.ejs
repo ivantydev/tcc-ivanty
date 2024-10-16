@@ -10,7 +10,7 @@
 
   <p>Status: <%= pedido.status_pedido %></p>
   <p>Data: <%= new Date(pedido.data_pedido).toLocaleDateString() %></p>
-  <p>Valor Total: R$ <%= precoTotal.toFixed(2) %></p>
+  <p>Valor Total: R$ <%= precoTotal %></p>
 
   <h2>Itens</h2>
   <table>
@@ -27,8 +27,8 @@
         <tr>
           <td><%= obra.titulo %></td>
           <td><%= obra.quantidade %></td>
-          <td>R$ <%= obra.preco %></td>
-          <td>R$ <%= (obra.preco * obra.quantidade) %></td>
+          <td>R$ <%= obra.preco_total %></td>
+          
         </tr>
       <% }) %>
     </tbody>

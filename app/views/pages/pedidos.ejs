@@ -4,41 +4,91 @@
   <meta charset="UTF-8">
   <title>Seus Pedidos</title>
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/globalPC.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/headerPC.css">
+  <link rel="stylesheet" href="/css/menu.css">
 </head>
 <body>
-  <h1>Seus Pedidos</h1>
+  <section class="telasPequenas">
+    <%- include("../partial/obras/header") %>
+    <h1>Seus Pedidos</h1>
 
-  <table>
-    <thead>
-      <tr>
-        <th>ID do Pedido</th>
-        <th>Status</th>
-        <th>Data</th>
-        <th>Valor Total</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% if (pedidos.length > 0) { %>
-        <% pedidos.forEach(pedido => { %>
-          <tr>
-            <td><%= pedido.id_pedido %></td>
-            <td><%= pedido.status_pedido %></td>
-            <td><%= new Date(pedido.data_pedido).toLocaleDateString() %></td>
-            <td>R$ <%= pedido.preco_total %></td>
-            <td>
-              <a href="/pedido/<%= pedido.id_pedido %>">Ver Detalhes</a>
-            </td>
-          </tr>
-        <% }) %>
-      <% } else { %>
+    <table>
+      <thead>
         <tr>
-          <td colspan="5">Nenhum pedido encontrado</td>
+          <th>Status</th>
+          <th>Data</th>
+          <th>Valor Total</th>
+          <th>Ações</th>
         </tr>
-      <% } %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% if (pedidos.length > 0) { %>
+          <% pedidos.forEach(pedido => { %>
+            <tr>
+               <td><%= pedido.status_pedido %></td>
+              <td><%= new Date(pedido.data_pedido).toLocaleDateString() %></td>
+              <td>R$ <%= pedido.preco_total %></td>
+              <td>
+                <a href="/pedido/<%= pedido.id_pedido %>">Ver Detalhes</a>
+              </td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="5">Nenhum pedido encontrado</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  
+    <a href="/">Voltar</a>
+  </section>
+  <section class="telasGrandes">
+    <%- include("../partial/obras/headerPC") %>
+    <h1>Seus Pedidos</h1>
 
-  <a href="/">Voltar</a>
+    <table>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Data</th>
+          <th>Valor Total</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (pedidos.length > 0) { %>
+          <% pedidos.forEach(pedido => { %>
+            <tr>
+              <td><%= pedido.status_pedido %></td>
+              <td><%= new Date(pedido.data_pedido).toLocaleDateString() %></td>
+              <td>R$ <%= pedido.preco_total %></td>
+              <td>
+                <% if (pedido.status_pagamento != 'approved') { %>
+                  <a href="<%= pedido.init_point %>" class="btn">Pagar Agora</a>
+                <% } else { %>
+                  <p>Pagamento já realizado.</p>
+                <% } %>              </td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="5">Nenhum pedido encontrado</td>
+          </tr>
+        <% } %>
+        
+      </tbody>
+    </table>
+    <section class="pedidosContainer">
+        <div>
+          
+        </div>
+    </section>
+    <a href="/">Voltar</a>
+  </section>
+
 </body>
 </html>

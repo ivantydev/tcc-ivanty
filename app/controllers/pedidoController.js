@@ -32,9 +32,9 @@ const pedidoController = {
             unit_price: parseFloat(item.preco)
           })),
           back_urls: {
-            success: "http://localhost:3000/pagamento/sucesso",
-            failure: "http://localhost:3000/pagamento/falha",
-            pending: "http://localhost:3000/pagamento/pendente"
+            success: "http://localhost:3000/api/pagamento/sucesso",
+            failure: "http://localhost:3000/api/pagamento/falha",
+            pending: "http://localhost:3000/api/pagamento/pendente"
           },
           auto_return: "approved",
           external_reference: pedidoId.toString() // O ID do pedido
@@ -47,6 +47,9 @@ const pedidoController = {
       // Verificar se o 'init_point' existe na resposta
       if (response && response.init_point) {
         res.json({ init_point: response.init_point });
+        const initPoint = response.init_point;
+
+        await pedidoModel.atualizarInitPoint(pedidoId, initPoint);
       } else {
         console.error('init_point não encontrado na resposta:', response);
         res.status(500).json({ error: 'Erro ao obter o link de pagamento.' });
@@ -116,9 +119,9 @@ const pedidoController = {
   
     try {
       // Atualizar o status do pedido no banco de dados
-      await pedidoModel.atualizarStatusPedido(external_reference, status, payment_id);
+      await pedidoModel.atualizarStatusPagamento(external_reference, status, payment_id);
       
-      res.redirect(`/pedido/${external_reference}`);
+      res.redirect(`/api/pedido/${external_reference}`);
     } catch (error) {
       console.error('Erro ao atualizar pedido:', error.message);
       res.status(500).json({ message: 'Erro ao processar pagamento' });

@@ -1,311 +1,222 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-div.ObrasRelacionadas{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 300px;
-}
-figure.ObrasRelacionadas1{
-    width: min-content;
-}
-div.ObrasRelacionadas-Carrossel nav.ObrasRelacionadas-Carrossel-Item{
-    color: #000;
-    background-color: #fff;
-    width: 250px;
-    height: 400px;
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
     padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    text-align: center;
-    margin-top: 3rem;
 }
-div.ObrasRelacionadas-Carrossel nav.ObrasRelacionadas-Carrossel-Item a{
+
+.gallery-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.page {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px; /* Diminui o espaço entre os itens do grid */
+}
+
+.painting {
+    background-color: #fff;
+    border-radius: 8px; /* Ajuste sutil no arredondamento */
+    padding: 10px; /* Reduz o padding interno */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.painting img {
+    width: 50%; /* Diminui a largura da imagem */
+    height: auto;
+    border-radius: 8px;
+}
+
+.painting-title {
+    font-size: 16px; /* Tamanho de fonte reduzido */
+    font-weight: bold;
+    color: #1A23A0;
+    margin-top: 8px;
+}
+
+.painting-description {
+    font-size: 14px; /* Texto um pouco menor */
+    color: #333;
+    margin-top: 4px;
+}
+
+.painting-price {
+    font-size: 14px;
+    color: #1A23A0;
+    margin-top: 4px;
+}
+
+.painting:hover {
+    transform: translateY(-8px); /* Menos elevação no hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra um pouco mais leve */
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px; /* Menor espaço para a paginação */
+}
+
+.pagination a {
+    color: #1A23A0;
+    padding: 8px 12px; /* Botões menores */
+    margin: 0 4px;
     text-decoration: none;
-    color: #000;
-}
-div.ObrasRelacionadas-Carrossel nav.ObrasRelacionadas-Carrossel-Item h2{
-    font-size:  17px;
-}
-div.ObrasRelacionadas-Carrossel nav.ObrasRelacionadas-Carrossel-Item img.ObrasRelacionadas1{
-    height: 170px;
-    width: 170px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-div.ObrasRelacionadas-Carrossel nav.ObrasRelacionadas-Carrossel-Item img.ObrasRelacionadas2{
-    height: 170px;
-    width: 200px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-div.ObrasRelacionadas-Carrossel nav.ObrasRelacionadas-Carrossel-Item p{
-    margin: 10px 0px 20px;
-    font-size: 20px;
-}
-div.ObrasRelacionadas-Carrossel nav.ObrasRelacionadas-Carrossel-Item button.AddCarrinho{
-    font-size: 15px;
-    padding: 8px 10px;
-    color: #fff;
-    background-color: #1A23A0;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s ease;
-    border: none;
-}
-div.ObrasRelacionadas-Carrossel nav.ObrasRelacionadas-Carrossel-Item button.AddCarrinho:hover{
-    background-color: #000;
-}
-div.ObrasRelacionadas-Carrossel nav.ObrasRelacionadas-Carrossel-Item img.Like{
-    height: 30px;
-    width: 30px;
-}
-div.slider-wrapper{
-    overflow: hidden;
-    max-width: 1200px;
-    margin: 0px 70px 55px;
-}
-div.CarrinhoELike{
-    display: flex;
-    align-items: flex-start;
-}
-div.CarrinhoELike img.Like{
-    margin-top: 7px;
-    margin-left: 10px;
-}
-
-@media screen and (max-width: 900px ){
-.Desktop{
-    display: none;
-}
-
-main {
-    display: block;
-    margin-top: 5rem;
-}
-
-body{
-    background-color: #dadada;
-}
-div.ObraPrincipal{
-    background-color: #fff;
-    padding: 10px;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 15px;
-}
-div.ObraPrincipal img.ObraPrincipal{
-    width: 350px;
-    height: 350px;
+    border: 2px solid #1A23A0;
     border-radius: 5px;
-}
-div.ObraPrincipal div.TextoOP{
-    width: 350px;
-    text-align: center;
-    font-size: 15px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-div.ObraPrincipal div.BotoesCompra {
-    display: flex;
-    width: 250px;
-    justify-content:space-around;
-    margin-top: 10px;
-}
-div.ObraPrincipal div.BotoesCompra button.ComprarObra{
-    font-size: 17px;
-    background-color: #1A23A0;
-    padding: 5px;
-    color: #fff;
-    border-style: none;
-    border-radius: 20px;
-    height: 50px;
-    width: 100px;
+    transition: background-color 0.3s ease;
     cursor: pointer;
-    transition: 0.3s ease;
-    border: none;
+}
 
-}
-div.ObraPrincipal div.BotoesCompra button.ComprarObra:hover{
-    background-color: #000;
-}
-div.ObraPrincipal div.BotoesCompra button.AddCarrinho{
-    font-size: 15px;
+.pagination a:hover {
     background-color: #1A23A0;
-    padding: 5px;
     color: #fff;
-    border-style: none;
-    border-radius: 20px;
-    width: 100px;
-    height: 50px;
-    cursor: pointer;
-    transition: 0.3s ease;
 }
-div.ObraPrincipal div.BotoesCompra button.AddCarrinho:hover{
-    background-color: #000;
-}
-h2.ObrasRelacionadas{
-    text-align: left;
-    margin-left: 73px;
-    margin-bottom: 10px;
-}
-div.Especificacoes{
-    max-width: 530px;
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-    align-items: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    height: 180px;
-    margin-bottom: 20px;
-}
-div.Especificacoes h2.Especificacoe{
-    color: #1A23A0;
-    font-size: 25px;
-    grid-column: 2;
-    margin-bottom: 10px;
-}
-div.Especificacoes table{
-    border-collapse: collapse;
-    width: 350px;
-    font-size: 20px;
-    grid-column: 2;
-    grid-row: 2;
-}
-div.Especificacoes table td{
-    border-style:solid;
-    border-width: 2px;
-    border-color: #000;
-    padding: 2px 2px 2px 15px;
-    text-align: left;
-}
-}
-@media screen and (min-width: 901px){
-.Mobile{
-    display: none;
-}
-body{
-    background-color: #dadada;
-    padding: 0;
-    margin: 0;
-}
-div.teste{
-    display: grid;
-    grid-template-columns: 1fr 6fr 1fr;
-    background-color: #fff;
-    width: 100%;
-}
-div.ObraPrincipal{
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    padding: 20px;
-    width: 100%;
-    height: 100%;
-    grid-column: 2;
-}
-div.ImagemOP{
-    min-width: 450px;
-    grid-row: 1/3;
 
+#page-info {
+    font-size: 14px;
+    color: #333;
+    margin: 0 8px;
 }
-div.ImagemOP img.ObraPrincipal{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
+
+/* Estilização para dispositivos menores */
+@media screen and (max-width: 900px) {
+    .page {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pagination a, #page-info {
+        font-size: 12px;
+    }
 }
-div.ObraPrincipal h1.ObraPrincipal{
-    font-size: 200%;
-    margin-top: 2%;
+
+@media screen and (max-width: 600px) {
+    .page {
+        grid-template-columns: 1fr;
+    }
 }
-div.ObraPrincipal div.TextoOP{
-    min-width: 400px;
-    height: 160px;
-    max-width: 500px;
-    font-size: 180%;
-    margin-left: 4%;
+
+
+/* Estilo geral do main */
+main {
+    margin-top: 5rem; /* Espaçamento superior */
+    padding: 2rem; /* Espaçamento interno */
+    font-family: 'Arial', sans-serif; /* Fonte padrão */
+   
 }
-div.ObraPrincipal div.TextoOP p{
-    width: 100%;
-    height: 100%;
+
+/* Estilo da obra principal */
+.ObraPrincipal {
+    display: flex; /* Flexbox para layout lado a lado */
+    align-items: center; /* Alinha verticalmente no centro */
+    max-width: 1200px; /* Largura máxima da obra principal */
+    margin: 0 auto; /* Centraliza o container */
+    background-color: #ffffff; /* Cor de fundo branca */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  
 }
-div.ObraPrincipal h1.ValorOP{
-    font-size: 200%;
-    margin-left: 4%;
+
+/* Estilo da imagem da obra */
+.ImagemOP {
+    flex: 1; /* Permite que a imagem ocupe 1 parte do espaço */
+    margin-right: 2rem; /* Espaço entre a imagem e o texto */
 }
-div.ObraPrincipal div.TextoOP p h2.ObraPrincipal{
-    font-size: 200%;
-    text-align: center;
+
+.ImagemOP figure {
+    margin: 0; /* Remove margens da figura */
 }
-div.ObraPrincipal div.BotoesCompra{
-    max-width: 500px;
-    min-width: 400px;
-    display: grid;
-    grid-template-columns: 200px 200px;
-    grid-template-rows: 1fr 1.2fr;
-    margin-left: 4%;
+
+/* Estilo da imagem */
+.ObraPrincipal img {
+    width: 100%; /* Mantém a imagem responsiva */
+    border-radius: 10px; /* Bordas arredondadas na imagem */
 }
-div.ObraPrincipal div.BotoesCompra button{
-    height: 55px;
-    width: 120px;
-    font-size: 100%;
-    background-color: #1A23A0;
-    color: #fff;
-    border-radius: 20px;
-    border: none;
-    transition: 0.3s ease;
-    cursor: pointer;
+
+/* Título da obra */
+.ObraPrincipal h2 {
+    font-size: 1.8rem; /* Tamanho da fonte do título da obra */
+    color: #333; /* Cor do título */
+    margin: 0.5rem 0; /* Margens acima e abaixo */
 }
-div.ObraPrincipal div.BotoesCompra button:hover{
-    background-color: #000;
+
+/* Nome do artista */
+.ObraPrincipal h1 {
+    font-size: 2.5rem; /* Tamanho da fonte do nome do artista */
+    color: #007bff; /* Cor do nome do artista */
+    margin: 2rem 0; /* Margens acima e abaixo */
 }
-div.ObraPrincipal div.BotoesCompra button.ComprarObra{
-    grid-column: 1;
-    grid-row: 2;
+
+/* Estilo do texto da obra */
+.TextoOP {
+    flex: 2; /* Permite que o texto ocupe 2 partes do espaço */
+    padding: 1rem; /* Espaçamento interno */
+    color: #555; /* Cor do texto */
+    font-size: 1.2rem; /* Tamanho da fonte */
+    line-height: 1.6; /* Espaçamento entre linhas */
 }
-div.ObraPrincipal div.BotoesCompra button.AddCarrinho{
-    grid-column: 2;
-    grid-row: 2;
+
+/* Estilo da seção de botões de compra */
+.BotoesCompra {
+    flex: 1; /* Permite que os botões ocupem 1 parte do espaço */
+    display: flex; /* Flexbox para botões */
+    flex-direction: column; /* Coloca botões um embaixo do outro */
+    align-items: center; /* Centraliza horizontalmente */
+    margin-top: 1rem; /* Espaço acima dos botões */
 }
-h2.ObrasRelacionadas{
-    font-size: 200%;
-    padding: 1%;
-    text-align: center;
+
+/* Estilo do valor da obra */
+.ValorOP {
+    font-size: 2rem; /* Tamanho da fonte do valor */
+    color: #e74c3c; /* Cor do preço */
+    margin-bottom: 1rem; /* Espaço abaixo do preço */
 }
-div.Especificacoes{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 30px 1fr;
-    padding: 1%;
+
+/* Estilo dos botões */
+.ComprarObra, .AddCarrinho {
+    background-color: #007bff; /* Cor de fundo dos botões */
+    color: white; /* Cor do texto dos botões */
+    border: none; /* Remove bordas */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 0.75rem 1.5rem; /* Espaçamento interno */
+    font-size: 1.1rem; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor de ponteiro */
+    transition: background-color 0.3s, transform 0.2s; /* Transições suaves */
+    margin: 0.5rem 0; /* Margens entre os botões */
 }
-div.Especificacoes h2.Especificacoe{
-    grid-column: 2;
-    width: 700px;
-    color: #1A23A0;
+
+/* Estilo dos botões ao passar o mouse */
+.ComprarObra:hover, .AddCarrinho:hover {
+    background-color: #0056b3; /* Cor ao passar o mouse */
+    transform: translateY(-2px); /* Leve movimento ao passar o mouse */
 }
-div.Especificacoes table{
-    grid-column: 2;
-    grid-row: 2;
-    border-collapse: collapse;
-    width: 100%;
-    text-align: center;
-    align-items: center;
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .ObraPrincipal {
+        flex-direction: column; /* Muda para coluna em telas menores */
+        padding: 1rem; /* Menos espaçamento em telas menores */
+    }
+
+    .ImagemOP {
+        margin-right: 0; /* Remove o espaço à direita na versão móvel */
+        margin-bottom: 1rem; /* Espaço abaixo da imagem */
+    }
+
+    .ValorOP {
+        font-size: 1.5rem; /* Tamanho do valor reduzido em telas menores */
+    }
 }
-div.Especificacoes table td{
-    border-style: solid;
-    border-width: 2px;
-    border-color: #000;
-    padding: 3px;
-    font-size: 150%;
-}
-}
+
+
+

@@ -1,34 +1,27 @@
-const swiper = new Swiper('.slider-wrapper', {
+let currentPage = 1;
+const itemsPerPage = 4; // Quantidade de pinturas a mostrar por página
+const paintings = document.querySelectorAll('.painting');
+const totalPages = Math.ceil(paintings.length / itemsPerPage);
 
-    loop: true,
-    grabCursor:true,
-    spaceBetween:30,
+function updateGallery() {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
 
-  
-    // If we need pagination
-    pagination: {
-      el: '.swiper-pagination',
-      clickabel: true,
-      dynamicBullets: true,
-    },
-  
-    // Navigation arrows
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    breakpoints: {
-        0: {
-            slidesPerView: 1
-        },
-        650: {
-            slidesPerView: 2
-        },
-        901: {
-            slidesPerView: 3
-        },
-        1220: {
-          slidesPerView: 4
-        }
-    }
-  });
+    paintings.forEach((painting, index) => {
+        painting.style.display = (index >= start && index < end) ? 'inline-block' : 'none';
+    });
+
+    document.getElementById('page-info').textContent = `${currentPage}/${totalPages}`;
+}
+
+function changePage(direction) {
+    currentPage += direction;
+
+    if (currentPage < 1) currentPage = 1;
+    if (currentPage > totalPages) currentPage = totalPages;
+
+    updateGallery();
+}
+
+// Inicializar a galeria ao carregar a página
+updateGallery();

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Obra </title>
+    <title>Obra</title>
     <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
     <link href="./css/Obras.css" rel="stylesheet">
     <link href="./css/footer.css" rel="stylesheet">
@@ -14,545 +14,641 @@
     <link href="./css/menu.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Header para telas pequenas -->
     <section class="telasPequenas">
         <%- include("../partial/header") %>
     </section>
-    
+
+    <!-- Header para telas grandes -->
     <section class="telasGrandes">
         <%- include("../partial/headerPC") %>
     </section>
 
-    <article class="Mobile">
-        <section>
-            <main>
-                <!-- <div class="ObraPrincipal">
-                    <div class="ImagemOP">
-                    <figure>
-                        <img class="ObraPrincipal" src="./images/ObraPrincipal.webp" alt="Obra o gato do artista romero britto">
-                    </figure>
-                    <h2 class="ObraPrincipal"> "O Gato" </h2>
-                    <h1 class="ObraPrincipal"> Romero Brito </h1>
-                    </div>
-                    <div class="TextoOP">
-                        <p> O gato é uma das obras mais famosas do artista plástico brasileiro. Com o seu colorido típico, O gato traz também muito do estilo geométrico explorado pelo artista.</p>
-                    </div>
-                    <h1 class="ValorOP"> R$ XXX,XX </h1>
-                    <div class="BotoesCompra">
-                        <button class="ComprarObra" value="Comprar Obra" name="Comprar Obra" id="Comprar Obra"> Comprar </button>
-                        <button class="AddCarrinho" value="Adicionar ao carrinho" name="Add ao carrinho" id="Add ao carrinho"> Adicionar ao carrinho </button>
-                    </div>
-                </div> -->
-                <div class="flip-container">
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="ObraPrincipal">
-                                    <div class="ImagemOP">
-                                        <figure>
-                                            <img src="./images/ObraPrincipal.webp" alt="Obra o gato do artista romero britto">
-                                        </figure>
-                                        <h2 class="ObraPrincipal"> "O Gato" </h2>
-                                        <h1 class="ObraPrincipal"> Romero Brito </h1>
-                                    </div>
-                                    <div class="TextoOP">
-                                        <p> O gato é uma das obras mais famosas do artista plástico brasileiro. Com o seu colorido típico, O gato traz também muito do estilo geométrico explorado pelo artista.</p>
-                                    </div>
-                                    <h1 class="ValorOP"> R$ XXX,XX </h1>
-                                    <div class="BotoesCompra">
-                                        <button class="ComprarObra">Comprar</button>
-                                        <button class="AddCarrinho">Adicionar ao carrinho</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flip-card-back">
-                                <h2>Mais Informações</h2>
-                                <p>Esta obra é uma celebração da alegria e da beleza.</p>
-                                <!-- Adicione outras informações que você deseja mostrar -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <h2 class="ObrasRelacionadas"> Obras Relacionadas</h2>
-                <div class="ObrasRelacionadas swiper">
-                    <div class="slider-wrapper">
-                    <div class="ObrasRelacionadas-Carrossel swiper-wrapper">
-                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                            <figure class="ObrasRelacionadas1">
-                                <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                    <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                                </a> 
-                            </figure>
-                              <p> R$ xxx,xx</p>
-                              <div class="CarrinhoELike">
-                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                              </div>
-                        </nav>
-                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                            <figure class="ObrasRelacionadas2">
-                                <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                    <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                                </a> 
-                            </figure>
-                              <p>R$ xxx,xx</p>
-                              <div class="CarrinhoELike">
-                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                              </div>
-                        </nav>
-                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                            <figure class="ObrasRelacionadas1">
-                                <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                    <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                                </a> 
-                            </figure>
-                              <p> R$ xxx,xx</p>
-                              <div class="CarrinhoELike">
-                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                              </div>
-                        </nav>
-                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                            <figure class="ObrasRelacionadas2">
-                                <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                    <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                                </a> 
-                            </figure>
-                              <p>R$ xxx,xx</p>
-                              <div class="CarrinhoELike">
-                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                              </div>
-                        </nav>
-                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                            <figure class="ObrasRelacionadas1">
-                                <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                    <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                                </a> 
-                            </figure>
-                              <p> R$ xxx,xx</p>
-                              <div class="CarrinhoELike">
-                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                              </div>
-                        </nav>
-                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                            <figure class="ObrasRelacionadas2">
-                                <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                    <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                                </a> 
-                            </figure>
-                            <p>R$ xxx,xx</p>
-                            <div class="CarrinhoELike">
-                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                            </div>
-                        </nav>
-                    </div>
-                    </div>
-                </div> 
-                <!-- <div class="Especificacoes">
-                   <h2 class="Especificacoe"> Especificações obra </h2>
-                    <table>
-                        <tbody>
-                        <tr>
-                            <td> Dimenções </td>
-                            <td> Largura xx X alura xx </td>
-                        </tr>
-                        <tr>
-                            <td> Autor </td>
-                            <td> Romero Brito </td>
-                        </tr>
-                        <tr>
-                            <td> Fornecedor </td>
-                            <td> XXXXX </td>
-                        </tr>
-                        <tr>
-                            <td> Tecnica usada </td>
-                            <td> Tint xx Superficíe </td>
-                        </tr>
-                        <tr>
-                            <td> Ano Confecção </td>
-                            <td>  20xx </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div> -->
-            </main>
-            <div class="ObrasRelacionadas swiper">
-                <div class="slider-wrapper">
-                <div class="ObrasRelacionadas-Carrossel swiper-wrapper">
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas1">
-                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                            </a> 
-                        </figure>
-                          <p> R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas2">
-                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                            </a> 
-                        </figure>
-                          <p>R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas1">
-                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                            </a> 
-                        </figure>
-                          <p> R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas2">
-                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                            </a> 
-                        </figure>
-                          <p>R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas1">
-                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                            </a> 
-                        </figure>
-                          <p> R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas2">
-                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                            </a> 
-                        </figure>
-                        <p>R$ xxx,xx</p>
-                        <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                        </div>
-                    </nav>
-                </div>
-              
-                </div>
-            </div> 
-        </section>
-    </article>
+    <!-- Conteúdo para Mobile -->
+     
+
+    <!-- Conteúdo para Desktop -->
     <article class="Desktop">
         <section>
             <main style="margin-top: 5rem;">
-               <div class="teste">
                 <div class="ObraPrincipal">
                     <div class="ImagemOP">
-                    <figure>
-                        <img class="ObraPrincipal" src="./images/ObraPrincipal.webp" alt="Obra o gato do artista romero britto">
-                    </figure>
-                    <h2 class="ObraPrincipal"> O Gato </h2>
-                    <h1 class="ObraPrincipal"> Romero Brito </h1>
+                        <figure>
+                            <img class="ObraPrincipal" src="./images/ObraPrincipal.webp" alt="Obra o gato do artista romero britto">
+                        </figure>
                     </div>
                     <div class="TextoOP">
-                        <p> O gato é uma das obras mais famosas do artista plástico brasileiro. Com o seu colorido típico, O gato traz também muito do estilo geométrico explorado pelo artista.</p>
+                        <p>O gato é uma das obras mais famosas do artista plástico brasileiro. Com o seu colorido típico, o gato traz também muito do estilo geométrico explorado pelo artista.</p>
                     </div>
-                    
                     <div class="BotoesCompra">
-                        <h1 class="ValorOP"> R$ XXX,XX </h1>
-                        <button class="ComprarObra" value="Comprar Obra" name="Comprar Obra" id="Comprar Obra"> Comprar </button>
-                        <button class="AddCarrinho" value="Adicionar ao carrinho" name="Add ao carrinho" id="Add ao carrinho"> Adicionar ao carrinho </button>
-                    </div>
-                </div>
-            </div>
-                <h2 class="ObrasRelacionadas"> Obras Relacionadas</h2>
-                <div class="ObrasRelacionadas swiper">
-                    <div class="slider-wrapper">
-                    <div class="ObrasRelacionadas-Carrossel swiper-wrapper">
-                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                            <figure class="ObrasRelacionadas1">
-                                <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                    <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                                </a> 
-                            </figure>
-                              <p> R$ xxx,xx</p>
-                              <div class="CarrinhoELike">
-                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                              </div>
-                        </nav>
-                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                            <figure class="ObrasRelacionadas2">
-                                <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                    <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                                </a> 
-                            </figure>
-                              <p>R$ xxx,xx</p>
-                              <div class="CarrinhoELike">
-                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                              </div>
-                        </nav>
-                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                            <figure class="ObrasRelacionadas1">
-                                <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                    <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                                </a> 
-                            </figure>
-                              <p> R$ xxx,xx</p>
-                              <div class="CarrinhoELike">
-                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                              </div>
-                        </nav>
-                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                            <figure class="ObrasRelacionadas2">
-                                <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                    <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                                </a> 
-                            </figure>
-                              <p>R$ xxx,xx</p>
-                              <div class="CarrinhoELike">
-                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                              </div>
-                        </nav>
-                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                            <figure class="ObrasRelacionadas1">
-                                <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                    <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                                </a> 
-                            </figure>
-                              <p> R$ xxx,xx</p>
-                              <div class="CarrinhoELike">
-                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                              </div>
-                        </nav>
-                        <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                            <figure class="ObrasRelacionadas2">
-                                <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                    <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                                </a> 
-                            </figure>
-                            <p>R$ xxx,xx</p>
-                            <div class="CarrinhoELike">
-                              <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                            <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                            </div>
-                        </nav>
-                    </div>
-                 
+                        <h1 class="ValorOP">R$ XXX,XX</h1>
+                        <button class="ComprarObra">Comprar</button>
+                        <button class="AddCarrinho">Adicionar</button>
                     </div>
                 </div> 
-                <!-- <div class="Especificacoes">
-                   <h2 class="Especificacoe"> Especificações obra </h2>
-                    <table>
-                        <tbody>
-                        <tr>
-                            <td> Dimenções </td>
-                            <td> Largura xx X alura xx </td>
-                        </tr>
-                        <tr>
-                            <td> Autor </td>
-                            <td> Romero Brito </td>
-                        </tr>
-                        <tr>
-                            <td> Fornecedor </td>
-                            <td> XXXXX </td>
-                        </tr>
-                        <tr>
-                            <td> Tecnica usada </td>
-                            <td> Tint xx Superficíe </td>
-                        </tr>
-                        <tr>
-                            <td> Ano Confecção </td>
-                            <td>  20xx </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div> -->
+                <br>
+                 <div class="gallery-container" id="gallery">
+                    <!-- Página 1 -->
+                    <div class="page" data-page="1">
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 1">
+                            <div class="painting-title">Pintura 1</div>
+                            <div class="painting-description">Descrição da pintura 1</div>
+                            <div class="painting-price">R$ 500,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 2">
+                            <div class="painting-title">Pintura 2</div>
+                            <div class="painting-description">Descrição da pintura 2</div>
+                            <div class="painting-price">R$ 700,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 3">
+                            <div class="painting-title">Pintura 3</div>
+                            <div class="painting-description">Descrição da pintura 3</div>
+                            <div class="painting-price">R$ 450,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 4">
+                            <div class="painting-title">Pintura 4</div>
+                            <div class="painting-description">Descrição da pintura 4</div>
+                            <div class="painting-price">R$ 600,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 5">
+                            <div class="painting-title">Pintura 5</div>
+                            <div class="painting-description">Descrição da pintura 5</div>
+                            <div class="painting-price">R$ 550,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 6">
+                            <div class="painting-title">Pintura 6</div>
+                            <div class="painting-description">Descrição da pintura 6</div>
+                            <div class="painting-price">R$ 800,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 7">
+                            <div class="painting-title">Pintura 7</div>
+                            <div class="painting-description">Descrição da pintura 7</div>
+                            <div class="painting-price">R$ 490,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 8">
+                            <div class="painting-title">Pintura 8</div>
+                            <div class="painting-description">Descrição da pintura 8</div>
+                            <div class="painting-price">R$ 650,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 9">
+                            <div class="painting-title">Pintura 9</div>
+                            <div class="painting-description">Descrição da pintura 9</div>
+                            <div class="painting-price">R$ 600,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 10">
+                            <div class="painting-title">Pintura 10</div>
+                            <div class="painting-description">Descrição da pintura 10</div>
+                            <div class="painting-price">R$ 750,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 11">
+                            <div class="painting-title">Pintura 11</div>
+                            <div class="painting-description">Descrição da pintura 11</div>
+                            <div class="painting-price">R$ 800,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 12">
+                            <div class="painting-title">Pintura 12</div>
+                            <div class="painting-description">Descrição da pintura 12</div>
+                            <div class="painting-price">R$ 540,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 13">
+                            <div class="painting-title">Pintura 13</div>
+                            <div class="painting-description">Descrição da pintura 13</div>
+                            <div class="painting-price">R$ 620,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 14">
+                            <div class="painting-title">Pintura 14</div>
+                            <div class="painting-description">Descrição da pintura 14</div>
+                            <div class="painting-price">R$ 400,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 15">
+                            <div class="painting-title">Pintura 15</div>
+                            <div class="painting-description">Descrição da pintura 15</div>
+                            <div class="painting-price">R$ 520,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 16">
+                            <div class="painting-title">Pintura 16</div>
+                            <div class="painting-description">Descrição da pintura 16</div>
+                            <div class="painting-price">R$ 750,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 17">
+                            <div class="painting-title">Pintura 17</div>
+                            <div class="painting-description">Descrição da pintura 17</div>
+                            <div class="painting-price">R$ 630,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 18">
+                            <div class="painting-title">Pintura 18</div>
+                            <div class="painting-description">Descrição da pintura 18</div>
+                            <div class="painting-price">R$ 410,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 19">
+                            <div class="painting-title">Pintura 19</div>
+                            <div class="painting-description">Descrição da pintura 19</div>
+                            <div class="painting-price">R$ 680,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 20">
+                            <div class="painting-title">Pintura 20</div>
+                            <div class="painting-description">Descrição da pintura 20</div>
+                            <div class="painting-price">R$ 730,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 21">
+                            <div class="painting-title">Pintura 21</div>
+                            <div class="painting-description">Descrição da pintura 21</div>
+                            <div class="painting-price">R$ 590,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 22">
+                            <div class="painting-title">Pintura 22</div>
+                            <div class="painting-description">Descrição da pintura 22</div>
+                            <div class="painting-price">R$ 720,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 23">
+                            <div class="painting-title">Pintura 23</div>
+                            <div class="painting-description">Descrição da pintura 23</div>
+                            <div class="painting-price">R$ 460,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 24">
+                            <div class="painting-title">Pintura 24</div>
+                            <div class="painting-description">Descrição da pintura 24</div>
+                            <div class="painting-price">R$ 590,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 25">
+                            <div class="painting-title">Pintura 25</div>
+                            <div class="painting-description">Descrição da pintura 25</div>
+                            <div class="painting-price">R$ 480,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 26">
+                            <div class="painting-title">Pintura 26</div>
+                            <div class="painting-description">Descrição da pintura 26</div>
+                            <div class="painting-price">R$ 520,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 27">
+                            <div class="painting-title">Pintura 27</div>
+                            <div class="painting-description">Descrição da pintura 27</div>
+                            <div class="painting-price">R$ 540,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 28">
+                            <div class="painting-title">Pintura 28</div>
+                            <div class="painting-description">Descrição da pintura 28</div>
+                            <div class="painting-price">R$ 550,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 29">
+                            <div class="painting-title">Pintura 29</div>
+                            <div class="painting-description">Descrição da pintura 29</div>
+                            <div class="painting-price">R$ 590,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 30">
+                            <div class="painting-title">Pintura 30</div>
+                            <div class="painting-description">Descrição da pintura 30</div>
+                            <div class="painting-price">R$ 600,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 31">
+                            <div class="painting-title">Pintura 31</div>
+                            <div class="painting-description">Descrição da pintura 31</div>
+                            <div class="painting-price">R$ 650,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 32">
+                            <div class="painting-title">Pintura 32</div>
+                            <div class="painting-description">Descrição da pintura 32</div>
+                            <div class="painting-price">R$ 700,00</div>
+                        </div>
+                    </div>
+                    <!-- Paginação 2 -->
+                    <div class="page" data-page="2">
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 2">
+                            <div class="painting-title">Pintura 2</div>
+                            <div class="painting-description">Descrição da pintura 1</div>
+                            <div class="painting-price">R$ 500,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 2">
+                            <div class="painting-title">Pintura 2</div>
+                            <div class="painting-description">Descrição da pintura 2</div>
+                            <div class="painting-price">R$ 700,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 3">
+                            <div class="painting-title">Pintura 3</div>
+                            <div class="painting-description">Descrição da pintura 3</div>
+                            <div class="painting-price">R$ 450,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 4">
+                            <div class="painting-title">Pintura 4</div>
+                            <div class="painting-description">Descrição da pintura 4</div>
+                            <div class="painting-price">R$ 600,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 5">
+                            <div class="painting-title">Pintura 5</div>
+                            <div class="painting-description">Descrição da pintura 5</div>
+                            <div class="painting-price">R$ 550,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 6">
+                            <div class="painting-title">Pintura 6</div>
+                            <div class="painting-description">Descrição da pintura 6</div>
+                            <div class="painting-price">R$ 800,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 7">
+                            <div class="painting-title">Pintura 7</div>
+                            <div class="painting-description">Descrição da pintura 7</div>
+                            <div class="painting-price">R$ 490,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 8">
+                            <div class="painting-title">Pintura 8</div>
+                            <div class="painting-description">Descrição da pintura 8</div>
+                            <div class="painting-price">R$ 650,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 9">
+                            <div class="painting-title">Pintura 9</div>
+                            <div class="painting-description">Descrição da pintura 9</div>
+                            <div class="painting-price">R$ 600,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 10">
+                            <div class="painting-title">Pintura 10</div>
+                            <div class="painting-description">Descrição da pintura 10</div>
+                            <div class="painting-price">R$ 750,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 11">
+                            <div class="painting-title">Pintura 11</div>
+                            <div class="painting-description">Descrição da pintura 11</div>
+                            <div class="painting-price">R$ 800,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 12">
+                            <div class="painting-title">Pintura 12</div>
+                            <div class="painting-description">Descrição da pintura 12</div>
+                            <div class="painting-price">R$ 540,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 13">
+                            <div class="painting-title">Pintura 13</div>
+                            <div class="painting-description">Descrição da pintura 13</div>
+                            <div class="painting-price">R$ 620,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 14">
+                            <div class="painting-title">Pintura 14</div>
+                            <div class="painting-description">Descrição da pintura 14</div>
+                            <div class="painting-price">R$ 400,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 15">
+                            <div class="painting-title">Pintura 15</div>
+                            <div class="painting-description">Descrição da pintura 15</div>
+                            <div class="painting-price">R$ 520,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 16">
+                            <div class="painting-title">Pintura 16</div>
+                            <div class="painting-description">Descrição da pintura 16</div>
+                            <div class="painting-price">R$ 750,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 17">
+                            <div class="painting-title">Pintura 17</div>
+                            <div class="painting-description">Descrição da pintura 17</div>
+                            <div class="painting-price">R$ 630,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 18">
+                            <div class="painting-title">Pintura 18</div>
+                            <div class="painting-description">Descrição da pintura 18</div>
+                            <div class="painting-price">R$ 410,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 19">
+                            <div class="painting-title">Pintura 19</div>
+                            <div class="painting-description">Descrição da pintura 19</div>
+                            <div class="painting-price">R$ 680,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 20">
+                            <div class="painting-title">Pintura 20</div>
+                            <div class="painting-description">Descrição da pintura 20</div>
+                            <div class="painting-price">R$ 730,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 21">
+                            <div class="painting-title">Pintura 21</div>
+                            <div class="painting-description">Descrição da pintura 21</div>
+                            <div class="painting-price">R$ 590,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 22">
+                            <div class="painting-title">Pintura 22</div>
+                            <div class="painting-description">Descrição da pintura 22</div>
+                            <div class="painting-price">R$ 720,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 23">
+                            <div class="painting-title">Pintura 23</div>
+                            <div class="painting-description">Descrição da pintura 23</div>
+                            <div class="painting-price">R$ 460,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 24">
+                            <div class="painting-title">Pintura 24</div>
+                            <div class="painting-description">Descrição da pintura 24</div>
+                            <div class="painting-price">R$ 590,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 25">
+                            <div class="painting-title">Pintura 25</div>
+                            <div class="painting-description">Descrição da pintura 25</div>
+                            <div class="painting-price">R$ 480,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 26">
+                            <div class="painting-title">Pintura 26</div>
+                            <div class="painting-description">Descrição da pintura 26</div>
+                            <div class="painting-price">R$ 520,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 27">
+                            <div class="painting-title">Pintura 27</div>
+                            <div class="painting-description">Descrição da pintura 27</div>
+                            <div class="painting-price">R$ 540,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 28">
+                            <div class="painting-title">Pintura 28</div>
+                            <div class="painting-description">Descrição da pintura 28</div>
+                            <div class="painting-price">R$ 550,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 29">
+                            <div class="painting-title">Pintura 29</div>
+                            <div class="painting-description">Descrição da pintura 29</div>
+                            <div class="painting-price">R$ 590,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 30">
+                            <div class="painting-title">Pintura 30</div>
+                            <div class="painting-description">Descrição da pintura 30</div>
+                            <div class="painting-price">R$ 600,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 31">
+                            <div class="painting-title">Pintura 31</div>
+                            <div class="painting-description">Descrição da pintura 31</div>
+                            <div class="painting-price">R$ 650,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 32">
+                            <div class="painting-title">Pintura 32</div>
+                            <div class="painting-description">Descrição da pintura 32</div>
+                            <div class="painting-price">R$ 700,00</div>
+                        </div>
+                    </div>
+
+                    <div class="page" data-page="3">
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 1">
+                            <div class="painting-title">Pintura 3</div>
+                            <div class="painting-description">Descrição da pintura 1</div>
+                            <div class="painting-price">R$ 500,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 2">
+                            <div class="painting-title">Pintura 2</div>
+                            <div class="painting-description">Descrição da pintura 2</div>
+                            <div class="painting-price">R$ 700,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 3">
+                            <div class="painting-title">Pintura 3</div>
+                            <div class="painting-description">Descrição da pintura 3</div>
+                            <div class="painting-price">R$ 450,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 4">
+                            <div class="painting-title">Pintura 4</div>
+                            <div class="painting-description">Descrição da pintura 4</div>
+                            <div class="painting-price">R$ 600,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 5">
+                            <div class="painting-title">Pintura 5</div>
+                            <div class="painting-description">Descrição da pintura 5</div>
+                            <div class="painting-price">R$ 550,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 6">
+                            <div class="painting-title">Pintura 6</div>
+                            <div class="painting-description">Descrição da pintura 6</div>
+                            <div class="painting-price">R$ 800,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 7">
+                            <div class="painting-title">Pintura 7</div>
+                            <div class="painting-description">Descrição da pintura 7</div>
+                            <div class="painting-price">R$ 490,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 8">
+                            <div class="painting-title">Pintura 8</div>
+                            <div class="painting-description">Descrição da pintura 8</div>
+                            <div class="painting-price">R$ 650,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 9">
+                            <div class="painting-title">Pintura 9</div>
+                            <div class="painting-description">Descrição da pintura 9</div>
+                            <div class="painting-price">R$ 600,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 10">
+                            <div class="painting-title">Pintura 10</div>
+                            <div class="painting-description">Descrição da pintura 10</div>
+                            <div class="painting-price">R$ 750,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 11">
+                            <div class="painting-title">Pintura 11</div>
+                            <div class="painting-description">Descrição da pintura 11</div>
+                            <div class="painting-price">R$ 800,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 12">
+                            <div class="painting-title">Pintura 12</div>
+                            <div class="painting-description">Descrição da pintura 12</div>
+                            <div class="painting-price">R$ 540,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 13">
+                            <div class="painting-title">Pintura 13</div>
+                            <div class="painting-description">Descrição da pintura 13</div>
+                            <div class="painting-price">R$ 620,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 14">
+                            <div class="painting-title">Pintura 14</div>
+                            <div class="painting-description">Descrição da pintura 14</div>
+                            <div class="painting-price">R$ 400,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 15">
+                            <div class="painting-title">Pintura 15</div>
+                            <div class="painting-description">Descrição da pintura 15</div>
+                            <div class="painting-price">R$ 520,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 16">
+                            <div class="painting-title">Pintura 16</div>
+                            <div class="painting-description">Descrição da pintura 16</div>
+                            <div class="painting-price">R$ 750,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 17">
+                            <div class="painting-title">Pintura 17</div>
+                            <div class="painting-description">Descrição da pintura 17</div>
+                            <div class="painting-price">R$ 630,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 18">
+                            <div class="painting-title">Pintura 18</div>
+                            <div class="painting-description">Descrição da pintura 18</div>
+                            <div class="painting-price">R$ 410,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 19">
+                            <div class="painting-title">Pintura 19</div>
+                            <div class="painting-description">Descrição da pintura 19</div>
+                            <div class="painting-price">R$ 680,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 20">
+                            <div class="painting-title">Pintura 20</div>
+                            <div class="painting-description">Descrição da pintura 20</div>
+                            <div class="painting-price">R$ 730,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 21">
+                            <div class="painting-title">Pintura 21</div>
+                            <div class="painting-description">Descrição da pintura 21</div>
+                            <div class="painting-price">R$ 590,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 22">
+                            <div class="painting-title">Pintura 22</div>
+                            <div class="painting-description">Descrição da pintura 22</div>
+                            <div class="painting-price">R$ 720,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 23">
+                            <div class="painting-title">Pintura 23</div>
+                            <div class="painting-description">Descrição da pintura 23</div>
+                            <div class="painting-price">R$ 460,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 24">
+                            <div class="painting-title">Pintura 24</div>
+                            <div class="painting-description">Descrição da pintura 24</div>
+                            <div class="painting-price">R$ 590,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 25">
+                            <div class="painting-title">Pintura 25</div>
+                            <div class="painting-description">Descrição da pintura 25</div>
+                            <div class="painting-price">R$ 480,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 26">
+                            <div class="painting-title">Pintura 26</div>
+                            <div class="painting-description">Descrição da pintura 26</div>
+                            <div class="painting-price">R$ 520,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 27">
+                            <div class="painting-title">Pintura 27</div>
+                            <div class="painting-description">Descrição da pintura 27</div>
+                            <div class="painting-price">R$ 540,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 28">
+                            <div class="painting-title">Pintura 28</div>
+                            <div class="painting-description">Descrição da pintura 28</div>
+                            <div class="painting-price">R$ 550,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 29">
+                            <div class="painting-title">Pintura 29</div>
+                            <div class="painting-description">Descrição da pintura 29</div>
+                            <div class="painting-price">R$ 590,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 30">
+                            <div class="painting-title">Pintura 30</div>
+                            <div class="painting-description">Descrição da pintura 30</div>
+                            <div class="painting-price">R$ 600,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 31">
+                            <div class="painting-title">Pintura 31</div>
+                            <div class="painting-description">Descrição da pintura 31</div>
+                            <div class="painting-price">R$ 650,00</div>
+                        </div>
+                        <div class="painting">
+                            <img src="./images/coracao.png" alt="Pintura 32">
+                            <div class="painting-title">Pintura 32</div>
+                            <div class="painting-description">Descrição da pintura 32</div>
+                            <div class="painting-price">R$ 700,00</div>
+                        </div>
+                    </div>
+                
+                    <!-- Paginação -->
+                    <div class="pagination">
+                        <a id="prev" href="javascript:void(0)" onclick="changePage(-1)">&#60;</a>
+                        <span id="page-info">1/10</span>
+                        <a id="next" href="javascript:void(0)" onclick="changePage(1)">&#62;</a>
+                    </div>
+                </div>
             </main>
-            <div class="ObrasRelacionadas swiper">
-                <div class="slider-wrapper">
-                <div class="ObrasRelacionadas-Carrossel swiper-wrapper">
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas1">
-                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                            </a> 
-                        </figure>
-                          <p> R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas2">
-                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                            </a> 
-                        </figure>
-                          <p>R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas1">
-                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                            </a> 
-                        </figure>
-                          <p> R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas2">
-                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                            </a> 
-                        </figure>
-                          <p>R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas1">
-                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                            </a> 
-                        </figure>
-                          <p> R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas2">
-                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                            </a> 
-                        </figure>
-                        <p>R$ xxx,xx</p>
-                        <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                        </div>
-                    </nav>
-                </div>
-               
-                </div>
-            </div> 
-            <div class="ObrasRelacionadas swiper">
-                <div class="slider-wrapper">
-                <div class="ObrasRelacionadas-Carrossel swiper-wrapper">
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas1">
-                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                            </a> 
-                        </figure>
-                          <p> R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas2">
-                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                            </a> 
-                        </figure>
-                          <p>R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas1">
-                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                            </a> 
-                        </figure>
-                          <p> R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas2">
-                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                            </a> 
-                        </figure>
-                          <p>R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas1">
-                            <a href="#"> <img class="ObrasRelacionadas1" src="./images/ObraRelacionada1.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas1"> Arte Nick e Charlie hearstopper</h2>
-                            </a> 
-                        </figure>
-                          <p> R$ xxx,xx</p>
-                          <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                          </div>
-                    </nav>
-                    <nav class="ObrasRelacionadas-Carrossel-Item swiper-slide">
-                        <figure class="ObrasRelacionadas2">
-                            <a href="#"> <img class="ObrasRelacionadas2" src="./images/ObraRelacionada2.jpg" alt="Arte do famoso livro hearstopper"> 
-                                <h2 class="ObrasRelacionadas2"> Noite estrelada </h2>
-                            </a> 
-                        </figure>
-                        <p>R$ xxx,xx</p>
-                        <div class="CarrinhoELike">
-                          <button class="AddCarrinho"> Adicionar ao carrinho </button>
-                        <figure> <img class="Like" src="./images/coracao.png" alt="Botão de Like"></figure>
-                        </div>
-                    </nav>
-                </div>
-               
-                </div>
-            </div> 
         </section>
-    </article> 
+    </article>
+
+    <!-- Footer -->
     <%- include("../partial/footer") %>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./js/Obra.js"></script>
 </body>

@@ -1,0 +1,108 @@
+.pedidosContainer {
+    margin: 5rem;
+}
+
+.pedidoContainer {
+    padding: 3rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 3rem;
+    border-radius: 2rem;
+}
+
+.pedidoContainer {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 2rem;
+
+}
+
+.pedidoImagem {
+    width: 100%;
+    height: auto;
+}
+
+.pedidoComprarButton {
+    cursor: pointer;
+    border: none;
+    border-radius: 2rem;
+    background: rgb(43, 71, 208);
+    padding: 0.75rem;
+    margin: 2rem 0;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-family: Roboto;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+
+.btn-cancelar {
+    cursor: pointer;
+    border: none;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    color: #000;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* Ajustes gerais para o container dos pedidos em telas pequenas */
+.pedidosContainerMobile {
+    margin: 1rem; /* Menor margem para se adequar ao tamanho da tela */
+}
+
+/* Estilo para o container de cada pedido em telas pequenas */
+.pedidoContainerMobile {
+    padding: 1.5rem; /* Reduzido para mobile */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px; /* Sombra menos intensa */
+    margin: 1.5rem; /* Menor margem para telas pequenas */
+    border-radius: 1rem; /* Bordas mais suaves em telas pequenas */
+}
+
+/* Organiza o conteúdo dentro de cada pedido em mobile */
+.pedidoContainerMobile {
+    display: grid;
+    grid-template-columns: 1fr; /* Coloca o conteúdo em uma única coluna no mobile */
+    gap: 1.5rem; /* Menor espaçamento entre os itens */
+}
+
+/* Estilo para a imagem do pedido em mobile */
+.pedidoImagemMobile {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem; /* Pequeno ajuste para consistência */
+}
+
+/* Botão de pagamento em mobile */
+.pedidoComprarButtonMobile {
+    cursor: pointer;
+    border: none;
+    border-radius: 1rem;
+    background: rgb(43, 71, 208);
+    padding: 0.5rem; /* Tamanho menor para mobile */
+    margin: 1rem 0;
+    color: #fff;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 1rem; /* Tamanho da fonte reduzido para mobile */
+    font-weight: 500;
+}
+
+/* Botão de cancelar pedido em mobile */
+.btn-cancelarMobile {
+    cursor: pointer;
+    border: none;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    color: #000;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: 300;
+    font-style: italic;
+}

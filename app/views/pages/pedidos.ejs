@@ -9,83 +9,72 @@
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/headerPC.css">
   <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/telaPedidos.css">
 </head>
 <body>
+  <!-- Seção para telas pequenas (mobile) -->
   <section class="telasPequenas">
-    <%- include("../partial/obras/header") %>
-    <h1>Seus Pedidos</h1>
+    <%- include("../partial/obras/header") %>    
+    <section class="pedidosContainerMobile">
+      <% if (pedidos.length > 0) { %>
+        <% pedidos.forEach(pedido => { %>
+          <div class="pedidoContainerMobile">
+            <img src="images/banner.png" alt="Despertando a arte que há em você" class="pedidoImagemMobile">
+            <div>                  
+              <p><strong>Status do Pedido: </strong><%= pedido.status_pedido %></p>
+              <p><strong>Data do pedido: </strong><%= new Date(pedido.data_pedido).toLocaleDateString() %></p>
+              <p><strong>Valor do pedido: </strong>R$ <%= pedido.preco_total %></p>
+            </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Status</th>
-          <th>Data</th>
-          <th>Valor Total</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% if (pedidos.length > 0) { %>
-          <% pedidos.forEach(pedido => { %>
-            <tr>
-               <td><%= pedido.status_pedido %></td>
-              <td><%= new Date(pedido.data_pedido).toLocaleDateString() %></td>
-              <td>R$ <%= pedido.preco_total %></td>
-              <td>
-                <a href="/pedido/<%= pedido.id_pedido %>">Ver Detalhes</a>
-              </td>
-            </tr>
-          <% }) %>
-        <% } else { %>
-          <tr>
-            <td colspan="5">Nenhum pedido encontrado</td>
-          </tr>
-        <% } %>
-      </tbody>
-    </table>
-  
+            <% if (pedido.status_pagamento !== 'approved' && pedido.status_pedido !== 'CANCELADO') { %>
+              <a href="<%= pedido.init_point %>" class="pedidoComprarButtonMobile">Pagar pedido</a>
+              <form action="/api/pedido/cancelar/<%= pedido.id_pedido %>" method="POST">
+                <button type="submit" class="btn-cancelarMobile">Cancelar Pedido</button>
+              </form>
+            <% } else if (pedido.status_pedido === 'CANCELADO') { %>
+              <p>Pedido cancelado</p>
+            <% } else { %>
+              <p>Pagamento já realizado.</p>
+            <% } %>                             
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>Nenhum pedido encontrado</p>
+      <% } %>
+    </section>
+    
     <a href="/">Voltar</a>
   </section>
+
+  <!-- Seção para telas grandes (desktop) -->
   <section class="telasGrandes">
     <%- include("../partial/obras/headerPC") %>
-    <h1>Seus Pedidos</h1>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Status</th>
-          <th>Data</th>
-          <th>Valor Total</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% if (pedidos.length > 0) { %>
-          <% pedidos.forEach(pedido => { %>
-            <tr>
-              <td><%= pedido.status_pedido %></td>
-              <td><%= new Date(pedido.data_pedido).toLocaleDateString() %></td>
-              <td>R$ <%= pedido.preco_total %></td>
-              <td>
-                <% if (pedido.status_pagamento != 'approved') { %>
-                  <a href="<%= pedido.init_point %>" class="btn">Pagar Agora</a>
-                <% } else { %>
-                  <p>Pagamento já realizado.</p>
-                <% } %>              </td>
-            </tr>
-          <% }) %>
-        <% } else { %>
-          <tr>
-            <td colspan="5">Nenhum pedido encontrado</td>
-          </tr>
-        <% } %>
-        
-      </tbody>
-    </table>
     <section class="pedidosContainer">
-        <div>
-          
-        </div>
+      <% if (pedidos.length > 0) { %>
+        <% pedidos.forEach(pedido => { %>
+          <div class="pedidoContainer">
+            <img src="images/banner.png" alt="Despertando a arte que há em você" class="pedidoImagem">
+            <div>                  
+              <p><strong>Status do Pedido: </strong><%= pedido.status_pedido %></p>
+              <p><strong>Data do pedido: </strong><%= new Date(pedido.data_pedido).toLocaleDateString() %></p>
+              <p><strong>Valor do pedido: </strong>R$ <%= pedido.preco_total %></p>
+            </div>
+
+            <% if (pedido.status_pagamento !== 'approved' && pedido.status_pedido !== 'CANCELADO') { %>
+              <a href="<%= pedido.init_point %>" class="pedidoComprarButton">Pagar pedido</a>
+              <form action="/api/pedido/cancelar/<%= pedido.id_pedido %>" method="POST">
+                <button type="submit" class="btn-cancelar">Cancelar Pedido</button>
+              </form>
+            <% } else if (pedido.status_pedido === 'CANCELADO') { %>
+              <p>Pedido cancelado</p>
+            <% } else { %>
+              <p>Pagamento já realizado.</p>
+            <% } %>                             
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>Nenhum pedido encontrado</p>
+      <% } %>
     </section>
     <a href="/">Voltar</a>
   </section>

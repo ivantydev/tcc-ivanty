@@ -126,7 +126,33 @@ const pedidoController = {
       console.error('Erro ao atualizar pedido:', error.message);
       res.status(500).json({ message: 'Erro ao processar pagamento' });
     }
-  }
+  },
+
+  cancelarPedido: async (req, res) => {
+    const pedidoId = req.params.id; // ID do pedido a ser cancelado
+
+    try {
+      const pedido = await pedidoModel.getPedidoById(pedidoId);
+
+      if (!pedido.pedido) {
+        return res.status(404).json({ message: 'Pedido não encontrado' });
+      }
+
+      // Se o pedido já foi pago, ele não pode ser cancelado
+      if (pedido.pedido.status_pedido === 'PAGO') {
+        return res.status(400).json({ message: 'Pedido já foi pago e não pode ser cancelado.' });
+      }
+
+      // Cancela o pedido
+      await pedidoModel.cancelarPedido(pedidoId);
+
+      res.json({ message: 'Pedido cancelado com sucesso' });
+    } catch (error) {
+      console.error('Erro ao cancelar pedido:', error.message);
+      res.status(500).json({ error: 'Erro ao cancelar pedido' });
+    }
+  },
+
 };
 
 module.exports = pedidoController;

@@ -75,6 +75,13 @@ const pedidoModel = {
     );
     return pedidos;
   },
+
+  cancelarPedido: async (pedidoId) => {
+    await db.query(
+      'UPDATE Pedidos SET status_pedido = ? WHERE id_pedido = ?',
+      ['CANCELADO', pedidoId]
+    );
+  },
 };
 
 module.exports = pedidoModel;

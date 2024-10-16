@@ -133,8 +133,14 @@ router.get('/login', (req, res) => {
 });
 
 // Rota para compra de item - requer autenticação
-router.get('/buyitem', (req, res) => {
-    res.render('pages/buyitem.ejs');
+router.get('/buyitem', async (req, res) => {
+    try {
+        const obras = await obraController.getAllObras();
+        res.render('pages/buyitem', { obras });
+    } catch (error) {
+        console.error("Erro ao obter obras: ", error);
+        res.status(500).send("Erro ao carregar as obras.");
+    }
 });
 
 // Rota para página de cartão

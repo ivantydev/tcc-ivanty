@@ -135,7 +135,7 @@ router.get('/login', (req, res) => {
 // Rota para compra de item - requer autenticação
 router.get('/buyitem', async (req, res) => {
     try {
-        const obras = await obraController.getAllObras();
+        const obras = await ObraModel.getAllObras();
         res.render('pages/buyitem', { obras });
     } catch (error) {
         console.error("Erro ao obter obras: ", error);

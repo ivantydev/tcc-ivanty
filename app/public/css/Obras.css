@@ -7,7 +7,6 @@
 body {
     background-color: #f4f4f4;
     font-family: Arial, sans-serif;
-    padding: 20px;
 }
 
 .gallery-container {
@@ -218,5 +217,102 @@ main {
     }
 }
 
+.painting {
+    margin: 10px;
+    display: inline-block;
+    width: calc(25% - 20px);
+}
+.pagination {
+    margin-top: 20px;
+}
 
+/* Estilos para mobile */
+.Mobile {
+    display: none;
+}
 
+.telasPequenas .Mobile {
+    display: block;
+}
+
+/* Estilos gerais para mobile */
+.ObraPrincipalMobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 1rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ImagemOPMobile {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.ImagemOPMobile img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.TextoOPMobile {
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.BotoesCompraMobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.ValorOPMobile {
+    font-size: 1.8rem;
+    color: #e74c3c;
+}
+
+.ComprarObraMobile, .AddCarrinhoMobile {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.ComprarObraMobile:hover, .AddCarrinhoMobile:hover {
+    background-color: #0056b3;
+}
+
+.gallery-container-mobile {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.painting-mobile {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.painting-mobile img {
+    width: 100%;
+    height: auto;
+}
+
+.painting-title-mobile, .painting-description-mobile, .painting-price-mobile {
+    font-size: 1.2rem;
+}
+
+.pagination-mobile {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}

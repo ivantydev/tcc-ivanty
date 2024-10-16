@@ -4,18 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galeria de Pinturas</title>
-    <style>
-        .painting {
-            margin: 10px;
-            display: inline-block;
-            width: calc(25% - 20px);
-        }
-        .pagination {
-            margin-top: 20px;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+    <link href="./css/Obras.css" rel="stylesheet">
+    <link href="./css/footer.css" rel="stylesheet">
+    <link href="./css/global.css" rel="stylesheet">
+    <link href="./css/globalPC.css" rel="stylesheet">
+    <link href="./css/header.css" rel="stylesheet">
+    <link href="./css/headerPC.css" rel="stylesheet">
+    <link href="./css/menu.css" rel="stylesheet">
 </head>
 <body>
+<section class="telasPequenas">
+    <%- include("../partial/header") %>
+    <article class="Mobile">
+        <section>
+            <main style="margin-top: 2rem;">
+                <div class="ObraPrincipalMobile">
+                    <div class="ImagemOPMobile">
+                        <figure>
+                            <img class="ObraPrincipalMobile" src="./images/ObraPrincipal.webp" alt="Obra o gato do artista romero britto">
+                        </figure>
+                    </div>
+                    <div class="TextoOPMobile">
+                        <p>O gato é uma das obras mais famosas do artista plástico brasileiro.</p>
+                    </div>
+                    <div class="BotoesCompraMobile">
+                        <h1 class="ValorOPMobile">R$ XXX,XX</h1>
+                        <button class="ComprarObraMobile">Comprar</button>
+                        <button class="AddCarrinhoMobile">Adicionar</button>
+                    </div>
+                </div>
+                <br>
+                <div class="gallery-container-mobile" id="galleryMobile">
+                    <!-- Gerar dinamicamente as obras com EJS -->
+                    <% obras.forEach(function(obra) { %>
+                    <div class="painting-mobile">
+                        <img src="<%= obra.src %>" alt="<%= obra.titulo_obra %>">
+                        <div class="painting-title-mobile"><%= obra.titulo_obra %></div>
+                        <div class="painting-description-mobile"><%= obra.descricao_obra %></div>
+                        <div class="painting-price-mobile"><%= obra.preco %></div>
+                    </div>
+                    <% }) %>
+    
+                    <!-- Paginação para mobile -->
+                    <div class="pagination-mobile">
+                        <a id="prevMobile" href="javascript:void(0)" onclick="changePage(-1)">&#60;</a>
+                        <span id="page-info-mobile">1/<%= Math.ceil(obras.length / 2) %></span>
+                        <a id="nextMobile" href="javascript:void(0)" onclick="changePage(1)">&#62;</a>
+                    </div>
+                </div>
+            </main>
+        </section>
+    </article>
+</section>
+
+<!-- Header para telas grandes -->
+<section class="telasGrandes">
+    <%- include("../partial/headerPC") %>
     <article class="Desktop">
         <section>
             <main style="margin-top: 5rem;">
@@ -56,6 +101,12 @@
             </main>
         </section>
     </article>
+</section>
+
+        
+<%- include("../partial/footer") %>
+
+
 
     <script>
         let currentPage = 1;

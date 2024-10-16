@@ -1,0 +1,48 @@
+.carrinhosContainer {
+    margin: 5rem;
+}
+
+.carrinhoContainer {
+    padding: 3rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 3rem;
+    border-radius: 2rem;
+
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 2rem;
+}
+
+.carrinhoImagem {
+    width: 100%;
+    height: auto;
+}
+
+.btn-comprar {
+    cursor: pointer;
+    border: none;
+    border-radius: 2rem;
+    background: rgb(43, 71, 208);
+    padding: 0.75rem;
+    margin: 2rem 0;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-family: Roboto;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.btn-remover {
+    cursor: pointer;
+    border: none;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    color: #000;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: 300;
+    font-style: italic; 
+}

@@ -27,11 +27,12 @@ const carrinhoController = {
         // Aumenta a quantidade se já estiver no carrinho
         itemExistente.quantidade += 1; 
       } else {
-        // Adiciona a obra ao carrinho
+        // Adiciona a obra ao carrinho com a imagem
         req.session.carrinho.push({
           id_obra: obra.id_obra,
           titulo: obra.titulo_obra,
           preco: parseFloat(obra.preco) || 0, // Certifique-se de que o preço é um número
+          imagem_obra: obra.imagem_obra, // Salva o caminho da imagem no carrinho
           quantidade: 1,
         });
       }
@@ -52,11 +53,11 @@ const carrinhoController = {
 
   // Remover obra do carrinho
   removerDoCarrinho: (req, res) => {
-    const obraId = req.params.id; // Obtenha o ID da obra a ser removida
-
+    const obraId = parseInt(req.params.id, 10); // Converte o ID da obra para número
+  
     // Filtra o carrinho para remover a obra com o ID correspondente
     req.session.carrinho = req.session.carrinho.filter(item => item.id_obra !== obraId);
-
+  
     // Redireciona para a página do carrinho
     res.redirect('/carrinho');
   },

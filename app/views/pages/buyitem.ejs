@@ -1,33 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obra</title>
-    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
-    <link href="./css/Obras.css" rel="stylesheet">
-    <link href="./css/footer.css" rel="stylesheet">
-    <link href="./css/global.css" rel="stylesheet">
-    <link href="./css/globalPC.css" rel="stylesheet">
-    <link href="./css/header.css" rel="stylesheet">
-    <link href="./css/headerPC.css" rel="stylesheet">
-    <link href="./css/menu.css" rel="stylesheet">
+    <title>Galeria de Pinturas</title>
+    <style>
+        .painting {
+            margin: 10px;
+            display: inline-block;
+            width: calc(25% - 20px);
+        }
+        .pagination {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header para telas pequenas -->
-    <section class="telasPequenas">
-        <%- include("../partial/header") %>
-    </section>
-
-    <!-- Header para telas grandes -->
-    <section class="telasGrandes">
-        <%- include("../partial/headerPC") %>
-    </section>
-
-    <!-- Conteúdo para Mobile -->
-     
-
-    <!-- Conteúdo para Desktop -->
     <article class="Desktop">
         <section>
             <main style="margin-top: 5rem;">
@@ -38,606 +26,30 @@
                         </figure>
                     </div>
                     <div class="TextoOP">
-                        <p>O gato é uma das obras mais famosas do artista plástico brasileiro. Com o seu colorido típico, o gato traz também muito do estilo geométrico explorado pelo artista.</p>
+                        <p>O gato é uma das obras mais famosas do artista plástico brasileiro.</p>
                     </div>
                     <div class="BotoesCompra">
                         <h1 class="ValorOP">R$ XXX,XX</h1>
                         <button class="ComprarObra">Comprar</button>
                         <button class="AddCarrinho">Adicionar</button>
                     </div>
-                </div> 
+                </div>
                 <br>
-                 <div class="gallery-container" id="gallery">
-                    <!-- Página 1 -->
-                    <div class="page" data-page="1">
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 1">
-                            <div class="painting-title">Pintura 1</div>
-                            <div class="painting-description">Descrição da pintura 1</div>
-                            <div class="painting-price">R$ 500,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 2">
-                            <div class="painting-title">Pintura 2</div>
-                            <div class="painting-description">Descrição da pintura 2</div>
-                            <div class="painting-price">R$ 700,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 3">
-                            <div class="painting-title">Pintura 3</div>
-                            <div class="painting-description">Descrição da pintura 3</div>
-                            <div class="painting-price">R$ 450,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 4">
-                            <div class="painting-title">Pintura 4</div>
-                            <div class="painting-description">Descrição da pintura 4</div>
-                            <div class="painting-price">R$ 600,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 5">
-                            <div class="painting-title">Pintura 5</div>
-                            <div class="painting-description">Descrição da pintura 5</div>
-                            <div class="painting-price">R$ 550,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 6">
-                            <div class="painting-title">Pintura 6</div>
-                            <div class="painting-description">Descrição da pintura 6</div>
-                            <div class="painting-price">R$ 800,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 7">
-                            <div class="painting-title">Pintura 7</div>
-                            <div class="painting-description">Descrição da pintura 7</div>
-                            <div class="painting-price">R$ 490,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 8">
-                            <div class="painting-title">Pintura 8</div>
-                            <div class="painting-description">Descrição da pintura 8</div>
-                            <div class="painting-price">R$ 650,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 9">
-                            <div class="painting-title">Pintura 9</div>
-                            <div class="painting-description">Descrição da pintura 9</div>
-                            <div class="painting-price">R$ 600,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 10">
-                            <div class="painting-title">Pintura 10</div>
-                            <div class="painting-description">Descrição da pintura 10</div>
-                            <div class="painting-price">R$ 750,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 11">
-                            <div class="painting-title">Pintura 11</div>
-                            <div class="painting-description">Descrição da pintura 11</div>
-                            <div class="painting-price">R$ 800,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 12">
-                            <div class="painting-title">Pintura 12</div>
-                            <div class="painting-description">Descrição da pintura 12</div>
-                            <div class="painting-price">R$ 540,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 13">
-                            <div class="painting-title">Pintura 13</div>
-                            <div class="painting-description">Descrição da pintura 13</div>
-                            <div class="painting-price">R$ 620,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 14">
-                            <div class="painting-title">Pintura 14</div>
-                            <div class="painting-description">Descrição da pintura 14</div>
-                            <div class="painting-price">R$ 400,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 15">
-                            <div class="painting-title">Pintura 15</div>
-                            <div class="painting-description">Descrição da pintura 15</div>
-                            <div class="painting-price">R$ 520,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 16">
-                            <div class="painting-title">Pintura 16</div>
-                            <div class="painting-description">Descrição da pintura 16</div>
-                            <div class="painting-price">R$ 750,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 17">
-                            <div class="painting-title">Pintura 17</div>
-                            <div class="painting-description">Descrição da pintura 17</div>
-                            <div class="painting-price">R$ 630,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 18">
-                            <div class="painting-title">Pintura 18</div>
-                            <div class="painting-description">Descrição da pintura 18</div>
-                            <div class="painting-price">R$ 410,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 19">
-                            <div class="painting-title">Pintura 19</div>
-                            <div class="painting-description">Descrição da pintura 19</div>
-                            <div class="painting-price">R$ 680,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 20">
-                            <div class="painting-title">Pintura 20</div>
-                            <div class="painting-description">Descrição da pintura 20</div>
-                            <div class="painting-price">R$ 730,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 21">
-                            <div class="painting-title">Pintura 21</div>
-                            <div class="painting-description">Descrição da pintura 21</div>
-                            <div class="painting-price">R$ 590,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 22">
-                            <div class="painting-title">Pintura 22</div>
-                            <div class="painting-description">Descrição da pintura 22</div>
-                            <div class="painting-price">R$ 720,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 23">
-                            <div class="painting-title">Pintura 23</div>
-                            <div class="painting-description">Descrição da pintura 23</div>
-                            <div class="painting-price">R$ 460,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 24">
-                            <div class="painting-title">Pintura 24</div>
-                            <div class="painting-description">Descrição da pintura 24</div>
-                            <div class="painting-price">R$ 590,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 25">
-                            <div class="painting-title">Pintura 25</div>
-                            <div class="painting-description">Descrição da pintura 25</div>
-                            <div class="painting-price">R$ 480,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 26">
-                            <div class="painting-title">Pintura 26</div>
-                            <div class="painting-description">Descrição da pintura 26</div>
-                            <div class="painting-price">R$ 520,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 27">
-                            <div class="painting-title">Pintura 27</div>
-                            <div class="painting-description">Descrição da pintura 27</div>
-                            <div class="painting-price">R$ 540,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 28">
-                            <div class="painting-title">Pintura 28</div>
-                            <div class="painting-description">Descrição da pintura 28</div>
-                            <div class="painting-price">R$ 550,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 29">
-                            <div class="painting-title">Pintura 29</div>
-                            <div class="painting-description">Descrição da pintura 29</div>
-                            <div class="painting-price">R$ 590,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 30">
-                            <div class="painting-title">Pintura 30</div>
-                            <div class="painting-description">Descrição da pintura 30</div>
-                            <div class="painting-price">R$ 600,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 31">
-                            <div class="painting-title">Pintura 31</div>
-                            <div class="painting-description">Descrição da pintura 31</div>
-                            <div class="painting-price">R$ 650,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 32">
-                            <div class="painting-title">Pintura 32</div>
-                            <div class="painting-description">Descrição da pintura 32</div>
-                            <div class="painting-price">R$ 700,00</div>
-                        </div>
+                <div class="gallery-container" id="gallery">
+                    <!-- Gerar dinamicamente as obras com EJS -->
+                    <% obras.forEach(function(obra) { %>
+                    <div class="painting">
+                        <img src="<%= obra.src %>" alt="<%= obra.titulo_obra %>">
+                        <div class="painting-title"><%= obra.titulo_obra %></div>
+                        <div class="painting-description"><%= obra.descricao_obra %></div>
+                        <div class="painting-price"><%= obra.preco %></div>
                     </div>
-                    <!-- Paginação 2 -->
-                    <div class="page" data-page="2">
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 2">
-                            <div class="painting-title">Pintura 2</div>
-                            <div class="painting-description">Descrição da pintura 1</div>
-                            <div class="painting-price">R$ 500,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 2">
-                            <div class="painting-title">Pintura 2</div>
-                            <div class="painting-description">Descrição da pintura 2</div>
-                            <div class="painting-price">R$ 700,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 3">
-                            <div class="painting-title">Pintura 3</div>
-                            <div class="painting-description">Descrição da pintura 3</div>
-                            <div class="painting-price">R$ 450,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 4">
-                            <div class="painting-title">Pintura 4</div>
-                            <div class="painting-description">Descrição da pintura 4</div>
-                            <div class="painting-price">R$ 600,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 5">
-                            <div class="painting-title">Pintura 5</div>
-                            <div class="painting-description">Descrição da pintura 5</div>
-                            <div class="painting-price">R$ 550,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 6">
-                            <div class="painting-title">Pintura 6</div>
-                            <div class="painting-description">Descrição da pintura 6</div>
-                            <div class="painting-price">R$ 800,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 7">
-                            <div class="painting-title">Pintura 7</div>
-                            <div class="painting-description">Descrição da pintura 7</div>
-                            <div class="painting-price">R$ 490,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 8">
-                            <div class="painting-title">Pintura 8</div>
-                            <div class="painting-description">Descrição da pintura 8</div>
-                            <div class="painting-price">R$ 650,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 9">
-                            <div class="painting-title">Pintura 9</div>
-                            <div class="painting-description">Descrição da pintura 9</div>
-                            <div class="painting-price">R$ 600,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 10">
-                            <div class="painting-title">Pintura 10</div>
-                            <div class="painting-description">Descrição da pintura 10</div>
-                            <div class="painting-price">R$ 750,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 11">
-                            <div class="painting-title">Pintura 11</div>
-                            <div class="painting-description">Descrição da pintura 11</div>
-                            <div class="painting-price">R$ 800,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 12">
-                            <div class="painting-title">Pintura 12</div>
-                            <div class="painting-description">Descrição da pintura 12</div>
-                            <div class="painting-price">R$ 540,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 13">
-                            <div class="painting-title">Pintura 13</div>
-                            <div class="painting-description">Descrição da pintura 13</div>
-                            <div class="painting-price">R$ 620,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 14">
-                            <div class="painting-title">Pintura 14</div>
-                            <div class="painting-description">Descrição da pintura 14</div>
-                            <div class="painting-price">R$ 400,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 15">
-                            <div class="painting-title">Pintura 15</div>
-                            <div class="painting-description">Descrição da pintura 15</div>
-                            <div class="painting-price">R$ 520,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 16">
-                            <div class="painting-title">Pintura 16</div>
-                            <div class="painting-description">Descrição da pintura 16</div>
-                            <div class="painting-price">R$ 750,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 17">
-                            <div class="painting-title">Pintura 17</div>
-                            <div class="painting-description">Descrição da pintura 17</div>
-                            <div class="painting-price">R$ 630,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 18">
-                            <div class="painting-title">Pintura 18</div>
-                            <div class="painting-description">Descrição da pintura 18</div>
-                            <div class="painting-price">R$ 410,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 19">
-                            <div class="painting-title">Pintura 19</div>
-                            <div class="painting-description">Descrição da pintura 19</div>
-                            <div class="painting-price">R$ 680,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 20">
-                            <div class="painting-title">Pintura 20</div>
-                            <div class="painting-description">Descrição da pintura 20</div>
-                            <div class="painting-price">R$ 730,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 21">
-                            <div class="painting-title">Pintura 21</div>
-                            <div class="painting-description">Descrição da pintura 21</div>
-                            <div class="painting-price">R$ 590,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 22">
-                            <div class="painting-title">Pintura 22</div>
-                            <div class="painting-description">Descrição da pintura 22</div>
-                            <div class="painting-price">R$ 720,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 23">
-                            <div class="painting-title">Pintura 23</div>
-                            <div class="painting-description">Descrição da pintura 23</div>
-                            <div class="painting-price">R$ 460,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 24">
-                            <div class="painting-title">Pintura 24</div>
-                            <div class="painting-description">Descrição da pintura 24</div>
-                            <div class="painting-price">R$ 590,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 25">
-                            <div class="painting-title">Pintura 25</div>
-                            <div class="painting-description">Descrição da pintura 25</div>
-                            <div class="painting-price">R$ 480,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 26">
-                            <div class="painting-title">Pintura 26</div>
-                            <div class="painting-description">Descrição da pintura 26</div>
-                            <div class="painting-price">R$ 520,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 27">
-                            <div class="painting-title">Pintura 27</div>
-                            <div class="painting-description">Descrição da pintura 27</div>
-                            <div class="painting-price">R$ 540,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 28">
-                            <div class="painting-title">Pintura 28</div>
-                            <div class="painting-description">Descrição da pintura 28</div>
-                            <div class="painting-price">R$ 550,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 29">
-                            <div class="painting-title">Pintura 29</div>
-                            <div class="painting-description">Descrição da pintura 29</div>
-                            <div class="painting-price">R$ 590,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 30">
-                            <div class="painting-title">Pintura 30</div>
-                            <div class="painting-description">Descrição da pintura 30</div>
-                            <div class="painting-price">R$ 600,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 31">
-                            <div class="painting-title">Pintura 31</div>
-                            <div class="painting-description">Descrição da pintura 31</div>
-                            <div class="painting-price">R$ 650,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 32">
-                            <div class="painting-title">Pintura 32</div>
-                            <div class="painting-description">Descrição da pintura 32</div>
-                            <div class="painting-price">R$ 700,00</div>
-                        </div>
-                    </div>
+                    <% }) %>
 
-                    <div class="page" data-page="3">
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 1">
-                            <div class="painting-title">Pintura 3</div>
-                            <div class="painting-description">Descrição da pintura 1</div>
-                            <div class="painting-price">R$ 500,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 2">
-                            <div class="painting-title">Pintura 2</div>
-                            <div class="painting-description">Descrição da pintura 2</div>
-                            <div class="painting-price">R$ 700,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 3">
-                            <div class="painting-title">Pintura 3</div>
-                            <div class="painting-description">Descrição da pintura 3</div>
-                            <div class="painting-price">R$ 450,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 4">
-                            <div class="painting-title">Pintura 4</div>
-                            <div class="painting-description">Descrição da pintura 4</div>
-                            <div class="painting-price">R$ 600,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 5">
-                            <div class="painting-title">Pintura 5</div>
-                            <div class="painting-description">Descrição da pintura 5</div>
-                            <div class="painting-price">R$ 550,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 6">
-                            <div class="painting-title">Pintura 6</div>
-                            <div class="painting-description">Descrição da pintura 6</div>
-                            <div class="painting-price">R$ 800,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 7">
-                            <div class="painting-title">Pintura 7</div>
-                            <div class="painting-description">Descrição da pintura 7</div>
-                            <div class="painting-price">R$ 490,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 8">
-                            <div class="painting-title">Pintura 8</div>
-                            <div class="painting-description">Descrição da pintura 8</div>
-                            <div class="painting-price">R$ 650,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 9">
-                            <div class="painting-title">Pintura 9</div>
-                            <div class="painting-description">Descrição da pintura 9</div>
-                            <div class="painting-price">R$ 600,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 10">
-                            <div class="painting-title">Pintura 10</div>
-                            <div class="painting-description">Descrição da pintura 10</div>
-                            <div class="painting-price">R$ 750,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 11">
-                            <div class="painting-title">Pintura 11</div>
-                            <div class="painting-description">Descrição da pintura 11</div>
-                            <div class="painting-price">R$ 800,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 12">
-                            <div class="painting-title">Pintura 12</div>
-                            <div class="painting-description">Descrição da pintura 12</div>
-                            <div class="painting-price">R$ 540,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 13">
-                            <div class="painting-title">Pintura 13</div>
-                            <div class="painting-description">Descrição da pintura 13</div>
-                            <div class="painting-price">R$ 620,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 14">
-                            <div class="painting-title">Pintura 14</div>
-                            <div class="painting-description">Descrição da pintura 14</div>
-                            <div class="painting-price">R$ 400,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 15">
-                            <div class="painting-title">Pintura 15</div>
-                            <div class="painting-description">Descrição da pintura 15</div>
-                            <div class="painting-price">R$ 520,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 16">
-                            <div class="painting-title">Pintura 16</div>
-                            <div class="painting-description">Descrição da pintura 16</div>
-                            <div class="painting-price">R$ 750,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 17">
-                            <div class="painting-title">Pintura 17</div>
-                            <div class="painting-description">Descrição da pintura 17</div>
-                            <div class="painting-price">R$ 630,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 18">
-                            <div class="painting-title">Pintura 18</div>
-                            <div class="painting-description">Descrição da pintura 18</div>
-                            <div class="painting-price">R$ 410,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 19">
-                            <div class="painting-title">Pintura 19</div>
-                            <div class="painting-description">Descrição da pintura 19</div>
-                            <div class="painting-price">R$ 680,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 20">
-                            <div class="painting-title">Pintura 20</div>
-                            <div class="painting-description">Descrição da pintura 20</div>
-                            <div class="painting-price">R$ 730,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 21">
-                            <div class="painting-title">Pintura 21</div>
-                            <div class="painting-description">Descrição da pintura 21</div>
-                            <div class="painting-price">R$ 590,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 22">
-                            <div class="painting-title">Pintura 22</div>
-                            <div class="painting-description">Descrição da pintura 22</div>
-                            <div class="painting-price">R$ 720,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 23">
-                            <div class="painting-title">Pintura 23</div>
-                            <div class="painting-description">Descrição da pintura 23</div>
-                            <div class="painting-price">R$ 460,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 24">
-                            <div class="painting-title">Pintura 24</div>
-                            <div class="painting-description">Descrição da pintura 24</div>
-                            <div class="painting-price">R$ 590,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 25">
-                            <div class="painting-title">Pintura 25</div>
-                            <div class="painting-description">Descrição da pintura 25</div>
-                            <div class="painting-price">R$ 480,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 26">
-                            <div class="painting-title">Pintura 26</div>
-                            <div class="painting-description">Descrição da pintura 26</div>
-                            <div class="painting-price">R$ 520,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 27">
-                            <div class="painting-title">Pintura 27</div>
-                            <div class="painting-description">Descrição da pintura 27</div>
-                            <div class="painting-price">R$ 540,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 28">
-                            <div class="painting-title">Pintura 28</div>
-                            <div class="painting-description">Descrição da pintura 28</div>
-                            <div class="painting-price">R$ 550,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 29">
-                            <div class="painting-title">Pintura 29</div>
-                            <div class="painting-description">Descrição da pintura 29</div>
-                            <div class="painting-price">R$ 590,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 30">
-                            <div class="painting-title">Pintura 30</div>
-                            <div class="painting-description">Descrição da pintura 30</div>
-                            <div class="painting-price">R$ 600,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 31">
-                            <div class="painting-title">Pintura 31</div>
-                            <div class="painting-description">Descrição da pintura 31</div>
-                            <div class="painting-price">R$ 650,00</div>
-                        </div>
-                        <div class="painting">
-                            <img src="./images/coracao.png" alt="Pintura 32">
-                            <div class="painting-title">Pintura 32</div>
-                            <div class="painting-description">Descrição da pintura 32</div>
-                            <div class="painting-price">R$ 700,00</div>
-                        </div>
-                    </div>
-                
                     <!-- Paginação -->
                     <div class="pagination">
                         <a id="prev" href="javascript:void(0)" onclick="changePage(-1)">&#60;</a>
-                        <span id="page-info">1/10</span>
+                        <span id="page-info">1/<%= Math.ceil(obras.length / 4) %></span>
                         <a id="next" href="javascript:void(0)" onclick="changePage(1)">&#62;</a>
                     </div>
                 </div>
@@ -645,11 +57,31 @@
         </section>
     </article>
 
-    <!-- Footer -->
-    <%- include("../partial/footer") %>
+    <script>
+        let currentPage = 1;
+        const itemsPerPage = 4;
+        const paintings = document.querySelectorAll('.painting');
+        const totalPages = Math.ceil(paintings.length / itemsPerPage);
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="./js/Obra.js"></script>
+        function updateGallery() {
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+
+            paintings.forEach((painting, index) => {
+                painting.style.display = (index >= start && index < end) ? 'inline-block' : 'none';
+            });
+
+            document.getElementById('page-info').textContent = `${currentPage}/${totalPages}`;
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            if (currentPage < 1) currentPage = 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+            updateGallery();
+        }
+
+        updateGallery();
+    </script>
 </body>
 </html>

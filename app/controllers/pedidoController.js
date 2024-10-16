@@ -21,6 +21,7 @@ const pedidoController = {
     try {
       // Criação do pedido no banco de dados
       const pedidoId = await pedidoModel.criarPedido(idCliente, 'PENDENTE', null, carrinho);
+      req.session.carrinho = [];
 
       // Gerar preferência de pagamento com Mercado Pago
       const response = await preference.create({

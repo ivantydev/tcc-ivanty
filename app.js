@@ -43,8 +43,8 @@ app.use('/api', obrasRoutes);
 app.use('/api', enderecoRoutes);
 app.use("/", artistaRoutes);
 app.use("/", indexRoutes);
-app.use("/api", pedidoRoutes);
 app.use("/api", carrinhoRoutes);
+app.use("/api", pedidoRoutes);
 app.use('/pedidos', pedidoRoutes);
 app.use('/password', passwordRoutes);
 

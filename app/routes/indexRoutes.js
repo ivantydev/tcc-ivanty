@@ -132,16 +132,7 @@ router.get('/login', (req, res) => {
     res.render('pages/login.ejs');
 });
 
-// Rota para compra de item - requer autenticação
-router.get('/buyitem', async (req, res) => {
-    try {
-        const obras = await ObraModel.getAllObras();
-        res.render('pages/buyitem', { obras });
-    } catch (error) {
-        console.error("Erro ao obter obras: ", error);
-        res.status(500).send("Erro ao carregar as obras.");
-    }
-});
+
 
 // Rota para página de cartão
 router.get('/card', (req, res) => {
@@ -180,13 +171,12 @@ router.get('/entregas', ClienteController.getObrasVendidasBySession);
 // Rota para exibir uma obra pelo ID
 router.get('/obra/:id', obraController.getObraComArtista);
 
-router.get('/obras/:categoria', async (req, res) => {
+router.get('/obras_:categoria', async (req, res) => {
     try {
         const { categoria } = req.params;
         const obras = await ObraModel.getObrasByCategoria(categoria);
           
-        // Retorna as obras em formato JSON
-        res.json(obras);
+        res.render('pages/buyitem', { obras });    
     } catch (error) {
         console.error('Erro ao buscar obras por categoria:', error.message);
         res.status(500).json({ error: 'Erro ao carregar as obras por categoria.' });
@@ -196,12 +186,10 @@ router.get('/obras/:categoria', async (req, res) => {
 router.get('/obras', async (req, res) => {
     try {
         const obras = await ObraModel.getAllObras();
-        
-        // Retorna todas as obras em formato JSON
-        res.json(obras);
+        res.render('pages/buyitem', { obras });
     } catch (error) {
-        console.error('Erro ao buscar todas as obras:', error.message);
-        res.status(500).json({ error: 'Erro ao carregar todas as obras.' });
+        console.error("Erro ao obter obras: ", error);
+        res.status(500).send("Erro ao carregar as obras.");
     }
 });
 

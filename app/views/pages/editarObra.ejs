@@ -1,38 +1,98 @@
-<!-- views/pages/editarObra.ejs -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editar Obra</title>
-  <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Editar Obra</title>
+    <link rel="stylesheet" href="/../../../css/global.css">
+    <link rel="stylesheet" href="/../../../css/header.css">
+    <link rel="stylesheet" href="/../../../css/footer.css">
+    <link rel="stylesheet" href="/../../../css/menu.css">
+    <link rel="stylesheet" href="/../../../css/headerPC.css">
+    <link rel="stylesheet" href="/../../../css/globalPC.css">
+    <link rel="stylesheet" href="/../../../css/salvarObra.css">
 </head>
 <body>
-  <h1>Editar Obra</h1>
+    <section class="telasPequenas">
+        <%- include("../partial/obras/header") %>
+        <div class="form-container-mobile">
+            <h1 class="salvarObraTitle">Editar Dados da Obra</h1>
+            <form id="obraForm" action="/artista/obras/editar/<%= obra.id_obra %>" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="titulo_obra">Título da Obra:</label>
+                    <input type="text" id="titulo_obra" name="titulo_obra" class="input-field" value="<%= obra.titulo_obra %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="descricao_obra">Descrição:</label>
+                    <textarea id="descricao_obra" name="descricao_obra" class="input-field" required><%= obra.descricao_obra %></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="ano_criacao">Ano de Criação:</label>
+                    <input type="number" id="ano_criacao" name="ano_criacao" class="input-field" value="<%= obra.ano_criacao %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantidade_em_estoque">Quantidade em Estoque:</label>
+                    <input type="number" id="quantidade_em_estoque" name="quantidade_em_estoque" class="input-field" value="<%= obra.quantidade_em_estoque %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="preco">Preço:</label>
+                    <input type="text" id="preco" name="preco" class="input-field" value="<%= obra.preco %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="categorias">Categoria:</label>
+                    <input type="text" id="categorias" name="categorias" class="input-field" value="<%= obra.categorias %>" required>
+                </div>
+                <div class="form-group button-container">
+                    <button type="submit" class="submit-button">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="telasGrandes">
+        <%- include("../partial/obras/headerPC") %>
+        <div class="form-container">
+            <h1 class="salvarObraTitle">Editar Dados da Obra</h1>
+            <form id="obraForm" action="/artista/obras/editar/<%= obra.id_obra %>" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="titulo_obra">Título da Obra:</label>
+                    <input type="text" id="titulo_obra" name="titulo_obra" class="input-field" value="<%= obra.titulo_obra %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="descricao_obra">Descrição:</label>
+                    <textarea id="descricao_obra" name="descricao_obra" class="input-field" required><%= obra.descricao_obra %></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="ano_criacao">Ano de Criação:</label>
+                    <input type="number" id="ano_criacao" name="ano_criacao" class="input-field" value="<%= obra.ano_criacao %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantidade_em_estoque">Quantidade em Estoque:</label>
+                    <input type="number" id="quantidade_em_estoque" name="quantidade_em_estoque" class="input-field" value="<%= obra.quantidade_em_estoque %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="preco">Preço:</label>
+                    <input type="text" id="preco" name="preco" class="input-field" value="<%= obra.preco %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="categorias">Categoria:</label>
+                    <input type="text" id="categorias" name="categorias" class="input-field" value="<%= obra.categorias %>" required>
+                </div>
+                <div class="form-group button-container">
+                    <button type="submit" class="submit-button">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
-  <form action="/artista/obras/editar/<%= obra.id_obra %>" method="POST" enctype="multipart/form-data">
-    <label for="titulo_obra">Título:</label>
-    <input type="text" id="titulo_obra" name="titulo_obra" value="<%= obra.titulo_obra %>" required>
-
-    <label for="descricao_obra">Descrição:</label>
-    <textarea id="descricao_obra" name="descricao_obra" required><%= obra.descricao_obra %></textarea>
-
-    <label for="ano_criacao">Ano de Criação:</label>
-    <input type="number" id="ano_criacao" name="ano_criacao" value="<%= obra.ano_criacao %>" required>
-
-    <label for="categorias">Categoria:</label>
-    <input type="text" id="categorias" name="categorias" value="<%= obra.categorias %>" required>
-
-    <label for="preco">Preço:</label>
-    <input type="number" id="preco" name="preco" step="0.01" value="<%= obra.preco %>" required>
-
-    <label for="quantidade_em_estoque">Quantidade em Estoque:</label>
-    <input type="number" id="quantidade_em_estoque" name="quantidade_em_estoque" value="<%= obra.quantidade_em_estoque %>" required>
-
-    <label for="imagem_obra">Imagem da Obra:</label>
-    <input type="file" id="imagem_obra" name="imagem_obra" accept="image/*">
-
-    <button type="submit">Salvar Alterações</button>
-  </form>
+    <script>
+        document.getElementById('obraForm').addEventListener('submit', function(e) {
+            const precoInput = document.getElementById('preco');
+            // Substitui a vírgula por ponto
+            precoInput.value = precoInput.value.replace(',', '.');
+        });
+    </script>
 </body>
 </html>

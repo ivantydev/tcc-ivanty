@@ -12,6 +12,13 @@
   <link rel="stylesheet" href="/css/telaPedidos.css">
 </head>
 <body>
+  <% if (notification) { %>
+    <%- include('../partial/notification') %>
+
+    <script>
+        showNotification("<%= notification.message %>");
+    </script>
+ <% } %>
   <!-- Seção para telas pequenas (mobile) -->
   <section class="telasPequenas">
     <%- include("../partial/obras/header") %>    

@@ -133,27 +133,43 @@ const pedidoController = {
     const pedidoId = req.params.id; // ID do pedido a ser cancelado
 
     try {
-      const pedido = await pedidoModel.getPedidoById(pedidoId);
+        const pedido = await pedidoModel.getPedidoById(pedidoId);
 
-      if (!pedido.pedido) {
-        return res.status(404).json({ message: 'Pedido não encontrado' });
-      }
+        if (!pedido.pedido) {
+            req.session.notification = {
+                message: 'Pedido não encontrado',
+                type: 'error'
+            };
+            return res.redirect(req.get('Referer')); // Redireciona para a página anterior
+        }
 
-      // Se o pedido já foi pago, ele não pode ser cancelado
-      if (pedido.pedido.status_pedido === 'PAGO') {
-        return res.status(400).json({ message: 'Pedido já foi pago e não pode ser cancelado.' });
-      }
+        // Se o pedido já foi pago, ele não pode ser cancelado
+        if (pedido.pedido.status_pedido === 'PAGO') {
+            req.session.notification = {
+                message: 'Pedido já foi pago e não pode ser cancelado.',
+                type: 'error'
+            };
+            return res.redirect(req.get('Referer')); // Redireciona para a página anterior
+        }
 
-      // Cancela o pedido
-      await pedidoModel.cancelarPedido(pedidoId);
+        // Cancela o pedido
+        await pedidoModel.cancelarPedido(pedidoId);
 
-      res.json({ message: 'Pedido cancelado com sucesso' });
+        req.session.notification = {
+            message: 'Pedido cancelado com sucesso',
+            type: 'success'
+        };
+
+        return res.redirect(req.get('Referer')); // Redireciona para a página anterior
     } catch (error) {
-      console.error('Erro ao cancelar pedido:', error.message);
-      res.status(500).json({ error: 'Erro ao cancelar pedido' });
+        console.error('Erro ao cancelar pedido:', error.message);
+        req.session.notification = {
+            message: 'Erro ao cancelar pedido',
+            type: 'error'
+        };
+        return res.redirect(req.get('Referer')); // Redireciona para a página anterior
     }
   },
-
 };
 
 module.exports = pedidoController;

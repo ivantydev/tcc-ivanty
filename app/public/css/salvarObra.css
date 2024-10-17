@@ -1,119 +1,75 @@
-div.SalvarObra{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 60px 1fr;
-    background-color: #1a23a0;
-    width: max-content;
-    height: min-content;
-    padding: 1%;
-    padding-bottom: 2%;
-    grid-gap: 20px;
-    border: 2px solid #000;
-    margin: 2rem auto;
+.form-container {
+    margin: 7rem 5rem;
+    background-color: white;
+    padding: 4rem 5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-div.SalvarObra h1:nth-child(1){
-    text-align: center;
-    height: 30px;
-    margin: auto;
+.form-group {
+    margin-bottom: 15px;
 }
 
-div.SalvarObra form{
-    grid-column-gap: 5%;
-    grid-row-gap: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 70px 50px 70px 45px;
+label {
+    margin-bottom: 5px;
+    display: block;
+    font-style: italic;
 }
 
-.SalvarObra div:nth-child(1){
-    grid-column: 1/4;
-    grid-row: 1;
+/* Classes para inputs e select */
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Botão */
+.submit-button {
+    width: 30%;
+    padding: 10px;
+    margin: 2rem 0 0;
+    background-color: #EA4C89;
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button-container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end; /* Alinha o conteúdo à direita */
 }
 
-.SalvarObra div:nth-child(2){
-    grid-column: 1/4;
-    grid-row: 2;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.SalvarObra div:nth-child(3){
-    grid-column: 1/4;
-    grid-row: 3;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.SalvarObra button:nth-child(4){
-    color: #fff;
-    border-radius: 20px;
-    border: none;
-    background-color: #1A23A0;
-    grid-column: 2;
-    grid-row: 4;
-    margin-top: 7px;
-    transition: 0.5s ease;
-}
-
-.SalvarObra button:nth-child(4):hover{
-    background-color: #000;
-}
-
-.SalvarObra div:nth-child(1) label{
-    font-size: 100%;
-    margin-left: 1%;
-    font-family: "Playwrite DE Grund", cursive; 
-}
-
-.SalvarObra div:nth-child(1) input{
-    margin-right: 2%;
-    width: 65%;
-    height: 40%;
-    border-radius: 20px;
-    border: none;
-}
-
-.SalvarObra div:nth-child(2) label{
-    font-size: 120%;
-    margin-left: 1%;
-    font-family: "Playwrite DE Grund", cursive; 
-}
-
-.SalvarObra div:nth-child(2) textarea{
-    margin-right: 2%;
-    min-height: 100px ;
-    max-width: 100px;
-    max-width: 285px;
-    min-width: 285px;
-    max-height: 100px;
-    border-radius: 20px;
-    border: none;
-}
-
-.SalvarObra div:nth-child(3) label{
-    font-size: 100%;
-    margin-left: 1%;
-    font-family: "Playwrite DE Grund", cursive;   
-}
-
-.SalvarObra div:nth-child(3) input{
-    margin-right: 2%;
-    width: 65%;
-    height: 40%;
-    border-radius: 20px;
-    border: none;
+.submit-button:hover {
+    background-color: #45a049;
 }
 
 .salvarObraTitle {
-    color: #fff;
+    font-size: 2rem;
+    margin: 0 0 2rem;
 }
 
-.salvarObraBox {
-    margin: 2rem auto;
+.form-container-mobile {
+    padding: 2rem; /* Reduz padding para dispositivos móveis */
+}
+
+.submit-button-mobile {
+    width: 30%;
+    padding: 10px;
+    margin: 2rem 0 0;
+    background-color: #EA4C89;
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%; /* O botão ocupa 100% da largura em mobile */
+}
+
+.salvarObraTitle-mobile {
+    font-size: 1.5rem; 
+    margin: 0 0 1rem/* Título menor em dispositivos móveis */
 }

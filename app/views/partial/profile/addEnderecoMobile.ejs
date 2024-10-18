@@ -1,0 +1,48 @@
+<!-- Modal para adicionar endereço -->
+<div id="addEnderecoModalMobile" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeAddEnderecoModalMobile">&times;</span>
+
+    <!-- Formulário para adicionar endereço -->
+    <form id="addEnderecoForm" action="/api/enderecos" method="POST"> 
+      <input type="hidden" id="id_cliente" name="id_cliente"> 
+      <div class="form-group">
+        <label for="cep_endereco">CEP:</label>
+        <input type="text" class="form-control" id="cep_endereco" name="cep_endereco" required>
+      </div>
+      <div class="form-group">
+        <label for="numero_endereco">Número:</label>
+        <input type="number" class="form-control" id="numero_endereco" name="numero_endereco" required>
+      </div>
+      <div class="form-group">
+        <label for="complemento_endereco">Complemento:</label>
+        <input type="text" class="form-control" id="complemento_endereco" name="complemento_endereco">
+      </div>
+      <div class="form-group">
+        <label for="tipo_endereco">Tipo de Endereço:</label>
+        <select class="form-control" id="tipo_endereco" name="tipo_endereco" required>
+          <option value="Residencial">Residencial</option>
+          <option value="Comercial">Comercial</option>
+          <option value="Outro">Outro</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Adicionar Endereço</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.getElementById('abrirModalEnderecoMobile').addEventListener('click', function() {
+    document.getElementById('addEnderecoModalMobile').style.display = 'block';
+  });
+
+  document.getElementById('closeAddEnderecoModalMobile').addEventListener('click', function() {
+    document.getElementById('addEnderecoModalMobile').style.display = 'none';
+  });
+
+  window.addEventListener('click', function(event) {
+    if (event.target == document.getElementById('addEnderecoModalMobile')) {
+        document.getElementById('addEnderecoModalMobile').style.display = 'none';
+    }
+  });
+</script>

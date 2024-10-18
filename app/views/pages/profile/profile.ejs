@@ -57,7 +57,7 @@
         <section class="menu-perfil">
           <ul>
             <li><a href="#" class="" id="openEditModalMobile" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
-            <li><a href="#" class="" id="abrirModalEndereco" title=""><i class="icon-perfil fas fa-bullhorn"></i> Endereços</a></li>
+            <li><a href="#" class="" id="abrirModalEnderecoMobile" title=""><i class="icon-perfil fas fa-bullhorn"></i> Endereços</a></li>
             <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
           </ul>
         </section>
@@ -65,6 +65,7 @@
           <button class="putColor" id="openAddObraModalMobile">Adicionar obras</button>
         </section>
       </section>
+      <%- include("../../partial/profile/addEnderecoMobile") %>
     </section>
   </section>
 
@@ -105,16 +106,8 @@
           </section>
          
           <section class="addObras">
-            <% if(endereco) {%>
-              <p><strong>ID:</strong> <%= endereco.id %></p>
-              <p><strong>CEP:</strong> <%= endereco.cep %></p>
-              <p><strong>Complemento:</strong> <%= endereco.complemento %></p>
-              <p><strong>Número:</strong> <%= endereco.numero %></p>
-              <p><strong>Tipo:</strong> <%= endereco.tipo %></p>
-              <p><strong>ID do Cliente:</strong> <%= endereco.id_cliente %></p>
-              <% }%>
           </section>
-
+          <%- include("../../partial/profile/addEndereco") %>
         </section>
       </section>
     </main>

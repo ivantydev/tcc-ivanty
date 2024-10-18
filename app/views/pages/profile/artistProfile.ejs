@@ -61,14 +61,13 @@
             <li><a href="#" class="" id="openEditModalMobile" title=""><i class="icon-perfil bx bxs-edit-alt"></i> Editar perfil</a></li>
             <% if(!endereco) { %>
               <li><a href="#" class="" id="abrirModalEnderecoMobile" title=""><i class="icon-perfil fas fa-bullhorn"></i> Endereços</a></li>
+            <% } else { %>
+              <li><a href="/artista_obras" class="" title=""><i class="icon-perfil fas fa-bullhorn"></i> Endereços</a></li>
             <% } %>
             <li><a href="/logout" title=""><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
           </ul>
         </section>
         <section class="addObras">
-          <a href="/api/salvar">
-            <button class="putColor" id="openAddObraModalMobile">Adicionar obras</button>
-          </a>
         </section>
         <%- include("../../partial/profile/addEnderecoMobile") %>
       </section>

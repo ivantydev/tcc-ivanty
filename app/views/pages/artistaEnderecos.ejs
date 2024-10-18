@@ -16,6 +16,18 @@
   <link rel="stylesheet" href="css/perfilMobile.css">
   <link rel="stylesheet" href="css/edit.css">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <style>
+    p {
+      color: #000;
+      margin-bottom: 0.3rem;
+    }
+
+    h5 {
+      color: #000;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+  </style>
 </head>
 <body>
 
@@ -50,16 +62,14 @@
           </ul>
         </section>
 
-        <section class="addObras">
-          <a href="/api/salvar">
-            <button class="putColor" id="openAddObraModalMobile">Adicionar obras</button>
-          </a>
+        <section style="padding:1rem; margin:1.5rem; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+          <h5>Endereço cadastrado</h5>
+          <p><strong>CEP:</strong> <%= endereco.cep %></p>
+          <p><strong>Número:</strong> <%= endereco.numero %></p>
+          <p><strong>Complemento:</strong> <%= endereco.complemento %></p>
+          </section>
         </section>
 
-        <!-- Galeria de Obras Mobile -->
-        <section class="obras-container-mobile" style="padding: 10px; background-color: #f9f9f9; border-radius: 5px;">
-  
-        </section>
 
       </section>
     </section>
@@ -95,9 +105,9 @@
                     </ul>
                 </section>
 
-                <section class="addObras" style="padding:1rem; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
-                    <h5>Endereço</h5>
-                    <p><strong>CEP:</strong> <%= endereco.cep %></p>
+                <section style="padding:1rem; margin: 100px auto 0; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                  <h5>Endereço cadastrado</h5>
+                  <p><strong>CEP:</strong> <%= endereco.cep %></p>
                     <p><strong>Número:</strong> <%= endereco.numero %></p>
                     <p><strong>Complemento:</strong> <%= endereco.complemento %></p>
                     <p><strong>Tipo:</strong> <%= endereco.tipo %></p>
@@ -107,7 +117,6 @@
     </main>
 </section>
 
-  
   <%- include("../partial/footer") %>
   <script src="js/profile.js"></script>
   <script>
@@ -117,19 +126,21 @@
             .then(response => response.json())
             .then(data => {
                 if (!data.erro) {
-                    document.querySelector('.addObras').innerHTML += `
-                        <p><strong>Rua:</strong> ${data.logradouro}</p>
-                        <p><strong>Bairro:</strong> ${data.bairro}</p>
-                        <p><strong>Cidade:</strong> ${data.localidade}</p>
-                        <p><strong>Estado:</strong> ${data.uf}</p>
-                    `;
+                    document.querySelectorAll('.addObras').forEach(container => {
+                        container.innerHTML += `
+                            <p><strong>Rua:</strong> ${data.logradouro}</p>
+                            <p><strong>Bairro:</strong> ${data.bairro}</p>
+                            <p><strong>Cidade:</strong> ${data.localidade}</p>
+                            <p><strong>Estado:</strong> ${data.uf}</p>
+                        `;
+                    });
                 } else {
                     console.error("CEP não encontrado.");
                 }
             })
             .catch(error => console.error("Erro ao buscar o endereço:", error));
     });
-</script>
+  </script>
 
 </body>
 </html>

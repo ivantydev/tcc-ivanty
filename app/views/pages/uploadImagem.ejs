@@ -3,22 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload da Imagem</title>
-    <link rel="stylesheet" href="../../css/CriarConta.css">
-    <link rel="stylesheet" href="../../css/addImage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Salvar Obra</title>
+    <link rel="stylesheet" href="/../../css/global.css">
+    <link rel="stylesheet" href="/../../css/header.css">
+    <link rel="stylesheet" href="/../../css/footer.css">
+    <link rel="stylesheet" href="/../../css/menu.css">
+    <link rel="stylesheet" href="/../../css/headerPC.css">
+    <link rel="stylesheet" href="/../../css/globalPC.css">
+    <link rel="stylesheet" href="/../../css/salvarObra.css">
+    <link rel="stylesheet" href="/../../css/addImage.css">
 </head>
 <body>
-    <div class="form-box addImageBox">
-        <h1 class="addImageText">Upload da Imagem da Obra</h1>
-        <form action="/api/obras/imagem" method="POST" enctype="multipart/form-data">
-            <div class="input-group ">
-                <label for="imagem_obra">Upload da Imagem:</label>
-                <input type="file" id="imagem_obra" name="imagem_obra" accept="image/*" required>
-            </div>
-            <div class="input-group">
-                <button type="submit">Upload da Imagem</button>
-            </div>
-        </form>
-    </div>
+    <section class="telasPequenas">
+        <%- include("../partial/obras/header") %>
+        <div class="form-container-mobile">
+            <h1 class="salvarObraTitle-mobile">Informe os dados da obra: </h1>
+            <form id="obraForm" action="/api/obras/imagem" method="POST">
+                <div class="input-group">
+                    <label for="imagem_obra">Upload da Imagem:</label>
+                    <input type="file" id="imagem_obra" name="imagem_obra" accept="image/*" required>
+                    <img id="imagePreview" src="#" alt="Preview da imagem" style="display: none; max-width: 100%; margin-top: 10px;">
+                </div>
+                <div class="input-group">
+                    <button type="submit">Upload da Imagem</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="telasGrandes">
+        <%- include("../partial/obras/headerPC") %>
+        <div class="form-container">
+            <h1 class="salvarObraTitle">Informe os dados da obra: </h1>
+            <form id="obraFormPC" action="/api/obras/imagem" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="imagem_obra">Upload da Imagem:</label>
+                    <input type="file" id="imagem_obra" name="imagem_obra" accept="image/*" required>
+                    <img id="imagePreviewPC" src="#" alt="Preview da imagem" style="display: none; max-width: 100%; margin-top: 10px;">
+                </div>
+                <div class="form-group button-container">
+                    <button type="submit" class="submit-button">Enviar obra</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function previewImage(input, previewId) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById(previewId);
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        document.getElementById('imagem_obra').addEventListener('change', function() {
+            previewImage(this, 'imagePreview');
+        });
+
+        document.getElementById('imagem_obra_pc').addEventListener('change', function() {
+            previewImage(this, 'imagePreviewPC');
+        });
+
+        document.getElementById('obraForm').addEventListener('submit', function(e) {
+            const precoInput = document.getElementById('preco');
+            // Substitui a vírgula por ponto
+            precoInput.value = precoInput.value.replace(',', '.');
+        });
+    </script>
 </body>
 </html>

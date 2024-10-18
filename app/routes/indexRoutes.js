@@ -6,6 +6,7 @@ const ClienteController = require('./../controllers/clienteController');
 const ObraModel = require('../models/obraModel');
 const carrinhoController = require('../controllers/carrinhoController');
 const pedidoController = require('../controllers/pedidoController');
+const isAuthenticated = require('../middlewares/isAuthenticated');
 
 const authenticateUser = (req, res, next) => {
     if (req.session.isLoggedIn && req.session.cliente) {
@@ -132,7 +133,9 @@ router.get('/login', (req, res) => {
     res.render('pages/login.ejs');
 });
 
-
+router.get('/artista_endereco', isAuthenticated, (req, res) => {
+    res.render('pages/artistaEnderecos.ejs', {cliente: req.session.cliente, endereco: req.session.endereco});
+});
 
 // Rota para página de cartão
 router.get('/card', (req, res) => {

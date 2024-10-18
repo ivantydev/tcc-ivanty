@@ -20,7 +20,7 @@
         <%- include("../partial/obras/header") %>
         <div class="form-container-mobile">
             <h1 class="salvarObraTitle-mobile">Informe os dados da obra: </h1>
-            <form id="obraForm" action="/api/obras/salvar" method="POST">
+            <form id="obraFormMobile" action="/api/obras/salvar" method="POST">
                 <div class="form-group">
                     <label for="titulo_obra">Título da Obra:</label>
                     <input type="text" id="titulo_obra" name="titulo_obra" class="input-field" required>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     <label for="preco">Preço:</label>
-                    <input type="text" id="preco" name="preco" class="input-field" required>
+                    <input type="text" id="preco_mobile" name="preco" class="input-field" required>
                 </div>
                 <div class="form-group">
                     <label for="categorias">Categoria:</label>
@@ -63,7 +63,7 @@
         <%- include("../partial/obras/headerPC") %>
         <div class="form-container">
             <h1 class="salvarObraTitle">Informe os dados da obra: </h1>
-            <form id="obraForm" action="/api/obras/salvar" method="POST">
+            <form id="obraFormDesktop" action="/api/obras/salvar" method="POST">
                 <div class="form-group">
                     <label for="titulo_obra">Título da Obra:</label>
                     <input type="text" id="titulo_obra" name="titulo_obra" class="input-field" required>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="form-group">
                     <label for="preco">Preço:</label>
-                    <input type="text" id="preco" name="preco" class="input-field" required>
+                    <input type="text" id="preco_desktop" name="preco" class="input-field" required>
                 </div>
                 <div class="form-group">
                     <label for="categorias">Categoria:</label>
@@ -102,14 +102,20 @@
             </form>
         </div>
     </section>
-        
-    
-        <script>
-            document.getElementById('obraForm').addEventListener('submit', function(e) {
-                const precoInput = document.getElementById('preco');
-                // Substitui a vírgula por ponto
-                precoInput.value = precoInput.value.replace(',', '.');
-            });
-        </script>
-    </body>
+
+    <script>
+        function replaceCommaWithDot(inputId) {
+            const input = document.getElementById(inputId);
+            input.value = input.value.replace(',', '.');
+        }
+
+        document.getElementById('obraFormMobile').addEventListener('submit', function(e) {
+            replaceCommaWithDot('preco_mobile');
+        });
+
+        document.getElementById('obraFormDesktop').addEventListener('submit', function(e) {
+            replaceCommaWithDot('preco_desktop');
+        });
+    </script>
+</body>
 </html>

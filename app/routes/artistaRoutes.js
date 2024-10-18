@@ -6,6 +6,7 @@ const isAuthenticated = require('../middlewares/isAuthenticated');
 
 router.get('/artista_obras',  isAuthenticated, ObraController.getObrasByArtista);
 
+
 router.get('/artista/obras/nova', isAuthenticated, (req, res) => {
   res.render('pages/novaObra'); // Renderiza o formulário para adicionar nova obra
 });

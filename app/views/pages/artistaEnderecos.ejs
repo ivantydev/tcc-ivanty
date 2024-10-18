@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ivanty</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <link rel="stylesheet" href="css/headerPC.css">
+  <link rel="stylesheet" href="css/globalPC.css">
+  <link rel="stylesheet" href="css/carrosell.css">
+  <link rel="stylesheet" href="css/carousel.css">
+  <link rel="stylesheet" href="css/perfil.css">
+  <link rel="stylesheet" href="css/perfilMobile.css">
+  <link rel="stylesheet" href="css/edit.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+<body>
+
+  <!-- Telas Pequenas -->
+  <section class="telasPequenas">
+    <%- include("../partial/header") %>
+
+    <section class="perfil-usuario">
+      <section class="container-perfil">
+        <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
+          <section class="shadow"></section>
+          <section class="avatar-perfil">
+            <img src="./uploads/<%= cliente.foto %>" alt="">
+            <a href="#" class="takePicture" id="openUploadModalMobile">
+              <i class="fas fa-camera"></i>
+            </a>
+          </section>
+          <section class="date-perfil">
+            <% if (!isLoggedIn) { %>
+              <a href="/login" class="login">Login</a>
+            <% } else { %>
+              <h4 class="titulo-usuario"><%= cliente.nome %></h4>
+              <p class="bio-usuario">@<%= cliente.perfil %></p>
+            <% } %>
+          </section>
+        </section>
+
+        <section class="menu-perfil">
+          <ul>
+            <li><a href="/profile"><i class="icon-perfil fas fa-person"></i> Voltar ao perfil</a></li>
+            <li><a href="/logout"><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
+          </ul>
+        </section>
+
+        <section class="addObras">
+          <a href="/api/salvar">
+            <button class="putColor" id="openAddObraModalMobile">Adicionar obras</button>
+          </a>
+        </section>
+
+        <!-- Galeria de Obras Mobile -->
+        <section class="obras-container-mobile" style="padding: 10px; background-color: #f9f9f9; border-radius: 5px;">
+  
+        </section>
+
+      </section>
+    </section>
+  </section>
+
+  <!-- Telas Grandes -->
+  <section class="telasGrandes">
+    <%- include("../partial/headerPC") %>
+
+    <main class="mainTelasGrandes">
+        <section class="perfil-usuario">
+            <section class="container-perfil">
+                <section class="enter-perfil" style="background-image: url('images/sky.jpg');">
+                    <section class="shadow"></section>
+                    <section class="avatar-perfil">
+                        <img src="./uploads/<%= cliente.foto %>" alt="">
+                        <a href="#" class="takePicture" id="openUploadModal"></a>
+                    </section>
+                    <section class="date-perfil">
+                        <% if (!isLoggedIn) { %>
+                            <a href="/login" class="login">Login</a>
+                        <% } else { %>
+                            <h4 class="titulo-usuario"><%= cliente.nome %></h4>
+                            <p class="bio-usuario">@<%= cliente.perfil %></p>
+                        <% } %>
+                    </section>
+                </section>
+
+                <section class="menu-perfil">
+                    <ul>
+                        <li><a href="/profile"><i class="icon-perfil fas fa-person"></i> Voltar para perfil</a></li>
+                        <li><a href="/logout"><i class="icon-perfil bx bx-exit"></i> Logout</a></li>
+                    </ul>
+                </section>
+
+                <section class="addObras" style="padding:1rem; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                    <h5>Endereço</h5>
+                    <p><strong>CEP:</strong> <%= endereco.cep %></p>
+                    <p><strong>Número:</strong> <%= endereco.numero %></p>
+                    <p><strong>Complemento:</strong> <%= endereco.complemento %></p>
+                    <p><strong>Tipo:</strong> <%= endereco.tipo %></p>
+                </section>
+            </section>
+        </section>
+    </main>
+</section>
+
+  
+  <%- include("../partial/footer") %>
+  <script src="js/profile.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const cep = '<%= endereco.cep %>'; // Use o CEP do cliente
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => response.json())
+            .then(data => {
+                if (!data.erro) {
+                    document.querySelector('.addObras').innerHTML += `
+                        <p><strong>Rua:</strong> ${data.logradouro}</p>
+                        <p><strong>Bairro:</strong> ${data.bairro}</p>
+                        <p><strong>Cidade:</strong> ${data.localidade}</p>
+                        <p><strong>Estado:</strong> ${data.uf}</p>
+                    `;
+                } else {
+                    console.error("CEP não encontrado.");
+                }
+            })
+            .catch(error => console.error("Erro ao buscar o endereço:", error));
+    });
+</script>
+
+</body>
+</html>

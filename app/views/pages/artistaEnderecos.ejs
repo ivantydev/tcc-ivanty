@@ -62,7 +62,7 @@
           </ul>
         </section>
 
-        <section style="padding:1rem; margin:1.5rem; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+        <section class="endereco-container" style="padding:1rem; margin:1.5rem; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
           <h5>Endereço cadastrado</h5>
           <p><strong>CEP:</strong> <%= endereco.cep %></p>
           <p><strong>Número:</strong> <%= endereco.numero %></p>
@@ -105,7 +105,7 @@
                     </ul>
                 </section>
 
-                <section style="padding:1rem; margin: 100px auto 0; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                <section class="endereco-containerPC" style="padding:1rem; margin: 100px auto 0; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                   <h5>Endereço cadastrado</h5>
                   <p><strong>CEP:</strong> <%= endereco.cep %></p>
                     <p><strong>Número:</strong> <%= endereco.numero %></p>
@@ -121,26 +121,55 @@
   <script src="js/profile.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const cep = '<%= endereco.cep %>'; // Use o CEP do cliente
+      const cep = '<%= endereco.cep %>'; // Use o CEP do cliente
+      if (cep) {
         fetch(`https://viacep.com.br/ws/${cep}/json/`)
-            .then(response => response.json())
-            .then(data => {
-                if (!data.erro) {
-                    document.querySelectorAll('.addObras').forEach(container => {
-                        container.innerHTML += `
-                            <p><strong>Rua:</strong> ${data.logradouro}</p>
-                            <p><strong>Bairro:</strong> ${data.bairro}</p>
-                            <p><strong>Cidade:</strong> ${data.localidade}</p>
-                            <p><strong>Estado:</strong> ${data.uf}</p>
-                        `;
-                    });
-                } else {
-                    console.error("CEP não encontrado.");
-                }
-            })
-            .catch(error => console.error("Erro ao buscar o endereço:", error));
+          .then(response => response.json())
+          .then(data => {
+            if (!data.erro) {
+              // Preenchendo os dados do endereço em um local específico
+              const enderecoContainer = document.querySelector('.endereco-container');
+              if (enderecoContainer) {
+                enderecoContainer.innerHTML += `
+                  <p><strong>Rua:</strong> ${data.logradouro}</p>
+                  <p><strong>Bairro:</strong> ${data.bairro}</p>
+                  <p><strong>Cidade:</strong> ${data.localidade}</p>
+                  <p><strong>Estado:</strong> ${data.uf}</p>
+                `;
+              }
+            } else {
+              console.error("CEP não encontrado.");
+            }
+          })
+          .catch(error => console.error("Erro ao buscar o endereço:", error));
+      }
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+      const cep = '<%= endereco.cep %>'; // Use o CEP do cliente
+      if (cep) {
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+          .then(response => response.json())
+          .then(data => {
+            if (!data.erro) {
+              // Preenchendo os dados do endereço em um local específico
+              const enderecoContainer = document.querySelector('.endereco-containerPC');
+              if (enderecoContainer) {
+                enderecoContainer.innerHTML += `
+                  <p><strong>Rua:</strong> ${data.logradouro}</p>
+                  <p><strong>Bairro:</strong> ${data.bairro}</p>
+                  <p><strong>Cidade:</strong> ${data.localidade}</p>
+                  <p><strong>Estado:</strong> ${data.uf}</p>
+                `;
+              }
+            } else {
+              console.error("CEP não encontrado.");
+            }
+          })
+          .catch(error => console.error("Erro ao buscar o endereço:", error));
+      }
     });
   </script>
+  
 
 </body>
 </html>

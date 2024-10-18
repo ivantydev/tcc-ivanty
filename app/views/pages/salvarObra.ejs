@@ -7,49 +7,109 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <title>Salvar Obra</title>
-    <link rel="stylesheet" href="../css/CriarConta.css">
-    <link rel="stylesheet" href="../css/salvarObra.css">
+    <link rel="stylesheet" href="./../css/global.css">
+    <link rel="stylesheet" href="./../css/header.css">
+    <link rel="stylesheet" href="./../css/footer.css">
+    <link rel="stylesheet" href="./../css/menu.css">
+    <link rel="stylesheet" href="./../css/headerPC.css">
+    <link rel="stylesheet" href="./../css/globalPC.css">
+    <link rel="stylesheet" href="./../css/salvarObra.css">
 </head>
 <body>
-    <div class="form-box salvarObraBox">
-        <h1 class="salvarObraTitle">Salvar Dados da Obra</h1>
-        <form action="/api/obras/salvar" method="POST">
-            <div class="input-group">
-                <label for="titulo_obra">Título da Obra:</label>
-                <input type="text" id="titulo_obra" name="titulo_obra" required>
-            </div>
-            <div class="input-group">
-                <label for="descricao_obra">Descrição:</label>
-                <textarea id="descricao_obra" name="descricao_obra" required></textarea>
-            </div>
-            <div class="input-group">
-                <label for="ano_criacao">Ano de Criação:</label>
-                <input type="number" id="ano_criacao" name="ano_criacao" required>
-            </div>
-            <div class="input-group">
-                <label for="quantidade_em_estoque">Quantidade em estoque:</label>
-                <input type="number" id="quantidade_em_estoque" name="quantidade_em_estoque" required>
-            </div>
-            <div class="input-group">
-                <label for="preco">Preço:</label>
-                <input id="preco" name="preco" required>
-            </div>
-            <div class="input-group">
-                <label for="categorias">Categoria:</label>
-                <select name="categorias" required>
-                    <option value="Pintura">Pintura</option>
-                    <option value="Escultura">Escultura</option>
-                    <option value="Fotografia">Fotografia</option>
-                    <option value="Desenho">Desenho</option>
-                    <option value="Outros">Outros</option>
-                    <option value="Instalação">Instalação</option>
-                    <option value="Grafite">Grafite</option>
-                  </select>                  
-            </div>
-            <div class="input-group">
-                <button type="submit">Salvar Dados da Obra</button>
-            </div>
-        </form>
-    </div>
-</body>
+    <section class="telasPequenas">
+        <%- include("../partial/obras/header") %>
+        <div class="form-container-mobile">
+            <h1 class="salvarObraTitle-mobile">Informe os dados da obra: </h1>
+            <form id="obraForm" action="/api/obras/salvar" method="POST">
+                <div class="form-group">
+                    <label for="titulo_obra">Título da Obra:</label>
+                    <input type="text" id="titulo_obra" name="titulo_obra" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label for="descricao_obra">Descrição:</label>
+                    <textarea id="descricao_obra" name="descricao_obra" class="input-field" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="ano_criacao">Ano de Criação:</label>
+                    <input type="number" id="ano_criacao" name="ano_criacao" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantidade_em_estoque">Quantidade em Estoque:</label>
+                    <input type="number" id="quantidade_em_estoque" name="quantidade_em_estoque" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label for="preco">Preço:</label>
+                    <input type="text" id="preco" name="preco" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label for="categorias">Categoria:</label>
+                    <select id="categorias" name="categorias" class="input-field" required>
+                        <option value="Pintura">Pintura</option>
+                        <option value="Escultura">Escultura</option>
+                        <option value="Fotografia">Fotografia</option>
+                        <option value="Desenho">Desenho</option>
+                        <option value="Outros">Outros</option>
+                        <option value="Instalação">Instalação</option>
+                        <option value="Grafite">Grafite</option>
+                    </select>
+                </div>
+                <div class="form-group button-container">
+                    <button type="submit" class="submit-button-mobile">Salvar Dados da Obra</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="telasGrandes">
+        <%- include("../partial/obras/headerPC") %>
+        <div class="form-container">
+            <h1 class="salvarObraTitle">Informe os dados da obra: </h1>
+            <form id="obraForm" action="/api/obras/salvar" method="POST">
+                <div class="form-group">
+                    <label for="titulo_obra">Título da Obra:</label>
+                    <input type="text" id="titulo_obra" name="titulo_obra" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label for="descricao_obra">Descrição:</label>
+                    <textarea id="descricao_obra" name="descricao_obra" class="input-field" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="ano_criacao">Ano de Criação:</label>
+                    <input type="number" id="ano_criacao" name="ano_criacao" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantidade_em_estoque">Quantidade em Estoque:</label>
+                    <input type="number" id="quantidade_em_estoque" name="quantidade_em_estoque" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label for="preco">Preço:</label>
+                    <input type="text" id="preco" name="preco" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label for="categorias">Categoria:</label>
+                    <select id="categorias" name="categorias" class="input-field" required>
+                        <option value="Pintura">Pintura</option>
+                        <option value="Escultura">Escultura</option>
+                        <option value="Fotografia">Fotografia</option>
+                        <option value="Desenho">Desenho</option>
+                        <option value="Outros">Outros</option>
+                        <option value="Instalação">Instalação</option>
+                        <option value="Grafite">Grafite</option>
+                    </select>
+                </div>
+                <div class="form-group button-container">
+                    <button type="submit" class="submit-button">Salvar Dados da Obra</button>
+                </div>
+            </form>
+        </div>
+    </section>
+        
+    
+        <script>
+            document.getElementById('obraForm').addEventListener('submit', function(e) {
+                const precoInput = document.getElementById('preco');
+                // Substitui a vírgula por ponto
+                precoInput.value = precoInput.value.replace(',', '.');
+            });
+        </script>
+    </body>
 </html>

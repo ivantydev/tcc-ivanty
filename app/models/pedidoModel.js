@@ -82,6 +82,33 @@ const pedidoModel = {
       ['CANCELADO', pedidoId]
     );
   },
+
+  getPedidosParaTela: async (idCliente) => {
+    const query = `
+      SELECT 
+        P.id_pedido,
+        P.data_pedido,
+        P.status_pagamento,
+        P.preco_total,
+        O.titulo_obra,
+        O.imagem_obra  -- Supondo que você tenha um campo 'imagem_obra' na tabela Obras
+      FROM 
+        Pedidos P
+      JOIN 
+        Pedidos_obras PO ON P.id_pedido = PO.id_pedido
+      JOIN 
+        Obras O ON PO.id_obra = O.id_obra
+      WHERE 
+        P.id_cliente = ?
+      GROUP BY 
+        P.id_pedido
+      ORDER BY 
+        P.data_pedido DESC;
+    `;
+  
+    const [pedidos] = await db.query(query, [idCliente]);
+    return pedidos;
+  }  
 };
 
 module.exports = pedidoModel;

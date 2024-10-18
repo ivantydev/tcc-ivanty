@@ -39,7 +39,7 @@
                     <!-- Gerar dinamicamente as obras com EJS -->
                     <% obras.forEach(function(obra) { %>
                     <div class="painting-mobile">
-                        <img src="<%= obra.src %>" alt="<%= obra.titulo_obra %>">
+                        <img src="uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
                         <div class="painting-title-mobile"><%= obra.titulo_obra %></div>
                         <div class="painting-description-mobile"><%= obra.descricao_obra %></div>
                         <div class="painting-price-mobile"><%= obra.preco %></div>
@@ -84,7 +84,7 @@
                     <!-- Gerar dinamicamente as obras com EJS -->
                     <% obras.forEach(function(obra) { %>
                     <div class="painting">
-                        <img src="<%= obra.src %>" alt="<%= obra.titulo_obra %>">
+                        <img src="uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
                         <div class="painting-title"><%= obra.titulo_obra %></div>
                         <div class="painting-description"><%= obra.descricao_obra %></div>
                         <div class="painting-price"><%= obra.preco %></div>

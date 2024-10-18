@@ -11,9 +11,38 @@
   <link rel="stylesheet" href="/css/menu.css">
   <link rel="stylesheet" href="/css/telaCarrinho.css"></head>
 <body>
+  
   <section class="telasPequenas">
-
+    <%- include("../partial/obras/header") %>
+    <section class="carrinhosContainer">
+      <% if (carrinho.length > 0) { %>
+        <% carrinho.forEach(item => { %>
+          <div class="carrinhoContainer">
+            <img src="/uploads/obras/<%= item.imagem_obra %>" alt="Produto" class="carrinhoImagem">
+            <div>
+              <p><strong>Produto:</strong> <%= item.titulo %></p>
+              <p><strong>Quantidade:</strong> <%= item.quantidade %></p>
+              <p><strong>Preço Unitário:</strong> R$ <%= parseFloat(item.preco).toFixed(2) %></p>
+              <p><strong>Subtotal:</strong> R$ <%= (parseFloat(item.preco) * item.quantidade).toFixed(2) %></p>
+            </div>
+            <form action="/api/carrinho/remover/<%= item.id_obra %>" method="POST" class="removerForm">
+              <button type="submit" class="btn-remover">Remover</button>
+            </form>
+          </div>
+        <% }) %>
+        <div class="totalContainer">
+          <p class="total-price"><strong>Total:</strong> R$ <%= carrinho.reduce((acc, item) => acc + parseFloat(item.preco) * item.quantidade, 0).toFixed(2) %></p>
+        </div>
+        <div class="actions">
+          <a id="checkout-btn-mobile" class="btn-comprar">Finalizar Compra</a>
+          <a href="/" class="btn-comprar-rosa">Continuar comprando</a>
+        </div>
+      <% } else { %>
+        <p class="carrinhoVazio">Seu carrinho está vazio</p>
+      <% } %>
+    </section>
   </section>
+
     <section class="telasGrandes">
       <%- include("../partial/obras/headerPC") %>
       
@@ -40,10 +69,19 @@
         <% } %>
       </section>
     
-      <p><strong>Total:</strong> R$ <%= carrinho.reduce((acc, item) => acc + parseFloat(item.preco) * item.quantidade, 0).toFixed(2) %></p>
-      <a id="checkout-btn" class="btn-comprar">Finalizar Compra</a>
 
-      <a href="/">Continuar comprando</a>
+      <div class="container-checkout">
+        <div class="checkout-summary">
+            <p class="total-price"><strong>Total:</strong> R$ <%= carrinho.reduce((acc, item) => acc + parseFloat(item.preco) * item.quantidade, 0).toFixed(2) %></p>
+            
+            <div class="actions">
+                <a id="checkout-btn" class="btn-comprar">Finalizar Compra</a>
+                <a href="/" class="btn-comprar-rosa">Continuar comprando</a>
+            </div>
+        </div>
+    </div>
+    
+
     
     </section>
     <script src="https://sdk.mercadopago.com/js/v2"></script>

@@ -113,7 +113,33 @@
                     <p><strong>Tipo:</strong> <%= endereco.tipo %></p>
                 </section>
             </section>
+            <!-- Adicione um atributo data-id ao formulário para capturar o ID do endereço -->
+            <form id="form-endereco" data-id="<%= endereco.id %>">
+              <input type="hidden" name="id_endereco" value="<%= endereco.id %>">
+              <input type="hidden" name="id_cliente" value="<%= cliente.id %>"> <!-- Adicione este campo oculto -->
+              <div class="form-group">
+                <label for="cep">CEP:</label>
+                <input type="text" name="cep" id="cep_endereco" value="<%= endereco.cep %>" required>
+              </div>
+              <div class="form-group">
+                <label for="numero">Número:</label>
+                <input type="text" name="numero" id="numero_endereco" value="<%= endereco.numero %>" required>
+              </div>
+              <div class="form-group">
+                <label for="complemento">Complemento:</label>
+                <input type="text" name="complemento" id="complemento_endereco" value="<%= endereco.complemento %>">
+              </div>
+              <div class="form-group">
+                <label for="tipo_endereco">Tipo de Endereço:</label>
+                <input type="text" name="tipo_endereco" id="tipo_endereco" value="<%= endereco.tipo %>">
+              </div>
+            
+              <button type="submit">Salvar Alterações</button>
+            </form>
+            
+
         </section>
+        
     </main>
 </section>
 
@@ -168,6 +194,40 @@
           .catch(error => console.error("Erro ao buscar o endereço:", error));
       }
     });
+
+    document.getElementById('form-endereco').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevenir o envio padrão do formulário
+
+  const form = event.target;
+  const id = form.getAttribute('data-id'); // Obter o ID do endereço
+  const cep_endereco = document.getElementById('cep_endereco').value;
+  const numero_endereco = document.getElementById('numero_endereco').value;
+  const complemento_endereco = document.getElementById('complemento_endereco').value;
+  const tipo_endereco = document.getElementById('tipo_endereco').value;
+  const id_cliente = document.querySelector('input[name="id_cliente"]').value; // Obter o ID do cliente
+
+  // Fazer a requisição PUT para atualizar o endereço
+  fetch(`api/enderecos/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id_cliente, cep_endereco, numero_endereco, complemento_endereco, tipo_endereco }), // Enviar os dados como JSON
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.message) {
+        alert(data.message); // Exibir mensagem de sucesso
+        window.location.reload(); // Recarregar a página para ver as atualizações
+      }
+    })
+    .catch(error => {
+      console.error('Erro ao atualizar o endereço:', error);
+    });
+});
+
+
+
   </script>
   
 

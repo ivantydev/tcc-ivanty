@@ -67,8 +67,10 @@ const clienteController = {
 
         res.status(201).redirect(`/login`); // Redireciona para a página de login
     } catch (error) {
-        console.error('Erro ao criar cliente:', error.message);
-        res.status(500).json({ errors: [{ msg: error.message }] });
+        req.session.notification = {
+          message: 'Erro ao criar cliente:  ' + error.message,
+          type: 'error'
+        };
     }
   },
 

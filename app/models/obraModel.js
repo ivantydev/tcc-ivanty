@@ -28,17 +28,14 @@ const ObraModel = {
     return result.insertId;
   },
 
-  updateObra: async (id, obraData) => {
-    const { titulo_obra, descricao_obra, ano_criacao, imagem_obra, categorias, preco, quantidade_em_estoque } = obraData; 
-    const query = `
-      UPDATE Obras
-      SET titulo_obra = ?, descricao_obra = ?, ano_criacao = ?, imagem_obra = ?, categorias = ?, preco = ?, quantidade_em_estoque = ?
-      WHERE id_obra = ?
-    `;
-    const values = [titulo_obra, descricao_obra, ano_criacao, imagem_obra, categorias, preco, quantidade_em_estoque, id]; 
+  async updateObra(obraId, updateData) {
+    const { titulo_obra, descricao_obra, ano_criacao, categorias, preco, quantidade_em_estoque } = updateData;
+    
+    const sql = 'UPDATE obras SET titulo_obra = ?, descricao_obra = ?, ano_criacao = ?, categorias = ?, preco = ?, quantidade_em_estoque = ? WHERE id_obra = ?';
+    const values = [titulo_obra, descricao_obra, ano_criacao, categorias, preco, quantidade_em_estoque, obraId];
 
-    const [result] = await db.execute(query, values);
-    return result.affectedRows;
+    const [result] = await db.query(sql, values);
+    return result.affectedRows; // Retorna o número de linhas afetadas
   },
 
   deleteObra: async (id) => {

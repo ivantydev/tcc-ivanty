@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!-- Fonte Usada -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap" rel="stylesheet">
@@ -15,20 +14,22 @@
     <div class="telasGrandes">
         <div class="grid">
             <div class="a">
-              <img class="Promocional" src="./images/mocaPintandoIvanty.png" alt="Mulher artista pintando o log da ivanty">
+                <img class="Promocional" src="./images/mocaPintandoIvanty.png" alt="Mulher artista pintando o logo da ivanty">
             </div>
             <div class="b">
-                <form action="/api/clientes/login" method="POST">
+                <form id="loginForm" action="/api/clientes/login" method="POST" novalidate>
                     <h1>IVANTY</h1>
 
                     <div class="input-group">
                         <label for="email_cliente">E-mail</label>
                         <input type="email" id="email_cliente" name="email_cliente" placeholder="Digite o seu email" required>
+                        <span id="emailError" class="error"></span> <!-- Span para mensagens de erro -->
                     </div>
 
                     <div class="input-group">
                         <label for="senha_cliente">Senha</label>
-                        <input type="password" id="senha_cliente" name="senha_cliente" placeholder="Digite sua senha" required>
+                        <input type="password" id="senha_cliente" name="senha_cliente" placeholder="Digite sua senha" minlength="8" required>
+                        <span id="senhaError" class="error"></span> <!-- Span para mensagens de erro -->
                     </div>
 
                     <div class="input-group">
@@ -36,7 +37,8 @@
                     </div>
 
                     <div class="input-group">
-                        <button type="button" onclick="window.location.href='/register'">Não tenho conta</button>
+                        <a class="aButton" href='/register'>Não tenho conta</a>
+                        <a class="aButton" href='/password/password-reset/'>Esqueci minha senha</a>                    
                     </div>
                 </form>
             </div>
@@ -46,17 +48,19 @@
     <div class="telasPequenas">
         <div class="grid">
             <div class="b">
-                <form action="/api/clientes/login" method="POST">
+                <form id="loginFormMobile" action="/api/clientes/login" method="POST" novalidate>
                     <h1>IVANTY</h1>
 
                     <div class="input-groupMobile">
                         <label for="email_cliente">E-mail</label>
-                        <input type="email" id="email_cliente" name="email_cliente" placeholder="Digite o seu email" required>
+                        <input type="email" id="email_cliente_mobile" name="email_cliente" placeholder="Digite o seu email" required>
+                        <span id="emailErrorMobile" class="error"></span> <!-- Span para mensagens de erro -->
                     </div>
 
                     <div class="input-groupMobile">
                         <label for="senha_cliente">Senha</label>
-                        <input type="password" id="senha_cliente" name="senha_cliente" placeholder="Digite sua senha" required>
+                        <input type="password" id="senha_cliente_mobile" name="senha_cliente" placeholder="Digite sua senha" minlength="8" required>
+                        <span id="senhaErrorMobile" class="error"></span> <!-- Span para mensagens de erro -->
                     </div>
 
                     <div class="input-groupMobile">
@@ -64,11 +68,60 @@
                     </div>
 
                     <div class="input-groupMobile">
-                        <button type="button" onclick="window.location.href='/register'">Não tenho conta</button>
+                        <a class="aButton" href='/register'>Não tenho conta</a>
+                        <a class="aButton" href='/password/password-reset/'>Esqueci minha senha</a>                    
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    <script>
+        // Função de validação
+        function validateForm(formId) {
+            const form = document.getElementById(formId);
+            const email = form.querySelector('input[type="email"]');
+            const password = form.querySelector('input[type="password"]');
+            const emailError = form.querySelector('#emailError');
+            const senhaError = form.querySelector('#senhaError');
+
+            let valid = true;
+
+            // Limpa mensagens de erro anteriores
+            emailError.textContent = '';
+            senhaError.textContent = '';
+
+            // Valida email
+            if (!email.validity.valid) {
+                if (email.validity.typeMismatch) {
+                    emailError.textContent = 'Não é um e-mail válido';
+                } else if (email.validity.valueMissing) {
+                    emailError.textContent = 'O campo de e-mail é obrigatório';
+                }
+                valid = false;
+            }
+
+            // Valida senha
+            if (password.value.length < 8) {
+                senhaError.textContent = 'A senha deve conter no mínimo 8 caracteres';
+                valid = false;
+            }
+
+            return valid;
+        }
+
+        // Evento de submit para validação
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            if (!validateForm('loginForm')) {
+                event.preventDefault(); // Previne envio se inválido
+            }
+        });
+
+        document.getElementById('loginFormMobile').addEventListener('submit', function (event) {
+            if (!validateForm('loginFormMobile')) {
+                event.preventDefault(); // Previne envio se inválido
+            }
+        });
+    </script>
 </body>
 </html>

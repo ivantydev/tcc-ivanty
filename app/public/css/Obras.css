@@ -1,36 +1,22 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #f4f4f4;
-    font-family: Arial, sans-serif;
-}
 
 .gallery-container {
+    padding: 3rem 5rem;
     width: 100%;
-    margin-bottom: 20px;
-}
-
-.page {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px; /* Diminui o espaço entre os itens do grid */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
 }
 
 .painting {
     background-color: #fff;
     border-radius: 8px; /* Ajuste sutil no arredondamento */
     padding: 10px; /* Reduz o padding interno */
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .painting img {
-    width: 50%; /* Diminui a largura da imagem */
+    width: 100%; 
     height: auto;
     border-radius: 8px;
 }
@@ -59,260 +45,21 @@ body {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra um pouco mais leve */
 }
 
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px; /* Menor espaço para a paginação */
-}
-
-.pagination a {
-    color: #1A23A0;
-    padding: 8px 12px; /* Botões menores */
-    margin: 0 4px;
-    text-decoration: none;
-    border: 2px solid #1A23A0;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+.btn-comprar {
     cursor: pointer;
-}
-
-.pagination a:hover {
-    background-color: #1A23A0;
-    color: #fff;
-}
-
-#page-info {
-    font-size: 14px;
-    color: #333;
-    margin: 0 8px;
-}
-
-/* Estilização para dispositivos menores */
-@media screen and (max-width: 900px) {
-    .page {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .pagination a, #page-info {
-        font-size: 12px;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .page {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-/* Estilo geral do main */
-main {
-    margin-top: 5rem; /* Espaçamento superior */
-    padding: 2rem; /* Espaçamento interno */
-    font-family: 'Arial', sans-serif; /* Fonte padrão */
-   
-}
-
-/* Estilo da obra principal */
-.ObraPrincipal {
-    display: flex; /* Flexbox para layout lado a lado */
-    align-items: center; /* Alinha verticalmente no centro */
-    max-width: 1200px; /* Largura máxima da obra principal */
-    margin: 0 auto; /* Centraliza o container */
-    background-color: #ffffff; /* Cor de fundo branca */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  
-}
-
-/* Estilo da imagem da obra */
-.ImagemOP {
-    flex: 1; /* Permite que a imagem ocupe 1 parte do espaço */
-    margin-right: 2rem; /* Espaço entre a imagem e o texto */
-}
-
-.ImagemOP figure {
-    margin: 0; /* Remove margens da figura */
-}
-
-/* Estilo da imagem */
-.ObraPrincipal img {
-    width: 100%; /* Mantém a imagem responsiva */
-    border-radius: 10px; /* Bordas arredondadas na imagem */
-}
-
-/* Título da obra */
-.ObraPrincipal h2 {
-    font-size: 1.8rem; /* Tamanho da fonte do título da obra */
-    color: #333; /* Cor do título */
-    margin: 0.5rem 0; /* Margens acima e abaixo */
-}
-
-/* Nome do artista */
-.ObraPrincipal h1 {
-    font-size: 2.5rem; /* Tamanho da fonte do nome do artista */
-    color: #007bff; /* Cor do nome do artista */
-    margin: 2rem 0; /* Margens acima e abaixo */
-}
-
-/* Estilo do texto da obra */
-.TextoOP {
-    flex: 2; /* Permite que o texto ocupe 2 partes do espaço */
-    padding: 1rem; /* Espaçamento interno */
-    color: #555; /* Cor do texto */
-    font-size: 1.2rem; /* Tamanho da fonte */
-    line-height: 1.6; /* Espaçamento entre linhas */
-}
-
-/* Estilo da seção de botões de compra */
-.BotoesCompra {
-    flex: 1; /* Permite que os botões ocupem 1 parte do espaço */
-    display: flex; /* Flexbox para botões */
-    flex-direction: column; /* Coloca botões um embaixo do outro */
-    align-items: center; /* Centraliza horizontalmente */
-    margin-top: 1rem; /* Espaço acima dos botões */
-}
-
-/* Estilo do valor da obra */
-.ValorOP {
-    font-size: 2rem; /* Tamanho da fonte do valor */
-    color: #e74c3c; /* Cor do preço */
-    margin-bottom: 1rem; /* Espaço abaixo do preço */
-}
-
-/* Estilo dos botões */
-.ComprarObra, .AddCarrinho {
-    background-color: #007bff; /* Cor de fundo dos botões */
-    color: white; /* Cor do texto dos botões */
-    border: none; /* Remove bordas */
-    border-radius: 5px; /* Bordas arredondadas */
-    padding: 0.75rem 1.5rem; /* Espaçamento interno */
-    font-size: 1.1rem; /* Tamanho da fonte */
-    cursor: pointer; /* Cursor de ponteiro */
-    transition: background-color 0.3s, transform 0.2s; /* Transições suaves */
-    margin: 0.5rem 0; /* Margens entre os botões */
-}
-
-/* Estilo dos botões ao passar o mouse */
-.ComprarObra:hover, .AddCarrinho:hover {
-    background-color: #0056b3; /* Cor ao passar o mouse */
-    transform: translateY(-2px); /* Leve movimento ao passar o mouse */
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .ObraPrincipal {
-        flex-direction: column; /* Muda para coluna em telas menores */
-        padding: 1rem; /* Menos espaçamento em telas menores */
-    }
-
-    .ImagemOP {
-        margin-right: 0; /* Remove o espaço à direita na versão móvel */
-        margin-bottom: 1rem; /* Espaço abaixo da imagem */
-    }
-
-    .ValorOP {
-        font-size: 1.5rem; /* Tamanho do valor reduzido em telas menores */
-    }
-}
-
-.painting {
-    margin: 10px;
-    display: inline-block;
-    width: calc(25% - 20px);
-}
-.pagination {
-    margin-top: 20px;
-}
-
-/* Estilos para mobile */
-.Mobile {
-    display: none;
-}
-
-.telasPequenas .Mobile {
-    display: block;
-}
-
-/* Estilos gerais para mobile */
-.ObraPrincipalMobile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 1rem;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.ImagemOPMobile {
-    width: 100%;
-    margin-bottom: 1rem;
-}
-
-.ImagemOPMobile img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.TextoOPMobile {
-    padding: 1rem;
-    text-align: center;
-    font-size: 1.1rem;
-    color: #555;
-}
-
-.BotoesCompraMobile {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-}
-
-.ValorOPMobile {
-    font-size: 1.8rem;
-    color: #e74c3c;
-}
-
-.ComprarObraMobile, .AddCarrinhoMobile {
-    width: 100%;
+    border: none;
+    border-radius: 2rem;
     padding: 0.75rem;
-    margin: 0.5rem 0;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.ComprarObraMobile:hover, .AddCarrinhoMobile:hover {
-    background-color: #0056b3;
-}
-
-.gallery-container-mobile {
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.painting-mobile {
-    margin: 10px 0;
+    color: #FFF;
     text-align: center;
+    font-family: Roboto;
+    font-size: 1.25rem;
+    font-weight: 500;
+    background-color: #1A23A0;
 }
 
-.painting-mobile img {
-    width: 100%;
-    height: auto;
-}
-
-.painting-title-mobile, .painting-description-mobile, .painting-price-mobile {
-    font-size: 1.2rem;
-}
-
-.pagination-mobile {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
+.h1Obras {
+    margin: 2rem 5rem 1rem;
+    font-size: 2.5rem;
+    font-family: 'Roboto';
 }

@@ -12,6 +12,12 @@
   <link rel="stylesheet" href="/css/telaCarrinho.css"></head>
 <body>
   
+  <% if (notification) { %>
+    <div class="notification <%= notification.type %>">
+      <%= notification.message %>
+    </div>
+  <% } %>
+  
   <section class="telasPequenas">
     <%- include("../partial/obras/header") %>
     <section class="carrinhosContainer">
@@ -38,7 +44,7 @@
           <a href="/" class="btn-comprar-rosa">Continuar comprando</a>
         </div>
       <% } else { %>
-        <p class="carrinhoVazio">Seu carrinho está vazio</p>
+        <p class="carrinhoVazio">Seu carrinho está vazio, adicione algum produto para continuar</p>
       <% } %>
     </section>
   </section>
@@ -65,8 +71,8 @@
           <div class="totalContainer">
           </div>
         <% } else { %>
-          <p class="carrinhoVazio">Seu carrinho está vazio</p>
-        <% } %>
+          <p class="carrinhoVazio">Seu carrinho está vazio, adicione algum produto para continuar.</p>
+          <% } %>
       </section>
     
 

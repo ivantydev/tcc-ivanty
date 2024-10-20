@@ -74,6 +74,11 @@
     gap: 1rem;
 }
 
+.carrinhoVazio {
+    margin: 2rem;
+    font-size: 1.05rem;
+}
+
 /* Estilos para telas pequenas */
 @media only screen and (max-width: 768px) {
     .telasGrandes {

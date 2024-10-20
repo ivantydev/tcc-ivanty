@@ -30,6 +30,13 @@
 </style>
 
 <script>
+  // Verifica se existe uma notificação a ser exibida
+  <% if (notification) { %>
+    // Função para mostrar a notificação
+    showNotification("<%= notification.message %>", "<%= notification.type %>");
+  <% } %>
+
+  // Função para exibir a notificação
   function showNotification(message, type = 'success') {
       // Cria o elemento da notificação
       const notification = document.createElement('div');

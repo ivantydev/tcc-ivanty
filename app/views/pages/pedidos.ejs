@@ -14,11 +14,8 @@
 <body>
   <% if (notification) { %>
     <%- include('../partial/notification') %>
-
-    <script>
-        showNotification("<%= notification.message %>");
-    </script>
  <% } %>
+ 
   <!-- Seção para telas pequenas (mobile) -->
   <section class="telasPequenas">
     <%- include("../partial/obras/header") %>    
@@ -46,11 +43,10 @@
           </div>
         <% }) %>
       <% } else { %>
-        <p>Nenhum pedido encontrado</p>
+        <p>Você ainda não fez nenhum pedido, finalize uma compra para acompanha-lo</p>
       <% } %>
     </section>
-    
-    <a href="/">Voltar</a>
+
   </section>
 
   <!-- Seção para telas grandes (desktop) -->
@@ -80,10 +76,9 @@
           </div>
         <% }) %>
       <% } else { %>
-        <p>Nenhum pedido encontrado</p>
+        <p>Você ainda não fez nenhum pedido, finalize uma compra para acompanha-lo</p>
       <% } %>
     </section>
-    <a href="/">Voltar</a>
   </section>
 
 </body>

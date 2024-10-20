@@ -20,7 +20,7 @@
         <%- include("../partial/obras/header") %>
         <div class="form-container-mobile">
             <h1 class="salvarObraTitle">Editar Dados da Obra</h1>
-            <form id="obraForm" action="/artista/obras/editar/<%= obra.id_obra %>" method="POST" enctype="multipart/form-data">
+            <form id="obraFormMobile" action="/artista/obras/editar/<%= obra.id_obra %>" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="titulo_obra">Título da Obra:</label>
                     <input type="text" id="titulo_obra" name="titulo_obra" class="input-field" value="<%= obra.titulo_obra %>" required>
@@ -43,23 +43,30 @@
                 </div>
                 <div class="form-group">
                     <label for="categorias">Categoria:</label>
-                    <input type="text" id="categorias" name="categorias" class="input-field" value="<%= obra.categorias %>" required>
+                    <select id="categorias" name="categorias" class="input-field" required>
+                        <option value="Pintura" <%= obra.categorias === 'Pintura' ? 'selected' : '' %>>Pintura</option>
+                        <option value="Escultura" <%= obra.categorias === 'Escultura' ? 'selected' : '' %>>Escultura</option>
+                        <option value="Fotografia" <%= obra.categorias === 'Fotografia' ? 'selected' : '' %>>Fotografia</option>
+                        <option value="Desenho" <%= obra.categorias === 'Desenho' ? 'selected' : '' %>>Desenho</option>
+                        <option value="Outros" <%= obra.categorias === 'Outros' ? 'selected' : '' %>>Outros</option>
+                        <option value="Instalação" <%= obra.categorias === 'Instalação' ? 'selected' : '' %>>Instalação</option>
+                        <option value="Grafite" <%= obra.categorias === 'Grafite' ? 'selected' : '' %>>Grafite</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="imagem_obra">Imagem da Obra:</label>
-                    <input type="file" id="imagem_obra" name="imagem_obra" accept="image/*">
-                </div>
+                <input type="hidden" id="imagem_obra" name="imagem_obra" value="<%= obra.imagem_obra %>">
+
                 <div class="form-group button-container">
                     <button type="submit" class="submit-button">Salvar Alterações</button>
                 </div>
             </form>
         </div>
     </section>
+
     <section class="telasGrandes">
         <%- include("../partial/obras/headerPC") %>
         <div class="form-container">
             <h1 class="salvarObraTitle">Editar Dados da Obra</h1>
-            <form id="obraForm" action="/artista/obras/editar/<%= obra.id_obra %>" method="POST" enctype="multipart/form-data">
+            <form id="obraFormPc" action="/artista/obras/editar/<%= obra.id_obra %>" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="titulo_obra">Título da Obra:</label>
                     <input type="text" id="titulo_obra" name="titulo_obra" class="input-field" value="<%= obra.titulo_obra %>" required>
@@ -82,12 +89,17 @@
                 </div>
                 <div class="form-group">
                     <label for="categorias">Categoria:</label>
-                    <input type="text" id="categorias" name="categorias" class="input-field" value="<%= obra.categorias %>" required>
+                    <select id="categorias" name="categorias" class="input-field" required>
+                        <option value="Pintura" <%= obra.categorias === 'Pintura' ? 'selected' : '' %>>Pintura</option>
+                        <option value="Escultura" <%= obra.categorias === 'Escultura' ? 'selected' : '' %>>Escultura</option>
+                        <option value="Fotografia" <%= obra.categorias === 'Fotografia' ? 'selected' : '' %>>Fotografia</option>
+                        <option value="Desenho" <%= obra.categorias === 'Desenho' ? 'selected' : '' %>>Desenho</option>
+                        <option value="Outros" <%= obra.categorias === 'Outros' ? 'selected' : '' %>>Outros</option>
+                        <option value="Instalação" <%= obra.categorias === 'Instalação' ? 'selected' : '' %>>Instalação</option>
+                        <option value="Grafite" <%= obra.categorias === 'Grafite' ? 'selected' : '' %>>Grafite</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="imagem_obra">Imagem da Obra:</label>
-                    <input type="file" id="imagem_obra" name="imagem_obra" accept="image/*">
-                </div>
+
                 <div class="form-group button-container">
                     <button type="submit" class="submit-button">Salvar Alterações</button>
                 </div>
@@ -96,11 +108,27 @@
     </section>
 
     <script>
-        document.getElementById('obraForm').addEventListener('submit', function(e) {
+        document.getElementById('obraFormMobile').addEventListener('submit', function(e) {
             const precoInput = document.getElementById('preco');
             // Substitui a vírgula por ponto
             precoInput.value = precoInput.value.replace(',', '.');
         });
+
+        document.getElementById('obraFormPC').addEventListener('submit', function(e) {
+            const precoInput = document.getElementById('preco');
+            // Substitui a vírgula por ponto
+            precoInput.value = precoInput.value.replace(',', '.');
+        });
+
+        document.getElementById('obraForm').addEventListener('submit', function(e) {
+            const precoInput = document.getElementById('preco');
+            // Substitui a vírgula por ponto
+            precoInput.value = precoInput.value.replace(',', '.');
+
+            // Log para verificar o que está sendo enviado
+            console.log('Dados do formulário:', new FormData(this));
+        });
+
     </script>
 </body>
 </html>

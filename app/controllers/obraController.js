@@ -18,10 +18,12 @@ const obraController = {
   saveObraInSession: (req, res) => {
     const { titulo_obra, descricao_obra, ano_criacao, categorias, preco, quantidade_em_estoque } = req.body;
 
-    console.log('Dados Recebidos no Backend:', { titulo_obra, descricao_obra, ano_criacao, categorias, preco, quantidade_em_estoque });
-
     if (!titulo_obra || !descricao_obra || !ano_criacao || !categorias || !preco) {
-      return res.status(400).json({ message: 'Dados incompletos. Verifique e tente novamente.' });
+      req.session.notification = {
+        message: 'Dados incompletos. Verifique e tente novamente.',
+        type: 'error'
+      };
+      return res.redirect('/api/obras/upload-imagem');
     }
 
     req.session.obraData = {
@@ -34,9 +36,12 @@ const obraController = {
       id_cliente: req.session.cliente.id
     };
 
-    console.log('Dados da Obra na Sessão:', req.session.obraData);
+    req.session.notification = {
+      message: 'Dados da obra salvos na sessão. Faça o upload da imagem.',
+      type: 'info'
+    };
 
-    return res.redirect('/api/obras/upload-imagem'); // Atualize o caminho aqui
+    return res.redirect('/api/obras/upload-imagem');
   },
 
   uploadImagem: [
@@ -45,29 +50,26 @@ const obraController = {
       try {
         const obraData = req.session.obraData;
 
-        console.log('Dados da Obra na Sessão Antes do Upload:', obraData);
-
         if (!obraData) {
-          return res.status(400).json({ message: 'Nenhuma obra encontrada na sessão. Por favor, inicie o processo novamente.' });
-        }
-
-        const { titulo_obra, descricao_obra, ano_criacao, id_cliente, categorias, preco, quantidade_em_estoque } = obraData;
-        if (!titulo_obra || !descricao_obra || !ano_criacao || !id_cliente || !categorias || !preco || !quantidade_em_estoque) {
-          return res.status(400).json({ message: 'Dados incompletos da obra. Verifique os dados enviados e tente novamente.' });
+          req.session.notification = {
+            message: 'Nenhuma obra encontrada na sessão. Por favor, inicie o processo novamente.',
+            type: 'error'
+          };
+          return res.redirect('/profile');
         }
 
         const imagem_obra = req.file ? req.file.filename : null;
         if (!imagem_obra) {
-          return res.status(400).json({ message: 'Imagem não fornecida. Faça o upload de uma imagem e tente novamente.' });
+          req.session.notification = {
+            message: 'Imagem não fornecida. Faça o upload de uma imagem e tente novamente.',
+            type: 'error'
+          };
+          return res.redirect('/profile');
         }
 
-        // Atualiza a obraData com o nome do arquivo
         obraData.imagem_obra = imagem_obra;
 
-        console.log('Dados da Obra com Imagem:', obraData);
-
-        // Salva a obra no banco de dados
-        const newObraId = await ObraModel.createObra(obraData);
+        await ObraModel.createObra(obraData);
 
         req.session.obraData = null;
 
@@ -75,11 +77,15 @@ const obraController = {
           message: 'Obra adicionada com sucesso!',
           type: 'success'
         };
-        
-        return res.redirect('/profile'); // Atualize o caminho aqui
+
+        return res.redirect('/profile');
       } catch (error) {
+        req.session.notification = {
+          message: 'Erro ao salvar obra com imagem.',
+          type: 'error'
+        };
         console.error('Erro ao salvar obra com imagem:', error.message);
-        return res.status(500).json({ error: error.message });
+        return res.redirect('/profile');
       }
     }
   ],
@@ -87,10 +93,18 @@ const obraController = {
   getAllObras: async (req, res) => {
     try {
       const obras = await ObraModel.getAllObras();
-      return res.status(200).json(obras);
+      req.session.notification = {
+        message: 'Obras obtidas com sucesso!',
+        type: 'success'
+      };
+      return res.render('pages/obras', { obras });
     } catch (error) {
+      req.session.notification = {
+        message: 'Erro ao obter obras.',
+        type: 'error'
+      };
       console.error('Erro ao obter todas as obras:', error.message);
-      return res.status(500).json({ error: 'Erro ao obter obras' });
+      return res.redirect('/profile');
     }
   },
 
@@ -98,25 +112,41 @@ const obraController = {
     try {
       const obra = await ObraModel.getObraById(req.params.id);
       if (obra) {
-        return res.status(200).json(obra);
+        req.session.notification = {
+          message: 'Obra encontrada com sucesso!',
+          type: 'success'
+        };
+        return res.render('pages/obra', { obra });
       } else {
-        return res.status(404).json({ message: 'Obra não encontrada' });
+        req.session.notification = {
+          message: 'Obra não encontrada.',
+          type: 'error'
+        };
+        return res.redirect('/profile');
       }
     } catch (error) {
+      req.session.notification = {
+        message: 'Erro ao obter obra.',
+        type: 'error'
+      };
       console.error('Erro ao obter obra por ID:', error.message);
-      return res.status(500).json({ error: error.message });
+      return res.redirect('/profile');
     }
   },
 
   updateObra: async (req, res) => {
+    console.log(req.body);
     try {
       const obraId = req.params.id;
-      const { titulo_obra, descricao_obra, ano_criacao, categorias, imagem_obra, preco, quantidade_em_estoque } = req.body;
+      const { titulo_obra, descricao_obra, ano_criacao, categorias, preco, quantidade_em_estoque } = req.body;
 
-      // Validação básica para garantir que a categoria está nos valores permitidos
       const categoriasPermitidas = ['Pintura', 'Escultura', 'Fotografia', 'Desenho', 'Outros', 'Instalação', 'Grafite'];
       if (!categoriasPermitidas.includes(categorias)) {
-        return res.status(400).json({ message: 'Categoria inválida. Selecione uma das categorias permitidas.' });
+        req.session.notification = {
+          message: 'Categoria inválida.',
+          type: 'error'
+        };
+        return res.redirect('/profile');
       }
 
       const updatedRows = await ObraModel.updateObra(obraId, {
@@ -124,20 +154,30 @@ const obraController = {
         descricao_obra,
         ano_criacao,
         categorias,
-        imagem_obra,
         preco,
         quantidade_em_estoque,
       });
 
       if (updatedRows > 0) {
-        const updatedObra = await ObraModel.getObraById(obraId);
-        return res.status(200).json(updatedObra);
+        req.session.notification = {
+          message: 'Obra atualizada com sucesso!',
+          type: 'success'
+        };
+        return res.redirect('/profile');
       } else {
-        return res.status(404).json({ message: 'Obra não encontrada' });
+        req.session.notification = {
+          message: 'Obra não encontrada.',
+          type: 'error'
+        };
+        return res.redirect('/profile');
       }
     } catch (error) {
+      req.session.notification = {
+        message: 'Erro ao atualizar obra.',
+        type: 'error'
+      };
       console.error('Erro ao atualizar obra:', error.message);
-      return res.status(500).json({ error: 'Erro ao atualizar obra', message: error.message });
+      return res.redirect('/profile');
     }
   },
 
@@ -145,57 +185,96 @@ const obraController = {
     try {
       const deletedRows = await ObraModel.deleteObra(req.params.id);
       if (deletedRows > 0) {
-        return res.status(200).json({ message: 'Obra excluída com sucesso' });
+        req.session.notification = {
+          message: 'Obra excluída com sucesso!',
+          type: 'success'
+        };
+        return res.redirect('/profile');
       } else {
-        return res.status(404).json({ message: 'Obra não encontrada' });
+        req.session.notification = {
+          message: 'Obra não encontrada.',
+          type: 'error'
+        };
+        return res.redirect('/profile');
       }
     } catch (error) {
+      req.session.notification = {
+        message: 'Erro ao excluir obra.',
+        type: 'error'
+      };
       console.error('Erro ao excluir obra:', error.message);
-      return res.status(500).json({ error: error.message });
+      return res.redirect('/profile');
     }
   },
 
   listarObras: async (req, res) => {
     try {
       const obras = await ObraModel.getAllObras();
-      return res.status(200).render('pages/obras', { obras });
+      req.session.notification = {
+        message: 'Obras listadas com sucesso!',
+        type: 'success'
+      };
+      return res.render('pages/obras', { obras });
     } catch (error) {
-      console.error('Erro ao obter todas as obras:', error.message);
-      return res.status(500).render('pages/obras', { error: 'Erro ao obter obras' });
+      req.session.notification = {
+        message: 'Erro ao listar obras.',
+        type: 'error'
+      };
+      console.error('Erro ao listar obras:', error.message);
+      return res.redirect('/profile');
     }
   },
 
   getObrasByArtista: async (req, res) => {
     try {
-      const artistaId = req.session.cliente.id; // Supondo que o id do artista está salvo na sessão
+      const artistaId = req.session.cliente.id;
       const obras = await ObraModel.getObrasByClienteId(artistaId);
-      
-      // Envie a variável cliente para a tela
       const cliente = req.session.cliente;
-  
+
+      req.session.notification = {
+        message: 'Obras do artista obtidas com sucesso!',
+        type: 'success'
+      };
+
       res.render('pages/artistaObras', { obras, artistaId, cliente });
     } catch (error) {
+      req.session.notification = {
+        message: 'Erro ao obter obras do artista.',
+        type: 'error'
+      };
       console.error('Erro ao obter obras do artista:', error.message);
-      return res.status(500).render('pages/artistaObras', { error: 'Erro ao obter obras' });
+      return res.redirect('/profile');
     }
   },
 
-  getObraComArtista:  async (req, res) => {
-    const obraId = req.params.id; // Obtém o ID da obra da URL
+  getObraComArtista: async (req, res) => {
+    const obraId = req.params.id;
 
-      try {
-          const obra = await ObraModel.getObraWithArtista(obraId); // Chama a função do modelo
+    try {
+      const obra = await ObraModel.getObraWithArtista(obraId);
 
-          // Verifica se a obra foi encontrada
-          if (!obra) {
-              return res.status(404).send('Obra não encontrada');
-          }
-
-          res.render('pages/obra', { obra }); // Renderiza a view com os dados da obra
-      } catch (error) {
-          console.error('Erro ao obter obra:', error);
-          res.status(500).send('Erro ao obter obra'); // Tratamento de erro
+      if (!obra) {
+        req.session.notification = {
+          message: 'Obra não encontrada.',
+          type: 'error'
+        };
+        return res.redirect('/profile');
       }
+
+      req.session.notification = {
+        message: 'Obra encontrada com sucesso!',
+        type: 'success'
+      };
+
+      res.render('pages/obra', { obra });
+    } catch (error) {
+      req.session.notification = {
+        message: 'Erro ao obter obra.',
+        type: 'error'
+      };
+      console.error('Erro ao obter obra:', error);
+      res.redirect('/profile');
+    }
   }
 };
 

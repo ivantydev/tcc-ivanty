@@ -16,98 +16,38 @@
 <body>
 <section class="telasPequenas">
     <%- include("../partial/header") %>
-    <article class="Mobile">
-        <section>
-            <main style="margin-top: 2rem;">
-                <div class="ObraPrincipalMobile">
-                    <div class="ImagemOPMobile">
-                        <figure>
-                            <img class="ObraPrincipalMobile" src="./images/ObraPrincipal.webp" alt="Obra o gato do artista romero britto">
-                        </figure>
-                    </div>
-                    <div class="TextoOPMobile">
-                        <p>O gato é uma das obras mais famosas do artista plástico brasileiro.</p>
-                    </div>
-                    <div class="BotoesCompraMobile">
-                        <h1 class="ValorOPMobile">R$ XXX,XX</h1>
-                        <button class="ComprarObraMobile">Comprar</button>
-                        <button class="AddCarrinhoMobile">Adicionar</button>
-                    </div>
-                </div>
-                <br>
-                <div class="gallery-container-mobile" id="galleryMobile">
-                    <!-- Gerar dinamicamente as obras com EJS -->
-                    <% obras.forEach(function(obra) { %>
-                    <div class="painting-mobile">
-                        <img src="uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
-                        <div class="painting-title-mobile"><%= obra.titulo_obra %></div>
-                        <div class="painting-description-mobile"><%= obra.descricao_obra %></div>
-                        <div class="painting-price-mobile"><%= obra.preco %></div>
-                    </div>
-                    <% }) %>
-    
-                    <!-- Paginação para mobile -->
-                    <div class="pagination-mobile">
-                        <a id="prevMobile" href="javascript:void(0)" onclick="changePage(-1)">&#60;</a>
-                        <span id="page-info-mobile">1/<%= Math.ceil(obras.length / 2) %></span>
-                        <a id="nextMobile" href="javascript:void(0)" onclick="changePage(1)">&#62;</a>
-                    </div>
-                </div>
-            </main>
-        </section>
-    </article>
+   
 </section>
 
 <!-- Header para telas grandes -->
-<section class="telasGrandes">
+<section class="telasGrandes" style="margin-top: 5rem;">
     <%- include("../partial/headerPC") %>
-    <article class="Desktop">
-        <section>
-            <main style="margin-top: 5rem;">
-                <div class="ObraPrincipal">
-                    <div class="ImagemOP">
-                        <figure>
-                            <img class="ObraPrincipal" src="./images/ObraPrincipal.webp" alt="Obra o gato do artista romero britto">
-                        </figure>
-                    </div>
-                    <div class="TextoOP">
-                        <p>O gato é uma das obras mais famosas do artista plástico brasileiro.</p>
-                    </div>
-                    <div class="BotoesCompra">
-                        <h1 class="ValorOP">R$ XXX,XX</h1>
-                        <button class="ComprarObra">Comprar</button>
-                        <button class="AddCarrinho">Adicionar</button>
-                    </div>
-                </div>
+    <img src="images/banner.png" alt="" class="banner">
+    <h1 class="h1Obras">As melhores obras estão aqui. </h1>
+        <div class="gallery-container" id="gallery">
+            <% obras.forEach(function(obra) { %>
+            <div class="painting">
+                <img src="uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
+                <div class="painting-title"><%= obra.titulo_obra %></div>
+                <div class="painting-description">Artista</div>
+                <div class="painting-description"><%= obra.descricao_obra %></div>
                 <br>
-                <div class="gallery-container" id="gallery">
-                    <!-- Gerar dinamicamente as obras com EJS -->
-                    <% obras.forEach(function(obra) { %>
-                    <div class="painting">
-                        <img src="uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
-                        <div class="painting-title"><%= obra.titulo_obra %></div>
-                        <div class="painting-description"><%= obra.descricao_obra %></div>
-                        <div class="painting-price"><%= obra.preco %></div>
-                    </div>
-                    <% }) %>
-
-                    <!-- Paginação -->
-                    <div class="pagination">
-                        <a id="prev" href="javascript:void(0)" onclick="changePage(-1)">&#60;</a>
-                        <span id="page-info">1/<%= Math.ceil(obras.length / 4) %></span>
-                        <a id="next" href="javascript:void(0)" onclick="changePage(1)">&#62;</a>
-                    </div>
+                <div class="painting-price">R$ <%= obra.preco %></div>
+                <div style="display: flex; justify-content: flex-end; margin: 1rem;">
+                    <a href="obra/<%= obra.id_obra %>" class="btn-comprar">Comprar</a>
                 </div>
-            </main>
-        </section>
-    </article>
+            </div>
+            <% }) %>
+                    
+        </div>
+    </section>
 </section>
 
         
 <%- include("../partial/footer") %>
 
 
-
+<!-- 
     <script>
         let currentPage = 1;
         const itemsPerPage = 4;
@@ -133,6 +73,6 @@
         }
 
         updateGallery();
-    </script>
+    </script> -->
 </body>
 </html>

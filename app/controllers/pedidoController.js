@@ -122,7 +122,7 @@ const pedidoController = {
       // Atualizar o status do pedido no banco de dados
       await pedidoModel.atualizarStatusPagamento(external_reference, status, payment_id);
       
-      res.redirect(`/api/pedido/${external_reference}`);
+      res.redirect(`/pedidos`);
     } catch (error) {
       console.error('Erro ao atualizar pedido:', error.message);
       res.status(500).json({ message: 'Erro ao processar pagamento' });

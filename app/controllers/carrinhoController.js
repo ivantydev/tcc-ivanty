@@ -17,7 +17,11 @@ const carrinhoController = {
 
       // Verifica se a obra foi encontrada
       if (!obra) {
-        return res.status(404).json({ message: 'Obra não encontrada' });
+        req.session.notification = {
+          message: 'Obra não encontrada',
+          type: 'error'
+        };
+        return res.redirect('/carrinho');
       }
 
       // Checa se a obra já está no carrinho
@@ -26,6 +30,10 @@ const carrinhoController = {
       if (itemExistente) {
         // Aumenta a quantidade se já estiver no carrinho
         itemExistente.quantidade += 1; 
+        req.session.notification = {
+          message: `Quantidade da obra "${obra.titulo_obra}" aumentada no carrinho`,
+          type: 'success'
+        };
       } else {
         // Adiciona a obra ao carrinho com a imagem
         req.session.carrinho.push({
@@ -35,29 +43,56 @@ const carrinhoController = {
           imagem_obra: obra.imagem_obra, // Salva o caminho da imagem no carrinho
           quantidade: 1,
         });
+        req.session.notification = {
+          message: `Obra "${obra.titulo_obra}" adicionada ao carrinho`,
+          type: 'success'
+        };
       }
 
       // Redireciona para a visualização do carrinho
       res.redirect('/carrinho'); 
     } catch (error) {
       console.error('Erro ao adicionar obra ao carrinho:', error.message);
-      res.status(500).json({ error: 'Erro ao adicionar ao carrinho' });
+      req.session.notification = {
+        message: 'Erro ao adicionar ao carrinho: ' + error.message,
+        type: 'error'
+      };
+      res.redirect('/carrinho');
     }
   },
 
   // Visualizar carrinho
   visualizarCarrinho: (req, res) => {
     const carrinho = req.session.carrinho || [];
-    res.render('pages/carrinho', { carrinho }); // Renderiza a página do carrinho com os itens
+    const notification = req.session.notification || null;
+
+    // Limpa a notificação depois de exibir
+    req.session.notification = null;
+
+    res.render('pages/carrinho', { carrinho, notification }); // Renderiza a página do carrinho com os itens e a notificação
   },
 
   // Remover obra do carrinho
   removerDoCarrinho: (req, res) => {
     const obraId = parseInt(req.params.id, 10); // Converte o ID da obra para número
-  
+
     // Filtra o carrinho para remover a obra com o ID correspondente
-    req.session.carrinho = req.session.carrinho.filter(item => item.id_obra !== obraId);
-  
+    const obraRemovida = req.session.carrinho.find(item => item.id_obra === obraId);
+    
+    if (obraRemovida) {
+      req.session.carrinho = req.session.carrinho.filter(item => item.id_obra !== obraId);
+
+      req.session.notification = {
+        message: `Obra "${obraRemovida.titulo}" removida do carrinho`,
+        type: 'success'
+      };
+    } else {
+      req.session.notification = {
+        message: 'Obra não encontrada no carrinho',
+        type: 'warning'
+      };
+    }
+
     // Redireciona para a página do carrinho
     res.redirect('/carrinho');
   },

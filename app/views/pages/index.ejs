@@ -28,16 +28,7 @@
     <title>Ivanty</title>
 </head>
 <body>
-    
 
-     <% if (successMessage) { %>
-        <%- include('../partial/notification') %>
-
-        <script>
-            showNotification("<%= successMessage%>");
-        </script>
-     <% } %>
- 
 
     <section class="telasPequenas">
         <%- include("../partial/header") %>
@@ -62,14 +53,7 @@
                 </div>
             </section>
 
-            <section class="EstilosDeObraArte">
-                <h1 class="comprarArteOnlineH1">COMPRE ARTE PELO ESTILO</h1>
-                <p class="comprarArteOnlineP">Qual seu movimento artistico favorito?</p>
-                <section class="categoriasEmDestaque">
-                    <h2 class="categoriasEmDestaqueText">Estilos em Destaque:</h2>
-                    <%- include("../partial/comprarPorEstiloCarouselMobile") %> 
-                </section>
-            </section>
+    
         </main>
     </section>
 
@@ -94,13 +78,6 @@
                 </div>
             </section>
 
-            <section class="EstilosDeObraArtePC">
-                <h1 class="comprarArteOnlineH1">COMPRE ARTE PELO ESTILO</h1>
-                <p class="comprarArteOnlineP">Qual seu movimento artistico favorito?</p>
-                <section class="categoriasEmDestaquePC">
-                    <%- include("../partial/comprarPorEstiloCarousel") %> 
-                </section>
-            </section>
         </main>
     </section>
 

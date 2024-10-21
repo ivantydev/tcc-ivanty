@@ -96,7 +96,8 @@ const ObraModel = {
             o.ano_criacao, 
             o.preco, 
             o.imagem_obra, 
-            c.nome_cliente AS nome_artista
+            c.nome_cliente AS nome_artista,
+            c.perfil_cliente  -- Adicionando perfil_cliente
         FROM 
             Obras o 
         JOIN 
@@ -112,7 +113,7 @@ const ObraModel = {
         console.error('Erro ao buscar obra com artista:', error);
         throw error; // Lança o erro para ser tratado pelo controlador
     }
-  }
+  },
 };
 
 module.exports = ObraModel;

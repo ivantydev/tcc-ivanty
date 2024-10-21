@@ -25,7 +25,8 @@
                 <p class="buyitemtitle"><%= obra.titulo_obra %></p>
                 <p class="buyitemprice">R$ <%= obra.preco %></p>
             </section>
-            <p class="buyitemartist"><%= obra.nome_artista %></p>
+            <a href="/<%=obra.perfil_cliente %>"><p class="buyitemartist"><%= obra.nome_artista %></p></a>
+            
 
             <section class="buttonsArea">
               <form action="/carrinho/adicionar/<%= obra.id_obra %>" method="POST"></form>
@@ -54,7 +55,7 @@
              <img src="../uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.imagem_obra %>" class="buyitemimagePC">
              <section class="buyiteminformationsGridPC">
                 <div>
-                  <p class="buyitemartistPC"><%= obra.nome_artista %></p>
+                  <a href="/<%=obra.perfil_cliente %>"><p class="buyitemartistPC"><%= obra.nome_artista %></p></a>
                   <p class="buyitemtitlePC"><%= obra.titulo_obra %></p>
                   <section class="buyitemdescriptionPC">
                     <h3 class="buyitemdescriptiontitlePC">Descrição:</h3>

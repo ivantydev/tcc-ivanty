@@ -3,6 +3,7 @@ const router = express.Router();
 const ObraController = require('../controllers/obraController');
 const ObraModel = require('../models/obraModel'); // Importe o modelo ObraModel
 const isAuthenticated = require('../middlewares/isAuthenticated');
+const enderecoController = require('../controllers/enderecoController');
 
 router.get('/artista_obras',  isAuthenticated, ObraController.getObrasByArtista);
 
@@ -27,8 +28,9 @@ router.get('/artista/obras/editar/:id', isAuthenticated, async (req, res) => {
   }
 });
 
-router.post('/artista/obras/editar/:id', isAuthenticated, ObraController.updateObra);
+router.put('/artista/obras/editar/:id', isAuthenticated, ObraController.updateObra);
 
 router.post('/artista/obras/:id/delete', isAuthenticated, ObraController.deleteObra);
+router.post('/enderecos/editar/:id', enderecoController.editarEndereco);
 
 module.exports = router;

@@ -24,14 +24,11 @@ const EnderecoModel = {
   },
 
   updateEndereco: async (id, endereco) => {
-    const { cep_endereco, numero_endereco, complemento_endereco, tipo_endereco, id_cliente } = endereco;
-    const result = await pool.query('UPDATE Enderecos SET ? WHERE id_endereco = ?', [{
-      cep_endereco,
-      numero_endereco,
-      complemento_endereco,
-      tipo_endereco,
-      id_cliente
-    }, id]);
+    const { cep_endereco, numero_endereco, complemento_endereco, tipo_endereco } = endereco;
+    const result = await pool.query(
+      'UPDATE Enderecos SET cep_endereco = ?, numero_endereco = ?, complemento_endereco = ?, tipo_endereco = ? WHERE id_endereco = ?',
+      [cep_endereco, numero_endereco, complemento_endereco, tipo_endereco, id]
+    );
     return result.affectedRows;
   },
 

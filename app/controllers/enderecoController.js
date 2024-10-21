@@ -105,14 +105,13 @@ const enderecoController = {
           message: 'Endereço atualizado com sucesso',
           type: 'success'
         };
-        res.redirect('/profile');
       } else {
         req.session.notification = {
           message: 'Endereço não encontrado',
           type: 'warning'
         };
-        res.redirect('/profile');
       }
+      res.redirect('/profile');
     } catch (error) {
       req.session.notification = {
         message: 'Erro ao atualizar endereço: ' + error.message,
@@ -141,6 +140,27 @@ const enderecoController = {
     } catch (error) {
       req.session.notification = {
         message: 'Erro ao excluir endereço: ' + error.message,
+        type: 'error'
+      };
+      res.redirect('/profile');
+    }
+  },
+
+  editarEndereco: async (req, res) => {
+    try {
+      const endereco = await EnderecoModel.getEnderecoById(req.params.id);
+      if (endereco) {
+        res.render('pages/editarEndereco', { endereco }); // Certifique-se de ter uma view chamada editarEndereco
+      } else {
+        req.session.notification = {
+          message: 'Endereço não encontrado',
+          type: 'warning'
+        };
+        res.redirect('/profile');
+      }
+    } catch (error) {
+      req.session.notification = {
+        message: 'Erro ao buscar endereço: ' + error.message,
         type: 'error'
       };
       res.redirect('/profile');

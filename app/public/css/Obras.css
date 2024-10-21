@@ -63,3 +63,17 @@
     font-size: 2.5rem;
     font-family: 'Roboto';
 }
+
+.h1ObrasMobile {
+    margin: 1.5rem;
+    font-size: 1.5rem;
+    font-family: 'Roboto';
+}
+
+.gallery-containerMobile {
+    padding: 1rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .5rem;
+}

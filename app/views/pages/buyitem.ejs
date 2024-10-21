@@ -16,63 +16,65 @@
 <body>
 <section class="telasPequenas">
     <%- include("../partial/header") %>
-   
+    <img src="images/banner.png" alt="Despertando a arte que há em você" class="banner">
+    <h1 class="h1ObrasMobile">As melhores obras estão aqui.</h1>
+    
+    <div class="gallery-containerMobile" id="gallery">
+        <% obras.forEach(function(obra) { %>
+        <div class="painting">
+            <img src="uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
+            <div class="painting-title"><%= obra.titulo_obra %></div>
+            <div class="painting-description">Artista</div>
+            <div class="painting-description full-description"><%= obra.descricao_obra %></div>
+            <br>
+            <div class="painting-price">R$ <%= obra.preco %></div>
+            <div style="display: flex; justify-content: flex-end; margin: 1rem;">
+                <a href="obra/<%= obra.id_obra %>" class="btn-comprar">Comprar</a>
+            </div>
+        </div>
+        <% }) %>
+    </div>
 </section>
 
-<!-- Header para telas grandes -->
 <section class="telasGrandes" style="margin-top: 5rem;">
     <%- include("../partial/headerPC") %>
     <img src="images/banner.png" alt="" class="banner">
-    <h1 class="h1Obras">As melhores obras estão aqui. </h1>
-        <div class="gallery-container" id="gallery">
-            <% obras.forEach(function(obra) { %>
-            <div class="painting">
-                <img src="uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
-                <div class="painting-title"><%= obra.titulo_obra %></div>
-                <div class="painting-description">Artista</div>
-                <div class="painting-description"><%= obra.descricao_obra %></div>
-                <br>
-                <div class="painting-price">R$ <%= obra.preco %></div>
-                <div style="display: flex; justify-content: flex-end; margin: 1rem;">
-                    <a href="obra/<%= obra.id_obra %>" class="btn-comprar">Comprar</a>
-                </div>
+
+    <h1 class="h1Obras">As melhores obras estão aqui.</h1>
+    <div class="gallery-container" id="gallery">
+        <% obras.forEach(function(obra) { %>
+        <div class="painting">
+            <img src="uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
+            <div class="painting-title"><%= obra.titulo_obra %></div>
+            <div class="painting-description">Artista</div>
+            <div class="painting-description full-description"><%= obra.descricao_obra %></div>
+            <br>
+            <div class="painting-price">R$ <%= obra.preco %></div>
+            <div style="display: flex; justify-content: flex-end; margin: 1rem;">
+                <a href="obra/<%= obra.id_obra %>" class="btn-comprar">Comprar</a>
             </div>
-            <% }) %>
-                    
         </div>
-    </section>
+        <% }) %>
+    </div>
+    
 </section>
 
-        
 <%- include("../partial/footer") %>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const descriptions = document.querySelectorAll('.full-description');
+        
+        descriptions.forEach(desc => {
+            const originalText = desc.textContent;
+            const maxLength = 50;
+            if (originalText.length > maxLength) {
+                const truncatedText = originalText.substring(0, maxLength) + '...';
+                desc.textContent = truncatedText;
+            }
+        });
+    });
+</script>
 
-<!-- 
-    <script>
-        let currentPage = 1;
-        const itemsPerPage = 4;
-        const paintings = document.querySelectorAll('.painting');
-        const totalPages = Math.ceil(paintings.length / itemsPerPage);
-
-        function updateGallery() {
-            const start = (currentPage - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-
-            paintings.forEach((painting, index) => {
-                painting.style.display = (index >= start && index < end) ? 'inline-block' : 'none';
-            });
-
-            document.getElementById('page-info').textContent = `${currentPage}/${totalPages}`;
-        }
-
-        function changePage(direction) {
-            currentPage += direction;
-            if (currentPage < 1) currentPage = 1;
-            if (currentPage > totalPages) currentPage = totalPages;
-            updateGallery();
-        }
-
-        updateGallery();
-    </script> -->
 </body>
 </html>

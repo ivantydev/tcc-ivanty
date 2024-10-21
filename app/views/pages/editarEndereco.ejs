@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Endereço</title>
+    <link rel="stylesheet" href="/../../../css/global.css">
+    <link rel="stylesheet" href="/../../../css/header.css">
+    <link rel="stylesheet" href="/../../../css/footer.css">
+    <link rel="stylesheet" href="/../../../css/menu.css">
+    <link rel="stylesheet" href="/../../../css/headerPC.css">
+    <link rel="stylesheet" href="/../../../css/globalPC.css">
+    <link rel="stylesheet" href="/../../../css/salvarObra.css">
+</head>
+<body>
+    <section class="telasPequenas">
+        <%- include("../partial/endereco/header") %>
+        <div class="form-containerMobile">
+            <h1 class="salvarObraTitle salvarObraTitle-mobile">Editar Endereço</h1>
+            <form id="form-endereco" action="/api/enderecos/<%= endereco.id_endereco %>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <label for="cep_endereco">CEP:</label>
+                    <input type="text" class="input-field" id="cep_endereco" name="cep_endereco" value="<%= endereco.cep_endereco %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="numero_endereco">Número:</label>
+                    <input type="text" class="input-field" id="numero_endereco" name="numero_endereco" value="<%= endereco.numero_endereco %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="complemento_endereco">Complemento:</label>
+                    <input type="text" class="input-field" id="complemento_endereco" name="complemento_endereco" value="<%= endereco.complemento_endereco %>">
+                </div>
+                <div class="form-group">
+                    <label for="tipo_endereco">Tipo:</label>
+                    <select id="tipo_endereco" class="input-field" name="tipo_endereco" required>
+                        <option value="Residencial" <%= endereco.tipo_endereco === 'Residencial' ? 'selected' : '' %>>Residencial</option>
+                        <option value="Comercial" <%= endereco.tipo_endereco === 'Comercial' ? 'selected' : '' %>>Comercial</option>
+                    </select>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="submit-button submit-button-mobile">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="telasGrandes">
+        <%- include("../partial/endereco/headerPC") %>
+        <div class="form-container">
+            <h1>Editar Endereço</h1>
+            <form id="form-endereco" action="/api/enderecos/<%= endereco.id_endereco %>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <label for="cep_endereco">CEP:</label>
+                    <input type="text" class="input-field" id="cep_endereco" name="cep_endereco" value="<%= endereco.cep_endereco %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="numero_endereco">Número:</label>
+                    <input type="text" class="input-field" id="numero_endereco" name="numero_endereco" value="<%= endereco.numero_endereco %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="complemento_endereco">Complemento:</label>
+                    <input type="text" class="input-field" id="complemento_endereco" name="complemento_endereco" value="<%= endereco.complemento_endereco %>">
+                </div>
+                <div class="form-group">
+                    <label for="tipo_endereco">Tipo:</label>
+                    <select id="tipo_endereco" class="input-field" name="tipo_endereco" required>
+                        <option value="Residencial" <%= endereco.tipo_endereco === 'Residencial' ? 'selected' : '' %>>Residencial</option>
+                        <option value="Comercial" <%= endereco.tipo_endereco === 'Comercial' ? 'selected' : '' %>>Comercial</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Salvar Alterações</button>
+            </form>
+        </div>
+    </section>
+    
+</body>
+</html>

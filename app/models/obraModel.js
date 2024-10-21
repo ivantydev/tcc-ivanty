@@ -31,7 +31,7 @@ const ObraModel = {
   async updateObra(obraId, updateData) {
     const { titulo_obra, descricao_obra, ano_criacao, categorias, preco, quantidade_em_estoque } = updateData;
     
-    const sql = 'UPDATE obras SET titulo_obra = ?, descricao_obra = ?, ano_criacao = ?, categorias = ?, preco = ?, quantidade_em_estoque = ? WHERE id_obra = ?';
+    const sql = 'UPDATE Obras SET titulo_obra = ?, descricao_obra = ?, ano_criacao = ?, categorias = ?, preco = ?, quantidade_em_estoque = ? WHERE id_obra = ?';
     const values = [titulo_obra, descricao_obra, ano_criacao, categorias, preco, quantidade_em_estoque, obraId];
 
     const [result] = await db.query(sql, values);

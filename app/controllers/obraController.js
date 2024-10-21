@@ -135,10 +135,10 @@ const obraController = {
   },
 
   updateObra: async (req, res) => {
-    console.log(req.body);
     try {
       const obraId = req.params.id;
       const { titulo_obra, descricao_obra, ano_criacao, categorias, preco, quantidade_em_estoque } = req.body;
+      console.log(req.body)
 
       const categoriasPermitidas = ['Pintura', 'Escultura', 'Fotografia', 'Desenho', 'Outros', 'Instalação', 'Grafite'];
       if (!categoriasPermitidas.includes(categorias)) {

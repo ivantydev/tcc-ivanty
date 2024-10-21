@@ -2,6 +2,8 @@ const express = require("express");
 const session = require('express-session');
 const app = express();
 require('dotenv').config();
+const methodOverride = require('method-override');
+
 
 const clienteRoutes = require('./app/routes/clientesRoutes');
 const obrasRoutes = require('./app/routes/obrasRoutes');
@@ -17,6 +19,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware para processar JSON e dados de formulários URL-encoded
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 app.set("view engine", "ejs");
 app.set("views", "./app/views");
@@ -30,6 +33,7 @@ app.use(session({
   saveUninitialized: false,
   cookie: { secure: false, httpOnly: true } // Use secure: true se estiver usando HTTPS
 }));
+
 
 // Middleware para definir variáveis globais
 app.use((req, res, next) => {

@@ -73,3 +73,11 @@ label {
     font-size: 1.5rem; 
     margin: 0 0 1rem/* Título menor em dispositivos móveis */
 }
+
+.form-containerMobile {
+    margin: 2rem;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

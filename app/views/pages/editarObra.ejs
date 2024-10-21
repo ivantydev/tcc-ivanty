@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <title>Editar Obra</title>
     <link rel="stylesheet" href="/../../../css/global.css">
     <link rel="stylesheet" href="/../../../css/header.css">
@@ -17,56 +14,56 @@
 </head>
 <body>
     <section class="telasPequenas">
-        <%- include("../partial/obras/header") %>
-        <div class="form-container-mobile">
-            <h1 class="salvarObraTitle">Editar Dados da Obra</h1>
-            <form id="obraFormMobile" action="/artista/obras/editar/<%= obra.id_obra %>" method="POST" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="titulo_obra">Título da Obra:</label>
-                    <input type="text" id="titulo_obra" name="titulo_obra" class="input-field" value="<%= obra.titulo_obra %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="descricao_obra">Descrição:</label>
-                    <textarea id="descricao_obra" name="descricao_obra" class="input-field" required><%= obra.descricao_obra %></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="ano_criacao">Ano de Criação:</label>
-                    <input type="number" id="ano_criacao" name="ano_criacao" class="input-field" value="<%= obra.ano_criacao %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="quantidade_em_estoque">Quantidade em Estoque:</label>
-                    <input type="number" id="quantidade_em_estoque" name="quantidade_em_estoque" class="input-field" value="<%= obra.quantidade_em_estoque %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="preco">Preço:</label>
-                    <input type="text" id="preco" name="preco" class="input-field" value="<%= obra.preco %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="categorias">Categoria:</label>
-                    <select id="categorias" name="categorias" class="input-field" required>
-                        <option value="Pintura" <%= obra.categorias === 'Pintura' ? 'selected' : '' %>>Pintura</option>
-                        <option value="Escultura" <%= obra.categorias === 'Escultura' ? 'selected' : '' %>>Escultura</option>
-                        <option value="Fotografia" <%= obra.categorias === 'Fotografia' ? 'selected' : '' %>>Fotografia</option>
-                        <option value="Desenho" <%= obra.categorias === 'Desenho' ? 'selected' : '' %>>Desenho</option>
-                        <option value="Outros" <%= obra.categorias === 'Outros' ? 'selected' : '' %>>Outros</option>
-                        <option value="Instalação" <%= obra.categorias === 'Instalação' ? 'selected' : '' %>>Instalação</option>
-                        <option value="Grafite" <%= obra.categorias === 'Grafite' ? 'selected' : '' %>>Grafite</option>
-                    </select>
-                </div>
-                <input type="hidden" id="imagem_obra" name="imagem_obra" value="<%= obra.imagem_obra %>">
-
-                <div class="form-group button-container">
-                    <button type="submit" class="submit-button">Salvar Alterações</button>
-                </div>
-            </form>
-        </div>
+        <%- include("../partial/header") %>
+        <section class="telasPequenas">
+            <div class="form-container-mobile">
+                <h1 class="salvarObraTitle-mobile">Editar Dados da Obra</h1>
+                <form id="obraFormMobile" action="/artista/obras/editar/<%= obra.id_obra %>?_method=PUT" method="POST">
+                    <div class="form-group">
+                        <label for="titulo_obra">Título da Obra:</label>
+                        <input type="text" id="titulo_obra" name="titulo_obra" class="input-field" value="<%= obra.titulo_obra %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao_obra">Descrição:</label>
+                        <textarea id="descricao_obra" name="descricao_obra" class="input-field" required><%= obra.descricao_obra %></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="ano_criacao">Ano de Criação:</label>
+                        <input type="number" id="ano_criacao" name="ano_criacao" class="input-field" value="<%= obra.ano_criacao %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantidade_em_estoque">Quantidade em Estoque:</label>
+                        <input type="number" id="quantidade_em_estoque" name="quantidade_em_estoque" class="input-field" value="<%= obra.quantidade_em_estoque %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preco">Preço:</label>
+                        <input type="text" id="preco" name="preco" class="input-field" value="<%= obra.preco %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categorias">Categoria:</label>
+                        <select id="categorias" name="categorias" class="input-field" required>
+                            <option value="Pintura" <%= obra.categorias === 'Pintura' ? 'selected' : '' %>>Pintura</option>
+                            <option value="Escultura" <%= obra.categorias === 'Escultura' ? 'selected' : '' %>>Escultura</option>
+                            <option value="Fotografia" <%= obra.categorias === 'Fotografia' ? 'selected' : '' %>>Fotografia</option>
+                            <option value="Desenho" <%= obra.categorias === 'Desenho' ? 'selected' : '' %>>Desenho</option>
+                            <option value="Outros" <%= obra.categorias === 'Outros' ? 'selected' : '' %>>Outros</option>
+                            <option value="Instalação" <%= obra.categorias === 'Instalação' ? 'selected' : '' %>>Instalação</option>
+                            <option value="Grafite" <%= obra.categorias === 'Grafite' ? 'selected' : '' %>>Grafite</option>
+                        </select>
+                    </div>
+                    <div class="button-container">
+                        <button type="submit" class="submit-button-mobile">Salvar Alterações</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
     </section>
-
     <section class="telasGrandes">
-        <%- include("../partial/obras/headerPC") %>
+        <%- include("../partial/headerPC") %>
         <div class="form-container">
             <h1 class="salvarObraTitle">Editar Dados da Obra</h1>
-            <form id="obraFormPc" action="/artista/obras/editar/<%= obra.id_obra %>" method="POST" enctype="multipart/form-data">
+            <form id="obraForm" action="/artista/obras/editar/<%= obra.id_obra %>?_method=PUT" method="POST">
                 <div class="form-group">
                     <label for="titulo_obra">Título da Obra:</label>
                     <input type="text" id="titulo_obra" name="titulo_obra" class="input-field" value="<%= obra.titulo_obra %>" required>
@@ -99,36 +96,13 @@
                         <option value="Grafite" <%= obra.categorias === 'Grafite' ? 'selected' : '' %>>Grafite</option>
                     </select>
                 </div>
-
-                <div class="form-group button-container">
+                <div class="button-container">
                     <button type="submit" class="submit-button">Salvar Alterações</button>
                 </div>
-            </form>
+            </form>        
         </div>
     </section>
 
-    <script>
-        document.getElementById('obraFormMobile').addEventListener('submit', function(e) {
-            const precoInput = document.getElementById('preco');
-            // Substitui a vírgula por ponto
-            precoInput.value = precoInput.value.replace(',', '.');
-        });
-
-        document.getElementById('obraFormPC').addEventListener('submit', function(e) {
-            const precoInput = document.getElementById('preco');
-            // Substitui a vírgula por ponto
-            precoInput.value = precoInput.value.replace(',', '.');
-        });
-
-        document.getElementById('obraForm').addEventListener('submit', function(e) {
-            const precoInput = document.getElementById('preco');
-            // Substitui a vírgula por ponto
-            precoInput.value = precoInput.value.replace(',', '.');
-
-            // Log para verificar o que está sendo enviado
-            console.log('Dados do formulário:', new FormData(this));
-        });
-
-    </script>
+    
 </body>
 </html>

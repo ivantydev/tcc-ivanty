@@ -14,7 +14,7 @@
 </head>
 <body>
     <section class="telasPequenas">
-        <%- include("../partial/header") %>
+        <%- include("../partial/editarObra/header") %>
         <section class="telasPequenas">
             <div class="form-container-mobile">
                 <h1 class="salvarObraTitle-mobile">Editar Dados da Obra</h1>
@@ -60,7 +60,7 @@
         
     </section>
     <section class="telasGrandes">
-        <%- include("../partial/headerPC") %>
+        <%- include("../partial/editarObra/headerPC") %>
         <div class="form-container">
             <h1 class="salvarObraTitle">Editar Dados da Obra</h1>
             <form id="obraForm" action="/artista/obras/editar/<%= obra.id_obra %>?_method=PUT" method="POST">

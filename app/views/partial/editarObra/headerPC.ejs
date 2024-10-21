@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+
+    <header>
+        <a href="/">
+            <img src="/../../images/Logotipo.svg" alt="ivanty" class="logoPC">
+            <span class="logoText"></span>
+        </a>
+        <ul class="navmenu">
+            <li><a href="/artists">Artistas</a></li>
+            <li><a href="/about">Sobre</a></li>  
+            <% if (isLoggedIn) { %>
+            <li><a href="/pedidos">Pedidos</a></li>
+            <li><a href="/obras">Obras</a></li>  
+            <% } %>
+            <% if (!isLoggedIn) { %>
+                <li><a href="/register">Cadastre-se</a></li>
+            <% } %>
+        </ul>
+        <div class="nav-icon">
+            <% if (!isLoggedIn) { %>
+                <a href="/login" class="login">Login</a>
+            <% } %>
+            <% if (isLoggedIn) { %>
+                <a href="/profile" class=""><i class='bx bx-user'></i></a>
+                <% } %>
+            <% if (isLoggedIn) { %>
+                <a href="/carrinho" class=""><i class='bx bx-cart'></i></a>
+                <% } %>
+        </div>
+    </header>
+    
+   
+
+    <script>
+        // Obter o modal
+        var modal = document.getElementById("searchModal");
+
+        // Obter o botão que abre o modal
+        var btn = document.getElementById("openSearchModal");
+
+        // Obter o elemento <span> que fecha o modal
+        var span = document.getElementById("closeSearchModal");
+
+        // Quando o usuário clicar no botão, abrir o modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // Quando o usuário clicar em <span> (x), fechar o modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Quando o usuário clicar em qualquer lugar fora do modal, fechar o modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilo básico para o modal de pesquisa */
+        .search-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .search-modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .search-modal-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .search-modal-close:hover,
+        .search-modal-close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .search-modal-content form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-modal-content input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .search-modal-content button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+
+</body>
+</html>

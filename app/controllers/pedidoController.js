@@ -1,3 +1,4 @@
+const EnderecoModel = require('../models/enderecoModel');
 const pedidoModel = require('../models/pedidoModel');
 const { MercadoPagoConfig, Preference } = require('mercadopago');
 
@@ -19,6 +20,14 @@ const pedidoController = {
     }
 
     try {
+      // Verificar se o cliente tem um endereço cadastrado
+      const cliente = await EnderecoModel.getEnderecoByClienteId(idCliente);
+      console.log('Resultado da consulta de endereço:', cliente);
+
+      if (!cliente) {
+        return res.status(400).json({ message: 'Você precisa adicionar um endereço antes de criar um pedido.' });
+      }
+
       // Criação do pedido no banco de dados
       const pedidoId = await pedidoModel.criarPedido(idCliente, 'PENDENTE', null, carrinho);
       req.session.carrinho = [];
@@ -170,6 +179,26 @@ const pedidoController = {
         return res.redirect(req.get('Referer')); // Redireciona para a página anterior
     }
   },
+
+  atualizarEntrega: async (req, res) => {
+    const { id_obra, prazo_entrega, informacoes_entrega } = req.body;
+
+    try {
+        // Obtém o pedido correspondente à obra
+        const pedido = await pedidoModel.getPedidoById(id_obra);
+        if (!pedido) {
+            return res.status(404).json({ message: 'Pedido não encontrado.' });
+        }
+
+        // Atualiza os campos de prazo e informações de entrega
+        await pedidoModel.atualizarEntrega(pedido.id_pedido, prazo_entrega, informacoes_entrega);
+
+        res.status(200).json({ message: 'Informações de entrega atualizadas com sucesso.' });
+    } catch (error) {
+        console.error('Erro ao atualizar informações de entrega:', error.message);
+        res.status(500).json({ error: 'Erro ao atualizar as informações de entrega.' });
+    }
+  }
 };
 
 module.exports = pedidoController;

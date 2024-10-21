@@ -27,10 +27,9 @@
                     <% obrasComClientes.forEach(obra => { %>
                         <div class="obra-item">
                             <div class="obra-info">
-                                <img class="entrega_obra_imagem" src="<%= obra.detalhes_obra.imagem_obra %>" alt="<%= obra.detalhes_obra.titulo_obra%>">
+                                <img class="entrega_obra_imagem" src="/uploads/obras/<%= obra.detalhes_obra.imagem_obra %>" alt="<%= obra.detalhes_obra.titulo_obra%>">
                                 <div>
                                     <p class="entrega_obra_titulo"><%= obra.detalhes_obra.titulo_obra %></p>
-                                    <p class="entrega_obra_descricao"><%= obra.detalhes_obra.descricao_obra %></p>
                                     <p class="entrega_obra_endereco"><%= obra.endereco.logradouro %>, <%= obra.endereco.numero_endereco %>, <%= obra.endereco.bairro %>, <%= obra.endereco.localidade %>, <%= obra.endereco.uf %></p>
                                     <p class="entrega_obra_endereco"><strong>CEP:</strong> <%= obra.endereco.cep_endereco %></p>
                                     <p class="entrega_obra_endereco"><strong>Nome do destinatario:</strong> <%= obra.nome_cliente %></p>
@@ -70,10 +69,9 @@
                     <% obrasComClientes.forEach(obra => { %>
                         <div class="obra-item">
                             <div class="obra-info">
-                                <img class="entrega_obra_imagem" src="<%= obra.detalhes_obra.imagem_obra %>" alt="<%= obra.detalhes_obra.titulo_obra %>">
+                                <img class="entrega_obra_imagem" src="/uploads/obras/<%= obra.detalhes_obra.imagem_obra %>" alt="<%= obra.detalhes_obra.titulo_obra %>">
                                 <div>
                                     <p class="entrega_obra_titulo"><%= obra.detalhes_obra.titulo_obra %></p>
-                                    <p class="entrega_obra_descricao"><%= obra.detalhes_obra.descricao_obra %></p>
                                     <p class="entrega_obra_endereco"><%= obra.endereco.logradouro %>, <%= obra.endereco.numero_endereco %>, <%= obra.endereco.bairro %>, <%= obra.endereco.localidade %>, <%= obra.endereco.uf %></p>
                                     <p class="entrega_obra_endereco"><strong>CEP:</strong> <%= obra.endereco.cep_endereco %></p>
                                     <p class="entrega_obra_endereco"><strong>Nome do destinatario:</strong> <%= obra.nome_cliente %></p>
@@ -89,10 +87,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="dados_adicionais_<%= obra.id_obra %>">Dados Adicionais</label>
-                                    <textarea id="dados_adicionais_<%= obra.id_obra %>" name="dados_adicionais" rows="3" placeholder="Informações extras (opcional)"></textarea>
+                                    <textarea id="dados_adicionais_<%= obra.id_obra %>" name="informacoes_entrega" rows="3" placeholder="Informações extras (opcional)"></textarea>
                                 </div>
                                 <button type="submit" class="btn-enviar-entrega">Enviar Informações</button>
                             </form>
+                            
                         </div>
                     <% }); %>
                 </div>

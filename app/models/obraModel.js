@@ -52,34 +52,41 @@ const ObraModel = {
   getObrasVendidasPorArtista: async (id_cliente) => {
     const query = `
       SELECT 
-          O.id_obra,                      -- ID da obra
-          O.titulo_obra,                  -- Título da obra
-          O.descricao_obra,               -- Descrição da obra
-          O.ano_criacao,                  -- Ano de criação
-          O.categorias,                   -- Categoria da obra
-          O.preco AS preco_obra,          -- Preço da obra
-          PO.quantidade,                  -- Quantidade comprada
-          PO.preco_unitario,              -- Preço unitário da obra no pedido
-          P.id_pedido,                    -- ID do pedido
-          P.status_pagamento,             -- Status do pagamento
-          C.id_cliente AS cliente_id,     
-          C.nome_cliente,                 
-          C.email_cliente                 
+        O.id_obra,                      
+        O.titulo_obra,                  
+        O.descricao_obra,               
+        O.ano_criacao,                  
+        O.categorias,                   
+        O.preco AS preco_obra,          
+        PO.quantidade,                  
+        PO.preco_unitario,              
+        P.id_pedido,                    
+        P.status_pagamento,             
+        C.id_cliente AS cliente_id,     
+        C.nome_cliente,                 
+        C.email_cliente                 
       FROM 
-          Obras O
+        Obras O
       JOIN 
-          Pedidos_obras PO ON O.id_obra = PO.id_obra  -- Relação entre obras e pedidos de obras
+        Pedidos_obras PO ON O.id_obra = PO.id_obra  
       JOIN 
-          Pedidos P ON PO.id_pedido = P.id_pedido     -- Relação entre pedidos de obras e pedidos
+        Pedidos P ON PO.id_pedido = P.id_pedido     
       JOIN 
-          Clientes C ON P.id_cliente = C.id_cliente   -- Relação entre pedidos e clientes
+        Clientes C ON P.id_cliente = C.id_cliente   
       WHERE 
-          O.id_cliente = ?;                           -- Filtro por cliente
-
+        O.id_cliente = ? 
+        AND P.status_pagamento = 'approved';  -- Filtro para status 'approved'
     `;
-    
+  
     const [rows] = await db.query(query, [id_cliente]);
     return rows;
+  },
+  
+
+  getObraById: async (id_obra) => {
+    const query = 'SELECT * FROM Obras WHERE id_obra = ?';
+    const [rows] = await db.query(query, [id_obra]);
+    return rows[0];
   },
 
   getObrasByCategoria: async (categoria) => {

@@ -62,6 +62,16 @@ const ClienteModel = {
     return rows[0];
   },
 
+  getClienteByCPF: async (cpf) => {
+    const [rows] = await pool.query('SELECT * FROM Clientes WHERE cpf_cliente = ?', [cpf]);
+    return rows[0];
+  },
+
+  getClienteByPerfil: async (perfil) => {
+    const [rows] = await pool.query('SELECT * FROM Clientes WHERE perfil_cliente = ?', [perfil]);
+    return rows[0];
+  },
+
   updateFotoCliente: async (clienteId, fileName) => {
     const query = `
         UPDATE Clientes
@@ -88,11 +98,6 @@ const ClienteModel = {
   getArtistaByUsername: async (username) => {
     const [rows] = await pool.query('SELECT * FROM Clientes WHERE tipo_cliente = "artista" AND perfil_cliente = ?', [username]);
     return rows[0];
-  },
-
-  getObrasByClienteId: async (id_cliente) => {
-    const [rows] = await pool.query('SELECT * FROM Obras WHERE id_cliente = ?', [id_cliente]);
-    return rows;
   },
 
   getObrasByClienteId: async (id_cliente) => {
@@ -134,7 +139,12 @@ const ClienteModel = {
       console.error('Erro ao atualizar a senha do cliente:', error);
       throw error;
     }
-  }
+  },
+
+  getClienteByTelefone: async (telefone) => {
+    const [rows] = await pool.query('SELECT * FROM Clientes WHERE telefone_cliente = ?', [telefone]);
+    return rows[0]; // Retorna o cliente se encontrado, ou undefined
+  },
 };
 
 module.exports = ClienteModel;

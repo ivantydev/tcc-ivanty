@@ -482,13 +482,9 @@ form .input-group button {
     }
 }
 
-@media (min-width: 769px) {
-    .telasPequenas {
+@media (max-width: 769px) {
+    .a {
         display: none;
-    }
-
-    .telasGrandes {
-        display: block;
     }
 }
 
@@ -500,3 +496,4 @@ form .input-group button {
     display: block;
     margin: .5rem 0;
 }
+

@@ -4,6 +4,7 @@ const ObraController = require('../controllers/obraController');
 const ObraModel = require('../models/obraModel'); // Importe o modelo ObraModel
 const isAuthenticated = require('../middlewares/isAuthenticated');
 const enderecoController = require('../controllers/enderecoController');
+const pedidoController = require('../controllers/pedidoController');
 
 router.get('/artista_obras',  isAuthenticated, ObraController.getObrasByArtista);
 
@@ -32,5 +33,7 @@ router.put('/artista/obras/editar/:id', isAuthenticated, ObraController.updateOb
 
 router.post('/artista/obras/:id/delete', isAuthenticated, ObraController.deleteObra);
 router.post('/enderecos/editar/:id', enderecoController.editarEndereco);
+
+router.post('/entregas/enviar', pedidoController.atualizarEntrega);
 
 module.exports = router;

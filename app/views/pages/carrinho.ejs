@@ -93,9 +93,9 @@
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script>
  
-    const mp = new MercadoPago('APP_USR-db6503d3-deb4-4473-a4e8-58031d128996', { locale: 'pt-BR' });
+        const mp = new MercadoPago('APP_USR-db6503d3-deb4-4473-a4e8-58031d128996', { locale: 'pt-BR' });
 
-    document.getElementById('checkout-btn')?.addEventListener('click', function() {
+        document.getElementById('checkout-btn')?.addEventListener('click', function() {
       fetch('/api/criar-pedido', {
         method: 'POST',
         headers: {
@@ -107,14 +107,18 @@
       })
       .then(response => response.json())
       .then(data => {
-        if (data.init_point) {
+        if (data.message) {
+          // Exiba a mensagem de erro se o cliente não tiver endereço
+          alert(data.message);
+        } else if (data.init_point) {
           window.location.href = data.init_point; // Redireciona para o link de pagamento
         } else {
           console.error('init_point não encontrado na resposta:', data);
         }
       })
-      .catch(error => console.error('Erro ao criar pedido:', error));
-    });
+  .catch(error => console.error('Erro ao criar pedido:', error));
+});
+
   </script>
 </body>
 </html>

@@ -52,25 +52,50 @@ const clienteController = {
 
   createCliente: async (req, res) => {
     try {
-        const { nome_cliente, email_cliente, cpf_cliente, senha_cliente, datanasc_cliente, perfil_cliente = 'default', telefone_cliente, tipo_cliente } = req.body;
+      const { nome_cliente, email_cliente, cpf_cliente, senha_cliente, datanasc_cliente, perfil_cliente = 'default', telefone_cliente, tipo_cliente } = req.body;
 
-        const newClienteId = await ClienteModel.createCliente({
-            nome_cliente,
-            email_cliente,
-            cpf_cliente,
-            senha_cliente,
-            datanasc_cliente,
-            perfil_cliente,
-            telefone_cliente,
-            tipo_cliente
-        });
+      // Verifica se o email já está cadastrado
+      const existingEmail = await ClienteModel.getClienteByEmail(email_cliente);
+      if (existingEmail) {
+        return res.status(400).json({ message: 'E-mail já cadastrado.' });
+      }
 
-        res.status(201).redirect(`/login`); // Redireciona para a página de login
+      // Verifica se o CPF já está cadastrado
+      const existingCPF = await ClienteModel.getClienteByCPF(cpf_cliente);
+      if (existingCPF) {
+        return res.status(400).json({ message: 'CPF já cadastrado.' });
+      }
+
+      // Verifica se o nome de usuário já está cadastrado
+      const existingPerfil = await ClienteModel.getClienteByPerfil(perfil_cliente);
+      if (existingPerfil) {
+        return res.status(400).json({ message: 'Nome de usuário já cadastrado.' });
+      }
+
+      // Verifica se o telefone já está cadastrado
+      const existingTelefone = await ClienteModel.getClienteByTelefone(telefone_cliente);
+      if (existingTelefone) {
+        return res.status(400).json({ message: 'Telefone já cadastrado.' });
+      }
+
+      // Supondo que a validação de dados já tenha sido feita
+      const newClienteId = await ClienteModel.createCliente({
+        nome_cliente,
+        email_cliente,
+        cpf_cliente,
+        senha_cliente,
+        datanasc_cliente,
+        perfil_cliente,
+        telefone_cliente,
+        tipo_cliente
+      });
+
+      // Redireciona para a página de login em caso de sucesso
+      res.status(201).redirect(`/login`); 
     } catch (error) {
-        req.session.notification = {
-          message: 'Erro ao criar cliente:  ' + error.message,
-          type: 'error'
-        };
+      console.error('Erro ao criar cliente:', error.message);
+      // Envie uma resposta de erro com a mensagem
+      res.status(400).json({ message: error.message });
     }
   },
 
@@ -354,55 +379,74 @@ logoutCliente: (req, res) => {
   getObrasVendidasBySession: async (req, res) => {
     const cliente = req.session.cliente;
     if (!cliente) {
-        return res.status(401).json({ message: 'Você precisa estar logado para ver as obras vendidas' });
+      return res.status(401).json({ message: 'Você precisa estar logado para ver as obras vendidas' });
     }
 
-    const id_cliente = cliente.id;
+    const id_artista = cliente.id; // O artista logado
 
     try {
-        const obrasVendidas = await ObraModel.getObrasVendidasPorArtista(id_cliente);
-        const endereco = await EnderecoModel.getEnderecoById(id_cliente);
+      // Obter as obras vendidas associadas ao artista logado
+      const obrasVendidas = await ObraModel.getObrasVendidasPorArtista(id_artista);
+
+      const obrasComClientes = [];
+
+      // Obter detalhes das obras e também buscar informações do cliente que comprou
+      for (const obra of obrasVendidas) {
+        const detalhesObra = await ObraModel.getObraById(obra.id_obra);
+        
+        // Buscar informações do cliente que fez o pedido (comprador)
+        const clienteQueComprou = await ClienteModel.getClienteById(obra.cliente_id);
+
+        // Buscar o endereço do cliente que fez o pedido (comprador)
+        const enderecoCliente = await EnderecoModel.getEnderecoByClienteId(obra.cliente_id);
+
+        // Se o endereço ou CEP não for encontrado, acumular o erro
+        if (!enderecoCliente || !enderecoCliente.cep_endereco) {
+          console.error(`Endereço não encontrado para o cliente ${clienteQueComprou.nome_cliente}`);
+          continue;  // Ignorar essa obra e continuar o loop
+        }
 
         // Função para obter o endereço detalhado via API ViaCEP
         const obterDetalhesEndereco = async (cep) => {
-            try {
-                const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
-                return response.data;
-            } catch (error) {
-                console.error(`Erro ao buscar detalhes do CEP: ${cep}`, error.message);
-                return null;  // Retorna nulo se houver um erro
-            }
+          try {
+            const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+            return response.data;
+          } catch (error) {
+            console.error(`Erro ao buscar detalhes do CEP: ${cep}`, error.message);
+            return null;  // Retorna nulo se houver um erro
+          }
         };
 
-        // Obter informações do cliente que vai receber a obra
-        const clienteQueRecebe = await ClienteModel.getClienteById(id_cliente);  // Busca o nome do cliente
+        // Obter detalhes do endereço via API ViaCEP
+        const detalhesEndereco = await obterDetalhesEndereco(enderecoCliente.cep_endereco);
 
-        // Obter detalhes das obras e também buscar informações do endereço via CEP
-        const obrasComClientes = await Promise.all(obrasVendidas.map(async (obra) => {
-            const detalhesObra = await ObraModel.getObraById(obra.id_obra);
-            const detalhesEndereco = await obterDetalhesEndereco(endereco.cep_endereco);  // Busca informações detalhadas pelo CEP
+        // Acumular as obras com os clientes
+        obrasComClientes.push({
+          id_obra: obra.id_obra,
+          detalhes_obra: detalhesObra,  // Adiciona detalhes da obra
+          id_cliente: obra.cliente_id,
+          nome_cliente: clienteQueComprou.nome_cliente,  // Nome do cliente que comprou
+          endereco: {
+            ...enderecoCliente,  // Mantém os dados do banco
+            ...detalhesEndereco  // Sobrescreve com os dados da API ViaCEP
+          }
+        });
+      }
 
-            return {
-                id_obra: obra.id_obra,
-                detalhes_obra: detalhesObra,  // Adiciona detalhes da obra
-                id_cliente: obra.cliente_id,
-                nome_cliente: clienteQueRecebe.nome_cliente,  // Adiciona o nome de quem vai receber
-                endereco: {
-                    ...endereco,  // Mantém os dados do banco
-                    ...detalhesEndereco  // Sobrescreve com os dados da API ViaCEP
-                }
-            };
-        }));
+      // Verificar se há alguma obra válida
+      if (obrasComClientes.length === 0) {
+        return res.status(404).json({ message: 'Nenhuma obra vendida com endereço válido encontrada.' });
+      }
 
-        console.log('Obras vendidas e seus respectivos clientes:', obrasComClientes);
+      console.log('Obras vendidas e seus respectivos compradores:', obrasComClientes);
 
-        // Renderiza a página EJS e envia os dados
-        res.render('pages/entregas', { obrasComClientes });
+      // Renderizar a página EJS e enviar os dados
+      res.render('pages/entregas', { obrasComClientes });
     } catch (error) {
-        console.error('Erro ao obter as obras vendidas:', error.message);
-        res.status(500).send('Erro ao obter as obras vendidas');
+      console.error('Erro ao obter as obras vendidas:', error.message);
+      res.status(500).send('Erro ao obter as obras vendidas');
     }
-  },
+  }
 };
 
 module.exports = clienteController;

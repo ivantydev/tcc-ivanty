@@ -108,7 +108,16 @@ const pedidoModel = {
   
     const [pedidos] = await db.query(query, [idCliente]);
     return pedidos;
-  }  
+  },
+  
+  atualizarEntrega: async (pedidoId, prazo_entrega, informacoes_entrega) => {
+    const query = `
+        UPDATE Pedidos
+        SET prazo_entrega = ?, informacoes_entrega = ?
+        WHERE id_pedido = ?;
+    `;
+    await db.query(query, [prazo_entrega, informacoes_entrega, pedidoId]);
+  }
 };
 
 module.exports = pedidoModel;

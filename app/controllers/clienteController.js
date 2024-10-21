@@ -379,72 +379,27 @@ logoutCliente: (req, res) => {
   getObrasVendidasBySession: async (req, res) => {
     const cliente = req.session.cliente;
     if (!cliente) {
-      return res.status(401).json({ message: 'Você precisa estar logado para ver as obras vendidas' });
+        return res.status(401).json({ message: 'Você precisa estar logado para ver as obras vendidas' });
     }
 
     const id_artista = cliente.id; // O artista logado
 
     try {
-      // Obter as obras vendidas associadas ao artista logado
-      const obrasVendidas = await ObraModel.getObrasVendidasPorArtista(id_artista);
+        // Obter as obras vendidas associadas ao artista logado
+        const obrasVendidas = await ObraModel.getObrasVendidasPorArtista(id_artista);
 
-      const obrasComClientes = [];
-
-      // Obter detalhes das obras e também buscar informações do cliente que comprou
-      for (const obra of obrasVendidas) {
-        const detalhesObra = await ObraModel.getObraById(obra.id_obra);
-        
-        // Buscar informações do cliente que fez o pedido (comprador)
-        const clienteQueComprou = await ClienteModel.getClienteById(obra.cliente_id);
-
-        // Buscar o endereço do cliente que fez o pedido (comprador)
-        const enderecoCliente = await EnderecoModel.getEnderecoByClienteId(obra.cliente_id);
-
-        // Se o endereço ou CEP não for encontrado, acumular o erro
-        if (!enderecoCliente || !enderecoCliente.cep_endereco) {
-          console.error(`Endereço não encontrado para o cliente ${clienteQueComprou.nome_cliente}`);
-          continue;  // Ignorar essa obra e continuar o loop
+        // Verificar se há alguma obra válida
+        if (obrasVendidas.length === 0) {
+            return res.status(404).json({ message: 'Nenhuma obra vendida encontrada.' });
         }
 
-        // Função para obter o endereço detalhado via API ViaCEP
-        const obterDetalhesEndereco = async (cep) => {
-          try {
-            const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
-            return response.data;
-          } catch (error) {
-            console.error(`Erro ao buscar detalhes do CEP: ${cep}`, error.message);
-            return null;  // Retorna nulo se houver um erro
-          }
-        };
+        console.log('Obras vendidas:', obrasVendidas);
 
-        // Obter detalhes do endereço via API ViaCEP
-        const detalhesEndereco = await obterDetalhesEndereco(enderecoCliente.cep_endereco);
-
-        // Acumular as obras com os clientes
-        obrasComClientes.push({
-          id_obra: obra.id_obra,
-          detalhes_obra: detalhesObra,  // Adiciona detalhes da obra
-          id_cliente: obra.cliente_id,
-          nome_cliente: clienteQueComprou.nome_cliente,  // Nome do cliente que comprou
-          endereco: {
-            ...enderecoCliente,  // Mantém os dados do banco
-            ...detalhesEndereco  // Sobrescreve com os dados da API ViaCEP
-          }
-        });
-      }
-
-      // Verificar se há alguma obra válida
-      if (obrasComClientes.length === 0) {
-        return res.status(404).json({ message: 'Nenhuma obra vendida com endereço válido encontrada.' });
-      }
-
-      console.log('Obras vendidas e seus respectivos compradores:', obrasComClientes);
-
-      // Renderizar a página EJS e enviar os dados
-      res.render('pages/entregas', { obrasComClientes });
+        // Renderizar a página EJS e enviar os dados
+        res.render('pages/faturamento', { obrasVendidas });
     } catch (error) {
-      console.error('Erro ao obter as obras vendidas:', error.message);
-      res.status(500).send('Erro ao obter as obras vendidas');
+        console.error('Erro ao obter as obras vendidas:', error.message);
+        res.status(500).send('Erro ao obter as obras vendidas');
     }
   }
 };

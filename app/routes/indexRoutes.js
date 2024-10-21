@@ -169,7 +169,7 @@ router.post('/carrinho/remover/:id', carrinhoController.removerDoCarrinho, authe
 
 router.get('/pedidos', authenticateUser, pedidoController.listarPedidos)
 
-router.get('/entregas', ClienteController.getObrasVendidasBySession);
+router.get('/faturamento', ClienteController.getObrasVendidasBySession);
 
 // Rota para exibir uma obra pelo ID
 router.get('/obra/:id', obraController.getObraComArtista);

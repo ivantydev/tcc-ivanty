@@ -24,7 +24,6 @@
         <div class="painting">
             <img src="uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
             <div class="painting-title"><%= obra.titulo_obra %></div>
-            <div class="painting-description">Artista</div>
             <div class="painting-description full-description"><%= obra.descricao_obra %></div>
             <br>
             <div class="painting-price">R$ <%= obra.preco %></div>
@@ -46,7 +45,6 @@
         <div class="painting">
             <img src="uploads/obras/<%= obra.imagem_obra %>" alt="<%= obra.titulo_obra %>">
             <div class="painting-title"><%= obra.titulo_obra %></div>
-            <div class="painting-description">Artista</div>
             <div class="painting-description full-description"><%= obra.descricao_obra %></div>
             <br>
             <div class="painting-price">R$ <%= obra.preco %></div>
@@ -67,7 +65,7 @@
         
         descriptions.forEach(desc => {
             const originalText = desc.textContent;
-            const maxLength = 50;
+            const maxLength = 100;
             if (originalText.length > maxLength) {
                 const truncatedText = originalText.substring(0, maxLength) + '...';
                 desc.textContent = truncatedText;

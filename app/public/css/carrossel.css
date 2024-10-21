@@ -1,7 +1,4 @@
-*{
-    padding: 0;
-    margin: auto;
-}
+
 div.Carrossel{
     display: flex;
     align-items: center;
@@ -67,4 +64,13 @@ div.slider-wrapper {
     line-height: normal;
     text-align: center;
     display: block;
+}
+
+.ImagemUser { 
+    border-style: none;
+    width: 100%;
+    border-radius: 2rem;
+    aspect-ratio: 1; 
+    object-fit: cover; /* Preenche o contêiner sem esticar */
+    height: auto; /* Mantém a altura automática */
 }

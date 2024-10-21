@@ -54,34 +54,27 @@ const ObraModel = {
       SELECT 
         O.id_obra,                      
         O.titulo_obra,                  
-        O.descricao_obra,               
-        O.ano_criacao,                  
-        O.categorias,                   
+        O.imagem_obra,                  
         O.preco AS preco_obra,          
-        PO.quantidade,                  
-        PO.preco_unitario,              
-        P.id_pedido,                    
-        P.status_pagamento,             
-        C.id_cliente AS cliente_id,     
-        C.nome_cliente,                 
-        C.email_cliente                 
+        PO.quantidade                   
       FROM 
         Obras O
       JOIN 
         Pedidos_obras PO ON O.id_obra = PO.id_obra  
       JOIN 
         Pedidos P ON PO.id_pedido = P.id_pedido     
-      JOIN 
-        Clientes C ON P.id_cliente = C.id_cliente   
       WHERE 
         O.id_cliente = ? 
-        AND P.status_pagamento = 'approved';  -- Filtro para status 'approved'
+        AND P.status_pagamento = 'approved';  
     `;
-  
+
     const [rows] = await db.query(query, [id_cliente]);
-    return rows;
-  },
-  
+    return rows.map(obra => ({
+        ...obra,
+        faturamento: (obra.preco_obra * obra.quantidade * 0.85).toFixed(2) // 15% de desconto
+    }));
+},
+
 
   getObraById: async (id_obra) => {
     const query = 'SELECT * FROM Obras WHERE id_obra = ?';
